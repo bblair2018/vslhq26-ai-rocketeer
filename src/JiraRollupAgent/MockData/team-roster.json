@@ -1,0 +1,102 @@
+{
+  "team": [
+    {
+      "id": "USR-01",
+      "name": "Bill Blair",
+      "role": "EngineeringManager",
+      "jobTitle": "Engineering Manager",
+      "email": "bill.blair@example.com"
+    },
+    {
+      "id": "USR-02",
+      "name": "Meryl Streep",
+      "role": "ScrumMaster",
+      "jobTitle": "Scrum Master",
+      "email": "meryl.streep@example.com"
+    },
+    {
+      "id": "USR-03",
+      "name": "Scarlett Johansson",
+      "role": "Dev",
+      "jobTitle": "Software Engineer",
+      "email": "scarlett.johansson@example.com"
+    },
+    {
+      "id": "USR-04",
+      "name": "Denzel Washington",
+      "role": "Dev",
+      "jobTitle": "Software Engineer",
+      "email": "denzel.washington@example.com"
+    },
+    {
+      "id": "USR-05",
+      "name": "Emma Stone",
+      "role": "Dev",
+      "jobTitle": "Software Engineer",
+      "email": "emma.stone@example.com"
+    },
+    {
+      "id": "USR-06",
+      "name": "Leonardo DiCaprio",
+      "role": "Dev",
+      "jobTitle": "Software Engineer",
+      "email": "leonardo.dicaprio@example.com"
+    },
+    {
+      "id": "USR-07",
+      "name": "Viola Davis",
+      "role": "Dev",
+      "jobTitle": "Senior Software Engineer",
+      "email": "viola.davis@example.com"
+    },
+    {
+      "id": "USR-08",
+      "name": "Brad Pitt",
+      "role": "QA",
+      "jobTitle": "QA Engineer",
+      "email": "brad.pitt@example.com"
+    },
+    {
+      "id": "USR-09",
+      "name": "Morgan Freeman",
+      "role": "QA",
+      "jobTitle": "QA Engineer",
+      "email": "morgan.freeman@example.com"
+    },
+    {
+      "id": "USR-10",
+      "name": "Charlize Theron",
+      "role": "QA",
+      "jobTitle": "QA Engineer",
+      "email": "charlize.theron@example.com"
+    },
+    {
+      "id": "USR-11",
+      "name": "Idris Elba",
+      "role": "QA",
+      "jobTitle": "QA Engineer",
+      "email": "idris.elba@example.com"
+    },
+    {
+      "id": "USR-12",
+      "name": "Natalie Portman",
+      "role": "QA",
+      "jobTitle": "Senior QA Engineer",
+      "email": "natalie.portman@example.com"
+    },
+    {
+      "id": "USR-13",
+      "name": "Samuel L. Jackson",
+      "role": "Stakeholder",
+      "jobTitle": "Head of Underwriting",
+      "email": "samuel.jackson@example.com"
+    },
+    {
+      "id": "USR-14",
+      "name": "Julia Roberts",
+      "role": "Stakeholder",
+      "jobTitle": "VP, Customer Support",
+      "email": "julia.roberts@example.com"
+    }
+  ]
+}
