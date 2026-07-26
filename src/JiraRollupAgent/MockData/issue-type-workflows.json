@@ -1,0 +1,63 @@
+{
+  "_source": "State lists for Story, Spike, Task, Bug, StoryBug, and Subtask are copied verbatim (in workflow order) from JiraInsightsApp.Shared/Helpers/WorkflowStatuses.cs in the INSYTE StatusReporter project. That project does not define per-type workflows for Epic or Initiative (unknown types fall back to its generic ChartStatusOrder list), so those two are a reduced rollup-level subset of that same generic vocabulary rather than a real per-type workflow.",
+  "issueTypeWorkflows": [
+    {
+      "issueType": "Initiative",
+      "states": ["Open", "In Progress", "Resolved", "Live In Prod", "On Hold", "Blocked", "Cancelled"]
+    },
+    {
+      "issueType": "Epic",
+      "states": ["Open", "In Progress", "Resolved", "Live In Prod", "On Hold", "Blocked", "Cancelled"]
+    },
+    {
+      "issueType": "Story",
+      "states": [
+        "Requirements In Progress", "Ready for Pre-Refinement", "Ready for Refinement", "In Technical Analysis",
+        "Open", "To Do", "In Progress", "Ready for Code Review", "In Review", "Review Completed",
+        "Ready for Testing", "Testing In Progress", "Resolved", "Live In Prod",
+        "Reopened", "Rejected by QA", "Blocked", "On Hold", "Cancelled"
+      ]
+    },
+    {
+      "issueType": "Bug",
+      "states": [
+        "Open", "To Do", "In Progress", "Ready for Code Review", "In Review", "Review Completed",
+        "Ready for Testing", "Testing In Progress", "Resolved", "Live In Prod",
+        "Reopened", "Rejected by QA", "Blocked", "Cancelled"
+      ]
+    },
+    {
+      "issueType": "Task",
+      "states": [
+        "Requirements In Progress", "Ready for Pre-Refinement", "Ready for Refinement",
+        "Open", "To Do", "In Progress", "Ready for Review", "In Review", "Review Completed",
+        "Ready for Testing", "Testing In Progress", "Resolved",
+        "Rejected by QA", "On Hold", "Blocked", "Cancelled"
+      ]
+    },
+    {
+      "issueType": "Spike",
+      "states": [
+        "Requirements In Progress", "Ready for Pre-Refinement", "Ready for Refinement",
+        "Open", "To Do", "In Progress", "Ready for Review", "In Review", "Resolved",
+        "On Hold", "Blocked", "Cancelled"
+      ]
+    },
+    {
+      "issueType": "Subtask",
+      "states": [
+        "Open", "To Do", "In Progress", "Ready for Review", "In Review", "Resolved",
+        "Changes Requested", "Blocked", "Cancelled"
+      ]
+    },
+    {
+      "issueType": "StoryBug",
+      "states": [
+        "Requirements In Progress", "Ready for Pre-Refinement", "Ready for Refinement",
+        "Open", "To Do", "In Progress", "Ready for Code Review", "In Review", "Review Completed",
+        "Ready for Testing", "Testing In Progress", "Resolved", "Live In Prod",
+        "Reopened", "Rejected by QA", "Blocked", "Cancelled"
+      ]
+    }
+  ]
+}
