@@ -6,7 +6,7 @@
 
 ## What It Does
 
-Jira Rollup Agent summarizes Jira activity across the full ticket hierarchy — Initiative → Epic → Story/Bug/Task/Spike (with Subtasks and StoryBugs under Stories). Comments (with author, timestamp, and role) are summarized at the item level and rolled up into a single HTML report: Initiatives are listed in order of business priority/rank, each showing a high-level **Business Summary** (weighted toward PM/Scrum Master/Stakeholder commentary: status, risk, business impact), with each Initiative's Epics nested beneath it showing an **Engineering Summary** (weighted toward Dev/QA commentary: technical progress, blockers, bugs).
+Jira Rollup Agent summarizes Jira activity across the full ticket hierarchy — Initiative → Epic → Story/Bug/Task/Spike (with Subtasks and StoryBugs under Stories). Comments (with author, timestamp, and role) are summarized at the item level and rolled up into a single HTML report: Initiatives are listed in order of business priority/rank, each showing a high-level **Business Summary** (weighted toward PM/Scrum Master/Stakeholder commentary — note: in this dataset the Project Manager and Scrum Master are the same person — status, risk, business impact), with each Initiative's Epics nested beneath it showing an **Engineering Summary** (weighted toward Dev/QA commentary: technical progress, blockers, bugs).
 
 ## Architecture
 
@@ -32,7 +32,7 @@ Jira Rollup Agent summarizes Jira activity across the full ticket hierarchy — 
 
 Mocked Jira Hierarchy (above, includes priority/rank field on Initiatives) → .NET Agent → Azure OpenAI → Item Summaries → Epic Engineering Summaries → Initiative Business Summaries → Sorted by Priority → Single HTML Report
 
-1. **Input**: Mocked sample data representing the Jira hierarchy — Initiatives (with a priority/rank field) containing Epics, which contain Stories, Bugs, Tasks, and Spikes; Stories additionally contain Subtasks and StoryBugs. All items carry comments with author, timestamp, and author role (Dev/QA/PM/Scrum Master/Stakeholder).
+1. **Input**: Mocked sample data representing the Jira hierarchy — Initiatives (with a priority/rank field) containing Epics, which contain Stories, Bugs, Tasks, and Spikes; Stories additionally contain Subtasks and StoryBugs. All items carry comments with author, timestamp, and author role (Dev/QA/PM/Scrum Master/Stakeholder). Note: PM and Scrum Master roles map to the same person in this dataset.
 2. **Item summarization**: Single LLM summary per Story, Bug, Task, Spike (rolling up their Subtasks/StoryBugs where applicable)
 3. **Epic summarization**: Comments across each Epic's items, filtered/weighted toward Dev/QA roles, summarized into an Engineering Summary
 4. **Initiative summarization**: Comments across the Initiative, filtered/weighted toward PM/Scrum Master/Stakeholder roles, summarized into a Business Summary
@@ -61,3 +61,4 @@ TBD — setup instructions will be added once the project is built at the event.
 - Item-level summaries (Story/Bug/Task/Spike) do not have a role split — role weighting only applies at Epic (Engineering) and Initiative (Business) level
 - Initiative ranking relies on a priority/rank field present in the mock data — no independent prioritization logic
 - Summary quality depends on comment volume and consistency of the mocked/real role data
+- Project Manager and Scrum Master roles are collapsed into a single person in this dataset — not representative of teams where these are distinct roles
