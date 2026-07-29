@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['summarizationservice_2ecs_0',['SummarizationService.cs',['../_summarization_service_8cs.html',1,'']]]
+  ['readme_2emd_0',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['repository_2ecs_1',['Repository.cs',['../_repository_8cs.html',1,'']]]
 ];

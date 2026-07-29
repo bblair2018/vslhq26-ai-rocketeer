@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Jira Rollup Agent: Main Page</title>
+<title>Jira Rollup Agent: vslhq26-ai-rocketeer</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -16,10 +16,51 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+const theme = DarkModeToggle.darkModeEnabled ? 'dark' : 'default'
 mermaid.initialize({ startOnLoad: true, theme: theme });
+(function() {
+  const elementCode = '.mermaid';
+  const loadMermaid = function(theme) {
+    mermaid.initialize({theme})
+    mermaid.init({theme}, document.querySelectorAll(elementCode))
+  }
+  const saveOriginalData = function() {
+    return new Promise((resolve, reject) => {
+      try {
+        var els = document.querySelectorAll(elementCode), count = els.length;
+        els.forEach(element => {
+          element.setAttribute('data-original-code', element.innerHTML)
+          count--
+          if (count == 0) { resolve() }
+        });
+      } catch (error) { reject(error) }
+    })
+  }
+  const resetProcessed = function(){
+    return new Promise((resolve, reject) => {
+      try {
+        var els = document.querySelectorAll(elementCode), count = els.length;
+        els.forEach(element => {
+          if (element.getAttribute('data-original-code') != null) {
+              element.removeAttribute('data-processed')
+              element.innerHTML = element.getAttribute('data-original-code')
+          }
+          count--
+          if(count == 0) { resolve() }
+        });
+      } catch (error) { reject(error) }
+    })
+  }
+  saveOriginalData()
+  const original = DarkModeToggle.enableDarkMode.bind(DarkModeToggle);
+  DarkModeToggle.enableDarkMode = function(enable) {
+      original(enable);
+      resetProcessed().then(loadMermaid(enable ? 'dark' : 'default')).catch(console.error)
+  };
+})();
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
@@ -114,10 +155,79 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Jira Rollup Agent Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">vslhq26-ai-rocketeer </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<p><b>Team:</b> Solo — <a href="https://github.com/bblair2018">@bblair2018</a></p>
+<p><b>Category:</b> Primary — Best AI Agent or Workflow Automation · Secondary — Best Azure OpenAI / LLM-Powered App</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+What It Does</h1>
+<p>Jira Rollup Agent summarizes Jira activity across the full ticket hierarchy — Initiative → Epic → Story/Bug/Task/Spike (with Subtasks and StoryBugs under Stories). Comments (with author, timestamp, and role) are summarized at the item level and rolled up into a single HTML report: Initiatives are listed in order of business priority/rank, each showing a high-level <b>Business Summary</b> (weighted toward Scrum Master/Stakeholder/Engineering Manager commentary — status, risk, business impact), with each Initiative's Epics nested beneath it showing an <b>Engineering Summary</b> (weighted toward Dev/QA commentary: technical progress, blockers, bugs).</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Architecture</h1>
+<p><b>Ticket Hierarchy:</b></p>
+<ul>
+<li>Initiative<ul>
+<li>Epic<ul>
+<li>Story<ul>
+<li>Subtask</li>
+<li>StoryBug</li>
+</ul>
+</li>
+<li>Bug (standalone, same level as Story)</li>
+<li>Task</li>
+<li>Spike</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><b>Report Structure (single HTML report):</b></p>
+<ul>
+<li>Initiatives, ordered by business priority/rank (from mock data)<ul>
+<li>Business Summary (per Initiative)</li>
+<li>Epics (per Initiative)<ul>
+<li>Engineering Summary (per Epic)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><b>Data Flow:</b></p>
+<p>Mocked Jira Hierarchy (above, includes priority/rank field on Initiatives) → .NET Agent → Azure OpenAI → Item Summaries → Epic Engineering Summaries → Initiative Business Summaries → Sorted by Priority → Single HTML Report</p>
+<ol type="1">
+<li><b>Input</b>: Mocked sample data representing the Jira hierarchy — Initiatives (with a priority/rank field) containing Epics, which contain Stories, Bugs, Tasks, and Spikes; Stories additionally contain Subtasks and StoryBugs. All items carry comments with author, timestamp, and author role (Dev/QA/Scrum Master/Stakeholder/Engineering Manager).</li>
+<li><b>Item summarization</b>: Single LLM summary per Story, Bug, Task, Spike (rolling up their Subtasks/StoryBugs where applicable)</li>
+<li><b>Epic summarization</b>: Comments across each Epic's items, filtered/weighted toward Dev/QA roles, summarized into an Engineering Summary</li>
+<li><b>Initiative summarization</b>: Comments across the Initiative, filtered/weighted toward Scrum Master/Stakeholder/Engineering Manager roles, summarized into a Business Summary</li>
+<li><b>Sorting</b>: Initiatives ordered by their priority/rank field</li>
+<li><b>Output</b>: A single HTML report — Initiatives listed by business priority, each with its Business Summary and nested Epic Engineering Summaries</li>
+</ol>
+<p><em>Note: mock data is used to simulate the existing Jira ingestion pipeline (already built separately) so the hackathon build can focus on summarization and reporting.</em></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Tech Stack</h1>
+<ul>
+<li>.NET 10 / C#</li>
+<li>Azure OpenAI (GPT-4o) — fallback: GitHub Models</li>
+<li>Mocked Jira hierarchy data (JSON) standing in for the existing ingestion pipeline</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Getting Started</h1>
+<p>TBD — setup instructions will be added once the project is built at the event.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Demo</h1>
+<p>📹 <span class="tt">./demo/demo.mp4</span></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Known Limits</h1>
+<ul>
+<li>Uses mocked Jira data rather than a live pull for the demo; real ingestion pipeline exists separately and can be substituted</li>
+<li>Item-level summaries (Story/Bug/Task/Spike) do not have a role split — role weighting only applies at Epic (Engineering) and Initiative (Business) level</li>
+<li>Initiative ranking relies on a priority/rank field present in the mock data — no independent prioritization logic</li>
+<li>Summary quality depends on comment volume and consistency of the mocked/real role data </li>
+</ul>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

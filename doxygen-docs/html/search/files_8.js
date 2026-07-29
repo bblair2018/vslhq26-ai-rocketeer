@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unitofwork_2ecs_0',['UnitOfWork.cs',['../_unit_of_work_8cs.html',1,'']]]
+  ['summarizationservice_2ecs_0',['SummarizationService.cs',['../_summarization_service_8cs.html',1,'']]]
 ];

@@ -16,10 +16,51 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+const theme = DarkModeToggle.darkModeEnabled ? 'dark' : 'default'
 mermaid.initialize({ startOnLoad: true, theme: theme });
+(function() {
+  const elementCode = '.mermaid';
+  const loadMermaid = function(theme) {
+    mermaid.initialize({theme})
+    mermaid.init({theme}, document.querySelectorAll(elementCode))
+  }
+  const saveOriginalData = function() {
+    return new Promise((resolve, reject) => {
+      try {
+        var els = document.querySelectorAll(elementCode), count = els.length;
+        els.forEach(element => {
+          element.setAttribute('data-original-code', element.innerHTML)
+          count--
+          if (count == 0) { resolve() }
+        });
+      } catch (error) { reject(error) }
+    })
+  }
+  const resetProcessed = function(){
+    return new Promise((resolve, reject) => {
+      try {
+        var els = document.querySelectorAll(elementCode), count = els.length;
+        els.forEach(element => {
+          if (element.getAttribute('data-original-code') != null) {
+              element.removeAttribute('data-processed')
+              element.innerHTML = element.getAttribute('data-original-code')
+          }
+          count--
+          if(count == 0) { resolve() }
+        });
+      } catch (error) { reject(error) }
+    })
+  }
+  saveOriginalData()
+  const original = DarkModeToggle.enableDarkMode.bind(DarkModeToggle);
+  DarkModeToggle.enableDarkMode = function(enable) {
+      original(enable);
+      resetProcessed().then(loadMermaid(enable ? 'dark' : 'default')).catch(console.error)
+  };
+})();
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
@@ -171,14 +212,14 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a740a7c0ec91bf7212c56322b262e76be" id="r_a740a7c0ec91bf7212c56322b262e76be"><td class="memItemLeft">async Task&lt; string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a740a7c0ec91bf7212c56322b262e76be">SummarizeInitiativeAsync</a> (<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html">Initiative</a> initiative, <a class="el" href="class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service_1_1_hierarchy_data.html">HierarchyData</a> data, DateTime rangeStart, DateTime rangeEnd, Dictionary&lt; int, string &gt; workItemSummaries, Dictionary&lt; int, string &gt; epicSummaries)</td></tr>
 <tr class="memdesc:a740a7c0ec91bf7212c56322b262e76be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type C (Business): an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a> - summarizes its Epics first, then rolls those up ScrumMaster/Stakeholder/EngineeringManager-weighted.  <br /></td></tr>
 <tr class="memitem:ab543d72190fb91330533c5ff6a4126d2" id="r_ab543d72190fb91330533c5ff6a4126d2"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#ab543d72190fb91330533c5ff6a4126d2">PersistSummariesAsync</a> (Dictionary&lt; int, string &gt; workItemSummaries, Dictionary&lt; int, string &gt; epicSummaries, Dictionary&lt; int, string &gt; initiativeSummaries, DateTime rangeStart, DateTime rangeEnd)</td></tr>
-<tr class="memdesc:ab543d72190fb91330533c5ff6a4126d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the three summary tables and inserts the freshly built rows in one CompleteAsync() - overwrite, no history, per CLAUDE.md's decision. The delete happens here (right before the insert), not before BuildSummaryChainAsync, so a mid-run failure while calling the LLM leaves the previous run's summaries intact instead of wiping them for nothing.  <br /></td></tr>
+<tr class="memdesc:ab543d72190fb91330533c5ff6a4126d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the three summary tables and inserts the freshly built rows in one CompleteAsync() - overwrite, no history, per <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s decision. The delete happens here (right before the insert), not before BuildSummaryChainAsync, so a mid-run failure while calling the LLM leaves the previous run's summaries intact instead of wiping them for nothing.  <br /></td></tr>
 <tr class="memitem:a25b98e676ac89e54990d0bd6f207b541" id="r_a25b98e676ac89e54990d0bd6f207b541"><td class="memItemLeft">async Task&lt; <a class="el" href="class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service_1_1_hierarchy_data.html">HierarchyData</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a25b98e676ac89e54990d0bd6f207b541">LoadHierarchyDataAsync</a> (IReadOnlyCollection&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt; allComments, DateTime rangeStart, DateTime rangeEnd)</td></tr>
 <tr class="memdesc:a25b98e676ac89e54990d0bd6f207b541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the whole hierarchy into flat lookups keyed by parent id, filtered to the given date range for comments. No <a class="el" href="namespace_jira_rollup_agent_1_1_d_a_l.html">DAL</a> navigation properties are populated/mutated here - IRepository has no Include support, so this builds its own lookups from flat query results instead, matching the "load level-by-level" approach already used by <a class="el" href="namespace_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service.html">JiraHierarchyLoaderService</a>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:af2d85c3990e2a738f053e19dcf87c862" id="r_af2d85c3990e2a738f053e19dcf87c862"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#af2d85c3990e2a738f053e19dcf87c862">HasNoActivity</a> (IReadOnlyList&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt; ownComments, IReadOnlyList&lt;(string Label, string SummaryText)&gt; childSummaries)</td></tr>
-<tr class="memdesc:af2d85c3990e2a738f053e19dcf87c862"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when there's nothing to summarize: no comments of its own, and (for rollup levels) every child summary is itself the placeholder. Callers skip the LLM call entirely and use NoActivityPlaceholder instead - see CLAUDE.md's placeholder decision.  <br /></td></tr>
+<tr class="memdesc:af2d85c3990e2a738f053e19dcf87c862"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when there's nothing to summarize: no comments of its own, and (for rollup levels) every child summary is itself the placeholder. Callers skip the LLM call entirely and use NoActivityPlaceholder instead - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s placeholder decision.  <br /></td></tr>
 <tr class="memitem:aaf6324566ac8f5fcfb2a4292972a187d" id="r_aaf6324566ac8f5fcfb2a4292972a187d"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aaf6324566ac8f5fcfb2a4292972a187d">AppendComments</a> (StringBuilder sb, IReadOnlyList&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt; comments)</td></tr>
 <tr class="memitem:aee4910ddac7d1daa5ef969a852b39b29" id="r_aee4910ddac7d1daa5ef969a852b39b29"><td class="memItemLeft">static string&#160;</td><td class="memItemRight"><a class="el" href="#aee4910ddac7d1daa5ef969a852b39b29">BuildLeafUserMessage</a> (string ticketHeader, DateTime rangeStart, DateTime rangeEnd, IReadOnlyList&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt; comments)</td></tr>
 <tr class="memdesc:aee4910ddac7d1daa5ef969a852b39b29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type A user message: ticket header, reporting period, own comments only.  <br /></td></tr>
@@ -195,12 +236,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a3fe464e7193475de70d3e26d25adab50" id="r_a3fe464e7193475de70d3e26d25adab50"><td class="memItemLeft">readonly <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html">IUnitOfWork</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3fe464e7193475de70d3e26d25adab50">_unitOfWork</a></td></tr>
 <tr class="memitem:ac0d749c8afba4fd8be04600a5f7cc69c" id="r_ac0d749c8afba4fd8be04600a5f7cc69c"><td class="memItemLeft">readonly IChatClient&#160;</td><td class="memItemRight"><a class="el" href="#ac0d749c8afba4fd8be04600a5f7cc69c">_chatClient</a></td></tr>
 <tr class="memitem:accacf61ffc3afd1edac0ea9e62b2c85e" id="r_accacf61ffc3afd1edac0ea9e62b2c85e"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#accacf61ffc3afd1edac0ea9e62b2c85e">Start</a></td></tr>
-<tr class="memdesc:accacf61ffc3afd1edac0ea9e62b2c85e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and validates AppSettings:SummaryRangeStart/SummaryRangeEnd. Throws (caught by <a class="el" href="#ae4417bac1e87add7d4bf5a54c9b0a312">Run()</a>'s try/catch) if the range is malformed, start is after end, or the range doesn't overlap the data at all - see CLAUDE.md's "Bounds handling, decided" for the reasoning.  <br /></td></tr>
+<tr class="memdesc:accacf61ffc3afd1edac0ea9e62b2c85e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and validates AppSettings:SummaryRangeStart/SummaryRangeEnd. Throws (caught by <a class="el" href="#ae4417bac1e87add7d4bf5a54c9b0a312">Run()</a>'s try/catch) if the range is malformed, start is after end, or the range doesn't overlap the data at all - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s "Bounds handling, decided" for the reasoning.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:aafd2d767efc466052fac3ea321e21df6" id="r_aafd2d767efc466052fac3ea321e21df6"><td class="memItemLeft">const string&#160;</td><td class="memItemRight"><a class="el" href="#aafd2d767efc466052fac3ea321e21df6">NoActivityPlaceholder</a> = &quot;No activity in this period.&quot;</td></tr>
-<tr class="memdesc:aafd2d767efc466052fac3ea321e21df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Placeholder for a ticket/rollup with zero in-range comments - see CLAUDE.md's "no IsPlaceholder flag" decision: this literal text is stored as-is in SummaryText.  <br /></td></tr>
+<tr class="memdesc:aafd2d767efc466052fac3ea321e21df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Placeholder for a ticket/rollup with zero in-range comments - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s "no IsPlaceholder flag" decision: this literal text is stored as-is in SummaryText.  <br /></td></tr>
 <tr class="memitem:a889df7587ee49e219b5b4730ce4c1db7" id="r_a889df7587ee49e219b5b4730ce4c1db7"><td class="memItemLeft">const string&#160;</td><td class="memItemRight"><a class="el" href="#a889df7587ee49e219b5b4730ce4c1db7">TypeASystemPrompt</a></td></tr>
 <tr class="memitem:af40ecfe9de15de027853d33e39566f33" id="r_af40ecfe9de15de027853d33e39566f33"><td class="memItemLeft">const string&#160;</td><td class="memItemRight"><a class="el" href="#af40ecfe9de15de027853d33e39566f33">TypeBSystemPrompt</a></td></tr>
 <tr class="memitem:a4235ca6499be05f27b74a8a6291bbeb7" id="r_a4235ca6499be05f27b74a8a6291bbeb7"><td class="memItemLeft">const string&#160;</td><td class="memItemRight"><a class="el" href="#a4235ca6499be05f27b74a8a6291bbeb7">StructuredOutputFormat</a></td></tr>
@@ -828,7 +869,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>True when there's nothing to summarize: no comments of its own, and (for rollup levels) every child summary is itself the placeholder. Callers skip the LLM call entirely and use NoActivityPlaceholder instead - see CLAUDE.md's placeholder decision. </p>
+<p>True when there's nothing to summarize: no comments of its own, and (for rollup levels) every child summary is itself the placeholder. Callers skip the LLM call entirely and use NoActivityPlaceholder instead - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s placeholder decision. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -948,7 +989,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Clears the three summary tables and inserts the freshly built rows in one CompleteAsync() - overwrite, no history, per CLAUDE.md's decision. The delete happens here (right before the insert), not before BuildSummaryChainAsync, so a mid-run failure while calling the LLM leaves the previous run's summaries intact instead of wiping them for nothing. </p>
+<p>Clears the three summary tables and inserts the freshly built rows in one CompleteAsync() - overwrite, no history, per <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s decision. The delete happens here (right before the insert), not before BuildSummaryChainAsync, so a mid-run failure while calling the LLM leaves the previous run's summaries intact instead of wiping them for nothing. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1634,7 +1675,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Placeholder for a ticket/rollup with zero in-range comments - see CLAUDE.md's "no IsPlaceholder flag" decision: this literal text is stored as-is in SummaryText. </p>
+<p>Placeholder for a ticket/rollup with zero in-range comments - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s "no IsPlaceholder flag" decision: this literal text is stored as-is in SummaryText. </p>
 
 </div>
 </div>
@@ -1658,7 +1699,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Reads and validates AppSettings:SummaryRangeStart/SummaryRangeEnd. Throws (caught by <a class="el" href="#ae4417bac1e87add7d4bf5a54c9b0a312">Run()</a>'s try/catch) if the range is malformed, start is after end, or the range doesn't overlap the data at all - see CLAUDE.md's "Bounds handling, decided" for the reasoning. </p>
+<p>Reads and validates AppSettings:SummaryRangeStart/SummaryRangeEnd. Throws (caught by <a class="el" href="#ae4417bac1e87add7d4bf5a54c9b0a312">Run()</a>'s try/catch) if the range is malformed, start is after end, or the range doesn't overlap the data at all - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s "Bounds handling, decided" for the reasoning. </p>
 
 </div>
 </div>

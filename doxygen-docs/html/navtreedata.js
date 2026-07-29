@@ -25,6 +25,37 @@
 var NAVTREE =
 [
   [ "Jira Rollup Agent", "index.html", [
+    [ "vslhq26-ai-rocketeer", "index.html", "index" ],
+    [ "CLAUDE.md", "md__c_l_a_u_d_e.html", [
+      [ "What this is", "md__c_l_a_u_d_e.html#autotoc_md8", null ],
+      [ "Commands", "md__c_l_a_u_d_e.html#autotoc_md9", null ],
+      [ "Architecture", "md__c_l_a_u_d_e.html#autotoc_md10", [
+        [ "Ticket hierarchy", "md__c_l_a_u_d_e.html#autotoc_md11", null ],
+        [ "Intended data flow (implemented)", "md__c_l_a_u_d_e.html#autotoc_md12", [
+          [ "Role-weighting is soft (emphasis), not a hard filter", "md__c_l_a_u_d_e.html#autotoc_md13", null ],
+          [ "Item→Epic→Initiative summary chaining (implemented)", "md__c_l_a_u_d_e.html#autotoc_md14", null ],
+          [ "The three prompt types, and their exact system prompts (implemented)", "md__c_l_a_u_d_e.html#autotoc_md15", null ],
+          [ "Summary storage schema (implemented)", "md__c_l_a_u_d_e.html#autotoc_md16", null ],
+          [ "Date-range filtering for summarization (implemented)", "md__c_l_a_u_d_e.html#autotoc_md17", null ],
+          [ "Implementation order for <span class=\"tt\">SummarizationService</span> (completed)", "md__c_l_a_u_d_e.html#autotoc_md18", null ]
+        ] ],
+        [ "<span class=\"tt\">src/JiraRollupAgent/MockData/</span>", "md__c_l_a_u_d_e.html#autotoc_md19", [
+          [ "<span class=\"tt\">jira-hierarchy.json</span> (~5100 lines — the primary pipeline input)", "md__c_l_a_u_d_e.html#autotoc_md20", null ],
+          [ "<span class=\"tt\">issue-type-workflows.json</span>", "md__c_l_a_u_d_e.html#autotoc_md21", null ],
+          [ "<span class=\"tt\">team-roster.json</span>", "md__c_l_a_u_d_e.html#autotoc_md22", null ]
+        ] ],
+        [ "App boilerplate (adapted from <span class=\"tt\">C:\\UATP_CODE\\INSYTE\\StatusReporter\\StatusReporter.Console</span>)", "md__c_l_a_u_d_e.html#autotoc_md23", null ],
+        [ "<span class=\"tt\">Services/</span> — pipeline stages", "md__c_l_a_u_d_e.html#autotoc_md24", [
+          [ "Load-once behavior (all three stages)", "md__c_l_a_u_d_e.html#autotoc_md25", null ],
+          [ "<span class=\"tt\">Models/JiraHierarchyLoaderService/MockDataModels.cs</span>", "md__c_l_a_u_d_e.html#autotoc_md26", null ]
+        ] ],
+        [ "<span class=\"tt\">DAL/</span> — data access layer", "md__c_l_a_u_d_e.html#autotoc_md27", [
+          [ "Table schema (verified against <span class=\"tt\">VSLiveJiraRollup</span>)", "md__c_l_a_u_d_e.html#autotoc_md28", null ],
+          [ "Current data volume (verified against <span class=\"tt\">VSLiveJiraRollup</span>)", "md__c_l_a_u_d_e.html#autotoc_md29", null ]
+        ] ],
+        [ "Known limits (from README, still applicable to any implementation)", "md__c_l_a_u_d_e.html#autotoc_md30", null ]
+      ] ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
