@@ -56,6 +56,26 @@ var NAVTREE =
         [ "Known limits (from README, still applicable to any implementation)", "md__c_l_a_u_d_e.html#autotoc_md30", null ]
       ] ]
     ] ],
+    [ "Jira Rollup Agent — Hierarchy, Reporting Structure, and Prompt Types", "md_prompt-types-overview.html", [
+      [ "1. The full ticket hierarchy", "md_prompt-types-overview.html#autotoc_md32", null ],
+      [ "2. What the final report actually shows", "md_prompt-types-overview.html#autotoc_md33", null ],
+      [ "3. The three generic prompt types", "md_prompt-types-overview.html#autotoc_md34", [
+        [ "Type A — Leaf summary (no children, no weighting)", "md_prompt-types-overview.html#autotoc_md35", null ],
+        [ "Type B — Rollup summary, no weighting", "md_prompt-types-overview.html#autotoc_md38", null ],
+        [ "Type C — Rollup summary, role-weighted (one template, two parameterizations)", "md_prompt-types-overview.html#autotoc_md40", null ]
+      ] ],
+      [ "4. Tying it together", "md_prompt-types-overview.html#autotoc_md43", null ],
+      [ "5. End-to-end walkthrough: one Initiative, one example of each type", "md_prompt-types-overview.html#autotoc_md44", [
+        [ "Step 1 — Subtask SUB-PFD-1-1-1 (Type A)", "md_prompt-types-overview.html#autotoc_md45", null ],
+        [ "Step 2 — StoryBug SBUG-PFD-1-1-1 (Type A)", "md_prompt-types-overview.html#autotoc_md46", null ],
+        [ "Step 3 — Story STORY-PFD-1-1 (Type B, consumes Steps 1 &amp; 2)", "md_prompt-types-overview.html#autotoc_md47", null ],
+        [ "Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)", "md_prompt-types-overview.html#autotoc_md48", null ],
+        [ "Step 5 — Task TASK-PFD-1-4 (Type A, standalone)", "md_prompt-types-overview.html#autotoc_md49", null ],
+        [ "Step 6 — Spike SPIKE-PFD-1-5 (Type A, standalone)", "md_prompt-types-overview.html#autotoc_md50", null ],
+        [ "Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)", "md_prompt-types-overview.html#autotoc_md51", null ],
+        [ "Step 8 — Initiative INIT-PFD (Type C, ScrumMaster/Stakeholder/EM-weighted, consumes Step 7)", "md_prompt-types-overview.html#autotoc_md52", null ]
+      ] ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],

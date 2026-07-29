@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['emphasis_20not_20a_20hard_20filter_0',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md13',1,'']]],
-  ['exact_20system_20prompts_20implemented_1',['The three prompt types, and their exact system prompts (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md15',1,'']]]
+  ['6_0',['Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)',['../md_prompt-types-overview.html#autotoc_md51',1,'']]],
+  ['6_20—_20spike_20spike_20pfd_201_205_20type_20a_20standalone_1',['Step 6 — Spike SPIKE-PFD-1-5 (Type A, standalone)',['../md_prompt-types-overview.html#autotoc_md50',1,'']]]
 ];

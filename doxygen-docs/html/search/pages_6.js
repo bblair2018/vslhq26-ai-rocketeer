@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['filter_0',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md13',1,'']]],
-  ['filtering_20for_20summarization_20implemented_1',['Date-range filtering for summarization (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md17',1,'']]],
-  ['flow_20implemented_2',['Intended data flow (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md12',1,'']]],
-  ['for_20summarization_20implemented_3',['Date-range filtering for summarization (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md17',1,'']]],
-  ['for_20summarizationservice_20completed_4',['Implementation order for &lt;span class=&quot;tt&quot;&gt;SummarizationService&lt;/span&gt; (completed)',['../md__c_l_a_u_d_e.html#autotoc_md18',1,'']]],
-  ['from_20c_3a_20console_5',['App boilerplate (adapted from &lt;span class=&quot;tt&quot;&gt;C:\\UATP_CODE\\INSYTE\\StatusReporter\\StatusReporter.Console&lt;/span&gt;)',['../md__c_l_a_u_d_e.html#autotoc_md23',1,'']]],
-  ['from_20readme_20still_20applicable_20to_20any_20implementation_6',['Known limits (from README, still applicable to any implementation)',['../md__c_l_a_u_d_e.html#autotoc_md30',1,'']]]
+  ['7_0',['Step 8 — Initiative INIT-PFD (Type C, ScrumMaster/Stakeholder/EM-weighted, consumes Step 7)',['../md_prompt-types-overview.html#autotoc_md52',1,'']]],
+  ['7_20—_20epic_20epic_20pfd_201_20type_20c_20dev_20qa_20weighted_20consumes_20steps_203_206_1',['Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)',['../md_prompt-types-overview.html#autotoc_md51',1,'']]]
 ];

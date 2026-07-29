@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['weighting_20is_20soft_20emphasis_20not_20a_20hard_20filter_0',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md13',1,'']]],
-  ['what_20it_20does_1',['What It Does',['../index.html#autotoc_md1',1,'']]],
-  ['what_20this_20is_2',['What this is',['../md__c_l_a_u_d_e.html#autotoc_md8',1,'']]],
-  ['workflows_20json_3',['&lt;span class=&quot;tt&quot;&gt;issue-type-workflows.json&lt;/span&gt;',['../md__c_l_a_u_d_e.html#autotoc_md21',1,'']]]
+  ['nested_20under_20it_0',['Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)',['../md_prompt-types-overview.html#autotoc_md48',1,'']]],
+  ['no_20children_20no_20weighting_1',['Type A — Leaf summary (no children, no weighting)',['../md_prompt-types-overview.html#autotoc_md35',1,'']]],
+  ['no_20weighting_2',['no weighting',['../md_prompt-types-overview.html#autotoc_md35',1,'Type A — Leaf summary (no children, no weighting)'],['../md_prompt-types-overview.html#autotoc_md38',1,'Type B — Rollup summary, no weighting']]],
+  ['not_20a_20hard_20filter_3',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md13',1,'']]],
+  ['not_20nested_20under_20it_4',['Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)',['../md_prompt-types-overview.html#autotoc_md48',1,'']]]
 ];

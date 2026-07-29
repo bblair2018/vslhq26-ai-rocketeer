@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['layer_0',['&lt;span class=&quot;tt&quot;&gt;DAL/&lt;/span&gt; — data access layer',['../md__c_l_a_u_d_e.html#autotoc_md27',1,'']]],
-  ['limits_1',['Known Limits',['../index.html#autotoc_md6',1,'']]],
-  ['limits_20from_20readme_20still_20applicable_20to_20any_20implementation_2',['Known limits (from README, still applicable to any implementation)',['../md__c_l_a_u_d_e.html#autotoc_md30',1,'']]],
-  ['lines_20—_20the_20primary_20pipeline_20input_3',['&lt;span class=&quot;tt&quot;&gt;jira-hierarchy.json&lt;/span&gt; (~5100 lines — the primary pipeline input)',['../md__c_l_a_u_d_e.html#autotoc_md20',1,'']]],
-  ['load_20once_20behavior_20all_20three_20stages_4',['Load-once behavior (all three stages)',['../md__c_l_a_u_d_e.html#autotoc_md25',1,'']]]
+  ['each_20type_0',['5. End-to-end walkthrough: one Initiative, one example of each type',['../md_prompt-types-overview.html#autotoc_md44',1,'']]],
+  ['em_20weighted_20consumes_20step_207_1',['Step 8 — Initiative INIT-PFD (Type C, ScrumMaster/Stakeholder/EM-weighted, consumes Step 7)',['../md_prompt-types-overview.html#autotoc_md52',1,'']]],
+  ['emphasis_20not_20a_20hard_20filter_2',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md13',1,'']]],
+  ['end_20to_20end_20walkthrough_3a_20one_20initiative_20one_20example_20of_20each_20type_3',['5. End-to-end walkthrough: one Initiative, one example of each type',['../md_prompt-types-overview.html#autotoc_md44',1,'']]],
+  ['end_20walkthrough_3a_20one_20initiative_20one_20example_20of_20each_20type_4',['5. End-to-end walkthrough: one Initiative, one example of each type',['../md_prompt-types-overview.html#autotoc_md44',1,'']]],
+  ['epic_20epic_20pfd_201_20type_20c_20dev_20qa_20weighted_20consumes_20steps_203_206_5',['Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)',['../md_prompt-types-overview.html#autotoc_md51',1,'']]],
+  ['epic_20pfd_201_20type_20c_20dev_20qa_20weighted_20consumes_20steps_203_206_6',['Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)',['../md_prompt-types-overview.html#autotoc_md51',1,'']]],
+  ['exact_20system_20prompts_20implemented_7',['The three prompt types, and their exact system prompts (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md15',1,'']]],
+  ['example_20of_20each_20type_8',['5. End-to-end walkthrough: one Initiative, one example of each type',['../md_prompt-types-overview.html#autotoc_md44',1,'']]]
 ];

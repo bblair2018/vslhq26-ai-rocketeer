@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['not_20a_20hard_20filter_0',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md13',1,'']]]
+  ['generic_20prompt_20types_0',['3. The three generic prompt types',['../md_prompt-types-overview.html#autotoc_md34',1,'']]],
+  ['getting_20started_1',['Getting Started',['../index.html#autotoc_md4',1,'']]]
 ];

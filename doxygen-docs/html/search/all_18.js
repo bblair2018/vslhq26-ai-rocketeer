@@ -1,6 +1,25 @@
 var searchData=
 [
-  ['—_20data_20access_20layer_0',['&lt;span class=&quot;tt&quot;&gt;DAL/&lt;/span&gt; — data access layer',['../md__c_l_a_u_d_e.html#autotoc_md27',1,'']]],
-  ['—_20pipeline_20stages_1',['&lt;span class=&quot;tt&quot;&gt;Services/&lt;/span&gt; — pipeline stages',['../md__c_l_a_u_d_e.html#autotoc_md24',1,'']]],
-  ['—_20the_20primary_20pipeline_20input_2',['&lt;span class=&quot;tt&quot;&gt;jira-hierarchy.json&lt;/span&gt; (~5100 lines — the primary pipeline input)',['../md__c_l_a_u_d_e.html#autotoc_md20',1,'']]]
+  ['parameterizations_0',['Type C — Rollup summary, role-weighted (one template, two parameterizations)',['../md_prompt-types-overview.html#autotoc_md40',1,'']]],
+  ['parentworkitem_1',['ParentWorkItem',['../class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html#aaeb3b30798497b9cfcf2f5dff62a4056',1,'JiraRollupAgent::DAL::Models::WorkItem']]],
+  ['parentworkitemid_2',['ParentWorkItemId',['../class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html#a1482b82f861f9161671ae58ad7892213',1,'JiraRollupAgent::DAL::Models::WorkItem']]],
+  ['persistsummariesasync_3',['PersistSummariesAsync',['../class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#ab543d72190fb91330533c5ff6a4126d2',1,'JiraRollupAgent::Services::SummarizationService::SummarizationService']]],
+  ['pfd_201_201_201_20type_20a_4',['PFD 1 1 1 Type A',['../md_prompt-types-overview.html#autotoc_md45',1,'Step 1 — Subtask SUB-PFD-1-1-1 (Type A)'],['../md_prompt-types-overview.html#autotoc_md46',1,'Step 2 — StoryBug SBUG-PFD-1-1-1 (Type A)']]],
+  ['pfd_201_201_20type_20b_20consumes_20steps_201_202_5',['Step 3 — Story STORY-PFD-1-1 (Type B, consumes Steps 1 &amp;amp; 2)',['../md_prompt-types-overview.html#autotoc_md47',1,'']]],
+  ['pfd_201_203_20type_20a_20standalone_20—_20sibling_20of_20the_20story_20not_20nested_20under_20it_6',['Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)',['../md_prompt-types-overview.html#autotoc_md48',1,'']]],
+  ['pfd_201_204_20type_20a_20standalone_7',['Step 5 — Task TASK-PFD-1-4 (Type A, standalone)',['../md_prompt-types-overview.html#autotoc_md49',1,'']]],
+  ['pfd_201_205_20type_20a_20standalone_8',['Step 6 — Spike SPIKE-PFD-1-5 (Type A, standalone)',['../md_prompt-types-overview.html#autotoc_md50',1,'']]],
+  ['pfd_201_20type_20c_20dev_20qa_20weighted_20consumes_20steps_203_206_9',['Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)',['../md_prompt-types-overview.html#autotoc_md51',1,'']]],
+  ['pfd_20type_20c_20scrummaster_20stakeholder_20em_20weighted_20consumes_20step_207_10',['Step 8 — Initiative INIT-PFD (Type C, ScrumMaster/Stakeholder/EM-weighted, consumes Step 7)',['../md_prompt-types-overview.html#autotoc_md52',1,'']]],
+  ['pipeline_20input_11',['&lt;span class=&quot;tt&quot;&gt;jira-hierarchy.json&lt;/span&gt; (~5100 lines — the primary pipeline input)',['../md__c_l_a_u_d_e.html#autotoc_md20',1,'']]],
+  ['pipeline_20stages_12',['&lt;span class=&quot;tt&quot;&gt;Services/&lt;/span&gt; — pipeline stages',['../md__c_l_a_u_d_e.html#autotoc_md24',1,'']]],
+  ['primary_20pipeline_20input_13',['&lt;span class=&quot;tt&quot;&gt;jira-hierarchy.json&lt;/span&gt; (~5100 lines — the primary pipeline input)',['../md__c_l_a_u_d_e.html#autotoc_md20',1,'']]],
+  ['priorityrank_14',['PriorityRank',['../class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html#af1c5f38d83be848cada10e0fdc17520c',1,'JiraRollupAgent.DAL.Models.Initiative.PriorityRank'],['../class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_initiative.html#ab1a51688b6695748dd3fc66058e5c0fd',1,'JiraRollupAgent.Models.JiraHierarchyLoaderService.MockInitiative.PriorityRank']]],
+  ['program_15',['Program',['../class_jira_rollup_agent_1_1_program.html',1,'JiraRollupAgent']]],
+  ['program_2ecs_16',['Program.cs',['../_program_8cs.html',1,'']]],
+  ['prompt_20types_17',['Jira Rollup Agent — Hierarchy, Reporting Structure, and Prompt Types',['../md_prompt-types-overview.html',1,'']]],
+  ['prompt_20types_18',['3. The three generic prompt types',['../md_prompt-types-overview.html#autotoc_md34',1,'']]],
+  ['prompt_20types_20and_20their_20exact_20system_20prompts_20implemented_19',['The three prompt types, and their exact system prompts (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md15',1,'']]],
+  ['prompt_2dtypes_2doverview_2emd_20',['prompt-types-overview.md',['../prompt-types-overview_8md.html',1,'']]],
+  ['prompts_20implemented_21',['The three prompt types, and their exact system prompts (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md15',1,'']]]
 ];

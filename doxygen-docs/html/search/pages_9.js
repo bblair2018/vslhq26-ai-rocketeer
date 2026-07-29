@@ -1,13 +1,9 @@
 var searchData=
 [
-  ['implementation_0',['Known limits (from README, still applicable to any implementation)',['../md__c_l_a_u_d_e.html#autotoc_md30',1,'']]],
-  ['implementation_20order_20for_20summarizationservice_20completed_1',['Implementation order for &lt;span class=&quot;tt&quot;&gt;SummarizationService&lt;/span&gt; (completed)',['../md__c_l_a_u_d_e.html#autotoc_md18',1,'']]],
-  ['implemented_2',['implemented',['../md__c_l_a_u_d_e.html#autotoc_md17',1,'Date-range filtering for summarization (implemented)'],['../md__c_l_a_u_d_e.html#autotoc_md12',1,'Intended data flow (implemented)'],['../md__c_l_a_u_d_e.html#autotoc_md14',1,'Item→Epic→Initiative summary chaining (implemented)'],['../md__c_l_a_u_d_e.html#autotoc_md16',1,'Summary storage schema (implemented)'],['../md__c_l_a_u_d_e.html#autotoc_md15',1,'The three prompt types, and their exact system prompts (implemented)']]],
-  ['input_3',['&lt;span class=&quot;tt&quot;&gt;jira-hierarchy.json&lt;/span&gt; (~5100 lines — the primary pipeline input)',['../md__c_l_a_u_d_e.html#autotoc_md20',1,'']]],
-  ['intended_20data_20flow_20implemented_4',['Intended data flow (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md12',1,'']]],
-  ['is_5',['What this is',['../md__c_l_a_u_d_e.html#autotoc_md8',1,'']]],
-  ['is_20soft_20emphasis_20not_20a_20hard_20filter_6',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md13',1,'']]],
-  ['issue_20type_20workflows_20json_7',['&lt;span class=&quot;tt&quot;&gt;issue-type-workflows.json&lt;/span&gt;',['../md__c_l_a_u_d_e.html#autotoc_md21',1,'']]],
-  ['it_20does_8',['What It Does',['../index.html#autotoc_md1',1,'']]],
-  ['item→epic→initiative_20summary_20chaining_20implemented_9',['Item→Epic→Initiative summary chaining (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md14',1,'']]]
+  ['b_20—_20rollup_20summary_20no_20weighting_0',['Type B — Rollup summary, no weighting',['../md_prompt-types-overview.html#autotoc_md38',1,'']]],
+  ['b_20consumes_20steps_201_202_1',['Step 3 — Story STORY-PFD-1-1 (Type B, consumes Steps 1 &amp;amp; 2)',['../md_prompt-types-overview.html#autotoc_md47',1,'']]],
+  ['behavior_20all_20three_20stages_2',['Load-once behavior (all three stages)',['../md__c_l_a_u_d_e.html#autotoc_md25',1,'']]],
+  ['boilerplate_20adapted_20from_20c_3a_20console_3',['App boilerplate (adapted from &lt;span class=&quot;tt&quot;&gt;C:\\UATP_CODE\\INSYTE\\StatusReporter\\StatusReporter.Console&lt;/span&gt;)',['../md__c_l_a_u_d_e.html#autotoc_md23',1,'']]],
+  ['bug_20bug_20pfd_201_203_20type_20a_20standalone_20—_20sibling_20of_20the_20story_20not_20nested_20under_20it_4',['Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)',['../md_prompt-types-overview.html#autotoc_md48',1,'']]],
+  ['bug_20pfd_201_203_20type_20a_20standalone_20—_20sibling_20of_20the_20story_20not_20nested_20under_20it_5',['Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)',['../md_prompt-types-overview.html#autotoc_md48',1,'']]]
 ];
