@@ -1,0 +1,386 @@
+# Jira Rollup Agent — Hierarchy, Reporting Structure, and Prompt Types
+
+*Planning summary — ties together the ticket hierarchy, what the final report actually shows, and the three generic summarization prompt shapes used across the pipeline. Markdown version of `doc/prompt-types-overview.html`.*
+
+## 1. The full ticket hierarchy
+
+```
+Initiative
+  Epic
+    Story
+      Subtask
+      StoryBug
+    Bug     (standalone, sibling of Story)
+    Task
+    Spike
+```
+
+Every one of these eight types gets its own generated summary (320 rows total: 10 Initiatives + 30 Epics + 280 WorkItems). But not all of them show up in the final report.
+
+## 2. What the final report actually shows
+
+The report only surfaces **two levels**. Everything below Epic is invisible scaffolding — it exists purely to produce clean input for the two levels the reader actually sees:
+
+| Level | Visible in report? | What it shows |
+| --- | --- | --- |
+| Initiative | **Shown** | Business Summary (ordered by PriorityRank) |
+| Epic | **Shown** | Engineering Summary (nested under its Initiative) |
+| Story | Not shown | Feeds into its Epic's Engineering Summary |
+| Subtask | Not shown | Feeds into its Story's summary |
+| StoryBug | Not shown | Feeds into its Story's summary |
+| Bug | Not shown | Feeds into its Epic's Engineering Summary |
+| Task | Not shown | Feeds into its Epic's Engineering Summary |
+| Spike | Not shown | Feeds into its Epic's Engineering Summary |
+
+The report reads: Initiative 1 (highest priority) → its Business Summary → its Epics, each with an Engineering Summary. Repeat for every Initiative in priority order.
+
+## 3. The three generic prompt types
+
+Every summary in the pipeline is produced by one of three prompt shapes, which vary along two axes: *does it incorporate children's summaries?* and *is it role-weighted?*
+
+### Type A — Leaf summary (no children, no weighting)
+
+**Used by:** Bug, Task, Spike, Subtask, StoryBug
+**Input:** its own comments only.
+**Output:** a plain, neutral summary — no role gets special treatment.
+
+---
+
+**Real example — Subtask SUB-PFD-1-1-1**
+
+> System: "Summarize this Jira ticket's activity for a status report. Write 1-3 concise sentences covering current status, key progress, and any blockers. Treat all comments equally regardless of author. Synthesize — don't quote comments verbatim."
+
+```
+User:
+Ticket: Subtask SUB-PFD-1-1-1 — "Define widget parameter set for attitude tape in CDS" (Status: Resolved, Assignee: Scarlett Johansson)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments:
+- [2026-07-02 09:00] Scarlett Johansson (Dev): Drafted the full parameter set - pitch angle, roll angle, slip/skid, and flight director command bars - and mapped each to a CGF widget property with units and update-rate annotations for the requirements traceability matrix.
+- [2026-07-09 11:40] Scarlett Johansson (Dev): Parameter set finalized and checked into the ICD; all update rates confirmed against the ARINC 429 label refresh rates coming off the ADIRU.
+```
+
+> **Output:** "The attitude tape widget parameter set (pitch, roll, slip/skid, flight director command bars) was drafted, mapped to CGF widget properties, and finalized in the ICD with update rates confirmed against ADIRU refresh rates. This subtask is resolved with no open issues."
+
+---
+
+**Real example — StoryBug SBUG-PFD-1-1-1**
+
+> System: (identical instruction as above — Type A's system prompt never changes regardless of which leaf type it's summarizing)
+
+```
+User:
+Ticket: StoryBug SBUG-PFD-1-1-1 — "Attitude tape widget flickers during rapid pitch changes" (Status: Resolved, Assignee: Scarlett Johansson)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments:
+- [2026-07-21 10:20] Brad Pitt (QA): Reproduced a visible one-frame flicker on the sky/ground shading widget during rapid pitch maneuvers above 15 degrees/second on the HIL bench - looks like a double-buffer swap timing issue, not present in the legacy renderer.
+- [2026-07-23 15:00] Scarlett Johansson (Dev): Root cause confirmed: the composite widget's shading layer was redrawing on a separate frame callback from the tick/label layer, causing a one-frame tear under high angular rates. Synchronized both layers onto the same widget refresh callback and the flicker is gone in local testing.
+- [2026-07-30 09:15] Brad Pitt (QA): Re-ran the full rapid-pitch regression suite on the HIL bench overnight, including the worst-case 25 degrees/second pitch-up scenario, and confirmed zero flicker frames across 40 repetitions.
+```
+
+> **Output:** "QA reproduced a one-frame flicker in the attitude tape's shading widget during rapid pitch maneuvers, traced to a frame-callback timing mismatch between the shading and tick/label layers. Dev synchronized both layers onto the same refresh callback, and overnight regression testing confirmed zero flicker frames across 40 repetitions. This bug is resolved."
+
+### Type B — Rollup summary, no weighting
+
+**Used by:** Story
+**Input:** its own comments + its children's (Subtask/StoryBug) already-generated summaries.
+**Output:** same neutral tone as Type A, just with child context folded in.
+
+---
+
+**Real example — Story STORY-PFD-1-1 (consuming the two Type A outputs above)**
+
+> System: "Summarize this Jira ticket's activity for a status report. Write 1-3 concise sentences covering current status, key progress, and any blockers. Treat all comments equally regardless of author. Synthesize — don't quote comments verbatim. You are also given summaries of this Story's Subtasks and StoryBugs — incorporate their key points."
+
+```
+User:
+Ticket: Story STORY-PFD-1-1 — "Re-implement attitude tape as ARINC 661 CGF widget" (Status: Live In Prod, Assignee: Scarlett Johansson)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments on this Story directly:
+- [2026-07-01 13:20] Scarlett Johansson (Dev): Reviewed the CGF widget catalog against the current attitude tape symbol spec - the roll scale and pitch ladder both map cleanly to existing basic widgets, but the sky/ground shading will need a custom composite widget since the vendor toolkit doesn't expose gradient fills natively.
+- [2026-07-07 10:15] Scarlett Johansson (Dev): First working build of the widget-based attitude tape is running on the dev bench; pitch ladder tick spacing matches the legacy rendering within half a pixel across the full +/-90 degree range.
+- [2026-07-14 16:05] Denzel Washington (Dev): Reviewed the widget composite structure - clean separation of the shading layer from the tick/label layer, just requested a rename on the internal event handler so it doesn't collide with the bank pointer's naming convention.
+- [2026-07-31 09:30] Scarlett Johansson (Dev): Deployed to the production CDS build after the flicker fix cleared HIL soak testing overnight with zero anomalies across a simulated 6-hour flight profile.
+
+Related sub-ticket summaries:
+- [Subtask "Define widget parameter set for attitude tape in CDS"] The attitude tape widget parameter set (pitch, roll, slip/skid, flight director command bars) was drafted, mapped to CGF widget properties, and finalized in the ICD with update rates confirmed against ADIRU refresh rates. This subtask is resolved with no open issues.
+- [StoryBug "Attitude tape widget flickers during rapid pitch changes"] QA reproduced a one-frame flicker in the attitude tape's shading widget during rapid pitch maneuvers, traced to a frame-callback timing mismatch between the shading and tick/label layers. Dev synchronized both layers onto the same refresh callback, and overnight regression testing confirmed zero flicker frames across 40 repetitions. This bug is resolved.
+```
+
+> **Output:** "The attitude tape was re-implemented as an ARINC 661 CGF widget, with the parameter set finalized and a custom composite widget built for sky/ground shading. A flicker bug during rapid pitch changes was found, root-caused to a frame-callback mismatch, and fixed. The story deployed to production after clean HIL soak testing with zero anomalies."
+
+### Type C — Rollup summary, role-weighted (one template, two parameterizations)
+
+**Used by:** Epic (weighted toward Dev/QA → "Engineering Summary") and Initiative (weighted toward ScrumMaster/Stakeholder/EngineeringManager → "Business Summary")
+**Input:** its own comments + its children's already-generated summaries (Epic gets item summaries; Initiative gets Epic summaries).
+**Output:** a summary that leans into whichever role set is configured for that level, formatted as a `Status:` line plus bulleted `Key Progress:` and (if any) `Risks/Blockers:` sections — not prose — since this is the only type whose output a human actually reads in the report.
+
+It's really one template shape — own comments + child summaries — that shows up three times. Type A is that shape with the child-summaries part empty and no weighting. Type B adds child summaries but still no weighting. Type C adds both child summaries *and* a weighting instruction, just parameterized differently for Epic vs. Initiative — and, unlike A/B, requests the structured heading/bullet format below rather than plain prose, since A/B are only ever consumed by another prompt, never read directly.
+
+---
+
+**Real example — Epic EPIC-PFD-1 (Dev/QA-weighted, consuming the Type B output above)**
+
+> System: "Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. Format your response exactly like this: a line "Status: \<one-sentence overall status\>", then a line "Key Progress:" followed by 2-4 concise bullet points (each starting with "- "), then - only if there are real risks or blockers - a line "Risks/Blockers:" followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."
+
+```
+User:
+Epic EPIC-PFD-1 — "ARINC 661 Widget Migration for Attitude Tape"
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments on this Epic directly:
+- [2026-07-01 10:05] Bill Blair (EngineeringManager): This epic covers migrating the attitude tape and bank angle pointer off the legacy proprietary symbol set onto ARINC 661 CGF widgets, which is a prerequisite for the DO-178C DAL B recertification package we're assembling for the retrofit customer.
+- [2026-07-15 09:40] Denzel Washington (Dev): Both attitude tape and bank pointer stories are through peer review now; the main technical risk was primitive-to-widget mapping fidelity, which held up better than expected against our regression baseline.
+- [2026-07-29 14:10] Bill Blair (EngineeringManager): Epic is functionally complete - all five leaf items resolved, traceability matrix updated end to end, and the graphics-context leak bug that surfaced mid-month is confirmed fixed under the HIL soak test.
+
+Work item summaries:
+- [Story "Re-implement attitude tape as ARINC 661 CGF widget"] The attitude tape was re-implemented as an ARINC 661 CGF widget, with the parameter set finalized and a custom composite widget built for sky/ground shading. A flicker bug during rapid pitch changes was found, root-caused to a frame-callback mismatch, and fixed. The story deployed to production after clean HIL soak testing with zero anomalies.
+- [Bug "Legacy attitude symbol set leaks graphics context on redraw"] QA found the legacy attitude renderer's graphics context handle count climbing during an 8-hour soak test, traced to a per-frame context allocation instead of handle reuse. Dev removed the per-frame allocation to reuse a single context handle for the render session's lifetime, and a follow-up 24-hour soak test confirmed zero handle growth. This bug is resolved.
+- [Task "Update Display Component Requirements Document for CGF widget mapping"] The Display Component Requirements Document was updated to trace every requirement to a specific CGF widget property instead of the old graphics-primitive tracing, including splitting the attitude tape and bank pointer requirements into separate tables. The updated DCRD was submitted to configuration management to streamline the DER review. This task is complete.
+- [Spike "Evaluate CGF vendor toolkit performance against current GPU budget"] Profiling showed the vendor CGF toolkit adds about 1.8ms per frame versus the legacy renderer under worst-case load, comfortably within the 16.6ms frame budget at 60Hz. The recommendation is to proceed with the vendor toolkit as-is for this display generation, with a flagged note that headroom shrinks significantly if synthetic vision compositing is added on the same GPU in a future hardware refresh.
+- [... one more Story under this Epic — the bank angle pointer, not detailed here for brevity, per Bill Blair's "all five leaf items resolved" comment above ...]
+```
+
+> **Output** (this is the Engineering Summary printed in the report — real output, regenerated with the structured format):
+>
+> Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers.
+>
+> Key Progress:
+> - Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs.
+> - Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°.
+> - Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth.
+> - DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget.
+>
+> Risks/Blockers:
+> - Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.
+
+---
+
+**Real example — Initiative INIT-PFD (ScrumMaster/Stakeholder/EM-weighted, consuming the Epic output above)**
+
+> System: "Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. Format your response exactly like this: a line "Status: \<one-sentence overall status\>", then a line "Key Progress:" followed by 2-4 concise bullet points (each starting with "- "), then - only if there are real risks or blockers - a line "Risks/Blockers:" followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."
+
+```
+User:
+Initiative INIT-PFD — "Next-Gen PFD Symbology Refresh" (Priority Rank: 1, Status: In Progress)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments on this Initiative directly:
+- [2026-07-01 09:10] Samuel L. Jackson (Stakeholder): Flight ops has been pushing for this refresh since the last line-check survey flagged attitude tape readability complaints during dawn/dusk approaches. We need the ARINC 661 widget migration and glare work landed and DER-reviewed before the fleet retrofit window opens in Q4.
+- [2026-07-08 11:45] Meryl Streep (ScrumMaster): All three epics are past planning and into build. The CGF widget migration team hit a minor snag with vendor toolkit licensing but it's resolved, so I don't expect it to touch our sprint commitment for the symbology refresh.
+- [2026-07-22 13:00] Samuel L. Jackson (Stakeholder): Appreciate the update on the sun-table testing results. The horizon line color compliance issue is the one item I'm watching closely since it's the piece our DER flagged as highest visibility risk during the informal pre-submission review.
+- [2026-07-30 15:20] Bill Blair (EngineeringManager): Wrapping the month: 13 of 15 leaf items across the three epics are resolved or live in prod, with strong MC/DC coverage numbers coming back from the CDS build. The horizon line color palette story remains blocked pending an updated colorimetry reference from the display vendor, and we've escalated that as a dependency risk for next sprint.
+
+Epic engineering summaries:
+- [Epic "ARINC 661 Widget Migration for Attitude Tape"] Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers. Key Progress: Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs. Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°. Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth. DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget. Risks/Blockers: Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.
+- [... similarly, one entry per remaining Epic under this Initiative ...]
+```
+
+> **Output** (this is the Business Summary printed in the report — real output, regenerated with the structured format):
+>
+> Status: In progress with 13 of 15 items resolved or deployed, but the DER-critical horizon color update remains blocked ahead of the Q4 retrofit window.
+>
+> Key Progress:
+> - ARINC 661 attitude tape migration is complete, validated, and fully traced.
+> - Glare and readability improvements passed high-brightness and pilot testing.
+> - Modernized airspeed and altitude tapes are released with strong safety-test coverage.
+>
+> Risks/Blockers:
+> - Horizon colors failed glare testing and await vendor colorimetry data with no committed delivery date.
+> - Airspeed color-band thresholds await finalized aircraft performance limits, expected early next sprint.
+
+## 4. Tying it together
+
+```
+Initiative   → Type C (role-weighted) → SHOWN in report as Business Summary
+  Epic       → Type C (role-weighted) → SHOWN in report as Engineering Summary
+    Story    → Type B (rollup, no weighting) → NOT shown — feeds its Epic
+      Subtask  → Type A (leaf) → NOT shown — feeds its Story
+      StoryBug → Type A (leaf) → NOT shown — feeds its Story
+    Bug      → Type A (leaf) → NOT shown — feeds its Epic
+    Task     → Type A (leaf) → NOT shown — feeds its Epic
+    Spike    → Type A (leaf) → NOT shown — feeds its Epic
+```
+
+The pattern lines up exactly with visibility: **Types A and B only exist to manufacture clean inputs** for something further up the chain — they're never printed in the report themselves. **Type C is the only prompt type whose output the reader ever actually sees**, and it happens twice: once as the Engineering Summary (Epic) and once as the Business Summary (Initiative). Everything below Epic in the hierarchy is invisible scaffolding whose entire purpose is to make those two visible summaries good.
+
+## 5. End-to-end walkthrough: one Initiative, one example of each type
+
+This is a **non-exhaustive** run through a single real Initiative — `INIT-PFD` — using exactly one example of each of the six WorkItem types, all from the same Epic (`EPIC-PFD-1`), so it reads as one coherent slice of real work rather than 320 tickets. Strict bottom-up order: each step's prompt shows the actual generated text from the step(s) before it, literally, all the way to the two summaries the report actually prints.
+
+### Step 1 — Subtask SUB-PFD-1-1-1 (Type A)
+
+> System: "Summarize this Jira ticket's activity for a status report. Write 1-3 concise sentences covering current status, key progress, and any blockers. Treat all comments equally regardless of author. Synthesize — don't quote comments verbatim."
+
+```
+User:
+Ticket: Subtask SUB-PFD-1-1-1 — "Define widget parameter set for attitude tape in CDS" (Status: Resolved, Assignee: Scarlett Johansson)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments:
+- [2026-07-02 09:00] Scarlett Johansson (Dev): Drafted the full parameter set - pitch angle, roll angle, slip/skid, and flight director command bars - and mapped each to a CGF widget property with units and update-rate annotations for the requirements traceability matrix.
+- [2026-07-09 11:40] Scarlett Johansson (Dev): Parameter set finalized and checked into the ICD; all update rates confirmed against the ARINC 429 label refresh rates coming off the ADIRU.
+```
+
+> **Output:** "The attitude tape widget parameter set (pitch, roll, slip/skid, flight director command bars) was drafted, mapped to CGF widget properties, and finalized in the ICD with update rates confirmed against ADIRU refresh rates. This subtask is resolved with no open issues."
+
+### Step 2 — StoryBug SBUG-PFD-1-1-1 (Type A)
+
+> System: (same instruction as Step 1)
+
+```
+User:
+Ticket: StoryBug SBUG-PFD-1-1-1 — "Attitude tape widget flickers during rapid pitch changes" (Status: Resolved, Assignee: Scarlett Johansson)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments:
+- [2026-07-21 10:20] Brad Pitt (QA): Reproduced a visible one-frame flicker on the sky/ground shading widget during rapid pitch maneuvers above 15 degrees/second on the HIL bench - looks like a double-buffer swap timing issue, not present in the legacy renderer.
+- [2026-07-23 15:00] Scarlett Johansson (Dev): Root cause confirmed: the composite widget's shading layer was redrawing on a separate frame callback from the tick/label layer, causing a one-frame tear under high angular rates. Synchronized both layers onto the same widget refresh callback and the flicker is gone in local testing.
+- [2026-07-30 09:15] Brad Pitt (QA): Re-ran the full rapid-pitch regression suite on the HIL bench overnight, including the worst-case 25 degrees/second pitch-up scenario, and confirmed zero flicker frames across 40 repetitions.
+```
+
+> **Output:** "QA reproduced a one-frame flicker in the attitude tape's shading widget during rapid pitch maneuvers, traced to a frame-callback timing mismatch between the shading and tick/label layers. Dev synchronized both layers onto the same refresh callback, and overnight regression testing confirmed zero flicker frames across 40 repetitions. This bug is resolved."
+
+### Step 3 — Story STORY-PFD-1-1 (Type B, consumes Steps 1 & 2)
+
+> System: "Summarize this Jira ticket's activity for a status report. Write 1-3 concise sentences covering current status, key progress, and any blockers. Treat all comments equally regardless of author. Synthesize — don't quote comments verbatim. You are also given summaries of this Story's Subtasks and StoryBugs — incorporate their key points."
+
+```
+User:
+Ticket: Story STORY-PFD-1-1 — "Re-implement attitude tape as ARINC 661 CGF widget" (Status: Live In Prod, Assignee: Scarlett Johansson)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments on this Story directly:
+- [2026-07-01 13:20] Scarlett Johansson (Dev): Reviewed the CGF widget catalog against the current attitude tape symbol spec - the roll scale and pitch ladder both map cleanly to existing basic widgets, but the sky/ground shading will need a custom composite widget since the vendor toolkit doesn't expose gradient fills natively.
+- [2026-07-07 10:15] Scarlett Johansson (Dev): First working build of the widget-based attitude tape is running on the dev bench; pitch ladder tick spacing matches the legacy rendering within half a pixel across the full +/-90 degree range.
+- [2026-07-14 16:05] Denzel Washington (Dev): Reviewed the widget composite structure - clean separation of the shading layer from the tick/label layer, just requested a rename on the internal event handler so it doesn't collide with the bank pointer's naming convention.
+- [2026-07-31 09:30] Scarlett Johansson (Dev): Deployed to the production CDS build after the flicker fix cleared HIL soak testing overnight with zero anomalies across a simulated 6-hour flight profile.
+
+Related sub-ticket summaries:
+- [Subtask "Define widget parameter set for attitude tape in CDS"] The attitude tape widget parameter set (pitch, roll, slip/skid, flight director command bars) was drafted, mapped to CGF widget properties, and finalized in the ICD with update rates confirmed against ADIRU refresh rates. This subtask is resolved with no open issues.
+- [StoryBug "Attitude tape widget flickers during rapid pitch changes"] QA reproduced a one-frame flicker in the attitude tape's shading widget during rapid pitch maneuvers, traced to a frame-callback timing mismatch between the shading and tick/label layers. Dev synchronized both layers onto the same refresh callback, and overnight regression testing confirmed zero flicker frames across 40 repetitions. This bug is resolved.
+```
+
+> **Output:** "The attitude tape was re-implemented as an ARINC 661 CGF widget, with the parameter set finalized and a custom composite widget built for sky/ground shading. A flicker bug during rapid pitch changes was found, root-caused to a frame-callback mismatch, and fixed. The story deployed to production after clean HIL soak testing with zero anomalies."
+
+### Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)
+
+> System: (same instruction as Step 1)
+
+```
+User:
+Ticket: Bug BUG-PFD-1-3 — "Legacy attitude symbol set leaks graphics context on redraw" (Status: Resolved, Assignee: Emma Stone)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments:
+- [2026-07-06 10:00] Morgan Freeman (QA): During an 8-hour soak test of the legacy attitude renderer, memory profiling on the CDS bench showed graphics context handles climbing steadily rather than staying flat, which will eventually starve the display processor on a long-haul flight.
+- [2026-07-13 09:20] Emma Stone (Dev): Confirmed the leak - the legacy redraw path allocates a new graphics context handle on every frame instead of reusing the cached one, a holdover from when the renderer supported dynamic resolution switching that we no longer use.
+- [2026-07-20 15:35] Emma Stone (Dev): Fix removes the per-frame allocation and reuses a single context handle for the lifetime of the render session; 24-hour soak test on the bench now shows flat handle count.
+- [2026-07-27 10:45] Morgan Freeman (QA): Re-ran the extended 24-hour soak with the fix in place and confirmed zero handle growth, closing this out.
+```
+
+> **Output:** "QA found the legacy attitude renderer's graphics context handle count climbing during an 8-hour soak test, traced to a per-frame context allocation instead of handle reuse. Dev removed the per-frame allocation to reuse a single context handle for the render session's lifetime, and a follow-up 24-hour soak test confirmed zero handle growth. This bug is resolved."
+
+### Step 5 — Task TASK-PFD-1-4 (Type A, standalone)
+
+> System: (same instruction as Step 1)
+
+```
+User:
+Ticket: Task TASK-PFD-1-4 — "Update Display Component Requirements Document for CGF widget mapping" (Status: Resolved, Assignee: Leonardo DiCaprio)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments:
+- [2026-07-07 13:00] Leonardo DiCaprio (Dev): Started updating the DCRD to reflect the new widget-based architecture; the hardest part is re-deriving the traceability links since the old document traced requirements to graphics primitives rather than widget properties.
+- [2026-07-16 10:30] Denzel Washington (Dev): Reviewed the updated traceability section - recommended splitting the attitude tape requirements into a separate table from the bank pointer ones since the widget mappings are structurally different, which he's incorporating.
+- [2026-07-24 14:15] Leonardo DiCaprio (Dev): DCRD update complete and submitted to configuration management; every requirement now traces to a specific CGF widget property, which should streamline the DER review.
+```
+
+> **Output:** "The Display Component Requirements Document was updated to trace every requirement to a specific CGF widget property instead of the old graphics-primitive tracing, including splitting the attitude tape and bank pointer requirements into separate tables. The updated DCRD was submitted to configuration management to streamline the DER review. This task is complete."
+
+### Step 6 — Spike SPIKE-PFD-1-5 (Type A, standalone)
+
+> System: (same instruction as Step 1)
+
+```
+User:
+Ticket: Spike SPIKE-PFD-1-5 — "Evaluate CGF vendor toolkit performance against current GPU budget" (Status: Resolved, Assignee: Viola Davis)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments:
+- [2026-07-08 10:40] Viola Davis (Dev): Kicked off profiling of the vendor CGF toolkit's rendering pipeline against our current display processor's GPU frame budget, focusing on worst-case scenes with all attitude and bank widgets animating simultaneously.
+- [2026-07-17 11:20] Viola Davis (Dev): Results show the CGF toolkit adds roughly 1.8ms per frame versus the legacy renderer under worst-case load, which still leaves comfortable headroom against our 16.6ms frame budget at 60Hz.
+- [2026-07-27 09:50] Viola Davis (Dev): Recommendation is to proceed with the vendor toolkit as-is for this display generation; flagged a note for the next hardware refresh cycle that the headroom shrinks significantly if we add synthetic vision compositing on the same GPU.
+```
+
+> **Output:** "Profiling showed the vendor CGF toolkit adds about 1.8ms per frame versus the legacy renderer under worst-case load, comfortably within the 16.6ms frame budget at 60Hz. The recommendation is to proceed with the vendor toolkit as-is for this display generation, with a flagged note that headroom shrinks significantly if synthetic vision compositing is added on the same GPU in a future hardware refresh."
+
+### Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)
+
+> System: "Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. Format your response exactly like this: a line "Status: \<one-sentence overall status\>", then a line "Key Progress:" followed by 2-4 concise bullet points (each starting with "- "), then - only if there are real risks or blockers - a line "Risks/Blockers:" followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."
+
+```
+User:
+Epic EPIC-PFD-1 — "ARINC 661 Widget Migration for Attitude Tape"
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments on this Epic directly:
+- [2026-07-01 10:05] Bill Blair (EngineeringManager): This epic covers migrating the attitude tape and bank angle pointer off the legacy proprietary symbol set onto ARINC 661 CGF widgets, which is a prerequisite for the DO-178C DAL B recertification package we're assembling for the retrofit customer.
+- [2026-07-15 09:40] Denzel Washington (Dev): Both attitude tape and bank pointer stories are through peer review now; the main technical risk was primitive-to-widget mapping fidelity, which held up better than expected against our regression baseline.
+- [2026-07-29 14:10] Bill Blair (EngineeringManager): Epic is functionally complete - all five leaf items resolved, traceability matrix updated end to end, and the graphics-context leak bug that surfaced mid-month is confirmed fixed under the HIL soak test.
+
+Work item summaries:
+- [Story "Re-implement attitude tape as ARINC 661 CGF widget"] The attitude tape was re-implemented as an ARINC 661 CGF widget, with the parameter set finalized and a custom composite widget built for sky/ground shading. A flicker bug during rapid pitch changes was found, root-caused to a frame-callback mismatch, and fixed. The story deployed to production after clean HIL soak testing with zero anomalies.
+- [Bug "Legacy attitude symbol set leaks graphics context on redraw"] QA found the legacy attitude renderer's graphics context handle count climbing during an 8-hour soak test, traced to a per-frame context allocation instead of handle reuse. Dev removed the per-frame allocation to reuse a single context handle for the render session's lifetime, and a follow-up 24-hour soak test confirmed zero handle growth. This bug is resolved.
+- [Task "Update Display Component Requirements Document for CGF widget mapping"] The Display Component Requirements Document was updated to trace every requirement to a specific CGF widget property instead of the old graphics-primitive tracing, including splitting the attitude tape and bank pointer requirements into separate tables. The updated DCRD was submitted to configuration management to streamline the DER review. This task is complete.
+- [Spike "Evaluate CGF vendor toolkit performance against current GPU budget"] Profiling showed the vendor CGF toolkit adds about 1.8ms per frame versus the legacy renderer under worst-case load, comfortably within the 16.6ms frame budget at 60Hz. The recommendation is to proceed with the vendor toolkit as-is for this display generation, with a flagged note that headroom shrinks significantly if synthetic vision compositing is added on the same GPU in a future hardware refresh.
+- [... one more Story under this Epic — the bank angle pointer, not detailed here for brevity, per Bill Blair's "all five leaf items resolved" comment above ...]
+```
+
+> **Output** (this is the Engineering Summary printed in the report — real output, regenerated with the structured format):
+>
+> Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers.
+>
+> Key Progress:
+> - Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs.
+> - Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°.
+> - Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth.
+> - DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget.
+>
+> Risks/Blockers:
+> - Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.
+
+### Step 8 — Initiative INIT-PFD (Type C, ScrumMaster/Stakeholder/EM-weighted, consumes Step 7)
+
+> System: "Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. Format your response exactly like this: a line "Status: \<one-sentence overall status\>", then a line "Key Progress:" followed by 2-4 concise bullet points (each starting with "- "), then - only if there are real risks or blockers - a line "Risks/Blockers:" followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."
+
+```
+User:
+Initiative INIT-PFD — "Next-Gen PFD Symbology Refresh" (Priority Rank: 1, Status: In Progress)
+Reporting period: 2026-07-01 to 2026-07-31
+
+Comments on this Initiative directly:
+- [2026-07-01 09:10] Samuel L. Jackson (Stakeholder): Flight ops has been pushing for this refresh since the last line-check survey flagged attitude tape readability complaints during dawn/dusk approaches. We need the ARINC 661 widget migration and glare work landed and DER-reviewed before the fleet retrofit window opens in Q4.
+- [2026-07-08 11:45] Meryl Streep (ScrumMaster): All three epics are past planning and into build. The CGF widget migration team hit a minor snag with vendor toolkit licensing but it's resolved, so I don't expect it to touch our sprint commitment for the symbology refresh.
+- [2026-07-22 13:00] Samuel L. Jackson (Stakeholder): Appreciate the update on the sun-table testing results. The horizon line color compliance issue is the one item I'm watching closely since it's the piece our DER flagged as highest visibility risk during the informal pre-submission review.
+- [2026-07-30 15:20] Bill Blair (EngineeringManager): Wrapping the month: 13 of 15 leaf items across the three epics are resolved or live in prod, with strong MC/DC coverage numbers coming back from the CDS build. The horizon line color palette story remains blocked pending an updated colorimetry reference from the display vendor, and we've escalated that as a dependency risk for next sprint.
+
+Epic engineering summaries:
+- [Epic "ARINC 661 Widget Migration for Attitude Tape"] Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers. Key Progress: Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs. Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°. Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth. DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget. Risks/Blockers: Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.
+- [... the other two Epics under this Initiative (EPIC-PFD-2, EPIC-PFD-3), not detailed here for brevity ...]
+```
+
+> **Output** (this is the Business Summary printed in the report — real output, regenerated with the structured format):
+>
+> Status: In progress with 13 of 15 items resolved or deployed, but the DER-critical horizon color update remains blocked ahead of the Q4 retrofit window.
+>
+> Key Progress:
+> - ARINC 661 attitude tape migration is complete, validated, and fully traced.
+> - Glare and readability improvements passed high-brightness and pilot testing.
+> - Modernized airspeed and altitude tapes are released with strong safety-test coverage.
+>
+> Risks/Blockers:
+> - Horizon colors failed glare testing and await vendor colorimetry data with no committed delivery date.
+> - Airspeed color-band thresholds await finalized aircraft performance limits, expected early next sprint.
