@@ -117,12 +117,12 @@ Related sub-ticket summaries:
 <h3 class="typeC">Type C — Rollup summary, role-weighted (one template, two parameterizations)</h3>
 <p><strong>Used by:</strong> Epic (weighted toward Dev/QA → "Engineering Summary") and Initiative (weighted toward ScrumMaster/Stakeholder/EngineeringManager → "Business Summary")<br>
 <strong>Input:</strong> its own comments + its children's already-generated summaries (Epic gets item summaries; Initiative gets Epic summaries).<br>
-<strong>Output:</strong> a summary that leans into whichever role set is configured for that level.</p>
-<p>It's really one template shape — own comments + child summaries — that shows up three times. Type A is that shape with the child-summaries part empty and no weighting. Type B adds child summaries but still no weighting. Type C adds both child summaries <em>and</em> a weighting instruction, just parameterized differently for Epic vs. Initiative.</p>
+<strong>Output:</strong> a summary that leans into whichever role set is configured for that level, formatted as a <code>Status:</code> line plus bulleted <code>Key Progress:</code> and (if any) <code>Risks/Blockers:</code> sections — not prose — since this is the only type whose output a human actually reads in the report.</p>
+<p>It's really one template shape — own comments + child summaries — that shows up three times. Type A is that shape with the child-summaries part empty and no weighting. Type B adds child summaries but still no weighting. Type C adds both child summaries <em>and</em> a weighting instruction, just parameterized differently for Epic vs. Initiative — and, unlike A/B, requests the structured heading/bullet format below rather than plain prose, since A/B are only ever consumed by another prompt, never read directly.</p>
 
 <div class="example">
 <h4>Real example — Epic EPIC-PFD-1 (Dev/QA-weighted, consuming the Type B output above)</h4>
-<div class="sysmsg">System: "Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. 3-5 sentences."</div>
+<div class="sysmsg">System: "Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. Format your response exactly like this: a line &quot;Status: &lt;one-sentence overall status&gt;&quot;, then a line &quot;Key Progress:&quot; followed by 2-4 concise bullet points (each starting with &quot;- &quot;), then - only if there are real risks or blockers - a line &quot;Risks/Blockers:&quot; followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."</div>
 <pre>User:
 Epic EPIC-PFD-1 — "ARINC 661 Widget Migration for Attitude Tape"
 Reporting period: 2026-07-01 to 2026-07-31
@@ -135,12 +135,20 @@ Comments on this Epic directly:
 Work item summaries:
 - [Story "Re-implement attitude tape as ARINC 661 CGF widget"] The attitude tape was re-implemented as an ARINC 661 CGF widget, with the parameter set finalized and a custom composite widget built for sky/ground shading. A flicker bug during rapid pitch changes was found, root-caused to a frame-callback mismatch, and fixed. The story deployed to production after clean HIL soak testing with zero anomalies.
 - [... similarly, one entry per remaining item under this Epic — e.g. the bank angle pointer Story, and any standalone Bug/Task/Spike ...]</pre>
-<div class="output">Example model output: "Both the attitude tape and bank angle pointer widget migrations passed peer review, with primitive-to-widget mapping fidelity holding up well against the regression baseline. Dev fixed a flicker bug on the attitude tape (a frame-callback timing mismatch between the shading and tick/label layers) and a graphics-context leak that surfaced mid-month, both confirmed resolved under HIL soak testing. All five leaf items in this epic are now resolved and the DO-178C traceability matrix is fully updated end to end."</div>
+<div class="output">Real model output (current, regenerated with the structured format):
+Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers.
+Key Progress:
+- Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs.
+- Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°.
+- Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth.
+- DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget.
+Risks/Blockers:
+- Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.</div>
 </div>
 
 <div class="example">
 <h4>Real example — Initiative INIT-PFD (ScrumMaster/Stakeholder/EM-weighted, consuming the Epic output above)</h4>
-<div class="sysmsg">System: "Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. 3-5 sentences."</div>
+<div class="sysmsg">System: "Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. Format your response exactly like this: a line &quot;Status: &lt;one-sentence overall status&gt;&quot;, then a line &quot;Key Progress:&quot; followed by 2-4 concise bullet points (each starting with &quot;- &quot;), then - only if there are real risks or blockers - a line &quot;Risks/Blockers:&quot; followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."</div>
 <pre>User:
 Initiative INIT-PFD — "Next-Gen PFD Symbology Refresh" (Priority Rank: 1, Status: In Progress)
 Reporting period: 2026-07-01 to 2026-07-31
@@ -152,9 +160,17 @@ Comments on this Initiative directly:
 - [2026-07-30 15:20] Bill Blair (EngineeringManager): Wrapping the month: 13 of 15 leaf items across the three epics are resolved or live in prod, with strong MC/DC coverage numbers coming back from the CDS build. The horizon line color palette story remains blocked pending an updated colorimetry reference from the display vendor, and we've escalated that as a dependency risk for next sprint.
 
 Epic engineering summaries:
-- [Epic "ARINC 661 Widget Migration for Attitude Tape"] Both the attitude tape and bank angle pointer widget migrations passed peer review, with primitive-to-widget mapping fidelity holding up well against the regression baseline. Dev fixed a flicker bug on the attitude tape (a frame-callback timing mismatch between the shading and tick/label layers) and a graphics-context leak that surfaced mid-month, both confirmed resolved under HIL soak testing. All five leaf items in this epic are now resolved and the DO-178C traceability matrix is fully updated end to end.
+- [Epic "ARINC 661 Widget Migration for Attitude Tape"] Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers. Key Progress: Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs. Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°. Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth. DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget. Risks/Blockers: Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.
 - [... similarly, one entry per remaining Epic under this Initiative ...]</pre>
-<div class="output">Example model output: "This quarter's PFD symbology refresh continued to progress well, driven by flight ops' readability concerns during dawn/dusk approaches ahead of the Q4 fleet retrofit window. The attitude tape epic is complete, with all five items resolved and DO-178C traceability fully updated. The remaining risk is the horizon line color compliance story, which is blocked on a colorimetry reference from the display vendor and has been escalated as a dependency risk for next sprint — this is the item most likely to affect the DER pre-submission review."</div>
+<div class="output">Real model output (current, regenerated with the structured format):
+Status: In progress with 13 of 15 items resolved or deployed, but the DER-critical horizon color update remains blocked ahead of the Q4 retrofit window.
+Key Progress:
+- ARINC 661 attitude tape migration is complete, validated, and fully traced.
+- Glare and readability improvements passed high-brightness and pilot testing.
+- Modernized airspeed and altitude tapes are released with strong safety-test coverage.
+Risks/Blockers:
+- Horizon colors failed glare testing and await vendor colorimetry data with no committed delivery date.
+- Airspeed color-band thresholds await finalized aircraft performance limits, expected early next sprint.</div>
 </div>
 
 <h2>4. Tying it together</h2>
@@ -262,7 +278,7 @@ Comments:
 
 <h3 class="typeC">Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)</h3>
 <div class="example">
-<div class="sysmsg">System: "Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. 3-5 sentences."</div>
+<div class="sysmsg">System: "Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. Format your response exactly like this: a line &quot;Status: &lt;one-sentence overall status&gt;&quot;, then a line &quot;Key Progress:&quot; followed by 2-4 concise bullet points (each starting with &quot;- &quot;), then - only if there are real risks or blockers - a line &quot;Risks/Blockers:&quot; followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."</div>
 <pre>User:
 Epic EPIC-PFD-1 — "ARINC 661 Widget Migration for Attitude Tape"
 Reporting period: 2026-07-01 to 2026-07-31
@@ -278,12 +294,20 @@ Work item summaries:
 - [Task "Update Display Component Requirements Document for CGF widget mapping"] The Display Component Requirements Document was updated to trace every requirement to a specific CGF widget property instead of the old graphics-primitive tracing, including splitting the attitude tape and bank pointer requirements into separate tables. The updated DCRD was submitted to configuration management to streamline the DER review. This task is complete.
 - [Spike "Evaluate CGF vendor toolkit performance against current GPU budget"] Profiling showed the vendor CGF toolkit adds about 1.8ms per frame versus the legacy renderer under worst-case load, comfortably within the 16.6ms frame budget at 60Hz. The recommendation is to proceed with the vendor toolkit as-is for this display generation, with a flagged note that headroom shrinks significantly if synthetic vision compositing is added on the same GPU in a future hardware refresh.
 - [... one more Story under this Epic — the bank angle pointer, not detailed here for brevity, per Bill Blair's "all five leaf items resolved" comment above ...]</pre>
-<div class="output">Output (this is the Engineering Summary printed in the report): "Both the attitude tape and bank angle pointer widget migrations passed peer review, with primitive-to-widget mapping fidelity holding up well against the regression baseline. Dev fixed a flicker bug on the attitude tape (a frame-callback timing mismatch between the shading and tick/label layers) and a graphics-context leak in the legacy renderer (per-frame handle allocation), both confirmed resolved under soak testing. The DCRD was fully updated to trace every requirement to a CGF widget property, and a performance spike confirmed the vendor toolkit's ~1.8ms/frame overhead leaves comfortable headroom against the 60Hz frame budget. All five leaf items in this epic are now resolved and the DO-178C traceability matrix is fully updated end to end."</div>
+<div class="output">Output (this is the Engineering Summary printed in the report — real output, regenerated with the structured format):
+Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers.
+Key Progress:
+- Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs.
+- Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°.
+- Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth.
+- DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget.
+Risks/Blockers:
+- Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.</div>
 </div>
 
 <h3 class="typeC">Step 8 — Initiative INIT-PFD (Type C, ScrumMaster/Stakeholder/EM-weighted, consumes Step 7)</h3>
 <div class="example">
-<div class="sysmsg">System: "Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. 3-5 sentences."</div>
+<div class="sysmsg">System: "Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. Format your response exactly like this: a line &quot;Status: &lt;one-sentence overall status&gt;&quot;, then a line &quot;Key Progress:&quot; followed by 2-4 concise bullet points (each starting with &quot;- &quot;), then - only if there are real risks or blockers - a line &quot;Risks/Blockers:&quot; followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler."</div>
 <pre>User:
 Initiative INIT-PFD — "Next-Gen PFD Symbology Refresh" (Priority Rank: 1, Status: In Progress)
 Reporting period: 2026-07-01 to 2026-07-31
@@ -295,9 +319,17 @@ Comments on this Initiative directly:
 - [2026-07-30 15:20] Bill Blair (EngineeringManager): Wrapping the month: 13 of 15 leaf items across the three epics are resolved or live in prod, with strong MC/DC coverage numbers coming back from the CDS build. The horizon line color palette story remains blocked pending an updated colorimetry reference from the display vendor, and we've escalated that as a dependency risk for next sprint.
 
 Epic engineering summaries:
-- [Epic "ARINC 661 Widget Migration for Attitude Tape"] Both the attitude tape and bank angle pointer widget migrations passed peer review, with primitive-to-widget mapping fidelity holding up well against the regression baseline. Dev fixed a flicker bug on the attitude tape (a frame-callback timing mismatch between the shading and tick/label layers) and a graphics-context leak in the legacy renderer (per-frame handle allocation), both confirmed resolved under soak testing. The DCRD was fully updated to trace every requirement to a CGF widget property, and a performance spike confirmed the vendor toolkit's ~1.8ms/frame overhead leaves comfortable headroom against the 60Hz frame budget. All five leaf items in this epic are now resolved and the DO-178C traceability matrix is fully updated end to end.
+- [Epic "ARINC 661 Widget Migration for Attitude Tape"] Status: Functionally complete; all five work items are resolved, validated, and traced, with no current blockers. Key Progress: Attitude tape deployed after a zero-anomaly six-hour HIL profile; rapid-pitch flicker fix passed 40 regression runs. Bank angle pointer merged to the CDS integration branch; extreme-roll alignment passed QA validation through ±75°. Graphics-context leak fixed by handle reuse; Dev and QA 24-hour soak tests confirmed zero handle growth. DCRD traceability is complete; CGF overhead measured at ~1.8 ms/frame within the 16.6 ms GPU budget. Risks/Blockers: Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh.
 - [... the other two Epics under this Initiative (EPIC-PFD-2, EPIC-PFD-3), not detailed here for brevity ...]</pre>
-<div class="output">Output (this is the Business Summary printed in the report): "This quarter's PFD symbology refresh continued to progress well, driven by flight ops' readability concerns during dawn/dusk approaches ahead of the Q4 fleet retrofit window. The attitude tape epic is complete, with all five items resolved, a legacy memory leak and a display flicker both fixed, and DO-178C traceability fully updated. The remaining risk is the horizon line color compliance story, which is blocked on a colorimetry reference from the display vendor and has been escalated as a dependency risk for next sprint — this is the item most likely to affect the DER pre-submission review."</div>
+<div class="output">Output (this is the Business Summary printed in the report — real output, regenerated with the structured format):
+Status: In progress with 13 of 15 items resolved or deployed, but the DER-critical horizon color update remains blocked ahead of the Q4 retrofit window.
+Key Progress:
+- ARINC 661 attitude tape migration is complete, validated, and fully traced.
+- Glare and readability improvements passed high-brightness and pilot testing.
+- Modernized airspeed and altitude tapes are released with strong safety-test coverage.
+Risks/Blockers:
+- Horizon colors failed glare testing and await vendor colorimetry data with no committed delivery date.
+- Airspeed color-band thresholds await finalized aircraft performance limits, expected early next sprint.</div>
 </div>
 
 </body>
