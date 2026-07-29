@@ -133,6 +133,15 @@ code-coverage-reports/index.html
 
 Both are regenerated on demand (see `doxygen Doxyfile` under "Commands" above, and the coverage commands above) — they aren't rebuilt automatically, so re-run them after making changes if you want the browsable docs to reflect the latest code.
 
+### Sample rollup report
+
+This is the actual output of the app itself — not a dev tool like the two above, but the single HTML report the whole pipeline exists to produce: Initiatives ordered by business priority, each with its Business Summary, and its Epics nested underneath with their Engineering Summaries.
+
+```
+report/rollup-report.html
+```
+<p align="center"><img src="img/Jira-Rollup-Report.png" width="818" alt="Sample Jira Rollup Report"></p>
+
 ## Demo
 
 📹 `./demo/demo.mp4`

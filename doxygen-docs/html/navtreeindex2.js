@@ -207,8 +207,9 @@ var NAVTREEINDEX2 =
 "index.html#autotoc_md1":[0,0],
 "index.html#autotoc_md10":[0,3,5],
 "index.html#autotoc_md11":[0,3,6],
-"index.html#autotoc_md12":[0,4],
-"index.html#autotoc_md13":[0,5],
+"index.html#autotoc_md12":[0,3,7],
+"index.html#autotoc_md13":[0,4],
+"index.html#autotoc_md14":[0,5],
 "index.html#autotoc_md2":[0,1],
 "index.html#autotoc_md3":[0,2],
 "index.html#autotoc_md4":[0,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a9253b02fcfe7dcb9cde586911c768738":[3,0,0,0,2,1,1,9],
 "interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a9253b02fcfe7dcb9cde586911c768738":[4,0,0,0,2,1,1,9],
 "interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a9ab0857d3281ea861756b849a53a33a2":[3,0,0,0,2,1,1,5],
-"interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a9ab0857d3281ea861756b849a53a33a2":[4,0,0,0,2,1,1,5],
-"interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#aa0ddfb61f974d033699ed47f058cea0b":[3,0,0,0,2,1,1,2]
+"interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a9ab0857d3281ea861756b849a53a33a2":[4,0,0,0,2,1,1,5]
 };

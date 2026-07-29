@@ -10,8 +10,9 @@ var index =
       [ "3. Run it", "index.html#autotoc_md8", null ],
       [ "Configuration reference (<span class=\"tt\">appsettings.json</span>)", "index.html#autotoc_md9", null ],
       [ "Running tests", "index.html#autotoc_md10", null ],
-      [ "Generated docs &amp; reports", "index.html#autotoc_md11", null ]
+      [ "Generated docs &amp; reports", "index.html#autotoc_md11", null ],
+      [ "Sample rollup report", "index.html#autotoc_md12", null ]
     ] ],
-    [ "Demo", "index.html#autotoc_md12", null ],
-    [ "Known Limits", "index.html#autotoc_md13", null ]
+    [ "Demo", "index.html#autotoc_md13", null ],
+    [ "Known Limits", "index.html#autotoc_md14", null ]
 ];
