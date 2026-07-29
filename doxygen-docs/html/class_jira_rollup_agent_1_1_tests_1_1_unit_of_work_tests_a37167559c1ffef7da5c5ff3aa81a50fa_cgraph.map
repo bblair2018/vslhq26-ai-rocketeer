@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.UnitOfWorkTests.DeleteAllSummariesAsync_DeletesOnlyTheThreeSummaryTables" name="JiraRollupAgent.Tests.UnitOfWorkTests.DeleteAllSummariesAsync_DeletesOnlyTheThreeSummaryTables">
+<area shape="rect" id="Node000001" title="DeleteAllSummariesAsync empties only the three summary tables, leaving the loaded hierarchy (Initiati..." alt="" coords="5,5,292,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_unit_of_work_tests.html#a02a2de7c9793888dd6abac984bae3d12" title=" " alt="" coords="340,13,548,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="292,32,327,35,321,35,292,37"/>
+</map>

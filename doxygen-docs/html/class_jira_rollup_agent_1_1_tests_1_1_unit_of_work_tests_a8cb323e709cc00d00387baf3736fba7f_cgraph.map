@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.UnitOfWorkTests.SaveAsync_PersistsChangesAndReturnsAffectedRowCount" name="JiraRollupAgent.Tests.UnitOfWorkTests.SaveAsync_PersistsChangesAndReturnsAffectedRowCount">
+<area shape="rect" id="Node000001" title="SaveAsync persists pending changes and returns the number of affected rows." alt="" coords="5,5,258,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_unit_of_work_tests.html#a02a2de7c9793888dd6abac984bae3d12" title=" " alt="" coords="306,13,514,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,32,293,34,287,35,258,37"/>
+</map>

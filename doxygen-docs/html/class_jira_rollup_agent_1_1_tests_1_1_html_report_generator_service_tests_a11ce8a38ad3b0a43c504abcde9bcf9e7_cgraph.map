@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.BuildReportHtml_WithInitiativeAndEpic_RendersBothSummaries" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.BuildReportHtml_WithInitiativeAndEpic_RendersBothSummaries">
+<area shape="rect" id="Node000001" title="BuildReportHtml renders the Initiative&#39;s priority badge, title, and Business Summary,..." alt="" coords="5,5,232,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a13bbe0a80d6039579483dec5bcf58a5d" title="Creates a service instance backed by a no&#45;op configuration and a strict (never&#45;called) unit of work &#45;..." alt="" coords="280,13,516,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,40,267,42,261,43,232,45"/>
+</map>

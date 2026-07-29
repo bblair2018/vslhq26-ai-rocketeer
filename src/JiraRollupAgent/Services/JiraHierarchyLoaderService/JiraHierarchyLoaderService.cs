@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -15,7 +14,6 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
     /// into VSLiveJiraRollup, standing in for a real Jira ingestion pipeline. Self-disables after a
     /// successful run - see <see cref="DisableHierarchyLoadFlagAsync"/>.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class JiraHierarchyLoaderService : IJiraHierarchyLoaderService
     {
         //This is required to enable logging for this class.
@@ -89,11 +87,12 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
         /// hierarchy is loaded once and subsequent runs skip it. Setting it back to true by hand causes the
         /// next run to wipe and reload everything from the mock JSON again.
         /// </summary>
-        private async Task DisableHierarchyLoadFlagAsync()
+        /// <param name="appSettingsPathOverride">Overrides the appsettings.json path to read/write; <c>null</c> uses the real build output path. Used by tests to exercise the "missing AppSettings section" and read/parse-failure branches against an isolated temp file.</param>
+        internal async Task DisableHierarchyLoadFlagAsync(string? appSettingsPathOverride = null)
         {
             try
             {
-                var appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+                var appSettingsPath = appSettingsPathOverride ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
                 var json = await File.ReadAllTextAsync(appSettingsPath);
                 var root = JsonNode.Parse(json)?.AsObject();
 
@@ -178,7 +177,7 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
 
         /// <summary>Maps a mock Epic, including its own comments and its WorkItems, into an <see cref="Entities.Epic"/>.</summary>
         /// <param name="mockEpic">The deserialized mock Epic.</param>
-        private static Entities.Epic MapEpic(MockEpic mockEpic)
+        internal static Entities.Epic MapEpic(MockEpic mockEpic)
         {
             var epic = new Entities.Epic
             {
@@ -195,7 +194,7 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
 
         /// <summary>Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children, into a <see cref="Entities.WorkItem"/>.</summary>
         /// <param name="mockItem">The deserialized mock work item.</param>
-        private static Entities.WorkItem MapWorkItem(MockWorkItem mockItem)
+        internal static Entities.WorkItem MapWorkItem(MockWorkItem mockItem)
         {
             var workItem = new Entities.WorkItem
             {
@@ -219,7 +218,7 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
         /// <summary>Maps a Subtask or StoryBug into a <see cref="Entities.WorkItem"/> with the given type discriminator.</summary>
         /// <param name="mockSubItem">The deserialized mock sub-item.</param>
         /// <param name="type">The type discriminator to assign: "Subtask" or "StoryBug".</param>
-        private static Entities.WorkItem MapChildWorkItem(MockSubItem mockSubItem, string type)
+        internal static Entities.WorkItem MapChildWorkItem(MockSubItem mockSubItem, string type)
         {
             return new Entities.WorkItem
             {
@@ -234,7 +233,7 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
 
         /// <summary>Maps a mock comment into a <see cref="Entities.Comment"/> (parent FK left unset - the caller assigns it via navigation).</summary>
         /// <param name="mockComment">The deserialized mock comment.</param>
-        private static Entities.Comment MapComment(MockComment mockComment)
+        internal static Entities.Comment MapComment(MockComment mockComment)
         {
             return new Entities.Comment
             {

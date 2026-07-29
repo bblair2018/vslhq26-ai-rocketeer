@@ -1,0 +1,9 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.SummarizeStoryAsync_WithChildrenAndOwnComments_SummarizesChildrenFirstThenRollsUp" name="JiraRollupAgent.Tests.SummarizationServiceTests.SummarizeStoryAsync_WithChildrenAndOwnComments_SummarizesChildrenFirstThenRollsUp">
+<area shape="rect" id="Node000001" title="A Story summarizes its Subtask/StoryBug children first (writing their summaries into the shared accum..." alt="" coords="5,56,351,131"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="399,5,639,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="350,57,394,51,389,52,352,62"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a694b3e39db2677abbfb5f2b4328908ff" title="Creates a service instance, defaulting the unit of work/chat client to loose mocks when not supplied." alt="" coords="399,72,639,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="351,91,386,93,380,94,351,96"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#afb160e7de34555d817ec5f9dfcd2f981" title="Builds a Comment with the given role/text/timestamp for test fixtures." alt="" coords="399,139,639,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="351,124,394,135,389,135,351,130"/>
+</map>

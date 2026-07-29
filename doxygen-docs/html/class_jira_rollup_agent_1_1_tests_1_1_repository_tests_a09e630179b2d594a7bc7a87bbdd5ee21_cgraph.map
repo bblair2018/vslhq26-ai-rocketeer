@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.Tests.RepositoryTests.AddAsync_ThenSaveChanges_PersistsTheEntity" name="JiraRollupAgent.Tests.RepositoryTests.AddAsync_ThenSaveChanges_PersistsTheEntity">
+<area shape="rect" id="Node000001" title="AddAsync, followed by SaveChanges, persists the entity so it&#39;s returned by GetAllAsync." alt="" coords="5,31,241,89"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a969d5b968e2b2ab1d2d9702f235348db" title=" " alt="" coords="289,5,505,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,43,276,41,271,42,242,48"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#ac4175f1c1c6b09c2c989a5ccfe8a33c4" title="Builds a minimal TeamMember fixture with the given external id/name." alt="" coords="289,72,505,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,72,276,78,271,78,241,77"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.Run_WhenFlagIsFalse_ReturnsTrueWithoutTouchingDependencies" name="JiraRollupAgent.Tests.SummarizationServiceTests.Run_WhenFlagIsFalse_ReturnsTrueWithoutTouchingDependencies">
+<area shape="rect" id="Node000001" title="Run() returns true and never touches its dependencies when AppSettings:RunSummarization is false." alt="" coords="5,5,286,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="334,13,574,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,32,321,35,315,35,286,37"/>
+</map>

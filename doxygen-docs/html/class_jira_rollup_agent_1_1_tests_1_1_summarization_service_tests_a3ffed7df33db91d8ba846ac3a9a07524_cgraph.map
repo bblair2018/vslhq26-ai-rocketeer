@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.HasNoActivity_WithOwnComments_ReturnsFalse" name="JiraRollupAgent.Tests.SummarizationServiceTests.HasNoActivity_WithOwnComments_ReturnsFalse">
+<area shape="rect" id="Node000001" title="Any own comments mean there is activity to summarize, regardless of children." alt="" coords="5,5,317,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#afb160e7de34555d817ec5f9dfcd2f981" title="Builds a Comment with the given role/text/timestamp for test fixtures." alt="" coords="365,13,605,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="317,32,352,35,346,35,317,37"/>
+</map>

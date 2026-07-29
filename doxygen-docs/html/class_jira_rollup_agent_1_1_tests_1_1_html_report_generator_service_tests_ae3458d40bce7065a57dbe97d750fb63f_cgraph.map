@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.DisableReportGenerationFlagAsync_WithMalformedJson_DoesNotThrow" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.DisableReportGenerationFlagAsync_WithMalformedJson_DoesNotThrow">
+<area shape="rect" id="Node000001" title="DisableReportGenerationFlagAsync swallows a read/parse failure (e.g. malformed JSON) rather than prop..." alt="" coords="5,5,286,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a13bbe0a80d6039579483dec5bcf58a5d" title="Creates a service instance backed by a no&#45;op configuration and a strict (never&#45;called) unit of work &#45;..." alt="" coords="334,13,570,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,40,321,42,315,43,286,45"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.WriteReportAsync_WithRepoRootOverride_WritesFileUnderReportSubdirectory" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.WriteReportAsync_WithRepoRootOverride_WritesFileUnderReportSubdirectory">
+<area shape="rect" id="Node000001" title="WriteReportAsync, given a repo&#45;root override, writes the HTML to report/rollup&#45;report...." alt="" coords="5,5,245,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a13bbe0a80d6039579483dec5bcf58a5d" title="Creates a service instance backed by a no&#45;op configuration and a strict (never&#45;called) unit of work &#45;..." alt="" coords="293,13,529,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,40,280,42,275,43,245,45"/>
+</map>

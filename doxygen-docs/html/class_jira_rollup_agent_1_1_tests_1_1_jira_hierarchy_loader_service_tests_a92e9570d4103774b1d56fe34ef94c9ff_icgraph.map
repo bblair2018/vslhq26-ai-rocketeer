@@ -1,0 +1,13 @@
+<map id="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.BuildConfig" name="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.BuildConfig">
+<area shape="rect" id="Node000001" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="360,211,585,269"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#afb124c0c492cb0d6aeed5cecc590cf54" title="DisableHierarchyLoadFlagAsync swallows a read/parse failure (e.g. malformed JSON) rather than propaga..." alt="" coords="13,5,304,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="434,199,379,146,346,118,310,94,290,83,289,78,313,90,349,114,383,142,439,199"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#a6d553c079265a4e648f40ee406a3b2cf" title="DisableHierarchyLoadFlagAsync leaves the file untouched and just logs a warning when the JSON has no ..." alt="" coords="14,104,303,179"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="360,206,280,182,279,177,365,205"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#aecfab5853fcd2dced89d0a08f1c2655c" title="Run() returns true and never touches the unit of work when AppSettings:RunHierarchyLoad is false." alt="" coords="5,203,312,277"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="341,241,313,243,311,237,346,239"/>
+<area shape="rect" id="Node000005" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#ae69725d9f0d3d0bea9049a5ed0a9d99a" title="Run() catches an exception thrown by a dependency, logs it, and returns false rather than propagating..." alt="" coords="29,301,288,360"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="359,275,312,292,272,303,270,298,311,287,364,273"/>
+<area shape="rect" id="Node000006" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#a626b262e8a32dd99634b412909eb5a89" title="Run() loads this test project&#39;s fixture MockData, wipes existing rows first, and adds the mapped team..." alt="" coords="44,384,273,459"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="434,279,379,330,313,374,275,392,273,387,310,370,375,326,429,281"/>
+</map>

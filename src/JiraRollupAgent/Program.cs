@@ -45,7 +45,6 @@ namespace JiraRollupAgent
         /// This is the secondary main entry point to the application.
         /// </summary>
         /// <param name="args">These are the arguments for the main application.</param>
-        [ExcludeFromCodeCoverage]
         private static async Task<bool> MainAsync(string[] args)
         {
             try
@@ -203,7 +202,6 @@ namespace JiraRollupAgent
         /// This will allow us to do logging, before we work with our actual configuration.
         /// </summary>
         /// <param name="builder">Our Configuration Builder.</param>
-        [ExcludeFromCodeCoverage]
         static void BuildConfig(IConfigurationBuilder builder)
         {
             string directoryToBeUsed = AppDomain.CurrentDomain.BaseDirectory;

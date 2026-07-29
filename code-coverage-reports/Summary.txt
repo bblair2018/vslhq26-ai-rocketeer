@@ -1,0 +1,45 @@
+Summary
+  Generated on: 7/29/2026 - 12:22:36 PM
+  Coverage date: 7/29/2026 - 12:22:14 PM
+  Parser: Cobertura
+  Assemblies: 1
+  Classes: 23
+  Files: 9
+  Line coverage: 98.5%
+  Covered lines: 872
+  Uncovered lines: 13
+  Coverable lines: 885
+  Total lines: 2103
+  Branch coverage: 92% (151 of 164)
+  Covered branches: 151
+  Total branches: 164
+  Method coverage: 94.7% (181 of 191)
+  Full method coverage: 93.7% (179 of 191)
+  Covered methods: 181
+  Fully covered methods: 179
+  Total methods: 191
+
+JiraRollupAgent                                                                    98.5%
+  JiraRollupAgent.DAL.Context.JiraRollupDBContext                                   100%
+  JiraRollupAgent.DAL.Models.Comment                                               72.7%
+  JiraRollupAgent.DAL.Models.Epic                                                  87.5%
+  JiraRollupAgent.DAL.Models.EpicEngineeringSummary                                85.7%
+  JiraRollupAgent.DAL.Models.Initiative                                            87.5%
+  JiraRollupAgent.DAL.Models.InitiativeBusinessSummary                             85.7%
+  JiraRollupAgent.DAL.Models.TeamMember                                             100%
+  JiraRollupAgent.DAL.Models.WorkItem                                              84.6%
+  JiraRollupAgent.DAL.Models.WorkItemSummary                                       85.7%
+  JiraRollupAgent.DAL.Repositories.Implementations.Repository<T>                    100%
+  JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork                       100%
+  JiraRollupAgent.Extensions.LoggerExtensions                                       100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockComment                     100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockEpic                        100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockInitiative                  100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockJiraHierarchy               100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockSubItem                     100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockTeamMember                  100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockTeamRoster                  100%
+  JiraRollupAgent.Models.JiraHierarchyLoaderService.MockWorkItem                    100%
+  JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService   98.4%
+  JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService    100%
+  JiraRollupAgent.Services.SummarizationService.SummarizationService                100%

@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.Run_WhenDependencyThrows_ReturnsFalse" name="JiraRollupAgent.Tests.SummarizationServiceTests.Run_WhenDependencyThrows_ReturnsFalse">
+<area shape="rect" id="Node000001" title="Run() catches an exception thrown by a dependency, logs it, and returns false rather than propagating..." alt="" coords="5,5,288,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="336,13,576,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="288,32,323,35,318,35,288,37"/>
+</map>

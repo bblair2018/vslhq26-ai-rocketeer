@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.Tests.RepositoryTests.Update_ThenSaveChanges_PersistsTheChange" name="JiraRollupAgent.Tests.RepositoryTests.Update_ThenSaveChanges_PersistsTheChange">
+<area shape="rect" id="Node000001" title="Update, followed by SaveChanges, persists the modified field." alt="" coords="5,31,223,89"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a969d5b968e2b2ab1d2d9702f235348db" title=" " alt="" coords="271,5,487,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,44,258,42,253,43,224,49"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#ac4175f1c1c6b09c2c989a5ccfe8a33c4" title="Builds a minimal TeamMember fixture with the given external id/name." alt="" coords="271,72,487,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,71,258,78,252,78,223,76"/>
+</map>

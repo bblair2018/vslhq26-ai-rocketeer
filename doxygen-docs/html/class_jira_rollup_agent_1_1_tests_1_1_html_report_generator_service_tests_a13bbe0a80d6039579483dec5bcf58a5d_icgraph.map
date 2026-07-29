@@ -1,0 +1,15 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.CreateService" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.CreateService">
+<area shape="rect" id="Node000001" title="Creates a service instance backed by a no&#45;op configuration and a strict (never&#45;called) unit of work &#45;..." alt="" coords="377,244,613,303"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#aa38cffb2afdead2cf4dc25acabd662e8" title="AppendEpic renders the placeholder text and CSS class when an Epic has no generated summary yet." alt="" coords="5,5,329,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="467,231,442,195,410,153,371,112,327,78,308,67,307,62,330,74,375,108,414,150,446,192,472,231"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a4945c0d84efe22f6b0794ab2489b8ac4" title="AppendInitiative renders the placeholder text and CSS class when an Initiative has no generated summa..." alt="" coords="44,88,290,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="435,236,384,206,328,177,291,162,290,157,330,172,387,201,440,235"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a11ce8a38ad3b0a43c504abcde9bcf9e7" title="BuildReportHtml renders the Initiative&#39;s priority badge, title, and Business Summary,..." alt="" coords="54,187,280,261"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="359,254,281,244,280,238,363,252"/>
+<area shape="rect" id="Node000005" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#ae3458d40bce7065a57dbe97d750fb63f" title="DisableReportGenerationFlagAsync swallows a read/parse failure (e.g. malformed JSON) rather than prop..." alt="" coords="27,285,307,360"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="359,295,309,304,307,299,364,292"/>
+<area shape="rect" id="Node000006" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a6d1343e5414b61390f3e820c4112fb1a" title="DisableReportGenerationFlagAsync leaves the file untouched and just logs a warning when the JSON has ..." alt="" coords="13,384,321,459"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="440,310,387,345,330,374,302,386,299,381,328,370,384,341,435,313"/>
+<area shape="rect" id="Node000007" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#af873fd11052e3a49832a82721b227dcc" title="WriteReportAsync, given a repo&#45;root override, writes the HTML to report/rollup&#45;report...." alt="" coords="47,483,287,557"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="471,314,446,355,413,396,374,438,330,473,288,495,286,490,327,468,371,434,409,393,441,351,467,317"/>
+</map>

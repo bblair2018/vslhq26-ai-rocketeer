@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initiativesystemprompt_0',['InitiativeSystemPrompt',['../class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#a1640f30cc804132f771d8652e90acabe',1,'JiraRollupAgent::Services::SummarizationService::SummarizationService']]]
+  ['epicsystemprompt_0',['EpicSystemPrompt',['../class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#a92808883a7f6c433daab89525f324742',1,'JiraRollupAgent::Services::SummarizationService::SummarizationService']]]
 ];

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <!--
+            EF Core migrations (and the model snapshot) are regenerated wholesale by
+            `dotnet ef migrations add`, so excluding them via [ExcludeFromCodeCoverage] on the
+            generated files themselves would just get wiped out on the next migration. Excluding
+            by type pattern here survives regeneration.
+          -->
+          <Exclude>[JiraRollupAgent]JiraRollupAgent.DAL.Migrations.*</Exclude>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

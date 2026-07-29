@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.DisableHierarchyLoadFlagAsync_WithMalformedJson_DoesNotThrow" name="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.DisableHierarchyLoadFlagAsync_WithMalformedJson_DoesNotThrow">
+<area shape="rect" id="Node000001" title="DisableHierarchyLoadFlagAsync swallows a read/parse failure (e.g. malformed JSON) rather than propaga..." alt="" coords="5,5,296,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#a92e9570d4103774b1d56fe34ef94c9ff" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="344,13,569,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="296,40,331,42,325,43,296,45"/>
+</map>

@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['writereportasync_0',['WriteReportAsync',['../class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#afca8dccc8f7d071211762dbd0c97fa3b',1,'JiraRollupAgent::Services::HtmlReportGeneratorService::HtmlReportGeneratorService']]]
+  ['validatedaterange_5fwithmissingstartkey_5fthrows_0',['ValidateDateRange_WithMissingStartKey_Throws',['../class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a8bf34a9b8c581c4f2d426f84de378a42',1,'JiraRollupAgent::Tests::SummarizationServiceTests']]],
+  ['validatedaterange_5fwithnocommentsindatabase_5fthrows_1',['ValidateDateRange_WithNoCommentsInDatabase_Throws',['../class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#ae207e1cc9ef41f1c2d2a8bb586d08d83',1,'JiraRollupAgent::Tests::SummarizationServiceTests']]],
+  ['validatedaterange_5fwithrangeoutsidedataspan_5fthrows_2',['ValidateDateRange_WithRangeOutsideDataSpan_Throws',['../class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#ad947e1897cb488389390bd0d414ff54f',1,'JiraRollupAgent::Tests::SummarizationServiceTests']]],
+  ['validatedaterange_5fwithstartafterend_5fthrows_3',['ValidateDateRange_WithStartAfterEnd_Throws',['../class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a49927beefb651f18498bb60ab4406a8f',1,'JiraRollupAgent::Tests::SummarizationServiceTests']]],
+  ['validatedaterange_5fwithunparsableenddate_5fthrows_4',['ValidateDateRange_WithUnparsableEndDate_Throws',['../class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#afd293be4166673991358d3d7c7a7f21e',1,'JiraRollupAgent::Tests::SummarizationServiceTests']]],
+  ['validatedaterange_5fwithunparsablestartdate_5fthrows_5',['ValidateDateRange_WithUnparsableStartDate_Throws',['../class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a418391cd411ad3e65e1d5dc5e077ec67',1,'JiraRollupAgent::Tests::SummarizationServiceTests']]],
+  ['validatedaterange_5fwithvalidrangeandinrangecomments_5freturnsnormalizedrange_6',['ValidateDateRange_WithValidRangeAndInRangeComments_ReturnsNormalizedRange',['../class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a53758d517e4cfe37ec1365a44fed3f09',1,'JiraRollupAgent::Tests::SummarizationServiceTests']]]
 ];

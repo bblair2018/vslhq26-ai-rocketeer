@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
 {
     /// <summary>
@@ -7,7 +5,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
     /// Property names match the JSON fields case-insensitively (System.Text.Json PropertyNameCaseInsensitive).
     /// </summary>
     /// <summary>The root of jira-hierarchy.json: <c>{ "initiatives": [ ... ] }</c>.</summary>
-    [ExcludeFromCodeCoverage]
     public class MockJiraHierarchy
     {
         /// <summary>Every Initiative in the mock hierarchy.</summary>
@@ -15,7 +12,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
     }
 
     /// <summary>Mirrors one entry in jira-hierarchy.json's "initiatives[]".</summary>
-    [ExcludeFromCodeCoverage]
     public class MockInitiative
     {
         /// <summary>The Jira key, e.g. "INIT-PFD".</summary>
@@ -33,7 +29,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
     }
 
     /// <summary>Mirrors one entry in an Initiative's "epics[]".</summary>
-    [ExcludeFromCodeCoverage]
     public class MockEpic
     {
         /// <summary>The Jira key, e.g. "EPIC-PFD-1".</summary>
@@ -47,7 +42,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
     }
 
     /// <summary>A direct child of an Epic: Story, Bug, Task, or Spike.</summary>
-    [ExcludeFromCodeCoverage]
     public class MockWorkItem
     {
         /// <summary>The Jira issue type: "Story", "Bug", "Task", or "Spike".</summary>
@@ -72,7 +66,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
 
     /// <summary>A Subtask or StoryBug nested under a Story. The JSON has no "type" field here —
     /// which one it is comes from whether it was read out of "subtasks" or "storyBugs".</summary>
-    [ExcludeFromCodeCoverage]
     public class MockSubItem
     {
         /// <summary>The Jira key, e.g. "SUB-PFD-1-1-1" or "SBUG-PFD-1-1-1".</summary>
@@ -88,7 +81,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
     }
 
     /// <summary>Mirrors one entry in any "comments[]" array.</summary>
-    [ExcludeFromCodeCoverage]
     public class MockComment
     {
         /// <summary>The commenter's display name.</summary>
@@ -102,7 +94,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
     }
 
     /// <summary>The root of team-roster.json: <c>{ "team": [ ... ] }</c>.</summary>
-    [ExcludeFromCodeCoverage]
     public class MockTeamRoster
     {
         /// <summary>Every team member in the mock roster.</summary>
@@ -110,7 +101,6 @@ namespace JiraRollupAgent.Models.JiraHierarchyLoaderService
     }
 
     /// <summary>Mirrors one entry in team-roster.json's "team[]".</summary>
-    [ExcludeFromCodeCoverage]
     public class MockTeamMember
     {
         /// <summary>The source id, e.g. "USR-01".</summary>

@@ -1,12 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace JiraRollupAgent.DAL.Models
 {
     /// <summary>
     /// A top-level Initiative, ordered in reports by <see cref="PriorityRank"/>.
     /// Mirrors the "initiatives[]" shape in MockData/jira-hierarchy.json.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class Initiative
     {
         /// <summary>The database primary key.</summary>
@@ -37,7 +34,6 @@ namespace JiraRollupAgent.DAL.Models
     /// <summary>
     /// An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class Epic
     {
         /// <summary>The database primary key.</summary>
@@ -70,7 +66,6 @@ namespace JiraRollupAgent.DAL.Models
     /// "Story", "Bug", "Task", "Spike" (direct children of an Epic, via <see cref="EpicId"/>),
     /// or "Subtask"/"StoryBug" (children of a Story, via <see cref="ParentWorkItemId"/>).
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class WorkItem
     {
         /// <summary>The database primary key.</summary>
@@ -117,7 +112,6 @@ namespace JiraRollupAgent.DAL.Models
     /// A comment attached to exactly one of Initiative, Epic, or WorkItem.
     /// <see cref="Role"/> drives the Epic/Initiative role-weighted summarization.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class Comment
     {
         /// <summary>The database primary key.</summary>
@@ -157,7 +151,6 @@ namespace JiraRollupAgent.DAL.Models
     /// <summary>
     /// Mirrors MockData/team-roster.json. <see cref="Role"/> is the same enum used on <see cref="Comment.Role"/>.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class TeamMember
     {
         /// <summary>The database primary key.</summary>
@@ -186,7 +179,6 @@ namespace JiraRollupAgent.DAL.Models
     /// history table. Never printed directly in the report - consumed as input by the Story (if this
     /// is a Subtask/StoryBug) or Epic (if this is a Story/Bug/Task/Spike) summary above it.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class WorkItemSummary
     {
         /// <summary>The database primary key.</summary>
@@ -216,7 +208,6 @@ namespace JiraRollupAgent.DAL.Models
     /// engineering audiences) - one of the two summary levels actually printed in the report.
     /// Exactly one row per Epic: overwritten fresh on every SummarizationService run.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class EpicEngineeringSummary
     {
         /// <summary>The database primary key.</summary>
@@ -247,7 +238,6 @@ namespace JiraRollupAgent.DAL.Models
     /// printed in the report. Exactly one row per Initiative: overwritten fresh on every
     /// SummarizationService run.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class InitiativeBusinessSummary
     {
         /// <summary>The database primary key.</summary>

@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.SummarizeStoryAsync_WithNoActivity_ReturnsPlaceholderWithoutCallingLlm" name="JiraRollupAgent.Tests.SummarizationServiceTests.SummarizeStoryAsync_WithNoActivity_ReturnsPlaceholderWithoutCallingLlm">
+<area shape="rect" id="Node000001" title="A Story with no own comments and no children skips the LLM call entirely and returns the placeholder." alt="" coords="5,23,288,97"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="336,5,576,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="288,42,323,41,318,42,289,47"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a694b3e39db2677abbfb5f2b4328908ff" title="Creates a service instance, defaulting the unit of work/chat client to loose mocks when not supplied." alt="" coords="336,72,576,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,73,323,79,318,79,288,78"/>
+</map>

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['loadhierarchydataasync_0',['LoadHierarchyDataAsync',['../class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#a25b98e676ac89e54990d0bd6f207b541',1,'JiraRollupAgent::Services::SummarizationService::SummarizationService']]],
-  ['loadinitiativesasync_1',['LoadInitiativesAsync',['../class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a510c2f0dc98499c6f370ea47a4d83bfc',1,'JiraRollupAgent::Services::JiraHierarchyLoaderService::JiraHierarchyLoaderService']]],
-  ['loadreportdataasync_2',['LoadReportDataAsync',['../class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#a22a3c7f177d1bacab07b76fe60478c95',1,'JiraRollupAgent::Services::HtmlReportGeneratorService::HtmlReportGeneratorService']]],
-  ['loadteammembersasync_3',['LoadTeamMembersAsync',['../class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a06a515518720d793e1e44eaf4fc5fabd',1,'JiraRollupAgent::Services::JiraHierarchyLoaderService::JiraHierarchyLoaderService']]]
+  ['jirahierarchyloaderservice_0',['JiraHierarchyLoaderService',['../class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ab998d33abcd1ef8bd1fbc4a935c8dc03',1,'JiraRollupAgent::Services::JiraHierarchyLoaderService::JiraHierarchyLoaderService']]],
+  ['jirarollupdbcontext_1',['JiraRollupDBContext',['../class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a535ab6cf687a112aaf6b5462616c8635',1,'JiraRollupAgent.DAL.Context.JiraRollupDBContext.JiraRollupDBContext()'],['../class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a90a45419357feffe84dc5d3a2617ddca',1,'JiraRollupAgent.DAL.Context.JiraRollupDBContext.JiraRollupDBContext(DbContextOptions&lt; JiraRollupDBContext &gt; options)']]]
 ];

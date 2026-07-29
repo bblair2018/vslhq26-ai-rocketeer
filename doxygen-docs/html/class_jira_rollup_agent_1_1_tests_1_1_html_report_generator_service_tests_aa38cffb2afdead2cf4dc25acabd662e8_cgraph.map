@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.AppendEpic_WithNoSummaryForEpic_RendersPlaceholder" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.AppendEpic_WithNoSummaryForEpic_RendersPlaceholder">
+<area shape="rect" id="Node000001" title="AppendEpic renders the placeholder text and CSS class when an Epic has no generated summary yet." alt="" coords="5,5,329,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a13bbe0a80d6039579483dec5bcf58a5d" title="Creates a service instance backed by a no&#45;op configuration and a strict (never&#45;called) unit of work &#45;..." alt="" coords="377,5,613,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="329,32,363,35,358,35,329,37"/>
+</map>

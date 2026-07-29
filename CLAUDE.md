@@ -26,7 +26,19 @@ dotnet ef database update                                     # apply migrations
 
 Adding a migration prints a `HostAbortedException` stack trace to the console — that's `dotnet ef` probing `Host.CreateDefaultBuilder` as designed (it aborts host startup after extracting the service provider); the migration still generates correctly despite the logged error.
 
-There is no test project in the solution yet.
+Test project: `test/JiraRollupAgent.Tests` (see "Testing" below).
+
+```
+dotnet test test/JiraRollupAgent.Tests   # run all tests (91, all passing)
+```
+
+Code coverage (see "Code Coverage" below):
+
+```
+dotnet tool restore                                                                                    # fetch ReportGenerator (pinned in .config/dotnet-tools.json)
+dotnet test test/JiraRollupAgent.Tests --collect:"XPlat Code Coverage" --settings test/JiraRollupAgent.Tests/coverlet.runsettings
+dotnet tool run reportgenerator -reports:test/JiraRollupAgent.Tests/TestResults/**/coverage.cobertura.xml -targetdir:code-coverage-reports -reporttypes:"Html;TextSummary"
+```
 
 SDK version is pinned via `global.json` (10.0.302, `rollForward: latestFeature`) — `dotnet --version` should resolve to a compatible 10.x SDK.
 
@@ -36,7 +48,49 @@ Code reference docs (Doxygen, config in `Doxyfile`, output committed under `doxy
 doxygen Doxyfile   # regenerate; requires Graphviz (dot) on PATH for class/call/caller graphs
 ```
 
-Scoped to `src/JiraRollupAgent`'s C# source only (`README.md`/`CLAUDE.md` were tried as the main page but dropped — a video-camera emoji in `README.md`'s Demo section broke the LaTeX/PDF path we experimented with; irrelevant now since only HTML is generated, `GENERATE_LATEX` is `NO`). `EXTRACT_ALL`/`EXTRACT_PRIVATE`/`EXTRACT_STATIC` are all `YES` since most of the interesting logic (e.g. `SummarizationService`'s orchestration methods) is private.
+Scoped to `src/JiraRollupAgent`'s and `test/JiraRollupAgent.Tests`'s C# source (`README.md`/`CLAUDE.md` were tried as the main page but dropped — a video-camera emoji in `README.md`'s Demo section broke the LaTeX/PDF path we experimented with; irrelevant now since only HTML is generated, `GENERATE_LATEX` is `NO`). `EXTRACT_ALL`/`EXTRACT_PRIVATE`/`EXTRACT_STATIC` are all `YES` since most of the interesting logic (e.g. `SummarizationService`'s orchestration methods) is private.
+
+## Testing
+
+`test/JiraRollupAgent.Tests` — xUnit project (`net10.0`), registered alongside `src/` in the `.slnx` under a `/test/` folder. Covers the three pipeline services plus the DAL layer via 91 tests, one test class per unit: `HtmlReportGeneratorServiceTests`, `SummarizationServiceTests`, `JiraHierarchyLoaderServiceTests`, `JiraRollupDBContextTests`, `RepositoryTests`, `UnitOfWorkTests`.
+
+**Packages**: xUnit + `xunit.runner.visualstudio` + `coverlet.collector`, `Moq` for `IUnitOfWork`/`IChatClient` fakes, `FluentAssertions` **pinned to 7.x** (8.x+ is Xceed-commercial-licensed — 7.x is the last free version), `Microsoft.Extensions.Configuration` for building in-memory `IConfiguration` instances via `AddInMemoryCollection` (note: `Microsoft.Extensions.Configuration.Memory` is *not* a real, currently-published NuGet package — confirmed via the nuget.org flat-container API returning `BlobNotFound` — despite historically being where `AddInMemoryCollection` lived; the core `Microsoft.Extensions.Configuration` package resolves it directly now), and `Microsoft.EntityFrameworkCore.Sqlite` for the DAL tests (see below) alongside an explicit `SQLitePCLRaw.bundle_e_sqlite3` 3.0.5 reference — needed to dodge a high-severity advisory (GHSA-2m69-gcr7-jv3q) in the `SQLitePCLRaw.lib.e_sqlite3` version that `Microsoft.EntityFrameworkCore.Sqlite` 9.0.4 otherwise pulls in transitively.
+
+**Style conventions** (every test file/method):
+- File- and class-level `/// <summary>` doc comments, and one-line `/// <summary>` on every `[Fact]`/`[Theory]` and private helper — Doxygen picks these up (`Doxyfile`'s `INPUT` includes `test/JiraRollupAgent.Tests` alongside `src/JiraRollupAgent`).
+- `// Arrange` / `// Act` / `// Assert` comments in every test body.
+- Assertions exclusively via FluentAssertions (`result.Should().Be(...)`) — no `Assert.*`.
+- Small private static builder helpers per test class (e.g. `MakeComment(role, text, timestamp)`), kept file-local rather than shared, to avoid a premature shared-test-infra abstraction.
+
+**Testing private logic**: most of the interesting logic in all three services was `private` (string formatting, date-range validation, DTO→entity mapping, prompt/header building, the `Disable*FlagAsync` self-disable methods). Rather than reflection, the relevant methods/nested types were changed to `internal`, paired with one `[assembly: InternalsVisibleTo("JiraRollupAgent.Tests")]` in `JiraRollupAgent.csproj` — no logic changes, signature-only. Doxygen's `EXTRACT_ALL`/`EXTRACT_PRIVATE`/`EXTRACT_STATIC` already documented these either way, so this didn't change doc coverage. The same seam pattern was used repeatedly to make otherwise-unsafe-to-test code testable: `FindRepoRoot(string? startDirectory = null)`, `WriteReportAsync(html, string? repoRootOverride = null)`, `HtmlReportGeneratorService.Run(string? repoRootOverride)` (the public parameterless `Run()` just delegates with `null`), and all three services' `Disable*FlagAsync(string? appSettingsPathOverride = null)` — every one defaults to the real production path/behavior, and tests override it to point at an isolated temp file/directory instead.
+
+**What's covered per service**:
+- `HtmlReportGeneratorService` — `Encode`/`ApplyBold`/`FormatSummaryText` (status line, Key Progress/Risks bullets, bold, CRLF vs LF, empty input, plain-prose fallback line), `FindRepoRoot`, `BuildReportHtml`/`AppendInitiative`/`AppendEpic` against a hand-built `ReportData`, `WriteReportAsync` directly against a temp directory, and `Run()`'s skip/failure/top-level-catch/full-success paths (the last two via the `Run(repoRootOverride)` overload, see above).
+- `SummarizationService` — `ValidateDateRange` (valid range, `start > end`, missing config key, unparseable date string, no comments, range outside data span), `HasNoActivity`, the three `Build*Header` methods, the two user-message builders, `GetSummaryAsync` (mocked `IChatClient`), the full `SummarizeLeaf/Story/Epic/Initiative` chain including each rollup level's "no activity → placeholder, skip the LLM" branch (previously only tested at the leaf level), `PersistSummariesAsync`, and `Run()`'s skip/top-level-catch/full-success paths (the full-hierarchy fixture includes a Subtask plus an Initiative-level and Epic-level comment so `LoadHierarchyDataAsync`'s grouping lambdas all actually run, not just the WorkItem-level one).
+- `JiraHierarchyLoaderService` — the four `Map*` DTO→entity mappers, and `Run()`'s skip/top-level-catch/success paths against a small hand-written fixture `test/JiraRollupAgent.Tests/MockData/jira-hierarchy.json`/`team-roster.json` (a few tickets deep, not the real 5100-line file) copied to the test binary's own output directory.
+- All three services' `Disable*FlagAsync` — the "missing `AppSettings` section in the JSON" branch and the read/parse-exception `catch` branch, each via a throwaway temp file (distinct from the shared fixture below).
+
+**DAL layer (SQLite-backed)**: `Repository<T>`, `UnitOfWork`, and `JiraRollupDBContext` can't be tested by mocking `IUnitOfWork` — mocking it is exactly why these three classes never ran under the mock-based tests above. Closing that gap needs a real relational engine: EF Core's InMemory provider was rejected because it can't translate `UnitOfWork.DeleteAllRowsAsync`/`DeleteAllSummariesAsync`'s raw `ExecuteSqlRawAsync` calls and doesn't meaningfully enforce FK/cascade behavior, so it wouldn't actually validate `OnModelCreating`. Instead, every DAL test opens a real SQLite `"Data Source=:memory:"` connection and keeps it open for the test's duration, passing the `SqliteConnection` object itself (not a connection string) to `UseSqlite(connection)` — passing only a connection string would let each new context tear down the in-memory database, since SQLite's `:memory:` mode ties the database's lifetime to that single connection.
+- `JiraRollupDBContextTests` — the collation, read off `context.GetService<IDesignTimeModel>().Model` rather than `context.Model` directly (the collation annotation isn't present on EF Core's runtime/read-optimized model, only the design-time one — the fix came from following the exact `InvalidOperationException` message EF Core throws when you try `context.Model.GetCollation()`); a `[Theory]` pinning all 9 foreign keys' configured `DeleteBehavior` (including confirming `WorkItem.EpicId`'s unconfigured optional FK really does default to `ClientSetNull`, not something else — a genuine "let the test tell you, don't assume" case); one live save+requery round trip.
+- `RepositoryTests` — full CRUD round trip (`AddAsync`/`GetAllAsync`/`GetByIdAsync`/`FindAsync`/`AddRangeAsync`/`Update`/`Remove`/`RemoveRange`) against `Repository<TeamMember>` (simplest entity, no FK dependencies), each verified through a real `SaveChangesAsync`.
+- `UnitOfWorkTests` — named/generic repository caching, `DeleteAllRowsAsync`'s exact five-table scope and `DeleteAllSummariesAsync`'s exact three-table scope (proving the latter leaves the loaded hierarchy untouched — exactly the kind of thing that silently breaks if a table gets added and this hardcoded list isn't updated), `SaveAsync`/`CompleteAsync`, and `Dispose` (verified by asserting a post-dispose repository call throws `ObjectDisposedException`).
+
+**Filesystem safety**: the parameterless `HtmlReportGeneratorService.Run()`/`WriteReportAsync()`/`FindRepoRoot()` — which walk up from the test runner's own bin directory looking for the real `vslhq26-ai-rocketeer.slnx` — are never invoked directly by any test; only the `repoRootOverride`/`startDirectory` overloads are, always pointed at an isolated `Directory.CreateTempSubdirectory()`. A throwaway `test/JiraRollupAgent.Tests/appsettings.json` (copied to the test binary's own output directory, distinct from the real `src/JiraRollupAgent/appsettings.json`) lets the three `Disable*FlagAsync` methods' success path run for real during `Run()` success tests instead of only ever hitting their `catch` block — safe, since it's the test project's own build-output copy, rewritten by every test run and restored from source on every build.
+
+## Code Coverage
+
+Tooling: `coverlet.collector` (already a test dependency) collects via `dotnet test --collect:"XPlat Code Coverage"`, producing a Cobertura XML under `test/JiraRollupAgent.Tests/TestResults/<guid>/coverage.cobertura.xml`. `dotnet-reportgenerator-globaltool` turns that into a human-readable report — pinned as a **local** dotnet tool (`.config/dotnet-tools.json`, fetched via `dotnet tool restore` rather than a machine-wide global install) so it's reproducible across machines/CI. The HTML report + `Summary.txt` are written to `code-coverage-reports/` at the repo root (not gitignored — same "deliberately committed, regenerate on demand" treatment as `doxygen-docs/html/`).
+
+`test/JiraRollupAgent.Tests/coverlet.runsettings` excludes `JiraRollupAgent.DAL.Migrations.*` from coverage via the `XPlat Code Coverage` collector's own `Exclude` filter — deliberately *not* via `[ExcludeFromCodeCoverage]` on the generated migration files themselves, since `dotnet ef migrations add` regenerates those wholesale and would silently wipe any attribute added to them. Pass `--settings test/JiraRollupAgent.Tests/coverlet.runsettings` on every coverage run (see the command in "Commands" above).
+
+**What's excluded via `[ExcludeFromCodeCoverage]`, and why** — the bar is "genuinely not unit-testable without a disproportionate integration harness," not "inconvenient to test":
+- `Program.cs` (the whole class) — host/DI/Serilog bootstrapping and real `AzureOpenAIClient` construction. Already verified by actually running the app (the real ~14.5-minute end-to-end run documented at the top of this file), just not by a unit test.
+- `JiraRollupDBContext`'s parameterless constructor and `OnConfiguring` — EF-tooling-only (design-time migrations) fallback to a hardcoded local SQL Server connection string; exercising it meaningfully would require a live SQL Server.
+- Everything else that was previously excluded (all three service classes, `UnitOfWork`, `Repository<T>`, `LoggerExtensions`, the `Mock*` DTOs, the `DAL.Models` entities) has had the attribute removed and is now measured for real — see "DAL layer (SQLite-backed)" above for how the three previously-0% DAL classes got closed.
+
+**Numbers** (`dotnet test --collect` + ReportGenerator, current as of the last full pass): **98.5% line, 92% branch, 94.7% method** — up from ~29% line coverage measured immediately after simply removing every `[ExcludeFromCodeCoverage]` attribute that existed before this effort (before any new tests were added to close the gaps that removal exposed).
+
+**What's intentionally left below 100%, and why chasing it further isn't worth it**: the plain `DAL.Models` entity/DTO classes (`Comment` 72.7%, `Epic`/`Initiative`/`WorkItemSummary`/etc. 85–87.5%) sit where they do purely incidentally, from being constructed as test fixtures elsewhere — auto-property getters/setters with no logic, where the untouched lines are just navigation properties (e.g. `Comment.Initiative`, `WorkItem.ParentWorkItem`) no existing test fixture happens to set. Writing a test whose only purpose is to touch one more property setter verifies nothing and would be pure padding — leave it. The overall philosophy: don't blanket-exclude classes just to inflate the percentage, and don't chase 100% on code with no branches to miss either — exclude only what's genuinely untestable (design-time/tooling-only code, generated code), and let everything else either earn a real test or show up honestly as a gap.
 
 ## Architecture
 

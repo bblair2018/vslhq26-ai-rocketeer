@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -17,7 +16,6 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
     /// nested underneath showing their Engineering Summaries. Self-disables after a successful
     /// run - see <see cref="DisableReportGenerationFlagAsync"/>.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class HtmlReportGeneratorService : IHtmlReportGeneratorService
     {
         //This is required to enable logging for this class.
@@ -32,7 +30,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         private const string ReportFileName = "rollup-report.html";
 
         /// <summary>Placeholder text rendered when an Initiative/Epic has no generated summary yet.</summary>
-        private const string NoSummaryPlaceholder = "Summary not yet generated.";
+        internal const string NoSummaryPlaceholder = "Summary not yet generated.";
 
         /// <summary>Creates the report generator service.</summary>
         /// <param name="config">Application configuration, used to read the <c>AppSettings:RunReportGeneration</c> flag.</param>
@@ -46,7 +44,16 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         #region Run
 
         /// <inheritdoc/>
-        public async Task<bool> Run()
+        public async Task<bool> Run() => await Run(repoRootOverride: null);
+
+        /// <summary>
+        /// Overload of <see cref="Run()"/> that accepts an optional repo-root override, threaded down to
+        /// <see cref="WriteReportAsync"/>/<see cref="FindRepoRoot"/> - used by tests to exercise the full
+        /// success path (including the actual file write) against an isolated temp directory instead of
+        /// walking up to the real repo root and overwriting the real <c>report/rollup-report.html</c>.
+        /// </summary>
+        /// <param name="repoRootOverride">Overrides where <see cref="FindRepoRoot"/> starts its search; <c>null</c> uses the real <see cref="AppDomain.CurrentDomain"/> base directory.</param>
+        internal async Task<bool> Run(string? repoRootOverride)
         {
             var runStage = _config.GetValue<bool>("AppSettings:RunReportGeneration");
 
@@ -63,7 +70,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
                             "No Initiative summaries found - has SummarizationService been run yet? (see AppSettings:RunSummarization)");
 
                     var html = BuildReportHtml(data);
-                    var outputPath = await WriteReportAsync(html);
+                    var outputPath = await WriteReportAsync(html, repoRootOverride);
 
                     _log.Here().Information(
                         "Process to generate the HTML rollup report completed successfully: wrote {InitiativeCount} initiatives, {EpicCount} epics to {OutputPath}.",
@@ -97,11 +104,12 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// whatever's currently in the summary tables - same shape as JiraHierarchyLoaderService's
         /// DisableHierarchyLoadFlagAsync and SummarizationService's DisableSummarizationFlagAsync.
         /// </summary>
-        private async Task DisableReportGenerationFlagAsync()
+        /// <param name="appSettingsPathOverride">Overrides the appsettings.json path to read/write; <c>null</c> uses the real build output path. Used by tests to exercise the "missing AppSettings section" and read/parse-failure branches against an isolated temp file.</param>
+        internal async Task DisableReportGenerationFlagAsync(string? appSettingsPathOverride = null)
         {
             try
             {
-                var appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+                var appSettingsPath = appSettingsPathOverride ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
                 var json = await File.ReadAllTextAsync(appSettingsPath);
                 var root = JsonNode.Parse(json)?.AsObject();
 
@@ -160,7 +168,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         }
 
         /// <summary>Flat, in-memory view of the report's data for one HtmlReportGeneratorService run.</summary>
-        private sealed class ReportData
+        internal sealed class ReportData
         {
             /// <summary>Every Initiative, ordered by <see cref="Initiative.PriorityRank"/>.</summary>
             public required List<Initiative> Initiatives { get; init; }
@@ -179,7 +187,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// <summary>Renders the complete self-contained HTML document (embedded CSS, no external dependencies).</summary>
         /// <param name="data">The loaded report data.</param>
         /// <returns>The full HTML document as a string.</returns>
-        private string BuildReportHtml(ReportData data)
+        internal string BuildReportHtml(ReportData data)
         {
             var (rangeStart, rangeEnd) = data.InitiativeSummaries.Values
                 .Select(s => (s.RangeStart, s.RangeEnd))
@@ -221,7 +229,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// <param name="sb">The HTML being built.</param>
         /// <param name="initiative">The Initiative to render.</param>
         /// <param name="data">The loaded report data, used to look up this Initiative's summary and Epics.</param>
-        private void AppendInitiative(StringBuilder sb, Initiative initiative, ReportData data)
+        internal void AppendInitiative(StringBuilder sb, Initiative initiative, ReportData data)
         {
             var hasSummary = data.InitiativeSummaries.TryGetValue(initiative.Id, out var summary);
             var summaryHtml = hasSummary ? FormatSummaryText(summary!.SummaryText) : Encode(NoSummaryPlaceholder);
@@ -252,7 +260,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// <param name="sb">The HTML being built.</param>
         /// <param name="epic">The Epic to render.</param>
         /// <param name="data">The loaded report data, used to look up this Epic's summary.</param>
-        private void AppendEpic(StringBuilder sb, Epic epic, ReportData data)
+        internal void AppendEpic(StringBuilder sb, Epic epic, ReportData data)
         {
             var hasSummary = data.EpicSummaries.TryGetValue(epic.Id, out var summary);
             var summaryHtml = hasSummary ? FormatSummaryText(summary!.SummaryText) : Encode(NoSummaryPlaceholder);
@@ -269,7 +277,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
 
         /// <summary>HTML-encodes a raw string (escapes <c>&lt;</c>, <c>&gt;</c>, <c>&amp;</c>, quotes, and non-ASCII characters as entities).</summary>
         /// <param name="text">The raw text to encode.</param>
-        private static string Encode(string text) => System.Net.WebUtility.HtmlEncode(text);
+        internal static string Encode(string text) => System.Net.WebUtility.HtmlEncode(text);
 
         /// <summary>Matches "**bold**" markdown-style emphasis, capturing the enclosed text.</summary>
         private static readonly Regex BoldRegex = new(@"\*\*(.+?)\*\*", RegexOptions.Compiled);
@@ -287,7 +295,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// </summary>
         /// <param name="text">The raw summary text returned by the LLM.</param>
         /// <returns>HTML markup ready to embed directly in the page.</returns>
-        private static string FormatSummaryText(string text)
+        internal static string FormatSummaryText(string text)
         {
             var sb = new StringBuilder();
             var inList = false;
@@ -340,7 +348,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
 
         /// <summary>Converts "**bold**" markers to <c>&lt;strong&gt;</c> tags on already-HTML-encoded text.</summary>
         /// <param name="encodedText">Text that has already been passed through <see cref="Encode"/>.</param>
-        private static string ApplyBold(string encodedText) => BoldRegex.Replace(encodedText, "<strong>$1</strong>");
+        internal static string ApplyBold(string encodedText) => BoldRegex.Replace(encodedText, "<strong>$1</strong>");
 
         /// <summary>The report page's embedded stylesheet - self-contained, no external dependencies.</summary>
         private const string ReportCss = """
@@ -402,24 +410,26 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// changes, still with zero CWD-dependence (same "avoid CWD" philosophy as the Logs/ path
         /// in Program.cs, just a smarter way to find "repo root" instead of "next to the exe").
         /// </summary>
+        /// <param name="startDirectory">The directory to start the upward search from; defaults to <see cref="AppDomain.CurrentDomain"/>'s <c>BaseDirectory</c>. Overridable so tests can point this at an isolated temp directory instead of the real repo root.</param>
         /// <returns>The absolute path to the repo root.</returns>
-        private static string FindRepoRoot()
+        internal static string FindRepoRoot(string? startDirectory = null)
         {
-            var dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            var dir = new DirectoryInfo(startDirectory ?? AppDomain.CurrentDomain.BaseDirectory);
             while (dir != null && !File.Exists(Path.Combine(dir.FullName, SolutionFileName)))
                 dir = dir.Parent;
 
             return dir?.FullName
                 ?? throw new InvalidOperationException(
-                    $"Could not locate repo root ('{SolutionFileName}' not found in any parent directory of {AppDomain.CurrentDomain.BaseDirectory}).");
+                    $"Could not locate repo root ('{SolutionFileName}' not found in any parent directory of {startDirectory ?? AppDomain.CurrentDomain.BaseDirectory}).");
         }
 
         /// <summary>Writes to a single fixed filename in report/, overwritten every run - same "overwrite, no history" philosophy as the summary tables.</summary>
         /// <param name="html">The complete HTML document to write.</param>
+        /// <param name="repoRootOverride">Overrides where <see cref="FindRepoRoot"/> starts its search; <c>null</c> uses the real repo root. Used by tests to write into an isolated temp directory.</param>
         /// <returns>The absolute path the report was written to.</returns>
-        private async Task<string> WriteReportAsync(string html)
+        internal async Task<string> WriteReportAsync(string html, string? repoRootOverride = null)
         {
-            var reportDirectory = Path.Combine(FindRepoRoot(), "report");
+            var reportDirectory = Path.Combine(FindRepoRoot(repoRootOverride), "report");
             Directory.CreateDirectory(reportDirectory);
 
             var outputPath = Path.Combine(reportDirectory, ReportFileName);

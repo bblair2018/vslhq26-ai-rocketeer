@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WhenNoInitiativeSummariesExist_ReturnsFalse" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WhenNoInitiativeSummariesExist_ReturnsFalse">
+<area shape="rect" id="Node000001" title="Run() returns false when no Initiative summaries exist yet, without attempting to write a report file..." alt="" coords="5,5,230,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a43aa9a77ff4df36a05290749f28ee9fc" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="278,13,504,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,40,265,42,260,43,230,45"/>
+</map>

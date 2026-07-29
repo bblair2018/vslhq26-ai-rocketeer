@@ -1,0 +1,19 @@
+<map id="JiraRollupAgent.Tests.RepositoryTests.CreateRepository" name="JiraRollupAgent.Tests.RepositoryTests.CreateRepository">
+<area shape="rect" id="Node000001" title=" " alt="" coords="327,287,543,329"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a09e630179b2d594a7bc7a87bbdd5ee21" title="AddAsync, followed by SaveChanges, persists the entity so it&#39;s returned by GetAllAsync." alt="" coords="24,5,260,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="416,272,395,229,364,176,325,123,277,78,260,67,259,62,280,74,329,120,369,173,400,226,422,273"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a78646ffd83f27ca16ea82d6306be9509" title="AddRangeAsync, followed by SaveChanges, persists every entity in the batch." alt="" coords="5,88,279,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="405,275,350,218,315,187,277,161,257,150,256,145,280,156,318,183,354,214,410,275"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#aba26d39582a34368cf6cf852b681b171" title="FindAsync returns only the rows matching the given predicate." alt="" coords="25,171,259,213"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="383,279,334,253,278,228,245,216,244,211,280,223,336,248,389,278"/>
+<area shape="rect" id="Node000005" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a448dee3638d56c42855358aa29822a92" title="GetByIdAsync returns the entity matching an existing primary key." alt="" coords="25,237,259,296"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="309,292,260,286,259,281,314,289"/>
+<area shape="rect" id="Node000006" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a89df100c9fb89fc9cd5d861b97847c8f" title="GetByIdAsync returns null rather than throwing when no row matches the given primary key." alt="" coords="26,320,258,379"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="309,327,259,335,257,331,314,324"/>
+<area shape="rect" id="Node000007" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a6c21611e429cb32d0a377dea5fabc906" title="Remove, followed by SaveChanges, deletes the entity from the database." alt="" coords="30,403,254,461"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="382,339,335,367,280,393,250,404,247,400,278,388,333,362,387,336"/>
+<area shape="rect" id="Node000008" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a565849b0e26b3d2fb6485d381a93e4ea" title="RemoveRange, followed by SaveChanges, deletes every entity in the batch." alt="" coords="11,485,273,544"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="412,340,357,410,321,445,280,476,258,487,256,482,277,471,317,441,353,407,408,344"/>
+<area shape="rect" id="Node000009" href="$class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#a4a69e9de3c59d2359a91b3d06bda2bb3" title="Update, followed by SaveChanges, persists the modified field." alt="" coords="33,568,251,627"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="422,342,402,393,371,451,331,508,307,535,280,558,252,575,250,570,277,554,303,531,327,505,367,448,397,391,419,346"/>
+</map>

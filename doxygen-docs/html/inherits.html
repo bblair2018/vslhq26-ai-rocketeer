@@ -234,35 +234,55 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('hierarchy.html
 <area shape="rect" href="class_jira_rollup_agent_1_1_program.html" title="Application entry point. Wires up configuration/Serilog/DI, then runs the three pipeline stages in or..." alt="" coords="5,5,172,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_21.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_html_report_generator_service_8_html_report_generator_service_8_report_data" loading="lazy" alt=""/>
-<map name="a_jira_rollup_agent_8_services_8_html_report_generator_service_8_html_report_generator_service_8_report_data" id="a_jira_rollup_agent_8_services_8_html_report_generator_service_8_html_report_generator_service_8_report_data">
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service_1_1_report_data.html" title="Flat, in&#45;memory view of the report&#39;s data for one HtmlReportGeneratorService run." alt="" coords="5,5,238,64"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_22.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_html_report_generator_service_8_i_html_report_generator_service" loading="lazy" alt=""/>
+<tr><td><img src="inherit_graph_21.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_html_report_generator_service_8_i_html_report_generator_service" loading="lazy" alt=""/>
 <map name="a_jira_rollup_agent_8_services_8_html_report_generator_service_8_i_html_report_generator_service" id="a_jira_rollup_agent_8_services_8_html_report_generator_service_8_i_html_report_generator_service">
 <area shape="rect" href="interface_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_i_html_report_generator_service.html" title="Generates the single HTML report — Initiatives ordered by priority rank, each showing its Business Su..." alt="" coords="5,5,231,64"/>
 <area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html" title="The &quot;Report&quot; stage: renders report/rollup&#45;report.html &#45; Initiatives ordered by Initiative...." alt="" coords="279,5,500,64"/>
 <area shape="poly" title=" " alt="" coords="246,32,281,34,276,35,246,37"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_23.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_jira_hierarchy_loader_service_8_i_jira_hierarchy_loader_service" loading="lazy" alt=""/>
+<tr><td><img src="inherit_graph_22.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_jira_hierarchy_loader_service_8_i_jira_hierarchy_loader_service" loading="lazy" alt=""/>
 <map name="a_jira_rollup_agent_8_services_8_jira_hierarchy_loader_service_8_i_jira_hierarchy_loader_service" id="a_jira_rollup_agent_8_services_8_jira_hierarchy_loader_service_8_i_jira_hierarchy_loader_service">
 <area shape="rect" href="interface_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_i_jira_hierarchy_loader_service.html" title="Loads the mocked Jira hierarchy (Initiatives/Epics/Stories/Bugs/Tasks/Spikes/Subtasks/StoryBugs) that..." alt="" coords="5,5,216,64"/>
 <area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html" title="The &quot;Extract&quot; stage: deserializes MockData/jira&#45;hierarchy.json + team&#45;roster.json and loads them into..." alt="" coords="264,5,470,64"/>
 <area shape="poly" title=" " alt="" coords="231,32,266,34,261,35,231,37"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_24.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_summarization_service_8_i_summarization_service" loading="lazy" alt=""/>
+<tr><td><img src="inherit_graph_23.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_summarization_service_8_i_summarization_service" loading="lazy" alt=""/>
 <map name="a_jira_rollup_agent_8_services_8_summarization_service_8_i_summarization_service" id="a_jira_rollup_agent_8_services_8_summarization_service_8_i_summarization_service">
 <area shape="rect" href="interface_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_i_summarization_service.html" title="Produces the Azure OpenAI item/Epic&#45;engineering/Initiative&#45;business summaries and persists them to VS..." alt="" coords="5,5,253,64"/>
 <area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html" title="The &quot;Summarize&quot; stage: generates and persists a summary for every Initiative/Epic/WorkItem via Azure ..." alt="" coords="301,5,544,64"/>
 <area shape="poly" title=" " alt="" coords="268,32,303,34,298,35,268,37"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_25.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_summarization_service_8_summarization_service_8_hierarchy_data" loading="lazy" alt=""/>
-<map name="a_jira_rollup_agent_8_services_8_summarization_service_8_summarization_service_8_hierarchy_data" id="a_jira_rollup_agent_8_services_8_summarization_service_8_summarization_service_8_hierarchy_data">
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service_1_1_hierarchy_data.html" title="Flat, in&#45;memory view of the hierarchy for one SummarizationService run: entities keyed by their paren..." alt="" coords="5,5,249,64"/>
+<tr><td><img src="inherit_graph_24.png" border="0" usemap="#a_jira_rollup_agent_8_tests_8_html_report_generator_service_tests" loading="lazy" alt=""/>
+<map name="a_jira_rollup_agent_8_tests_8_html_report_generator_service_tests" id="a_jira_rollup_agent_8_tests_8_html_report_generator_service_tests">
+<area shape="rect" href="class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html" title="Unit tests for ReportGeneratorService: the pure HTML/text&#45;formatting helpers (Encode,..." alt="" coords="5,5,199,48"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_25.png" border="0" usemap="#a_jira_rollup_agent_8_tests_8_jira_hierarchy_loader_service_tests" loading="lazy" alt=""/>
+<map name="a_jira_rollup_agent_8_tests_8_jira_hierarchy_loader_service_tests" id="a_jira_rollup_agent_8_tests_8_jira_hierarchy_loader_service_tests">
+<area shape="rect" href="class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html" title="Unit tests for JiraHierarchyLoaderServiceType: the mock&#45;DTO&#45;to&#45;entity mapping helpers,..." alt="" coords="5,5,198,48"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_26.png" border="0" usemap="#a_jira_rollup_agent_8_tests_8_jira_rollup_d_b_context_tests" loading="lazy" alt=""/>
+<map name="a_jira_rollup_agent_8_tests_8_jira_rollup_d_b_context_tests" id="a_jira_rollup_agent_8_tests_8_jira_rollup_d_b_context_tests">
+<area shape="rect" href="class_jira_rollup_agent_1_1_tests_1_1_jira_rollup_d_b_context_tests.html" title="Unit tests for JiraRollupDBContext.OnModelCreating: the collation annotation, every foreign key&#39;s con..." alt="" coords="5,5,180,48"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_27.png" border="0" usemap="#a_jira_rollup_agent_8_tests_8_repository_tests" loading="lazy" alt=""/>
+<map name="a_jira_rollup_agent_8_tests_8_repository_tests" id="a_jira_rollup_agent_8_tests_8_repository_tests">
+<area shape="rect" href="class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html" title="Unit tests for the generic Repository&lt;T&gt;, exercised against TeamMember (a simple entity with no forei..." alt="" coords="5,5,222,48"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_28.png" border="0" usemap="#a_jira_rollup_agent_8_tests_8_summarization_service_tests" loading="lazy" alt=""/>
+<map name="a_jira_rollup_agent_8_tests_8_summarization_service_tests" id="a_jira_rollup_agent_8_tests_8_summarization_service_tests">
+<area shape="rect" href="class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html" title="Unit tests for SummarizationServiceType: date&#45;range validation, the no&#45;activity/header/user&#45;message b..." alt="" coords="5,5,246,48"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_29.png" border="0" usemap="#a_jira_rollup_agent_8_tests_8_unit_of_work_tests" loading="lazy" alt=""/>
+<map name="a_jira_rollup_agent_8_tests_8_unit_of_work_tests" id="a_jira_rollup_agent_8_tests_8_unit_of_work_tests">
+<area shape="rect" href="class_jira_rollup_agent_1_1_tests_1_1_unit_of_work_tests.html" title="Unit tests for UnitOfWork, backed by a real SQLite in&#45;memory database: named and generic repository c..." alt="" coords="5,5,183,48"/>
 </map>
 </td></tr>
 </table>

@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.DisableHierarchyLoadFlagAsync_WithNoAppSettingsSection_LeavesFileUnchanged" name="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.DisableHierarchyLoadFlagAsync_WithNoAppSettingsSection_LeavesFileUnchanged">
+<area shape="rect" id="Node000001" title="DisableHierarchyLoadFlagAsync leaves the file untouched and just logs a warning when the JSON has no ..." alt="" coords="5,5,295,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#a92e9570d4103774b1d56fe34ef94c9ff" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="343,13,568,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="295,40,330,42,324,43,295,45"/>
+</map>

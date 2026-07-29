@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.UnitOfWorkTests.DeleteAllRowsAsync_DeletesAllFiveHierarchyTables" name="JiraRollupAgent.Tests.UnitOfWorkTests.DeleteAllRowsAsync_DeletesAllFiveHierarchyTables">
+<area shape="rect" id="Node000001" title="DeleteAllRowsAsync empties all five hierarchy tables (Comments, WorkItems, TeamMembers,..." alt="" coords="5,5,231,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_unit_of_work_tests.html#a02a2de7c9793888dd6abac984bae3d12" title=" " alt="" coords="279,13,487,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,32,266,34,260,35,231,37"/>
+</map>

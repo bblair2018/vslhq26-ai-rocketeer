@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using JiraRollupAgent.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +8,6 @@ namespace JiraRollupAgent.DAL.Repositories.Implementations
     /// A generic repository class for handling CRUD operations on a given entity type using Entity Framework Core.
     /// </summary>
     /// <typeparam name="T">The entity type this repository handles.</typeparam>
-    [ExcludeFromCodeCoverage]
     public class Repository<T> : IRepository<T> where T : class
     {
         /// <summary>The shared EF Core context this repository operates against.</summary>

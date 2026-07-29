@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -17,7 +16,6 @@ namespace JiraRollupAgent.Services.SummarizationService
     /// level's summary is built from its own comments plus its children's already-generated summaries.
     /// Self-disables after a successful run - see <see cref="DisableSummarizationFlagAsync"/>.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class SummarizationService : ISummarizationService
     {
         //This is required to enable logging for this class.
@@ -28,7 +26,7 @@ namespace JiraRollupAgent.Services.SummarizationService
 
         /// <summary>Placeholder for a ticket/rollup with zero in-range comments - see CLAUDE.md's
         /// "no IsPlaceholder flag" decision: this literal text is stored as-is in SummaryText.</summary>
-        private const string NoActivityPlaceholder = "No activity in this period.";
+        internal const string NoActivityPlaceholder = "No activity in this period.";
 
         /// <summary>Type A system prompt: leaf (Bug/Task/Spike/Subtask/StoryBug) - own comments only, no weighting.</summary>
         private const string TypeASystemPrompt =
@@ -146,11 +144,12 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// fresh (via PersistSummariesAsync's DeleteAllSummariesAsync) - same shape as
         /// JiraHierarchyLoaderService's DisableHierarchyLoadFlagAsync.
         /// </summary>
-        private async Task DisableSummarizationFlagAsync()
+        /// <param name="appSettingsPathOverride">Overrides the appsettings.json path to read/write; <c>null</c> uses the real build output path. Used by tests to exercise the "missing AppSettings section" and read/parse-failure branches against an isolated temp file.</param>
+        internal async Task DisableSummarizationFlagAsync(string? appSettingsPathOverride = null)
         {
             try
             {
-                var appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+                var appSettingsPath = appSettingsPathOverride ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
                 var json = await File.ReadAllTextAsync(appSettingsPath);
                 var root = JsonNode.Parse(json)?.AsObject();
 
@@ -188,7 +187,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// </summary>
         /// <param name="allComments">Every comment in the database, used to detect the "range doesn't overlap the data" case.</param>
         /// <returns>The validated, normalized (end-of-day) start/end range.</returns>
-        private (DateTime Start, DateTime End) ValidateDateRange(IReadOnlyCollection<Comment> allComments)
+        internal (DateTime Start, DateTime End) ValidateDateRange(IReadOnlyCollection<Comment> allComments)
         {
             string startText = _config["AppSettings:SummaryRangeStart"]
                 ?? throw new InvalidOperationException("Missing 'AppSettings:SummaryRangeStart' in appsettings.json.");
@@ -237,14 +236,14 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="ownComments">The entity's own in-range comments.</param>
         /// <param name="childSummaries">The already-generated summaries of this entity's children, if any.</param>
         /// <returns><c>true</c> if there is nothing to summarize.</returns>
-        private static bool HasNoActivity(IReadOnlyList<Comment> ownComments, IReadOnlyList<(string Label, string SummaryText)> childSummaries)
+        internal static bool HasNoActivity(IReadOnlyList<Comment> ownComments, IReadOnlyList<(string Label, string SummaryText)> childSummaries)
             => ownComments.Count == 0 && childSummaries.All(c => c.SummaryText == NoActivityPlaceholder);
 
         /// <summary>Shared by all three prompt types - sends the system + user messages and returns the response text.</summary>
         /// <param name="systemPrompt">One of the <c>Type*SystemPrompt</c>/<c>EpicSystemPrompt</c>/<c>InitiativeSystemPrompt</c> constants.</param>
         /// <param name="userMessage">The built user message (ticket header, comments, and/or child summaries).</param>
         /// <returns>The model's response text.</returns>
-        private async Task<string> GetSummaryAsync(string systemPrompt, string userMessage)
+        internal async Task<string> GetSummaryAsync(string systemPrompt, string userMessage)
         {
             List<ChatMessage> messages =
             [
@@ -259,7 +258,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <summary>Appends one "- [timestamp] Author (Role): text" bullet line per comment, oldest first.</summary>
         /// <param name="sb">The prompt text being built.</param>
         /// <param name="comments">The comments to append.</param>
-        private static void AppendComments(StringBuilder sb, IReadOnlyList<Comment> comments)
+        internal static void AppendComments(StringBuilder sb, IReadOnlyList<Comment> comments)
         {
             foreach (var c in comments.OrderBy(c => c.Timestamp))
                 sb.AppendLine($"- [{c.Timestamp:yyyy-MM-dd HH:mm}] {c.Author} ({c.Role}): {c.Text}");
@@ -271,7 +270,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="rangeEnd">The reporting period end.</param>
         /// <param name="comments">The ticket's own in-range comments.</param>
         /// <returns>The complete user message text.</returns>
-        private static string BuildLeafUserMessage(string ticketHeader, DateTime rangeStart, DateTime rangeEnd, IReadOnlyList<Comment> comments)
+        internal static string BuildLeafUserMessage(string ticketHeader, DateTime rangeStart, DateTime rangeEnd, IReadOnlyList<Comment> comments)
         {
             var sb = new StringBuilder();
             sb.AppendLine(ticketHeader);
@@ -295,7 +294,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="childSummariesLabel">The section label preceding the child-summaries block, e.g. "Work item summaries:".</param>
         /// <param name="childSummaries">The already-generated child summaries, each labeled.</param>
         /// <returns>The complete user message text.</returns>
-        private static string BuildRollupUserMessage(
+        internal static string BuildRollupUserMessage(
             string ticketHeader, DateTime rangeStart, DateTime rangeEnd,
             string ownCommentsLabel, IReadOnlyList<Comment> ownComments,
             string childSummariesLabel, IReadOnlyList<(string Label, string SummaryText)> childSummaries)
@@ -315,17 +314,17 @@ namespace JiraRollupAgent.Services.SummarizationService
 
         /// <summary>Builds the "Ticket: {Type} {JiraId} — "{Title}" (Status: ..., Assignee: ...)" identity line for a WorkItem.</summary>
         /// <param name="item">The WorkItem to build a header for.</param>
-        private static string BuildTicketHeader(WorkItem item)
+        internal static string BuildTicketHeader(WorkItem item)
             => $"Ticket: {item.Type} {item.JiraId} — \"{item.Title}\" (Status: {item.Status}, Assignee: {item.Assignee})";
 
         /// <summary>Builds the "Epic {JiraId} — "{Title}"" identity line for an Epic.</summary>
         /// <param name="epic">The Epic to build a header for.</param>
-        private static string BuildEpicHeader(Epic epic)
+        internal static string BuildEpicHeader(Epic epic)
             => $"Epic {epic.JiraId} — \"{epic.Title}\"";
 
         /// <summary>Builds the "Initiative {JiraId} — "{Title}" (Priority Rank: ..., Status: ...)" identity line for an Initiative.</summary>
         /// <param name="initiative">The Initiative to build a header for.</param>
-        private static string BuildInitiativeHeader(Initiative initiative)
+        internal static string BuildInitiativeHeader(Initiative initiative)
             => $"Initiative {initiative.JiraId} — \"{initiative.Title}\" (Priority Rank: {initiative.PriorityRank}, Status: {initiative.Status})";
 
         #endregion
@@ -342,7 +341,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="rangeStart">The reporting period start.</param>
         /// <param name="rangeEnd">The reporting period end.</param>
         /// <returns>The three summary dictionaries, each keyed by entity id.</returns>
-        private async Task<(Dictionary<int, string> WorkItemSummaries, Dictionary<int, string> EpicSummaries, Dictionary<int, string> InitiativeSummaries)>
+        internal async Task<(Dictionary<int, string> WorkItemSummaries, Dictionary<int, string> EpicSummaries, Dictionary<int, string> InitiativeSummaries)>
             BuildSummaryChainAsync(HierarchyData data, DateTime rangeStart, DateTime rangeEnd)
         {
             var workItemSummaries = new Dictionary<int, string>();
@@ -366,7 +365,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="rangeStart">The reporting period start.</param>
         /// <param name="rangeEnd">The reporting period end.</param>
         /// <returns>The generated summary, or <see cref="NoActivityPlaceholder"/> if there were no comments.</returns>
-        private async Task<string> SummarizeLeafAsync(WorkItem item, HierarchyData data, DateTime rangeStart, DateTime rangeEnd)
+        internal async Task<string> SummarizeLeafAsync(WorkItem item, HierarchyData data, DateTime rangeStart, DateTime rangeEnd)
         {
             var comments = data.CommentsByWorkItemId.GetValueOrDefault(item.Id, []);
 
@@ -392,7 +391,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="rangeEnd">The reporting period end.</param>
         /// <param name="workItemSummaries">Accumulator that each summarized child's (Subtask/StoryBug) summary is written into, keyed by WorkItem id.</param>
         /// <returns>The generated Story summary, or <see cref="NoActivityPlaceholder"/> if there was no activity anywhere in this subtree.</returns>
-        private async Task<string> SummarizeStoryAsync(WorkItem story, HierarchyData data, DateTime rangeStart, DateTime rangeEnd, Dictionary<int, string> workItemSummaries)
+        internal async Task<string> SummarizeStoryAsync(WorkItem story, HierarchyData data, DateTime rangeStart, DateTime rangeEnd, Dictionary<int, string> workItemSummaries)
         {
             var children = data.ChildrenByParentWorkItemId.GetValueOrDefault(story.Id, []);
             var childSummaries = new List<(string Label, string SummaryText)>();
@@ -432,7 +431,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="rangeEnd">The reporting period end.</param>
         /// <param name="workItemSummaries">Accumulator that each summarized item's summary is written into, keyed by WorkItem id.</param>
         /// <returns>The generated Engineering Summary, or <see cref="NoActivityPlaceholder"/> if there was no activity anywhere in this subtree.</returns>
-        private async Task<string> SummarizeEpicAsync(Epic epic, HierarchyData data, DateTime rangeStart, DateTime rangeEnd, Dictionary<int, string> workItemSummaries)
+        internal async Task<string> SummarizeEpicAsync(Epic epic, HierarchyData data, DateTime rangeStart, DateTime rangeEnd, Dictionary<int, string> workItemSummaries)
         {
             var topLevelItems = data.TopLevelItemsByEpicId.GetValueOrDefault(epic.Id, []);
             var itemSummaries = new List<(string Label, string SummaryText)>();
@@ -468,7 +467,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="workItemSummaries">Accumulator that every summarized WorkItem's summary is written into, keyed by WorkItem id.</param>
         /// <param name="epicSummaries">Accumulator that each summarized Epic's summary is written into, keyed by Epic id.</param>
         /// <returns>The generated Business Summary, or <see cref="NoActivityPlaceholder"/> if there was no activity anywhere in this Initiative.</returns>
-        private async Task<string> SummarizeInitiativeAsync(
+        internal async Task<string> SummarizeInitiativeAsync(
             Initiative initiative, HierarchyData data, DateTime rangeStart, DateTime rangeEnd,
             Dictionary<int, string> workItemSummaries, Dictionary<int, string> epicSummaries)
         {
@@ -510,7 +509,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// <param name="initiativeSummaries">Every generated Initiative summary, keyed by Initiative id.</param>
         /// <param name="rangeStart">The reporting period start, stored as provenance on every row.</param>
         /// <param name="rangeEnd">The reporting period end, stored as provenance on every row.</param>
-        private async Task PersistSummariesAsync(
+        internal async Task PersistSummariesAsync(
             Dictionary<int, string> workItemSummaries, Dictionary<int, string> epicSummaries, Dictionary<int, string> initiativeSummaries,
             DateTime rangeStart, DateTime rangeEnd)
         {
@@ -614,7 +613,7 @@ namespace JiraRollupAgent.Services.SummarizationService
         /// Flat, in-memory view of the hierarchy for one SummarizationService run: entities keyed by
         /// their parent's id, and comments already filtered to the configured date range.
         /// </summary>
-        private sealed class HierarchyData
+        internal sealed class HierarchyData
         {
             /// <summary>Every Initiative.</summary>
             public required List<Initiative> Initiatives { get; init; }

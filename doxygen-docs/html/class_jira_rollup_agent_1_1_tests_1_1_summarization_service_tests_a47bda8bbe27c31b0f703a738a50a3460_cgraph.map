@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.BuildLeafUserMessage_OrdersCommentsOldestFirstRegardlessOfInputOrder" name="JiraRollupAgent.Tests.SummarizationServiceTests.BuildLeafUserMessage_OrdersCommentsOldestFirstRegardlessOfInputOrder">
+<area shape="rect" id="Node000001" title="BuildLeafUserMessage orders comments oldest&#45;first in the prompt text regardless of the order they wer..." alt="" coords="5,5,342,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#afb160e7de34555d817ec5f9dfcd2f981" title="Builds a Comment with the given role/text/timestamp for test fixtures." alt="" coords="390,13,630,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="342,32,377,35,371,35,342,37"/>
+</map>

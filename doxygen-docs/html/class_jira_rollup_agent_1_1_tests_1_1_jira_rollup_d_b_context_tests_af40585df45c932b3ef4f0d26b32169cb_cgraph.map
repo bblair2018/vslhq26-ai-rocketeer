@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.JiraRollupDBContextTests.EnsureCreated_AcceptsFullEntityGraphRoundTrip" name="JiraRollupAgent.Tests.JiraRollupDBContextTests.EnsureCreated_AcceptsFullEntityGraphRoundTrip">
+<area shape="rect" id="Node000001" title="The configured schema accepts and correctly persists/rehydrates a full Initiative &#45;&gt; Epic &#45;&gt; WorkItem..." alt="" coords="5,5,252,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_rollup_d_b_context_tests.html#a1f0cced1abdb81fc85763cdeafd3a833" title=" " alt="" coords="300,13,544,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,32,286,34,281,35,252,37"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.MapEpic_MapsOwnCommentsAndNestedWorkItems" name="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.MapEpic_MapsOwnCommentsAndNestedWorkItems">
+<area shape="rect" id="Node000001" title="MapEpic maps its own comments and nests its mapped WorkItems." alt="" coords="5,5,311,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#a82ca11eaee6fad696b2b1daffbded53e" title="Builds a MockComment fixture with the given role/text." alt="" coords="359,5,587,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="311,32,346,35,340,35,311,37"/>
+</map>

@@ -156,8 +156,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ad867b01d1082f64d1848d88743fa665c" id="r_ad867b01d1082f64d1848d88743fa665c"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#ad867b01d1082f64d1848d88743fa665c">DisableHierarchyLoadFlagAsync</a> ()</td></tr>
-<tr class="memdesc:ad867b01d1082f64d1848d88743fa665c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flips AppSettings:RunHierarchyLoad to false in appsettings.json after a successful load, so the hierarchy is loaded once and subsequent runs skip it. Setting it back to true by hand causes the next run to wipe and reload everything from the mock JSON again.  <br /></td></tr>
 <tr class="memitem:a06a515518720d793e1e44eaf4fc5fabd" id="r_a06a515518720d793e1e44eaf4fc5fabd"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#a06a515518720d793e1e44eaf4fc5fabd">LoadTeamMembersAsync</a> (<a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_team_roster.html">MockTeamRoster</a> roster)</td></tr>
 <tr class="memdesc:a06a515518720d793e1e44eaf4fc5fabd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps the mock team roster into Entities.TeamMember entities and marks them added.  <br /></td></tr>
 <tr class="memitem:a510c2f0dc98499c6f370ea47a4d83bfc" id="r_a510c2f0dc98499c6f370ea47a4d83bfc"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#a510c2f0dc98499c6f370ea47a4d83bfc">LoadInitiativesAsync</a> (<a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_jira_hierarchy.html">MockJiraHierarchy</a> hierarchy)</td></tr>
@@ -167,14 +165,6 @@ Private Member Functions</h2></td></tr>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:abb9e51c20405a3ce1bc157d9de1d547f" id="r_abb9e51c20405a3ce1bc157d9de1d547f"><td class="memItemLeft">static async Task&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#abb9e51c20405a3ce1bc157d9de1d547f">ReadJsonAsync&lt; T &gt;</a> (string path)</td></tr>
 <tr class="memdesc:abb9e51c20405a3ce1bc157d9de1d547f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes a mock data JSON file into <em>T</em> , case-insensitively.  <br /></td></tr>
-<tr class="memitem:a1db0d99e099f2e04d22f6a441a75b88e" id="r_a1db0d99e099f2e04d22f6a441a75b88e"><td class="memItemLeft">static Entities.Epic&#160;</td><td class="memItemRight"><a class="el" href="#a1db0d99e099f2e04d22f6a441a75b88e">MapEpic</a> (<a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_epic.html">MockEpic</a> mockEpic)</td></tr>
-<tr class="memdesc:a1db0d99e099f2e04d22f6a441a75b88e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic.  <br /></td></tr>
-<tr class="memitem:aec8b120d298bca68005818822325c26f" id="r_aec8b120d298bca68005818822325c26f"><td class="memItemLeft">static Entities.WorkItem&#160;</td><td class="memItemRight"><a class="el" href="#aec8b120d298bca68005818822325c26f">MapWorkItem</a> (<a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_work_item.html">MockWorkItem</a> mockItem)</td></tr>
-<tr class="memdesc:aec8b120d298bca68005818822325c26f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children, into a Entities.WorkItem.  <br /></td></tr>
-<tr class="memitem:a2805cab6a795cc8617e47569a96caa32" id="r_a2805cab6a795cc8617e47569a96caa32"><td class="memItemLeft">static Entities.WorkItem&#160;</td><td class="memItemRight"><a class="el" href="#a2805cab6a795cc8617e47569a96caa32">MapChildWorkItem</a> (<a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_sub_item.html">MockSubItem</a> mockSubItem, string type)</td></tr>
-<tr class="memdesc:a2805cab6a795cc8617e47569a96caa32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator.  <br /></td></tr>
-<tr class="memitem:a0a7ba2c1021845afce044e7b3055cc4b" id="r_a0a7ba2c1021845afce044e7b3055cc4b"><td class="memItemLeft">static Entities.Comment&#160;</td><td class="memItemRight"><a class="el" href="#a0a7ba2c1021845afce044e7b3055cc4b">MapComment</a> (<a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_comment.html">MockComment</a> mockComment)</td></tr>
-<tr class="memdesc:a0a7ba2c1021845afce044e7b3055cc4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a mock comment into a Entities.Comment (parent FK left unset - the caller assigns it via navigation).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -228,47 +218,6 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ad867b01d1082f64d1848d88743fa665c" name="ad867b01d1082f64d1848d88743fa665c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad867b01d1082f64d1848d88743fa665c">&#9670;&#160;</a></span>DisableHierarchyLoadFlagAsync()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">async Task JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.DisableHierarchyLoadFlagAsync </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Flips AppSettings:RunHierarchyLoad to false in appsettings.json after a successful load, so the hierarchy is loaded once and subsequent runs skip it. Setting it back to true by hand causes the next run to wipe and reload everything from the mock JSON again. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad867b01d1082f64d1848d88743fa665c_icgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad867b01d1082f64d1848d88743fa665c_icgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad867b01d1082f64d1848d88743fa665c_icgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad867b01d1082f64d1848d88743fa665c_icgraph">
-<area shape="rect" title="Flips AppSettings:RunHierarchyLoad to false in appsettings.json after a successful load,..." alt="" coords="724,5,989,80"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="470,13,676,72"/>
-<area shape="poly" title=" " alt="" coords="706,43,677,45,677,40,711,43"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,21,422,64"/>
-<area shape="poly" title=" " alt="" coords="452,43,422,45,422,40,457,43"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,29,204,56"/>
-<area shape="poly" title=" " alt="" coords="233,43,204,45,204,40,239,42"/>
-</map>
-</div>
-
-</div>
-</div>
 <a id="a510c2f0dc98499c6f370ea47a4d83bfc" name="a510c2f0dc98499c6f370ea47a4d83bfc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a510c2f0dc98499c6f370ea47a4d83bfc">&#9670;&#160;</a></span>LoadInitiativesAsync()</h2>
 
@@ -299,25 +248,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a510c2f0dc98499c6f370ea47a4d83bfc_cgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a510c2f0dc98499c6f370ea47a4d83bfc_cgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a510c2f0dc98499c6f370ea47a4d83bfc_cgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a510c2f0dc98499c6f370ea47a4d83bfc_cgraph">
-<area shape="rect" title="Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks e..." alt="" coords="5,5,291,64"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a0a7ba2c1021845afce044e7b3055cc4b" title="Maps a mock comment into a Entities.Comment (parent FK left unset &#45; the caller assigns it via navigat..." alt="" coords="1219,48,1465,107"/>
-<area shape="poly" title=" " alt="" coords="290,25,339,24,573,21,755,24,937,34,1171,53,1206,59,1201,59,1170,59,937,40,755,29,573,26,339,29,292,31"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a1db0d99e099f2e04d22f6a441a75b88e" title="Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic." alt="" coords="339,39,554,97"/>
-<area shape="poly" title=" " alt="" coords="291,48,326,54,320,55,291,53"/>
-<area shape="poly" title=" " alt="" coords="554,66,1204,74,1202,78,555,72"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#aec8b120d298bca68005818822325c26f" title="Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children,..." alt="" coords="602,89,847,148"/>
-<area shape="poly" title=" " alt="" coords="555,85,590,94,584,94,555,90"/>
-<area shape="poly" title=" " alt="" coords="848,108,1206,86,1201,87,848,113"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a2805cab6a795cc8617e47569a96caa32" title="Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator." alt="" coords="895,140,1171,199"/>
-<area shape="poly" title=" " alt="" coords="848,136,882,144,877,144,848,141"/>
-<area shape="poly" title=" " alt="" coords="1134,137,1224,112,1229,111,1135,142"/>
-</map>
-</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -373,261 +303,6 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Maps the mock team roster into Entities.TeamMember entities and marks them added." alt="" coords="724,5,1040,64"/>
 <area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="470,5,676,64"/>
 <area shape="poly" title=" " alt="" coords="706,35,677,37,677,32,712,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,13,422,56"/>
-<area shape="poly" title=" " alt="" coords="452,35,422,37,422,32,457,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,21,204,48"/>
-<area shape="poly" title=" " alt="" coords="233,35,204,37,204,32,239,34"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a2805cab6a795cc8617e47569a96caa32" name="a2805cab6a795cc8617e47569a96caa32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2805cab6a795cc8617e47569a96caa32">&#9670;&#160;</a></span>MapChildWorkItem()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Entities.WorkItem JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapChildWorkItem </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_sub_item.html">MockSubItem</a></td>          <td class="paramname"><span class="paramname"><em>mockSubItem</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>type</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mockSubItem</td><td>The deserialized mock sub-item.</td></tr>
-    <tr><td class="paramname">type</td><td>The type discriminator to assign: "Subtask" or "StoryBug".</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_cgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_cgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_cgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_cgraph">
-<area shape="rect" title="Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator." alt="" coords="5,5,281,64"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a0a7ba2c1021845afce044e7b3055cc4b" title="Maps a mock comment into a Entities.Comment (parent FK left unset &#45; the caller assigns it via navigat..." alt="" coords="329,5,575,64"/>
-<area shape="poly" title=" " alt="" coords="281,32,316,35,310,35,281,37"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_icgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_icgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_icgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a2805cab6a795cc8617e47569a96caa32_icgraph">
-<area shape="rect" title="Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator." alt="" coords="1614,5,1890,64"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#aec8b120d298bca68005818822325c26f" title="Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children,..." alt="" coords="1321,5,1566,64"/>
-<area shape="poly" title=" " alt="" coords="1596,35,1567,37,1567,32,1601,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a1db0d99e099f2e04d22f6a441a75b88e" title="Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic." alt="" coords="1058,5,1273,64"/>
-<area shape="poly" title=" " alt="" coords="1303,35,1273,37,1273,32,1308,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a510c2f0dc98499c6f370ea47a4d83bfc" title="Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks e..." alt="" coords="724,5,1010,64"/>
-<area shape="poly" title=" " alt="" coords="1039,35,1010,37,1010,32,1045,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="470,5,676,64"/>
-<area shape="poly" title=" " alt="" coords="706,35,677,37,677,32,711,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,13,422,56"/>
-<area shape="poly" title=" " alt="" coords="452,35,422,37,422,32,457,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,21,204,48"/>
-<area shape="poly" title=" " alt="" coords="233,35,204,37,204,32,239,34"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a0a7ba2c1021845afce044e7b3055cc4b" name="a0a7ba2c1021845afce044e7b3055cc4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a7ba2c1021845afce044e7b3055cc4b">&#9670;&#160;</a></span>MapComment()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Entities.Comment JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapComment </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_comment.html">MockComment</a></td>          <td class="paramname"><span class="paramname"><em>mockComment</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Maps a mock comment into a Entities.Comment (parent FK left unset - the caller assigns it via navigation). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mockComment</td><td>The deserialized mock comment.</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a0a7ba2c1021845afce044e7b3055cc4b_icgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a0a7ba2c1021845afce044e7b3055cc4b_icgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a0a7ba2c1021845afce044e7b3055cc4b_icgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a0a7ba2c1021845afce044e7b3055cc4b_icgraph">
-<area shape="rect" title="Maps a mock comment into a Entities.Comment (parent FK left unset &#45; the caller assigns it via navigat..." alt="" coords="1938,88,2184,146"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a510c2f0dc98499c6f370ea47a4d83bfc" title="Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks e..." alt="" coords="724,34,1010,93"/>
-<area shape="poly" title=" " alt="" coords="1991,80,1943,61,1889,45,1771,25,1650,13,1528,9,1409,9,1188,23,1011,43,1010,38,1188,17,1409,4,1528,3,1650,8,1772,20,1890,40,1944,56,1996,81"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a2805cab6a795cc8617e47569a96caa32" title="Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator." alt="" coords="1614,54,1890,113"/>
-<area shape="poly" title=" " alt="" coords="1920,102,1890,101,1890,96,1925,102"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#aec8b120d298bca68005818822325c26f" title="Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children,..." alt="" coords="1321,80,1566,138"/>
-<area shape="poly" title=" " alt="" coords="1925,124,1774,130,1614,128,1567,124,1567,119,1614,122,1774,125,1919,124"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a1db0d99e099f2e04d22f6a441a75b88e" title="Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic." alt="" coords="1058,80,1273,138"/>
-<area shape="poly" title=" " alt="" coords="1925,137,1795,154,1644,164,1482,165,1400,161,1321,153,1263,142,1263,136,1321,148,1401,156,1482,160,1644,159,1795,149,1920,138"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="470,34,676,93"/>
-<area shape="poly" title=" " alt="" coords="706,64,677,66,677,61,711,63"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,42,422,85"/>
-<area shape="poly" title=" " alt="" coords="452,64,423,66,422,61,457,63"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,50,204,77"/>
-<area shape="poly" title=" " alt="" coords="233,64,205,66,204,61,239,63"/>
-<area shape="poly" title=" " alt="" coords="1601,96,1567,101,1567,96,1596,96"/>
-<area shape="poly" title=" " alt="" coords="1303,109,1273,112,1273,106,1308,109"/>
-<area shape="poly" title=" " alt="" coords="1040,90,1010,88,1010,83,1045,90"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a1db0d99e099f2e04d22f6a441a75b88e" name="a1db0d99e099f2e04d22f6a441a75b88e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1db0d99e099f2e04d22f6a441a75b88e">&#9670;&#160;</a></span>MapEpic()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Entities.Epic JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapEpic </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_epic.html">MockEpic</a></td>          <td class="paramname"><span class="paramname"><em>mockEpic</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mockEpic</td><td>The deserialized mock Epic.</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_cgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_cgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_cgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_cgraph">
-<area shape="rect" title="Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic." alt="" coords="5,5,221,64"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a0a7ba2c1021845afce044e7b3055cc4b" title="Maps a mock comment into a Entities.Comment (parent FK left unset &#45; the caller assigns it via navigat..." alt="" coords="885,23,1132,81"/>
-<area shape="poly" title=" " alt="" coords="220,26,269,24,429,22,553,24,837,39,872,43,867,43,837,44,553,29,429,27,269,29,222,31"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#aec8b120d298bca68005818822325c26f" title="Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children,..." alt="" coords="269,39,514,97"/>
-<area shape="poly" title=" " alt="" coords="221,45,256,51,251,52,222,50"/>
-<area shape="poly" title=" " alt="" coords="514,62,873,55,868,56,515,67"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a2805cab6a795cc8617e47569a96caa32" title="Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator." alt="" coords="562,89,837,148"/>
-<area shape="poly" title=" " alt="" coords="514,86,549,94,544,93,514,91"/>
-<area shape="poly" title=" " alt="" coords="838,86,867,82,873,82,838,91"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_icgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_icgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_icgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_a1db0d99e099f2e04d22f6a441a75b88e_icgraph">
-<area shape="rect" title="Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic." alt="" coords="1058,5,1273,64"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a510c2f0dc98499c6f370ea47a4d83bfc" title="Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks e..." alt="" coords="724,5,1010,64"/>
-<area shape="poly" title=" " alt="" coords="1039,35,1010,37,1010,32,1045,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="470,5,676,64"/>
-<area shape="poly" title=" " alt="" coords="706,35,677,37,677,32,711,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,13,422,56"/>
-<area shape="poly" title=" " alt="" coords="452,35,422,37,422,32,457,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,21,204,48"/>
-<area shape="poly" title=" " alt="" coords="233,35,204,37,204,32,239,34"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="aec8b120d298bca68005818822325c26f" name="aec8b120d298bca68005818822325c26f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec8b120d298bca68005818822325c26f">&#9670;&#160;</a></span>MapWorkItem()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Entities.WorkItem JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapWorkItem </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_work_item.html">MockWorkItem</a></td>          <td class="paramname"><span class="paramname"><em>mockItem</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children, into a Entities.WorkItem. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mockItem</td><td>The deserialized mock work item.</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_cgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_cgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_cgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_cgraph">
-<area shape="rect" title="Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children,..." alt="" coords="5,39,251,97"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a2805cab6a795cc8617e47569a96caa32" title="Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator." alt="" coords="299,5,574,64"/>
-<area shape="poly" title=" " alt="" coords="251,52,286,51,280,52,251,57"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a0a7ba2c1021845afce044e7b3055cc4b" title="Maps a mock comment into a Entities.Comment (parent FK left unset &#45; the caller assigns it via navigat..." alt="" coords="622,39,868,97"/>
-<area shape="poly" title=" " alt="" coords="251,72,299,73,436,75,574,73,609,75,604,75,574,79,436,81,299,79,251,77"/>
-<area shape="poly" title=" " alt="" coords="575,47,609,53,604,53,575,52"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_icgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_icgraph" loading="lazy" alt=""/></div>
-<map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_icgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_aec8b120d298bca68005818822325c26f_icgraph">
-<area shape="rect" title="Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children,..." alt="" coords="1321,5,1566,64"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a1db0d99e099f2e04d22f6a441a75b88e" title="Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic." alt="" coords="1058,5,1273,64"/>
-<area shape="poly" title=" " alt="" coords="1303,35,1273,37,1273,32,1308,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a510c2f0dc98499c6f370ea47a4d83bfc" title="Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks e..." alt="" coords="724,5,1010,64"/>
-<area shape="poly" title=" " alt="" coords="1039,35,1010,37,1010,32,1045,35"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="470,5,676,64"/>
-<area shape="poly" title=" " alt="" coords="706,35,677,37,677,32,711,35"/>
 <area shape="rect" href="class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,13,422,56"/>
 <area shape="poly" title=" " alt="" coords="452,35,422,37,422,32,457,35"/>
 <area shape="rect" href="class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,21,204,48"/>
@@ -717,24 +392,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad38beb2b2b2f3cba14763c481294e0e4_cgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad38beb2b2b2f3cba14763c481294e0e4_cgraph" loading="lazy" alt=""/></div>
 <map name="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad38beb2b2b2f3cba14763c481294e0e4_cgraph" id="aclass_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service_ad38beb2b2b2f3cba14763c481294e0e4_cgraph">
-<area shape="rect" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="5,104,212,163"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad867b01d1082f64d1848d88743fa665c" title="Flips AppSettings:RunHierarchyLoad to false in appsettings.json after a successful load,..." alt="" coords="285,5,550,80"/>
-<area shape="poly" title=" " alt="" coords="210,101,275,83,271,86,212,106"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a510c2f0dc98499c6f370ea47a4d83bfc" title="Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks e..." alt="" coords="275,104,560,163"/>
-<area shape="poly" title=" " alt="" coords="212,131,262,132,257,134,213,136"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a06a515518720d793e1e44eaf4fc5fabd" title="Maps the mock team roster into Entities.TeamMember entities and marks them added." alt="" coords="260,187,575,245"/>
-<area shape="poly" title=" " alt="" coords="212,159,260,172,290,182,285,182,259,177,212,164"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a0a7ba2c1021845afce044e7b3055cc4b" title="Maps a mock comment into a Entities.Comment (parent FK left unset &#45; the caller assigns it via navigat..." alt="" coords="1503,147,1749,205"/>
-<area shape="poly" title=" " alt="" coords="560,124,623,123,857,120,1040,123,1222,133,1455,152,1490,158,1485,158,1455,157,1221,138,1039,128,857,125,623,128,561,130"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a1db0d99e099f2e04d22f6a441a75b88e" title="Maps a mock Epic, including its own comments and its WorkItems, into an Entities.Epic." alt="" coords="623,137,838,196"/>
-<area shape="poly" title=" " alt="" coords="560,146,611,153,605,154,561,151"/>
-<area shape="poly" title=" " alt="" coords="839,165,1490,174,1485,175,839,170"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#aec8b120d298bca68005818822325c26f" title="Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children,..." alt="" coords="886,188,1132,247"/>
-<area shape="poly" title=" " alt="" coords="839,184,874,192,869,192,839,189"/>
-<area shape="poly" title=" " alt="" coords="1132,206,1491,185,1485,185,1132,212"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a2805cab6a795cc8617e47569a96caa32" title="Maps a Subtask or StoryBug into a Entities.WorkItem with the given type discriminator." alt="" coords="1180,239,1455,297"/>
-<area shape="poly" title=" " alt="" coords="1132,235,1167,243,1161,243,1132,240"/>
-<area shape="poly" title=" " alt="" coords="1418,235,1508,211,1513,210,1419,241"/>
+<area shape="rect" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="5,47,212,105"/>
+<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a510c2f0dc98499c6f370ea47a4d83bfc" title="Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks e..." alt="" coords="275,5,560,64"/>
+<area shape="poly" title=" " alt="" coords="212,60,262,55,257,57,213,65"/>
+<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a06a515518720d793e1e44eaf4fc5fabd" title="Maps the mock team roster into Entities.TeamMember entities and marks them added." alt="" coords="260,88,575,147"/>
+<area shape="poly" title=" " alt="" coords="212,87,247,94,242,94,212,92"/>
 </map>
 </div>
 <div class="dynheader">

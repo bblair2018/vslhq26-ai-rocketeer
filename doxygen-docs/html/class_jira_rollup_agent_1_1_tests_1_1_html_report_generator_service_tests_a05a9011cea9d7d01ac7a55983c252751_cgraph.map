@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WhenUnitOfWorkThrows_ReturnsFalse" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WhenUnitOfWorkThrows_ReturnsFalse">
+<area shape="rect" id="Node000001" title="Run() catches an exception thrown by a dependency (not just the &quot;no summaries&quot; case),..." alt="" coords="5,5,264,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a43aa9a77ff4df36a05290749f28ee9fc" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="312,5,538,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,32,299,34,294,35,264,37"/>
+</map>

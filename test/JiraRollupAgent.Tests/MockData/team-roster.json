@@ -1,0 +1,18 @@
+{
+  "team": [
+    {
+      "id": "USR-TEST-01",
+      "name": "Dev One",
+      "role": "Dev",
+      "jobTitle": "Software Engineer",
+      "email": "dev.one@example.com"
+    },
+    {
+      "id": "USR-TEST-02",
+      "name": "QA One",
+      "role": "QA",
+      "jobTitle": "QA Engineer",
+      "email": "qa.one@example.com"
+    }
+  ]
+}

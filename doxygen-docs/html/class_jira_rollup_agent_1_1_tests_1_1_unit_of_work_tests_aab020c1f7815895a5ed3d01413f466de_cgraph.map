@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.UnitOfWorkTests.Initiatives_ReturnsSameCachedInstanceOnRepeatedAccess" name="JiraRollupAgent.Tests.UnitOfWorkTests.Initiatives_ReturnsSameCachedInstanceOnRepeatedAccess">
+<area shape="rect" id="Node000001" title="Accessing a named repository property twice returns the same cached instance rather than constructing..." alt="" coords="5,5,282,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_unit_of_work_tests.html#a02a2de7c9793888dd6abac984bae3d12" title=" " alt="" coords="330,21,538,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,40,317,42,311,43,282,45"/>
+</map>

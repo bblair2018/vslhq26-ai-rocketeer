@@ -1,0 +1,9 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.SummarizeInitiativeAsync_WithActivity_SelectsBusinessSystemPrompt" name="JiraRollupAgent.Tests.SummarizationServiceTests.SummarizeInitiativeAsync_WithActivity_SelectsBusinessSystemPrompt">
+<area shape="rect" id="Node000001" title="An Initiative with real activity calls the LLM using the Business Summary (ScrumMaster/Stakeholder/EM..." alt="" coords="5,64,297,123"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="345,5,585,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="291,61,349,51,344,53,293,66"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a694b3e39db2677abbfb5f2b4328908ff" title="Creates a service instance, defaulting the unit of work/chat client to loose mocks when not supplied." alt="" coords="345,72,585,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="297,91,332,93,327,94,297,96"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#afb160e7de34555d817ec5f9dfcd2f981" title="Builds a Comment with the given role/text/timestamp for test fixtures." alt="" coords="345,139,585,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="292,121,349,135,344,135,292,126"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WithRepoRootOverrideAndFullData_WritesReportAndReturnsTrue" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WithRepoRootOverrideAndFullData_WritesReportAndReturnsTrue">
+<area shape="rect" id="Node000001" title="Run(repoRootOverride), given a full Initiative/Epic/summary data set and an isolated temp directory,..." alt="" coords="5,5,241,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a43aa9a77ff4df36a05290749f28ee9fc" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="289,13,515,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,40,276,42,270,43,241,45"/>
+</map>

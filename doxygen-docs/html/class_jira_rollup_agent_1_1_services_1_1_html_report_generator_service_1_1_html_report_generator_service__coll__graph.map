@@ -1,9 +1,9 @@
 <map id="JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService" name="JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService">
-<area shape="rect" id="Node000001" title="The &quot;Report&quot; stage: renders report/rollup&#45;report.html &#45; Initiatives ordered by Initiative...." alt="" coords="29,495,239,1017"/>
+<area shape="rect" id="Node000001" title="The &quot;Report&quot; stage: renders report/rollup&#45;report.html &#45; Initiatives ordered by Initiative...." alt="" coords="29,495,239,1039"/>
 <area shape="rect" id="Node000002" href="$interface_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_i_html_report_generator_service.html" title="Generates the single HTML report — Initiatives ordered by priority rank, each showing its Business Su..." alt="" coords="5,223,220,324"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,336,125,495,120,495,115,341"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,336,125,495,120,495,115,342"/>
 <area shape="rect" id="Node000003" href="$interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html" title="Unit of Work interface to manage transactions and coordinate access to all repositories." alt="" coords="244,124,458,423"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="285,420,249,508,244,506,283,425"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="287,420,248,513,244,511,285,425"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="312,5,391,75"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="352,87,354,125,349,124,351,92"/>
 </map>

@@ -1,0 +1,96 @@
+{
+  "initiatives": [
+    {
+      "id": "INIT-TEST-1",
+      "title": "Test Initiative One",
+      "priorityRank": 1,
+      "status": "In Progress",
+      "comments": [
+        {
+          "author": "Sam Stakeholder",
+          "role": "Stakeholder",
+          "timestamp": "2026-07-05T09:00:00",
+          "text": "Business impact looks positive so far."
+        }
+      ],
+      "epics": [
+        {
+          "id": "EPIC-TEST-1",
+          "title": "Test Epic One",
+          "comments": [
+            {
+              "author": "Erin EngManager",
+              "role": "EngineeringManager",
+              "timestamp": "2026-07-06T10:00:00",
+              "text": "Epic is on track for this sprint."
+            }
+          ],
+          "items": [
+            {
+              "type": "Story",
+              "id": "STORY-TEST-1-1",
+              "title": "Test Story One",
+              "assignee": "Dev One",
+              "status": "In Progress",
+              "comments": [
+                {
+                  "author": "Dev One",
+                  "role": "Dev",
+                  "timestamp": "2026-07-07T11:00:00",
+                  "text": "Started implementation of the story."
+                }
+              ],
+              "subtasks": [
+                {
+                  "id": "SUB-TEST-1-1-1",
+                  "title": "Test Subtask One",
+                  "assignee": "Dev One",
+                  "status": "Resolved",
+                  "comments": [
+                    {
+                      "author": "Dev One",
+                      "role": "Dev",
+                      "timestamp": "2026-07-08T12:00:00",
+                      "text": "Subtask completed."
+                    }
+                  ]
+                }
+              ],
+              "storyBugs": [
+                {
+                  "id": "SBUG-TEST-1-1-1",
+                  "title": "Test Story Bug One",
+                  "assignee": "QA One",
+                  "status": "Open",
+                  "comments": [
+                    {
+                      "author": "QA One",
+                      "role": "QA",
+                      "timestamp": "2026-07-09T13:00:00",
+                      "text": "Found a regression while testing."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Bug",
+              "id": "BUG-TEST-1-1",
+              "title": "Test Standalone Bug One",
+              "assignee": "Dev Two",
+              "status": "Open",
+              "comments": [
+                {
+                  "author": "Dev Two",
+                  "role": "Dev",
+                  "timestamp": "2026-07-10T14:00:00",
+                  "text": "Investigating root cause."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

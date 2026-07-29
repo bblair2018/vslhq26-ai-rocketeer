@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.UnitOfWorkTests.Repository_GenericAccessor_CachesPerType" name="JiraRollupAgent.Tests.UnitOfWorkTests.Repository_GenericAccessor_CachesPerType">
+<area shape="rect" id="Node000001" title="The generic Repository&lt;T&gt;() accessor caches its result per entity type, same as the named properties." alt="" coords="5,5,234,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_unit_of_work_tests.html#a02a2de7c9793888dd6abac984bae3d12" title=" " alt="" coords="282,13,490,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,32,269,34,263,35,234,37"/>
+</map>

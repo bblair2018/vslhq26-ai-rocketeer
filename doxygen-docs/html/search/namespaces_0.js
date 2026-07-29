@@ -13,5 +13,6 @@ var searchData=
   ['jirarollupagent_3a_3aservices_10',['Services',['../namespace_jira_rollup_agent_1_1_services.html',1,'JiraRollupAgent']]],
   ['jirarollupagent_3a_3aservices_3a_3ahtmlreportgeneratorservice_11',['HtmlReportGeneratorService',['../namespace_jira_rollup_agent_1_1_services_1_1_html_report_generator_service.html',1,'JiraRollupAgent::Services']]],
   ['jirarollupagent_3a_3aservices_3a_3ajirahierarchyloaderservice_12',['JiraHierarchyLoaderService',['../namespace_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service.html',1,'JiraRollupAgent::Services']]],
-  ['jirarollupagent_3a_3aservices_3a_3asummarizationservice_13',['SummarizationService',['../namespace_jira_rollup_agent_1_1_services_1_1_summarization_service.html',1,'JiraRollupAgent::Services']]]
+  ['jirarollupagent_3a_3aservices_3a_3asummarizationservice_13',['SummarizationService',['../namespace_jira_rollup_agent_1_1_services_1_1_summarization_service.html',1,'JiraRollupAgent::Services']]],
+  ['jirarollupagent_3a_3atests_14',['Tests',['../namespace_jira_rollup_agent_1_1_tests.html',1,'JiraRollupAgent']]]
 ];

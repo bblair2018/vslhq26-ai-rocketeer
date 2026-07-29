@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace JiraRollupAgent.Extensions
@@ -8,7 +7,6 @@ namespace JiraRollupAgent.Extensions
     /// recompiling, or otherwise modifying the original type. Extension methods are static methods, but they're
     /// called as if they were instance methods on the extended type.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public static class LoggerExtensions
     {
         /// <summary>

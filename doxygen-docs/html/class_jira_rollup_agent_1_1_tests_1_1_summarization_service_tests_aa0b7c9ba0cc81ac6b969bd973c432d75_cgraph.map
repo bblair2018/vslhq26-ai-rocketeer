@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.GetSummaryAsync_SendsSystemAndUserMessages_ReturnsResponseText" name="JiraRollupAgent.Tests.SummarizationServiceTests.GetSummaryAsync_SendsSystemAndUserMessages_ReturnsResponseText">
+<area shape="rect" id="Node000001" title="GetSummaryAsync sends exactly a System message (the prompt) and a User message (the built prompt text..." alt="" coords="5,31,364,89"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="412,5,652,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="364,40,399,39,393,40,365,45"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a694b3e39db2677abbfb5f2b4328908ff" title="Creates a service instance, defaulting the unit of work/chat client to loose mocks when not supplied." alt="" coords="412,72,652,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="364,75,399,80,393,80,364,80"/>
+</map>

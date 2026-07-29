@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.DisableSummarizationFlagAsync_WithMalformedJson_DoesNotThrow" name="JiraRollupAgent.Tests.SummarizationServiceTests.DisableSummarizationFlagAsync_WithMalformedJson_DoesNotThrow">
+<area shape="rect" id="Node000001" title="DisableSummarizationFlagAsync swallows a read/parse failure (e.g. malformed JSON) rather than propaga..." alt="" coords="5,31,282,89"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="330,5,570,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,42,317,41,312,42,282,48"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a694b3e39db2677abbfb5f2b4328908ff" title="Creates a service instance, defaulting the unit of work/chat client to loose mocks when not supplied." alt="" coords="330,72,570,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="282,72,317,78,311,79,282,78"/>
+</map>

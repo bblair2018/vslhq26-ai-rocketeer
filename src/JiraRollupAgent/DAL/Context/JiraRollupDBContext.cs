@@ -21,41 +21,32 @@ namespace JiraRollupAgent.DAL.Context
 
         /// <summary>Creates the context with explicit options, as registered via dependency injection in <c>Program.cs</c>.</summary>
         /// <param name="options">The DbContext options (connection string, provider, etc.) to use.</param>
-        [ExcludeFromCodeCoverage]
         public JiraRollupDBContext(DbContextOptions<JiraRollupDBContext> options) : base(options)
         {
         }
 
         /// <summary>Top-level Initiatives, ordered in reports by <see cref="Initiative.PriorityRank"/>.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<Initiative> Initiatives { get; set; } = null!;
 
         /// <summary>Epics, each belonging to exactly one Initiative.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<Epic> Epics { get; set; } = null!;
 
         /// <summary>All work items (Story/Bug/Task/Spike/Subtask/StoryBug), discriminated by <see cref="WorkItem.Type"/>.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<WorkItem> WorkItems { get; set; } = null!;
 
         /// <summary>Comments, each attached to exactly one of Initiative/Epic/WorkItem.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<Comment> Comments { get; set; } = null!;
 
         /// <summary>The flat team roster, joined to <see cref="Comment"/>/<see cref="WorkItem"/> only by name/role string match in application logic.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<TeamMember> TeamMembers { get; set; } = null!;
 
         /// <summary>Generated summaries, one per WorkItem, produced by <c>SummarizationService</c>.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<WorkItemSummary> WorkItemSummaries { get; set; } = null!;
 
         /// <summary>Generated Dev/QA-weighted Engineering Summaries, one per Epic, produced by <c>SummarizationService</c>.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<EpicEngineeringSummary> EpicEngineeringSummaries { get; set; } = null!;
 
         /// <summary>Generated ScrumMaster/Stakeholder/EngineeringManager-weighted Business Summaries, one per Initiative, produced by <c>SummarizationService</c>.</summary>
-        [ExcludeFromCodeCoverage]
         public virtual DbSet<InitiativeBusinessSummary> InitiativeBusinessSummaries { get; set; } = null!;
 
         /// <summary>Falls back to a hardcoded local SQL Server connection when no options were supplied via DI (e.g. by EF Core tooling).</summary>
@@ -80,7 +71,6 @@ namespace JiraRollupAgent.DAL.Context
 
         /// <summary>Configures collation and every relationship/delete-behavior in the entity graph - see CLAUDE.md's FK relationship table for the full reasoning.</summary>
         /// <param name="modelBuilder">The model builder to configure.</param>
-        [ExcludeFromCodeCoverage]
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -150,7 +140,6 @@ namespace JiraRollupAgent.DAL.Context
 
         /// <summary>Extension point for additional model configuration in another partial file; currently unused.</summary>
         /// <param name="modelBuilder">The model builder to configure.</param>
-        [ExcludeFromCodeCoverage]
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.MapChildWorkItem_AssignsGivenTypeDiscriminator" name="JiraRollupAgent.Tests.JiraHierarchyLoaderServiceTests.MapChildWorkItem_AssignsGivenTypeDiscriminator">
+<area shape="rect" id="Node000001" title="MapChildWorkItem assigns whichever type discriminator (&quot;Subtask&quot; or &quot;StoryBug&quot;) the caller passes in,..." alt="" coords="5,5,306,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_hierarchy_loader_service_tests.html#a82ca11eaee6fad696b2b1daffbded53e" title="Builds a MockComment fixture with the given role/text." alt="" coords="354,5,582,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,32,341,35,335,35,306,37"/>
+</map>

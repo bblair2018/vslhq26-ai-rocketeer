@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using JiraRollupAgent.DAL.Context;
 using JiraRollupAgent.DAL.Models;
 using JiraRollupAgent.DAL.Repositories.Interfaces;
@@ -9,7 +8,6 @@ namespace JiraRollupAgent.DAL.Repositories.Implementations
     /// <summary>
     /// Unit of Work implementation that manages the repositories and ensures transactional consistency.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class UnitOfWork : IUnitOfWork
     {
         /// <summary>The shared EF Core context all repositories in this Unit of Work operate against.</summary>

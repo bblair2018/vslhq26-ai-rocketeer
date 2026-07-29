@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.Tests.SummarizationServiceTests.Run_WithFullHierarchyAndFlagTrue_PersistsSummariesAndReturnsTrue" name="JiraRollupAgent.Tests.SummarizationServiceTests.Run_WithFullHierarchyAndFlagTrue_PersistsSummariesAndReturnsTrue">
+<area shape="rect" id="Node000001" title="Run() walks a full 1&#45;Initiative/1&#45;Epic/1&#45;WorkItem hierarchy end&#45;to&#45;end, persisting exactly one summar..." alt="" coords="5,31,294,89"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#a488a932a908e1476c268e0ec9ffd1f59" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="342,5,582,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,42,329,41,324,42,294,47"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_tests_1_1_summarization_service_tests.html#afb160e7de34555d817ec5f9dfcd2f981" title="Builds a Comment with the given role/text/timestamp for test fixtures." alt="" coords="342,72,582,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="294,73,329,79,324,79,294,78"/>
+</map>

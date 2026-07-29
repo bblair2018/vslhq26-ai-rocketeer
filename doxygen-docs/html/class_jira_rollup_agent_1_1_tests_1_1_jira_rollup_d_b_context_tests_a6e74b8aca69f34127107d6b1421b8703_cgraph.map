@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.JiraRollupDBContextTests.OnModelCreating_SetsCollationAnnotation" name="JiraRollupAgent.Tests.JiraRollupDBContextTests.OnModelCreating_SetsCollationAnnotation">
+<area shape="rect" id="Node000001" title="OnModelCreating sets the SQL Server collation annotation on the model." alt="" coords="5,5,266,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_jira_rollup_d_b_context_tests.html#a1f0cced1abdb81fc85763cdeafd3a833" title=" " alt="" coords="314,13,558,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,32,301,34,296,35,266,37"/>
+</map>

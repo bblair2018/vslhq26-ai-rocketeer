@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WhenFlagIsFalse_ReturnsTrueWithoutTouchingUnitOfWork" name="JiraRollupAgent.Tests.HtmlReportGeneratorServiceTests.Run_WhenFlagIsFalse_ReturnsTrueWithoutTouchingUnitOfWork">
+<area shape="rect" id="Node000001" title="Run() returns true and never touches the unit of work when AppSettings:RunReportGeneration is false." alt="" coords="5,5,312,80"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a43aa9a77ff4df36a05290749f28ee9fc" title="Builds an IConfiguration backed by an in&#45;memory dictionary of the given key/value pairs." alt="" coords="360,13,586,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,40,347,42,341,43,312,45"/>
+</map>
