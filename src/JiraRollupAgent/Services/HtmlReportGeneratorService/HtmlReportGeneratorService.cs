@@ -1,5 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using JiraRollupAgent.DAL.Models;
 using JiraRollupAgent.DAL.Repositories.Interfaces;
@@ -51,6 +54,9 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
                     _log.Here().Information(
                         "Process to generate the HTML rollup report completed successfully: wrote {InitiativeCount} initiatives, {EpicCount} epics to {OutputPath}.",
                         data.Initiatives.Count, data.EpicsByInitiativeId.Values.Sum(e => e.Count), outputPath);
+
+                    await DisableReportGenerationFlagAsync();
+
                     return true;
                 }
                 else
@@ -63,6 +69,48 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             {
                 _log.Here().Warning(ex, "Process to generate the HTML rollup report ** FAILED! **");
                 return false;
+            }
+        }
+
+        #endregion
+
+        #region Self-disable
+
+        /// <summary>
+        /// Flips AppSettings:RunReportGeneration to false in appsettings.json after a successful run,
+        /// so the report is generated once and subsequent runs skip re-rendering it. Setting it back
+        /// to true by hand causes the next run to overwrite report/rollup-report.html fresh from
+        /// whatever's currently in the summary tables - same shape as JiraHierarchyLoaderService's
+        /// DisableHierarchyLoadFlagAsync and SummarizationService's DisableSummarizationFlagAsync.
+        /// </summary>
+        private async Task DisableReportGenerationFlagAsync()
+        {
+            try
+            {
+                var appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+                var json = await File.ReadAllTextAsync(appSettingsPath);
+                var root = JsonNode.Parse(json)?.AsObject();
+
+                if (root?["AppSettings"] is not JsonObject appSettings)
+                {
+                    _log.Here().Warning("Could not find an \"AppSettings\" section in appsettings.json - leaving RunReportGeneration as-is.");
+                    return;
+                }
+
+                appSettings["RunReportGeneration"] = false;
+
+                var writeOptions = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+                await File.WriteAllTextAsync(appSettingsPath, root!.ToJsonString(writeOptions));
+
+                _log.Here().Information("Set AppSettings:RunReportGeneration to false so the next run skips regenerating the report.");
+            }
+            catch (Exception ex)
+            {
+                _log.Here().Warning(ex, "Failed to disable AppSettings:RunReportGeneration after a successful run - it will run again next time.");
             }
         }
 
