@@ -167,18 +167,90 @@ Architecture</h1>
 <p><em>Note: mock data is used to simulate the existing Jira ingestion pipeline (already built separately) so the hackathon build can focus on summarization and reporting.</em></p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Tech Stack</h1>
-<ul>
-<li>.NET 10 / C#</li>
-<li>Azure OpenAI (GPT-4o) — fallback: GitHub Models</li>
+<p><b>Runtime &amp; Language</b></p><ul>
+<li>.NET 10, SDK <span class="tt">10.0.302</span> pinned via <span class="tt">global.json</span> (<span class="tt">rollForward: latestFeature</span>)</li>
+<li>C# 14 — the implicit default language version for a <span class="tt">net10.0</span> target; not explicitly pinned via <span class="tt">&lt;LangVersion&gt;</span> in the <span class="tt">.csproj</span>, so it'll track whatever the SDK defaults to on future upgrades</li>
+</ul>
+<p><b>AI</b></p><ul>
+<li>Azure OpenAI, deployed via Azure AI Foundry — model <b><span class="tt">gpt-5.6-sol</span></b>, set via <span class="tt">AppSettings:AzureOpenAI:ChatModel</span> in <span class="tt">appsettings.json</span> rather than hardcoded, so swapping deployments doesn't require a code change</li>
+<li>Accessed through <span class="tt">Microsoft.Extensions.AI</span> / <span class="tt">Microsoft.Extensions.AI.OpenAI</span> (the <span class="tt">IChatClient</span> abstraction) on top of <span class="tt">Azure.AI.OpenAI</span> — fallback: GitHub Models</li>
+</ul>
+<p><b>Data</b></p><ul>
+<li>Entity Framework Core 9 (<span class="tt">Microsoft.EntityFrameworkCore</span>, <span class="tt">.SqlServer</span>, <span class="tt">.Design</span>) against SQL Server (<span class="tt">VSLiveJiraRollup</span>)</li>
 <li>Mocked Jira hierarchy data (JSON) standing in for the existing ingestion pipeline</li>
+</ul>
+<p><b>App Framework &amp; Logging</b></p><ul>
+<li><span class="tt">Microsoft.Extensions.Hosting</span> (generic host, DI, configuration)</li>
+<li>Serilog (<span class="tt">Extensions.Hosting</span>, <span class="tt">Settings.Configuration</span>, <span class="tt">Sinks.Console</span>, <span class="tt">Sinks.File</span>, <span class="tt">Enrichers.Context</span>) — console + rolling file logs</li>
+</ul>
+<p><b>Testing &amp; Code Coverage</b></p><ul>
+<li>xUnit + FluentAssertions + Moq</li>
+<li>EF Core Sqlite (in-memory) for DAL-layer tests, since mocking <span class="tt">IUnitOfWork</span> can't exercise the repository/<span class="tt">DbContext</span> code itself</li>
+<li>coverlet + ReportGenerator for coverage reporting (98.5% line coverage across 91 tests)</li>
+</ul>
+<p><b>Docs</b></p><ul>
+<li>Doxygen (code reference docs, <span class="tt">doxygen-docs/html/</span>)</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Getting Started</h1>
-<p>TBD — setup instructions will be added once the project is built at the event.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Prerequisites</h2>
+<ul>
+<li>.NET SDK <span class="tt">10.0.302</span>+ (pinned via <span class="tt">global.json</span>, <span class="tt">rollForward: latestFeature</span>) — <span class="tt">dotnet --version</span> should resolve to a compatible 10.x SDK</li>
+<li>A SQL Server instance reachable at the connection string below (defaults to <span class="tt">localhost</span>)</li>
+<li>An Azure OpenAI resource with a chat model deployed via Azure AI Foundry (or a GitHub Models token, for the fallback path)</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+1. Configure secrets</h2>
+<p>The endpoint and API key are <b>not</b> stored in <span class="tt">appsettings.json</span> — they're required via <a href="https://learn.microsoft.com/aspnet/core/security/app-secrets">.NET User Secrets</a> so they never end up in source control:</p>
+<div class="fragment"><div class="line">cd src/JiraRollupAgent</div>
+<div class="line">dotnet user-secrets set &quot;AzureOpenAI:Endpoint&quot; &quot;https://YOUR-RESOURCE.openai.azure.com/&quot;</div>
+<div class="line">dotnet user-secrets set &quot;AzureOpenAI:Key&quot; &quot;YOUR-KEY&quot;</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+2. Apply database migrations</h2>
+<div class="fragment"><div class="line">cd src/JiraRollupAgent</div>
+<div class="line">dotnet ef database update</div>
+</div><!-- fragment --><p> (Requires the <span class="tt">dotnet-ef</span> global tool: <span class="tt">dotnet tool install --global dotnet-ef</span>.)</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+3. Run it</h2>
+<div class="fragment"><div class="line">dotnet build                                     # from repo root</div>
+<div class="line">dotnet run --project src/JiraRollupAgent</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Configuration reference (<span class="tt">appsettings.json</span>)</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Key  </th><th class="markdownTableHeadNone">Purpose  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">AppSettings:RunHierarchyLoad</span>  </td><td class="markdownTableBodyNone">Loads the mocked Jira hierarchy (<span class="tt">MockData/jira-hierarchy.json</span> + <span class="tt">team-roster.json</span>) into the database. <b>Self-disables to <span class="tt">false</span></b> after a successful run — flip back to <span class="tt">true</span> to reload from scratch (wipes all 5 hierarchy tables first).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">AppSettings:RunSummarization</span>  </td><td class="markdownTableBodyNone">Generates every Initiative/Epic/WorkItem summary via Azure OpenAI (~320 LLM calls, ~15 minutes for the full mock dataset). <b>Self-disables</b> after success — flip back to <span class="tt">true</span> to regenerate (e.g. for a different date range).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">AppSettings:RunReportGeneration</span>  </td><td class="markdownTableBodyNone">Renders <span class="tt">report/rollup-report.html</span> from whatever summaries currently exist. <b>Self-disables</b> after success.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">AppSettings:SummaryRangeStart</span> / <span class="tt">SummaryRangeEnd</span>  </td><td class="markdownTableBodyNone">Date range (inclusive) used to filter which comments feed into summarization — lets you scope a run to "this sprint" instead of the full history. Must overlap the actual comment data or <span class="tt">RunSummarization</span> fails fast with a clear error.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">ConnectionStrings:VSLiveJiraRollupConnectionString</span>  </td><td class="markdownTableBodyNone">SQL Server connection string for the <span class="tt">VSLiveJiraRollup</span> database.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">AzureOpenAI:ChatModel</span>  </td><td class="markdownTableBodyNone">The deployed model name to call (e.g. <span class="tt">gpt-5.6-sol</span>) — not a secret, just an identifier, so it lives here rather than in user secrets.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Serilog:*</span>  </td><td class="markdownTableBodyNone">Console log level and output template; a rolling daily file sink is also configured (in code, not here) at <span class="tt">Logs/JiraRollupAgent.log</span> relative to the build output.  </td></tr>
+</table>
+<p>All three <span class="tt">AppSettings:Run*</span> flags are meant to run once each. Because <span class="tt">appsettings.json</span> has <span class="tt">CopyToOutputDirectory: Always</span>, <b>every</b> <span class="tt">dotnet run</span> re-copies it from source over the build output before the app starts — so a flag only "stays off" between runs if it's also set to <span class="tt">false</span> in the checked-in source file, not just flipped by the app at runtime.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Running tests</h2>
+<div class="fragment"><div class="line">dotnet test test/JiraRollupAgent.Tests</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+Generated docs &amp; reports</h2>
+<p>Two static HTML sites are already generated and checked into the repo — open them directly in a browser, no server needed.</p>
+<p align="center">Full C# API reference (classes, methods, call graphs) for both <span class="tt">src/JiraRollupAgent</span> and <span class="tt">test/JiraRollupAgent.Tests</span>, generated by Doxygen: </p><div class="fragment"><div class="line">doxygen-docs/html/index.html</div>
+</div><!-- fragment --> <p><img src="img/doxygen-preview.png" alt="Doxygen docs preview" width="1535" class="inline"/></p>
+<p align="center">Unit test code coverage report (line/branch/method %, drill-down per file), generated by coverlet + ReportGenerator: </p><div class="fragment"><div class="line">code-coverage-reports/index.html</div>
+</div><!-- fragment --> <p><img src="img/coverlet-preview.png" alt="Code coverage report preview" width="1321" class="inline"/></p>
+<p>Both are regenerated on demand (see <span class="tt">doxygen Doxyfile</span> under "Commands" above, and the coverage commands above) — they aren't rebuilt automatically, so re-run them after making changes if you want the browsable docs to reflect the latest code.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Demo</h1>
 <p>📹 <span class="tt">./demo/demo.mp4</span></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 Known Limits</h1>
 <ul>
 <li>Uses mocked Jira data rather than a live pull for the demo; real ingestion pipeline exists separately and can be substituted</li>

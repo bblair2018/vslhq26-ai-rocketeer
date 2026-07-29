@@ -48,6 +48,8 @@ Code reference docs (Doxygen, config in `Doxyfile`, output committed under `doxy
 doxygen Doxyfile   # regenerate; requires Graphviz (dot) on PATH for class/call/caller graphs
 ```
 
+README.md (Doxygen's main page, via `USE_MDFILE_AS_MAINPAGE`) embeds two plain Markdown images (`img/doxygen-preview.png`, `img/coverlet-preview.png`). Doxygen has no config option that copies plain-Markdown-referenced images into the output directory preserving their subfolder: `IMAGE_PATH` only affects images referenced via its own `\image` command, and `HTML_EXTRA_FILES` always flattens whatever it's given into the output root, not `img/`. So this repo's `img/` folder is copied into `doxygen-docs/html/img/` by hand (`cp -r img doxygen-docs/html/img`) rather than through any Doxyfile setting. Doxygen doesn't wipe unrelated files in its output directory on a normal regenerate, so this only needs re-doing if `doxygen-docs/html/` is ever deleted and rebuilt from scratch, or if new images are added to `img/`.
+
 Scoped to `src/JiraRollupAgent`'s and `test/JiraRollupAgent.Tests`'s C# source (`README.md`/`CLAUDE.md` were tried as the main page but dropped — a video-camera emoji in `README.md`'s Demo section broke the LaTeX/PDF path we experimented with; irrelevant now since only HTML is generated, `GENERATE_LATEX` is `NO`). `EXTRACT_ALL`/`EXTRACT_PRIVATE`/`EXTRACT_STATIC` are all `YES` since most of the interesting logic (e.g. `SummarizationService`'s orchestration methods) is private.
 
 ## Testing
