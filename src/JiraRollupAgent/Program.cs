@@ -187,6 +187,7 @@ namespace JiraRollupAgent
             builder.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
+                .AddUserSecrets<Program>()
                 .AddEnvironmentVariables();
         }
 

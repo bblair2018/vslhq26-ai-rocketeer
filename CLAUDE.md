@@ -51,13 +51,99 @@ All items at every level carry `comments`, each with `author`, `role` (`Dev` / `
 
 Mocked Jira hierarchy → .NET agent → Azure OpenAI → item summaries → Epic engineering summaries → Initiative business summaries → sort by priority → single HTML report.
 
-1. **Item summarization**: one LLM summary per Story/Bug/Task/Spike, rolling up that item's own Subtasks/StoryBugs. No role-weighting at this level.
+1. **Item/sub-item summarization**: one LLM summary per WorkItem, including Subtask/StoryBug — Bug/Task/Spike/Subtask/StoryBug from their own comments; Story from its own comments plus its Subtasks'/StoryBugs' summaries. No role-weighting at this level. See "Planned: item→Epic→Initiative summary chaining" below for the full recursive rule.
 2. **Epic summarization**: comments across all of an Epic's items, filtered/weighted toward `Dev`/`QA` roles, into an **Engineering Summary**.
 3. **Initiative summarization**: comments across the Initiative, filtered/weighted toward `ScrumMaster`/`Stakeholder`/`EngineeringManager` roles, into a **Business Summary**.
 4. **Sort**: Initiatives ordered by `priorityRank`.
 5. **Output**: one HTML report — Initiatives in priority order, each showing its Business Summary with nested Epic Engineering Summaries.
 
 The mock data stands in for a separate, already-built Jira ingestion pipeline — the intent is that pipeline's real output could later be substituted for `MockData/jira-hierarchy.json` without changing the summarization/report logic.
+
+#### Role-weighting is soft (emphasis), not a hard filter
+
+"Weighted toward" a set of roles means every comment (all roles) is still sent to the model — nothing is dropped before the call. The system prompt just tells the model *whose voice to prioritize* when composing that particular summary:
+
+- **Engineering Summary** (Epic level): prioritize what `Dev`/`QA` said — technical progress, bugs, blockers.
+- **Business Summary** (Initiative level): prioritize what `ScrumMaster`/`Stakeholder`/`EngineeringManager` said — status, risk, business impact.
+
+Same underlying comment stream, two different lenses, produced by pointing the model at different voices for each summary — not by hiding comments from roles outside the weighted set. A hard filter (drop non-matching-role comments entirely) was considered and rejected: it risks losing real signal, e.g. a `Stakeholder` comment flagging a business-critical blocker on an Epic, which a hard Dev/QA-only filter would never let the Engineering Summary see.
+
+#### Planned: item→Epic→Initiative summary chaining (not yet implemented)
+
+Every node's summary = its own comments + its children's *already-generated summaries* (not raw comments) — one rule, applied recursively at every level, no special-casing:
+
+- **Leaves** (Bug, Task, Spike, Subtask, StoryBug — no children): summary from their own comments only. No role weighting.
+- **Story** (children = Subtask/StoryBug): summary from its own comments + its Subtasks'/StoryBugs' summaries. No role weighting.
+- **Epic** (children = Story/Bug/Task/Spike): summary from its own comments (Dev/QA-weighted) + its items' summaries → Engineering Summary.
+- **Initiative** (children = Epics): summary from its own comments (ScrumMaster/Stakeholder/EngineeringManager-weighted) + its Epics' summaries → Business Summary.
+
+So every WorkItem type gets its own summary, not just Story/Bug/Task/Spike — **320 total summary rows** (10 Initiatives + 30 Epics + 280 WorkItems), one per ticket in the hierarchy. See the updated table in "Current data volume" above.
+
+Processing order, bottom-up per Initiative: Subtask/StoryBug → Story → (Bug/Task/Spike, no children, so these can run any time) → Epic → Initiative.
+
+Why summarize every ticket instead of only Story/Bug/Task/Spike (the earlier version of this plan):
+- **One rule, no special cases** — Story behaves exactly like Epic/Initiative (own comments + children's summaries) instead of being a one-off that reads raw child comments directly.
+- **Better rollups** — a Story's summary is built from already-condensed, coherent child summaries instead of a raw blend of comments from multiple different Subtasks/StoryBugs, reducing the risk of the model conflating which child said what.
+- **Bounded prompt size at every step** — each LLM call only ever digests one ticket's own comments plus a handful of short child summaries, never a full subtree's raw comments at once.
+- **Free drill-down** — anyone can read what happened on any single Subtask/StoryBug from its own summary, no SQL required.
+- **Reusable beyond this report** — Subtask/StoryBug summaries aren't just scaffolding for the Story; they're a standalone output if a future feature ever wants per-ticket or per-assignee views.
+
+Persistence approach: build one Initiative's whole chain in memory (`Dictionary<int, string>` of summaries keyed by WorkItem/Epic id, consulted by the next level up instead of re-querying the DB), then write all levels to the DB in one pass — same shape as `JiraHierarchyLoaderService` building the whole graph in memory before one `CompleteAsync()`.
+
+#### Planned: the three prompt types, and their exact system prompts
+
+Every summary in the pipeline is produced by one of three prompt shapes — varying on two axes: does it incorporate children's summaries, and is it role-weighted. A full worked example (real ticket data, every prompt written out literally end-to-end for one Initiative) lives in `doc/prompt-types-overview.html`.
+
+- **Type A — leaf, no weighting** (Bug, Task, Spike, Subtask, StoryBug — input: own comments only): *"Summarize this Jira ticket's activity for a status report. Write 1-3 concise sentences covering current status, key progress, and any blockers. Treat all comments equally regardless of author. Synthesize — don't quote comments verbatim."*
+- **Type B — rollup, no weighting** (Story only — input: own comments + its Subtasks'/StoryBugs' summaries): same system prompt as Type A, plus *"You are also given summaries of this Story's Subtasks and StoryBugs — incorporate their key points."*
+- **Type C — rollup, role-weighted** (Epic and Initiative — input: own comments + children's summaries), one template parameterized twice:
+  - Epic → Engineering Summary: *"Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. 3-5 sentences."*
+  - Initiative → Business Summary: *"Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. 3-5 sentences."*
+
+Only Type C's output is ever printed in the report (as the Engineering Summary or Business Summary); Types A and B exist purely to manufacture clean input for something further up the chain.
+
+#### Planned: summary storage schema
+
+Three new tables, one per level, each enforcing "exactly one row per entity" (matches the overwrite/no-history decision above):
+
+```
+WorkItemSummaries            Id (PK), WorkItemId (FK, unique), SummaryText, RangeStart, RangeEnd, GeneratedAt
+EpicEngineeringSummaries     Id (PK), EpicId (FK, unique), SummaryText, RangeStart, RangeEnd, GeneratedAt
+InitiativeBusinessSummaries  Id (PK), InitiativeId (FK, unique), SummaryText, RangeStart, RangeEnd, GeneratedAt
+```
+
+- The `unique` constraint on each FK enforces one summary per entity — not "history," just the current regenerated state.
+- `RangeStart`/`RangeEnd` record which date range produced each row — provenance for a report footer and for debugging, not a history mechanism (still one row per entity, still overwritten every run).
+- No `IsPlaceholder` flag for the "no activity" case — the literal text "No activity in this period" in `SummaryText` is sufficient. Nothing downstream needs to treat it specially: item-level summaries (Type A/B) are never printed in the report directly, only consumed as plain text by the next level's prompt, which handles it fine without a flag.
+- Wiring: add to `DAL/Models/JiraHierarchyEntities.cs`, register `DbSet<T>` + unique indexes in `JiraRollupDBContext.OnModelCreating`, add three named `IRepository<T>` properties to `IUnitOfWork`/`UnitOfWork` (same pattern as the existing five), one new EF migration.
+- Persistence: `SummarizationService.Run()` clears all three tables first via a new lightweight `IUnitOfWork.DeleteAllSummariesAsync()` (scoped to just these three, not the full `DeleteAllRowsAsync()` which wipes the whole hierarchy), builds the whole chain in memory, then inserts fresh rows in one `CompleteAsync()`.
+
+#### Planned: date-range filtering for summarization
+
+Summaries should be scopable to a date range (e.g. "this sprint," "this week") by filtering comments on `Timestamp` before they go into any prompt at any level, rather than always summarizing an item's/Epic's/Initiative's full comment history.
+
+`Comments.Timestamp` is the **only** date/time field in the whole schema — `Initiatives`/`Epics`/`WorkItems` have no created/updated/status-changed date of their own, so any date-range filtering can only ever operate on comment timestamps. In the current mock data, all 992 comments fall within **2026-07-01 to 2026-07-31** (verified via `MIN(Timestamp)`/`MAX(Timestamp)`).
+
+Because higher levels consume already-generated *child summaries* rather than raw comments (see chaining plan above), the date filter only needs to be applied once — to each ticket's own comments at the point it's summarized. It naturally propagates upward: an Epic's summary is built from its own (already-filtered) comments plus item summaries that were themselves built from filtered comments. No need to re-filter at every level.
+
+Bounds handling, decided:
+
+1. **Range doesn't overlap the data at all** (entirely before the earliest or after the latest comment) — fail fast with a clear error *before* running the pipeline (e.g. "no comments found between X and Y; data spans 2026-07-01 to 2026-07-31"), rather than silently generating hundreds of empty summaries. Detect by comparing the configured range against `MIN`/`MAX(Timestamp)` up front.
+2. **Range partially overlaps the data** — normal, not an error. A plain `WHERE Timestamp >= start AND Timestamp <= end` filter naturally returns whatever subset of comments exists in that slice.
+3. **Invalid range** (`start` after `end`) — reject at startup; don't silently swap or return empty.
+4. **A specific ticket has zero in-range comments, even though the overall range is valid** — emit a placeholder summary (e.g. "No activity in this period") rather than skipping the ticket from the report, so the hierarchy stays structurally complete instead of having unexplained gaps.
+5. **How is the range specified?** Config-driven — `AppSettings:SummaryRangeStart`/`End` in `appsettings.json`, matching the existing flag-based config pattern (`RunHierarchyLoad`/`RunSummarization`/`RunReportGeneration`). No CLI arg parsing needed: `BuildConfig` already calls `.AddEnvironmentVariables()`, so the range can also be overridden per-run via environment variable (e.g. `AppSettings__SummaryRangeStart`) without editing the file.
+6. **History vs. overwrite** — overwrite, no history. Each `SummarizationService.Run()` clears the three summary tables and regenerates fresh for whatever range is currently configured; no date-range column on the summary tables. Nothing in this project's scope calls for comparing multiple historical periods, so that complexity isn't built preemptively — a straightforward additive migration if ever needed later.
+
+#### Planned: implementation order for `SummarizationService`
+
+Not yet implemented. When it is, build in this order:
+
+1. **Config + packages**: add `Azure.AI.OpenAI`, `Microsoft.Extensions.AI`, `Microsoft.Extensions.AI.OpenAI` to `JiraRollupAgent.csproj` (`Microsoft.Extensions.Configuration.UserSecrets` is already there). Add `AzureOpenAI:ChatModel` (non-secret, `"gpt-5.6-sol"`) and `AppSettings:SummaryRangeStart`/`SummaryRangeEnd` to `appsettings.json`. Register `IChatClient` as a DI singleton in `Program.cs`.
+2. **DAL changes + migration**: add the three summary entities (see "Planned: summary storage schema" above) to `JiraHierarchyEntities.cs`, wire `DbSet<T>` + unique-index config into `JiraRollupDBContext.OnModelCreating`, add three named repository properties + a `DeleteAllSummariesAsync()` (scoped to just the three summary tables, not the full `DeleteAllRowsAsync()`) to `IUnitOfWork`/`UnitOfWork`, generate + apply the EF migration.
+3. **`SummarizationService` itself**: constructor gets a third param, `IChatClient`, alongside the existing `IConfiguration`/`IUnitOfWork`. `Run()`: validate the configured date range (reject `start > end`; fail fast if it doesn't overlap `MIN`/`MAX(Timestamp)`), clear the three summary tables, load the hierarchy level-by-level via `FindAsync` (no `Include` support, per the existing pattern), walk bottom-up per Initiative building the in-memory chain (Subtask/StoryBug → Story → Bug/Task/Spike → Epic → Initiative) per the three prompt types, handle the zero-comment placeholder case, then persist everything in one `CompleteAsync()`. One shared private helper actually calls `IChatClient.GetResponseAsync(...)`, reused by all three prompt types; separate helpers format each prompt's user message (ticket header + comments + child summaries) matching the templates in `doc/prompt-types-overview.html`.
+
+**Error handling decision**: if a single LLM call fails mid-run (network hiccup, rate limit), let the whole `Run()` abort — matches the existing top-level try/catch pattern every other service already uses (`Program.cs`'s per-stage try/catch, each `Run()`'s own try/catch). No per-ticket retry/partial-failure resilience; this isn't a long-running production job where that complexity pays for itself.
 
 ### `src/JiraRollupAgent/MockData/`
 
@@ -130,7 +216,7 @@ Mirrors the reference app's generic repository pattern:
 - `DAL/Models/JiraHierarchyEntities.cs` — `Initiative`, `Epic`, `WorkItem` (Story/Bug/Task/Spike/Subtask/StoryBug via a `Type` discriminator column, with `EpicId` for direct Epic children and a self-referencing `ParentWorkItemId` for Subtask/StoryBug under a Story), `Comment` (attaches to exactly one of Initiative/Epic/WorkItem via three nullable FKs), `TeamMember`. This is a relational projection of the `jira-hierarchy.json`/`team-roster.json` shapes documented above — populated by `Services/JiraHierarchyLoaderService/` (see below).
 - `DAL/Migrations/` — the `InitialCreate` migration generated from this model; regenerate with a new migration (don't hand-edit) whenever the entities change.
 
-Deliberately scoped to just the mock-data shapes for now — no output/rollup tables (e.g. per-item/Epic/Initiative summary storage) exist yet, and `issue-type-workflows.json` (the third mock data file) has no entity yet either. Add either only when actually needed by a service that writes to them.
+Deliberately scoped to just the mock-data shapes for now — no output/rollup tables (per-item/Epic/Initiative summary storage) exist yet, and `issue-type-workflows.json` (the third mock data file) has no entity yet either. The summary tables' design is decided — see "Planned: summary storage schema" above — but not yet implemented; add either only when actually needed by a service that writes to them.
 
 #### Table schema (verified against `VSLiveJiraRollup`)
 
@@ -159,8 +245,49 @@ Comments attach to exactly one of:
 
 Only `Epics → Initiatives` cascades, because `Epic.InitiativeId` is the one non-nullable parent FK. Everything else is `NO_ACTION`/`Restrict` — `WorkItems.EpicId`/`ParentWorkItemId` because they're optional (EF's default for nullable FKs), and all three `Comments` FKs explicitly via `DeleteBehavior.Restrict` in `OnModelCreating`, since a Comment can reach the same Initiative through three different paths (direct, via Epic, via WorkItem) and SQL Server rejects multiple cascade paths to the same table.
 
+#### Current data volume (verified against `VSLiveJiraRollup`)
+
+```
+Initiatives   10
+Epics         30
+WorkItems    280 (Story 69, StoryBug 65, Subtask 65, Bug 32, Task 29, Spike 20)
+Comments     992
+TeamMembers   14
+```
+
+Comment counts by level/type — every comment attaches to exactly one of Initiative/Epic/WorkItem (40 + 97 + 855 = 992, matching the `Comments` row count exactly; none orphaned):
+
+| Level / Type | ItemCount | CommentCount | Gets own summary? | Role-weighted? |
+| --- | --- | --- | --- | --- |
+| Initiative | 10 | 40 | Yes | Yes — ScrumMaster/Stakeholder/EM |
+| Epic | 30 | 97 | Yes | Yes — Dev/QA |
+| Story | 69 | 272 | Yes | No |
+| StoryBug | 65 | 194 | Yes | No |
+| Subtask | 65 | 141 | Yes | No |
+| Bug | 32 | 104 | Yes | No |
+| Task | 29 | 85 | Yes | No |
+| Spike | 20 | 59 | Yes | No |
+
+Total summary rows once implemented: 320 (10 Initiatives + 30 Epics + 280 WorkItems) — every ticket in the hierarchy gets exactly one summary.
+
+Query used (`sqlcmd -S localhost -U sa -P '<password>' -d VSLiveJiraRollup -C`):
+
+```sql
+SELECT 'Initiative' AS Level, COUNT(DISTINCT i.Id) AS ItemCount, COUNT(c.Id) AS CommentCount
+FROM Initiatives i LEFT JOIN Comments c ON c.InitiativeId = i.Id
+UNION ALL
+SELECT 'Epic', COUNT(DISTINCT e.Id), COUNT(c.Id)
+FROM Epics e LEFT JOIN Comments c ON c.EpicId = e.Id
+UNION ALL
+SELECT w.Type, COUNT(DISTINCT w.Id), COUNT(c.Id)
+FROM WorkItems w LEFT JOIN Comments c ON c.WorkItemId = w.Id
+GROUP BY w.Type;
+```
+
+**Superseded**: every WorkItem type gets its own summary now, including Subtask/StoryBug — see "Planned: item→Epic→Initiative summary chaining" above for the current (recursive, uniform) design.
+
 ### Known limits (from README, still applicable to any implementation)
 
 - Demo uses mocked Jira data, not a live pull.
-- Item-level summaries (Story/Bug/Task/Spike) have no role split — role weighting only applies at Epic and Initiative level.
+- Item-level summaries (every WorkItem type, including Subtask/StoryBug) have no role split — role weighting only applies at Epic and Initiative level.
 - Initiative ordering relies solely on the `priorityRank` field in the mock data; there's no independent prioritization logic to implement.
