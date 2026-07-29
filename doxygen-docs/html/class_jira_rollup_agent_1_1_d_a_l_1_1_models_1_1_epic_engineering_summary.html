@@ -133,12 +133,19 @@ Collaboration diagram for JiraRollupAgent.DAL.Models.EpicEngineeringSummary:</di
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ac025e5242c7632180ad8b927b58f5eaa" id="r_ac025e5242c7632180ad8b927b58f5eaa"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac025e5242c7632180ad8b927b58f5eaa">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac025e5242c7632180ad8b927b58f5eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database primary key.  <br /></td></tr>
 <tr class="memitem:a44321b8a94b610a83898d7ebe165677d" id="r_a44321b8a94b610a83898d7ebe165677d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a44321b8a94b610a83898d7ebe165677d">EpicId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a44321b8a94b610a83898d7ebe165677d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Foreign key to the summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>; unique, enforcing one summary per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>.  <br /></td></tr>
 <tr class="memitem:ab406ff5646dc8f493b52cc21bf147d40" id="r_ab406ff5646dc8f493b52cc21bf147d40"><td class="memItemLeft">virtual Epic&#160;</td><td class="memItemRight"><a class="el" href="#ab406ff5646dc8f493b52cc21bf147d40">Epic</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:ab406ff5646dc8f493b52cc21bf147d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">The summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>.  <br /></td></tr>
 <tr class="memitem:a57ea6ec3312ca59b6f89c35385573fa0" id="r_a57ea6ec3312ca59b6f89c35385573fa0"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a57ea6ec3312ca59b6f89c35385573fa0">SummaryText</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a57ea6ec3312ca59b6f89c35385573fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The generated summary text.  <br /></td></tr>
 <tr class="memitem:ae8da5811609abb81debe96fdd3ec91b4" id="r_ae8da5811609abb81debe96fdd3ec91b4"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#ae8da5811609abb81debe96fdd3ec91b4">RangeStart</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae8da5811609abb81debe96fdd3ec91b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The start of the date range whose comments produced this summary - provenance, not history.  <br /></td></tr>
 <tr class="memitem:a7141cb01fffeada89707485559e99d07" id="r_a7141cb01fffeada89707485559e99d07"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#a7141cb01fffeada89707485559e99d07">RangeEnd</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7141cb01fffeada89707485559e99d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">The end of the date range whose comments produced this summary - provenance, not history.  <br /></td></tr>
 <tr class="memitem:ad3f755e6fff4e5586a168cc4f55307bd" id="r_ad3f755e6fff4e5586a168cc4f55307bd"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#ad3f755e6fff4e5586a168cc4f55307bd">GeneratedAt</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad3f755e6fff4e5586a168cc4f55307bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">When this summary was generated.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The Dev/QA-weighted Engineering Summary for a single <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> (Type C, parameterized for engineering audiences) - one of the two summary levels actually printed in the report. Exactly one row per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>: overwritten fresh on every SummarizationService run. </p>
@@ -163,6 +170,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>. </p>
+
 </div>
 </div>
 <a id="a44321b8a94b610a83898d7ebe165677d" name="a44321b8a94b610a83898d7ebe165677d"></a>
@@ -184,6 +193,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Foreign key to the summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>; unique, enforcing one summary per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>. </p>
 
 </div>
 </div>
@@ -207,6 +218,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>When this summary was generated. </p>
+
 </div>
 </div>
 <a id="ac025e5242c7632180ad8b927b58f5eaa" name="ac025e5242c7632180ad8b927b58f5eaa"></a>
@@ -228,6 +241,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The database primary key. </p>
 
 </div>
 </div>
@@ -251,6 +266,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The end of the date range whose comments produced this summary - provenance, not history. </p>
+
 </div>
 </div>
 <a id="ae8da5811609abb81debe96fdd3ec91b4" name="ae8da5811609abb81debe96fdd3ec91b4"></a>
@@ -273,6 +290,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The start of the date range whose comments produced this summary - provenance, not history. </p>
+
 </div>
 </div>
 <a id="a57ea6ec3312ca59b6f89c35385573fa0" name="a57ea6ec3312ca59b6f89c35385573fa0"></a>
@@ -294,6 +313,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The generated summary text. </p>
 
 </div>
 </div>

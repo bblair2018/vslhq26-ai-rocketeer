@@ -133,12 +133,17 @@ Collaboration diagram for JiraRollupAgent.DAL.Models.TeamMember:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a54c2e605d2d86a80f2c62a5a9cf588f7" id="r_a54c2e605d2d86a80f2c62a5a9cf588f7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a54c2e605d2d86a80f2c62a5a9cf588f7">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a54c2e605d2d86a80f2c62a5a9cf588f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database primary key.  <br /></td></tr>
 <tr class="memitem:a8f1a28ea690cc60e556657cd3a4274e6" id="r_a8f1a28ea690cc60e556657cd3a4274e6"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a8f1a28ea690cc60e556657cd3a4274e6">ExternalId</a> = string.Empty<code> [get, set]</code></td></tr>
 <tr class="memdesc:a8f1a28ea690cc60e556657cd3a4274e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The source id from team-roster.json, e.g. "USR-01".  <br /></td></tr>
 <tr class="memitem:a75cb596d92fa5cb8618d3b1461696c1c" id="r_a75cb596d92fa5cb8618d3b1461696c1c"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a75cb596d92fa5cb8618d3b1461696c1c">Name</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a75cb596d92fa5cb8618d3b1461696c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The team member's display name.  <br /></td></tr>
 <tr class="memitem:aedc6086365f9d32d7e6df9949afdf5af" id="r_aedc6086365f9d32d7e6df9949afdf5af"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#aedc6086365f9d32d7e6df9949afdf5af">Role</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:aedc6086365f9d32d7e6df9949afdf5af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dev, QA, ScrumMaster, Stakeholder, or EngineeringManager - same enum as Comment.Role.  <br /></td></tr>
 <tr class="memitem:a57ade6529ed10615b6aeedb0729b0be7" id="r_a57ade6529ed10615b6aeedb0729b0be7"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a57ade6529ed10615b6aeedb0729b0be7">JobTitle</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a57ade6529ed10615b6aeedb0729b0be7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A human-readable job title, e.g. "Head of Underwriting" - not used for filtering.  <br /></td></tr>
 <tr class="memitem:aa97fb5891cf912fa9b076e1dcfea6e2d" id="r_aa97fb5891cf912fa9b076e1dcfea6e2d"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#aa97fb5891cf912fa9b076e1dcfea6e2d">Email</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:aa97fb5891cf912fa9b076e1dcfea6e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The team member's email address.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Mirrors MockData/team-roster.json. Role is the same enum used on Comment.Role. </p>
@@ -162,6 +167,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The team member's email address. </p>
 
 </div>
 </div>
@@ -209,6 +216,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The database primary key. </p>
+
 </div>
 </div>
 <a id="a57ade6529ed10615b6aeedb0729b0be7" name="a57ade6529ed10615b6aeedb0729b0be7"></a>
@@ -230,6 +239,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>A human-readable job title, e.g. "Head of Underwriting" - not used for filtering. </p>
 
 </div>
 </div>
@@ -253,6 +264,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The team member's display name. </p>
+
 </div>
 </div>
 <a id="aedc6086365f9d32d7e6df9949afdf5af" name="aedc6086365f9d32d7e6df9949afdf5af"></a>
@@ -274,6 +287,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Dev, QA, ScrumMaster, Stakeholder, or EngineeringManager - same enum as Comment.Role. </p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 <map id="JiraRollupAgent.Services.HtmlReportGeneratorService.IHtmlReportGeneratorService" name="JiraRollupAgent.Services.HtmlReportGeneratorService.IHtmlReportGeneratorService">
 <area shape="rect" id="Node000001" title="Generates the single HTML report — Initiatives ordered by priority rank, each showing its Business Su..." alt="" coords="5,5,220,107"/>
-<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html" title=" " alt="" coords="7,155,218,699"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html" title="The &quot;Report&quot; stage: renders report/rollup&#45;report.html &#45; Initiatives ordered by Initiative...." alt="" coords="7,155,218,699"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,119,115,155,110,155,112,125"/>
 </map>

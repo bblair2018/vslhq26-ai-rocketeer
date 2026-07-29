@@ -118,25 +118,36 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('class_jira_rol
   <div class="headertitle"><div class="title">JiraRollupAgent.Models.JiraHierarchyLoaderService.MockInitiative Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Mirrors one entry in jira-hierarchy.json's "initiatives[]".  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for JiraRollupAgent.Models.JiraHierarchyLoaderService.MockInitiative:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_initiative__coll__graph.png" border="0" usemap="#a_jira_rollup_agent_8_models_8_jira_hierarchy_loader_service_8_mock_initiative_coll__map" loading="lazy" alt="Collaboration graph"/></div>
 <map name="a_jira_rollup_agent_8_models_8_jira_hierarchy_loader_service_8_mock_initiative_coll__map" id="a_jira_rollup_agent_8_models_8_jira_hierarchy_loader_service_8_mock_initiative_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,240,197"/>
+<area shape="rect" title="Mirrors one entry in jira&#45;hierarchy.json&#39;s &quot;initiatives[]&quot;." alt="" coords="5,5,240,197"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ab8e9acfb87c4bd865de7469c960d9905" id="r_ab8e9acfb87c4bd865de7469c960d9905"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#ab8e9acfb87c4bd865de7469c960d9905">Id</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:ab8e9acfb87c4bd865de7469c960d9905"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira key, e.g. "INIT-PFD".  <br /></td></tr>
 <tr class="memitem:a286786fbe4c5bd9b2324ea53763e939b" id="r_a286786fbe4c5bd9b2324ea53763e939b"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a286786fbe4c5bd9b2324ea53763e939b">Title</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a286786fbe4c5bd9b2324ea53763e939b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Initiative's display title.  <br /></td></tr>
 <tr class="memitem:ab1a51688b6695748dd3fc66058e5c0fd" id="r_ab1a51688b6695748dd3fc66058e5c0fd"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab1a51688b6695748dd3fc66058e5c0fd">PriorityRank</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab1a51688b6695748dd3fc66058e5c0fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Business priority rank; 1 = highest.  <br /></td></tr>
 <tr class="memitem:a3c7147a6fa1b82c834c82a39b1d9d02f" id="r_a3c7147a6fa1b82c834c82a39b1d9d02f"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a3c7147a6fa1b82c834c82a39b1d9d02f">Status</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a3c7147a6fa1b82c834c82a39b1d9d02f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira workflow status.  <br /></td></tr>
 <tr class="memitem:a7d2dca1c26475a8dffc4e747927c9f93" id="r_a7d2dca1c26475a8dffc4e747927c9f93"><td class="memItemLeft">List&lt; <a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_comment.html">MockComment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7d2dca1c26475a8dffc4e747927c9f93">Comments</a> = new()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a7d2dca1c26475a8dffc4e747927c9f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comments attached directly to this Initiative.  <br /></td></tr>
 <tr class="memitem:aa6fdfdb14e72e1ff9aeb389d3b06fe5a" id="r_aa6fdfdb14e72e1ff9aeb389d3b06fe5a"><td class="memItemLeft">List&lt; <a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_epic.html">MockEpic</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa6fdfdb14e72e1ff9aeb389d3b06fe5a">Epics</a> = new()<code> [get, set]</code></td></tr>
+<tr class="memdesc:aa6fdfdb14e72e1ff9aeb389d3b06fe5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Epics beneath this Initiative.  <br /></td></tr>
 </table>
-<a name="doc-property-members" id="doc-property-members"></a><h2 id="header-doc-property-members" class="groupheader">Property Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Mirrors one entry in jira-hierarchy.json's "initiatives[]". </p>
+</div><a name="doc-property-members" id="doc-property-members"></a><h2 id="header-doc-property-members" class="groupheader">Property Documentation</h2>
 <a id="a7d2dca1c26475a8dffc4e747927c9f93" name="a7d2dca1c26475a8dffc4e747927c9f93"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d2dca1c26475a8dffc4e747927c9f93">&#9670;&#160;</a></span>Comments</h2>
 
@@ -156,6 +167,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Comments attached directly to this Initiative. </p>
 
 </div>
 </div>
@@ -179,6 +192,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Epics beneath this Initiative. </p>
+
 </div>
 </div>
 <a id="ab8e9acfb87c4bd865de7469c960d9905" name="ab8e9acfb87c4bd865de7469c960d9905"></a>
@@ -200,6 +215,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Jira key, e.g. "INIT-PFD". </p>
 
 </div>
 </div>
@@ -223,6 +240,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Business priority rank; 1 = highest. </p>
+
 </div>
 </div>
 <a id="a3c7147a6fa1b82c834c82a39b1d9d02f" name="a3c7147a6fa1b82c834c82a39b1d9d02f"></a>
@@ -245,6 +264,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Jira workflow status. </p>
+
 </div>
 </div>
 <a id="a286786fbe4c5bd9b2324ea53763e939b" name="a286786fbe4c5bd9b2324ea53763e939b"></a>
@@ -266,6 +287,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Initiative's display title. </p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 <map id="JiraRollupAgent.Services.SummarizationService.SummarizationService" name="JiraRollupAgent.Services.SummarizationService.SummarizationService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="29,495,261,1188"/>
+<area shape="rect" id="Node000001" title="The &quot;Summarize&quot; stage: generates and persists a summary for every Initiative/Epic/WorkItem via Azure ..." alt="" coords="29,495,261,1188"/>
 <area shape="rect" id="Node000002" href="$interface_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_i_summarization_service.html" title="Produces the Azure OpenAI item/Epic&#45;engineering/Initiative&#45;business summaries and persists them to VS..." alt="" coords="5,223,242,324"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,337,135,495,129,495,126,342"/>
 <area shape="rect" id="Node000003" href="$interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html" title="Unit of Work interface to manage transactions and coordinate access to all repositories." alt="" coords="266,124,480,423"/>

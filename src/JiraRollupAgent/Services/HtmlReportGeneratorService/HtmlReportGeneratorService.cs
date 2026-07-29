@@ -11,6 +11,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace JiraRollupAgent.Services.HtmlReportGeneratorService
 {
+    /// <summary>
+    /// The "Report" stage: renders <c>report/rollup-report.html</c> - Initiatives ordered by
+    /// <see cref="Initiative.PriorityRank"/>, each showing its Business Summary with its Epics
+    /// nested underneath showing their Engineering Summaries. Self-disables after a successful
+    /// run - see <see cref="DisableReportGenerationFlagAsync"/>.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class HtmlReportGeneratorService : IHtmlReportGeneratorService
     {
@@ -21,9 +27,16 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
 
         /// <summary>Marker file that only exists at the repo root - used to locate report/ regardless of build output layout.</summary>
         private const string SolutionFileName = "vslhq26-ai-rocketeer.slnx";
+
+        /// <summary>The fixed output filename, overwritten every run.</summary>
         private const string ReportFileName = "rollup-report.html";
+
+        /// <summary>Placeholder text rendered when an Initiative/Epic has no generated summary yet.</summary>
         private const string NoSummaryPlaceholder = "Summary not yet generated.";
 
+        /// <summary>Creates the report generator service.</summary>
+        /// <param name="config">Application configuration, used to read the <c>AppSettings:RunReportGeneration</c> flag.</param>
+        /// <param name="unitOfWork">Provides access to the Initiative/Epic and summary repositories the report reads from.</param>
         public HtmlReportGeneratorService(IConfiguration config, IUnitOfWork unitOfWork)
         {
             _config = config;
@@ -32,6 +45,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
 
         #region Run
 
+        /// <inheritdoc/>
         public async Task<bool> Run()
         {
             var runStage = _config.GetValue<bool>("AppSettings:RunReportGeneration");
@@ -148,9 +162,13 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// <summary>Flat, in-memory view of the report's data for one HtmlReportGeneratorService run.</summary>
         private sealed class ReportData
         {
+            /// <summary>Every Initiative, ordered by <see cref="Initiative.PriorityRank"/>.</summary>
             public required List<Initiative> Initiatives { get; init; }
+            /// <summary>Every Epic, grouped by owning Initiative id and ordered by <see cref="Epic.Id"/> within each group.</summary>
             public required Dictionary<int, List<Epic>> EpicsByInitiativeId { get; init; }
+            /// <summary>Generated Business Summaries, keyed by Initiative id.</summary>
             public required Dictionary<int, InitiativeBusinessSummary> InitiativeSummaries { get; init; }
+            /// <summary>Generated Engineering Summaries, keyed by Epic id.</summary>
             public required Dictionary<int, EpicEngineeringSummary> EpicSummaries { get; init; }
         }
 
@@ -158,6 +176,9 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
 
         #region HTML rendering
 
+        /// <summary>Renders the complete self-contained HTML document (embedded CSS, no external dependencies).</summary>
+        /// <param name="data">The loaded report data.</param>
+        /// <returns>The full HTML document as a string.</returns>
         private string BuildReportHtml(ReportData data)
         {
             var (rangeStart, rangeEnd) = data.InitiativeSummaries.Values
@@ -196,6 +217,10 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             return sb.ToString();
         }
 
+        /// <summary>Appends one Initiative section (priority badge, title, status, Business Summary) plus its nested Epics.</summary>
+        /// <param name="sb">The HTML being built.</param>
+        /// <param name="initiative">The Initiative to render.</param>
+        /// <param name="data">The loaded report data, used to look up this Initiative's summary and Epics.</param>
         private void AppendInitiative(StringBuilder sb, Initiative initiative, ReportData data)
         {
             var hasSummary = data.InitiativeSummaries.TryGetValue(initiative.Id, out var summary);
@@ -223,6 +248,10 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             sb.AppendLine("</section>");
         }
 
+        /// <summary>Appends one Epic's markup (title, its Engineering Summary) nested inside its Initiative's section.</summary>
+        /// <param name="sb">The HTML being built.</param>
+        /// <param name="epic">The Epic to render.</param>
+        /// <param name="data">The loaded report data, used to look up this Epic's summary.</param>
         private void AppendEpic(StringBuilder sb, Epic epic, ReportData data)
         {
             var hasSummary = data.EpicSummaries.TryGetValue(epic.Id, out var summary);
@@ -238,10 +267,15 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             sb.AppendLine("</div>");
         }
 
+        /// <summary>HTML-encodes a raw string (escapes <c>&lt;</c>, <c>&gt;</c>, <c>&amp;</c>, quotes, and non-ASCII characters as entities).</summary>
+        /// <param name="text">The raw text to encode.</param>
         private static string Encode(string text) => System.Net.WebUtility.HtmlEncode(text);
 
+        /// <summary>Matches "**bold**" markdown-style emphasis, capturing the enclosed text.</summary>
         private static readonly Regex BoldRegex = new(@"\*\*(.+?)\*\*", RegexOptions.Compiled);
+        /// <summary>Matches a "Status: ..." line, capturing the text after the colon.</summary>
         private static readonly Regex StatusLineRegex = new(@"^Status\s*:\s*(.+)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        /// <summary>Matches a bare "Key Progress:"/"Risks/Blockers:"/"Risks:"/"Blockers:" section heading line.</summary>
         private static readonly Regex SectionHeaderRegex = new(@"^(Key Progress|Risks/Blockers|Risks|Blockers)\s*:?\s*$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
@@ -251,6 +285,8 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// HTML-encodes every line first, then converts "**bold**" to &lt;strong&gt; on the encoded
         /// text (safe since ** isn't affected by HTML entity escaping).
         /// </summary>
+        /// <param name="text">The raw summary text returned by the LLM.</param>
+        /// <returns>HTML markup ready to embed directly in the page.</returns>
         private static string FormatSummaryText(string text)
         {
             var sb = new StringBuilder();
@@ -302,8 +338,11 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             return sb.ToString();
         }
 
+        /// <summary>Converts "**bold**" markers to <c>&lt;strong&gt;</c> tags on already-HTML-encoded text.</summary>
+        /// <param name="encodedText">Text that has already been passed through <see cref="Encode"/>.</param>
         private static string ApplyBold(string encodedText) => BoldRegex.Replace(encodedText, "<strong>$1</strong>");
 
+        /// <summary>The report page's embedded stylesheet - self-contained, no external dependencies.</summary>
         private const string ReportCss = """
             * { box-sizing: border-box; margin: 0; padding: 0; }
             body {
@@ -363,6 +402,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         /// changes, still with zero CWD-dependence (same "avoid CWD" philosophy as the Logs/ path
         /// in Program.cs, just a smarter way to find "repo root" instead of "next to the exe").
         /// </summary>
+        /// <returns>The absolute path to the repo root.</returns>
         private static string FindRepoRoot()
         {
             var dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
@@ -375,6 +415,8 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
         }
 
         /// <summary>Writes to a single fixed filename in report/, overwritten every run - same "overwrite, no history" philosophy as the summary tables.</summary>
+        /// <param name="html">The complete HTML document to write.</param>
+        /// <returns>The absolute path the report was written to.</returns>
         private async Task<string> WriteReportAsync(string html)
         {
             var reportDirectory = Path.Combine(FindRepoRoot(), "report");

@@ -133,17 +133,27 @@ Collaboration diagram for JiraRollupAgent.DAL.Models.Comment:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:adbf9f17fd9ac00f4a0ee12c2c869f5b8" id="r_adbf9f17fd9ac00f4a0ee12c2c869f5b8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#adbf9f17fd9ac00f4a0ee12c2c869f5b8">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:adbf9f17fd9ac00f4a0ee12c2c869f5b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database primary key.  <br /></td></tr>
 <tr class="memitem:aa74ef89f9c2ab93285bf614cc9e2f037" id="r_aa74ef89f9c2ab93285bf614cc9e2f037"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#aa74ef89f9c2ab93285bf614cc9e2f037">Author</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:aa74ef89f9c2ab93285bf614cc9e2f037"><td class="mdescLeft">&#160;</td><td class="mdescRight">The commenter's display name.  <br /></td></tr>
 <tr class="memitem:aaf87e6edc749ad8f3040843f8a86ca5c" id="r_aaf87e6edc749ad8f3040843f8a86ca5c"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#aaf87e6edc749ad8f3040843f8a86ca5c">Role</a> = string.Empty<code> [get, set]</code></td></tr>
 <tr class="memdesc:aaf87e6edc749ad8f3040843f8a86ca5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dev, QA, ScrumMaster, Stakeholder, or EngineeringManager.  <br /></td></tr>
 <tr class="memitem:a81bdb25e8f796ede711a0e32c45617c5" id="r_a81bdb25e8f796ede711a0e32c45617c5"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#a81bdb25e8f796ede711a0e32c45617c5">Timestamp</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a81bdb25e8f796ede711a0e32c45617c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the comment was posted.  <br /></td></tr>
 <tr class="memitem:a8f2a0f802997c8166fb937695f1b3afe" id="r_a8f2a0f802997c8166fb937695f1b3afe"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a8f2a0f802997c8166fb937695f1b3afe">Text</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a8f2a0f802997c8166fb937695f1b3afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The comment body.  <br /></td></tr>
 <tr class="memitem:a632cbea76e5742efe1b55b508b4d66b2" id="r_a632cbea76e5742efe1b55b508b4d66b2"><td class="memItemLeft">int?&#160;</td><td class="memItemRight"><a class="el" href="#a632cbea76e5742efe1b55b508b4d66b2">InitiativeId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a632cbea76e5742efe1b55b508b4d66b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set when this comment is attached directly to an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>.  <br /></td></tr>
 <tr class="memitem:ae3ebac40e3880936212c2aea0d8e849f" id="r_ae3ebac40e3880936212c2aea0d8e849f"><td class="memItemLeft">virtual ? Initiative&#160;</td><td class="memItemRight"><a class="el" href="#ae3ebac40e3880936212c2aea0d8e849f">Initiative</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae3ebac40e3880936212c2aea0d8e849f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, if this comment is attached directly to one.  <br /></td></tr>
 <tr class="memitem:a6fafb1f51819d7e8713be61e2560a4a5" id="r_a6fafb1f51819d7e8713be61e2560a4a5"><td class="memItemLeft">int?&#160;</td><td class="memItemRight"><a class="el" href="#a6fafb1f51819d7e8713be61e2560a4a5">EpicId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6fafb1f51819d7e8713be61e2560a4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set when this comment is attached directly to an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>.  <br /></td></tr>
 <tr class="memitem:a02f1ac93e4783b6e41f54a6b4d6c4b1f" id="r_a02f1ac93e4783b6e41f54a6b4d6c4b1f"><td class="memItemLeft">virtual ? Epic&#160;</td><td class="memItemRight"><a class="el" href="#a02f1ac93e4783b6e41f54a6b4d6c4b1f">Epic</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a02f1ac93e4783b6e41f54a6b4d6c4b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, if this comment is attached directly to one.  <br /></td></tr>
 <tr class="memitem:af897016badc0a41405c3200df6c3961e" id="r_af897016badc0a41405c3200df6c3961e"><td class="memItemLeft">int?&#160;</td><td class="memItemRight"><a class="el" href="#af897016badc0a41405c3200df6c3961e">WorkItemId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af897016badc0a41405c3200df6c3961e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set when this comment is attached to a <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>.  <br /></td></tr>
 <tr class="memitem:ad873dc3229ca993a5371998b4891fbf9" id="r_ad873dc3229ca993a5371998b4891fbf9"><td class="memItemLeft">virtual ? WorkItem&#160;</td><td class="memItemRight"><a class="el" href="#ad873dc3229ca993a5371998b4891fbf9">WorkItem</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad873dc3229ca993a5371998b4891fbf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>, if this comment is attached to one.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A comment attached to exactly one of <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, or <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>. Role drives the Epic/Initiative role-weighted summarization. </p>
@@ -168,6 +178,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The commenter's display name. </p>
+
 </div>
 </div>
 <a id="a02f1ac93e4783b6e41f54a6b4d6c4b1f" name="a02f1ac93e4783b6e41f54a6b4d6c4b1f"></a>
@@ -189,6 +201,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, if this comment is attached directly to one. </p>
 
 </div>
 </div>
@@ -212,6 +226,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Set when this comment is attached directly to an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>. </p>
+
 </div>
 </div>
 <a id="adbf9f17fd9ac00f4a0ee12c2c869f5b8" name="adbf9f17fd9ac00f4a0ee12c2c869f5b8"></a>
@@ -233,6 +249,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The database primary key. </p>
 
 </div>
 </div>
@@ -256,6 +274,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, if this comment is attached directly to one. </p>
+
 </div>
 </div>
 <a id="a632cbea76e5742efe1b55b508b4d66b2" name="a632cbea76e5742efe1b55b508b4d66b2"></a>
@@ -277,6 +297,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set when this comment is attached directly to an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>. </p>
 
 </div>
 </div>
@@ -324,6 +346,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The comment body. </p>
+
 </div>
 </div>
 <a id="a81bdb25e8f796ede711a0e32c45617c5" name="a81bdb25e8f796ede711a0e32c45617c5"></a>
@@ -345,6 +369,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>When the comment was posted. </p>
 
 </div>
 </div>
@@ -368,6 +394,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>, if this comment is attached to one. </p>
+
 </div>
 </div>
 <a id="af897016badc0a41405c3200df6c3961e" name="af897016badc0a41405c3200df6c3961e"></a>
@@ -389,6 +417,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set when this comment is attached to a <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>. </p>
 
 </div>
 </div>

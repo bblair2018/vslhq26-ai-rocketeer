@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('class_jira_rol
 </div><!--header-->
 <div class="contents">
 
-<p>Flat, in-memory view of the report's data for one <a class="el" href="class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html">HtmlReportGeneratorService</a> run.  
+<p>Flat, in-memory view of the report's data for one <a class="el" href="class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html" title="The &quot;Report&quot; stage: renders report/rollup-report.html - Initiatives ordered by Initiative....">HtmlReportGeneratorService</a> run.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService.ReportData:</div>
@@ -133,12 +133,16 @@ Collaboration diagram for JiraRollupAgent.Services.HtmlReportGeneratorService.Ht
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ae6cabc71b8596544379de65dd6e5d218" id="r_ae6cabc71b8596544379de65dd6e5d218"><td class="memItemLeft">required List&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html">Initiative</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae6cabc71b8596544379de65dd6e5d218">Initiatives</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae6cabc71b8596544379de65dd6e5d218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, ordered by Initiative.PriorityRank.  <br /></td></tr>
 <tr class="memitem:a1b3514fb02e47de400d3548d5c52d4da" id="r_a1b3514fb02e47de400d3548d5c52d4da"><td class="memItemLeft">required Dictionary&lt; int, List&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html">Epic</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1b3514fb02e47de400d3548d5c52d4da">EpicsByInitiativeId</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1b3514fb02e47de400d3548d5c52d4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, grouped by owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a> id and ordered by Epic.Id within each group.  <br /></td></tr>
 <tr class="memitem:a72240ebb6a919e60ba59e6040a9c6383" id="r_a72240ebb6a919e60ba59e6040a9c6383"><td class="memItemLeft">required Dictionary&lt; int, <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative_business_summary.html">InitiativeBusinessSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a72240ebb6a919e60ba59e6040a9c6383">InitiativeSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:a72240ebb6a919e60ba59e6040a9c6383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generated Business Summaries, keyed by <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a> id.  <br /></td></tr>
 <tr class="memitem:a585655fdbab006208eedf48796bd3aac" id="r_a585655fdbab006208eedf48796bd3aac"><td class="memItemLeft">required Dictionary&lt; int, <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic_engineering_summary.html">EpicEngineeringSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a585655fdbab006208eedf48796bd3aac">EpicSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:a585655fdbab006208eedf48796bd3aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generated Engineering Summaries, keyed by <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> id.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Flat, in-memory view of the report's data for one <a class="el" href="class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html">HtmlReportGeneratorService</a> run. </p>
+<div class="textblock"><p>Flat, in-memory view of the report's data for one <a class="el" href="class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html" title="The &quot;Report&quot; stage: renders report/rollup-report.html - Initiatives ordered by Initiative....">HtmlReportGeneratorService</a> run. </p>
 </div><a name="doc-property-members" id="doc-property-members"></a><h2 id="header-doc-property-members" class="groupheader">Property Documentation</h2>
 <a id="a1b3514fb02e47de400d3548d5c52d4da" name="a1b3514fb02e47de400d3548d5c52d4da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b3514fb02e47de400d3548d5c52d4da">&#9670;&#160;</a></span>EpicsByInitiativeId</h2>
@@ -159,6 +163,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Every <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, grouped by owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a> id and ordered by Epic.Id within each group. </p>
 
 </div>
 </div>
@@ -182,6 +188,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Generated Engineering Summaries, keyed by <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> id. </p>
+
 </div>
 </div>
 <a id="ae6cabc71b8596544379de65dd6e5d218" name="ae6cabc71b8596544379de65dd6e5d218"></a>
@@ -204,6 +212,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Every <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, ordered by Initiative.PriorityRank. </p>
+
 </div>
 </div>
 <a id="a72240ebb6a919e60ba59e6040a9c6383" name="a72240ebb6a919e60ba59e6040a9c6383"></a>
@@ -225,6 +235,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Generated Business Summaries, keyed by <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a> id. </p>
 
 </div>
 </div>

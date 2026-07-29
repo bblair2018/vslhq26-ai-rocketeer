@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Walks up from the build output directory looking for the .slnx marker file rather than hardcoding a f..." alt="" coords="1059,5,1308,64"/>
 <area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#afca8dccc8f7d071211762dbd0c97fa3b" title="Writes to a single fixed filename in report/, overwritten every run &#45; same &quot;overwrite,..." alt="" coords="739,5,1011,64"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1040,35,1011,37,1011,32,1046,35"/>
-<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#ab6e13a3ce8fdf119ca31f6c38dccc165" title=" " alt="" coords="470,5,691,64"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#ab6e13a3ce8fdf119ca31f6c38dccc165" title="Runs the report generation stage, gated by AppSettings:RunReportGeneration.true on success or a skipp..." alt="" coords="470,5,691,64"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="721,35,692,37,692,32,726,35"/>
 <area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,13,422,56"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="451,35,422,37,422,32,457,35"/>

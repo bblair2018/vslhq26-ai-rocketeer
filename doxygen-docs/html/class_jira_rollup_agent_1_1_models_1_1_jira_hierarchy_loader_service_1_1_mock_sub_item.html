@@ -133,10 +133,15 @@ Collaboration diagram for JiraRollupAgent.Models.JiraHierarchyLoaderService.Mock
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a07487bb111fff975441dd0e7c335c55e" id="r_a07487bb111fff975441dd0e7c335c55e"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a07487bb111fff975441dd0e7c335c55e">Id</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a07487bb111fff975441dd0e7c335c55e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira key, e.g. "SUB-PFD-1-1-1" or "SBUG-PFD-1-1-1".  <br /></td></tr>
 <tr class="memitem:a88bff3453d630b1360b73d1674be0902" id="r_a88bff3453d630b1360b73d1674be0902"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a88bff3453d630b1360b73d1674be0902">Title</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a88bff3453d630b1360b73d1674be0902"><td class="mdescLeft">&#160;</td><td class="mdescRight">The item's display title.  <br /></td></tr>
 <tr class="memitem:ac7c36ce93828b1b969b258ec58783be0" id="r_ac7c36ce93828b1b969b258ec58783be0"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#ac7c36ce93828b1b969b258ec58783be0">Assignee</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:ac7c36ce93828b1b969b258ec58783be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The person assigned to this item.  <br /></td></tr>
 <tr class="memitem:a52855b742746a26c724c3b283a3d14b1" id="r_a52855b742746a26c724c3b283a3d14b1"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a52855b742746a26c724c3b283a3d14b1">Status</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a52855b742746a26c724c3b283a3d14b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira workflow status.  <br /></td></tr>
 <tr class="memitem:a8fe117947702ba1113ff8d88d56eed1c" id="r_a8fe117947702ba1113ff8d88d56eed1c"><td class="memItemLeft">List&lt; <a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_comment.html">MockComment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8fe117947702ba1113ff8d88d56eed1c">Comments</a> = new()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a8fe117947702ba1113ff8d88d56eed1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comments attached directly to this item.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A Subtask or StoryBug nested under a Story. The JSON has no "type" field here — which one it is comes from whether it was read out of "subtasks" or "storyBugs". </p>
@@ -161,6 +166,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The person assigned to this item. </p>
+
 </div>
 </div>
 <a id="a8fe117947702ba1113ff8d88d56eed1c" name="a8fe117947702ba1113ff8d88d56eed1c"></a>
@@ -182,6 +189,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Comments attached directly to this item. </p>
 
 </div>
 </div>
@@ -205,6 +214,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Jira key, e.g. "SUB-PFD-1-1-1" or "SBUG-PFD-1-1-1". </p>
+
 </div>
 </div>
 <a id="a52855b742746a26c724c3b283a3d14b1" name="a52855b742746a26c724c3b283a3d14b1"></a>
@@ -227,6 +238,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Jira workflow status. </p>
+
 </div>
 </div>
 <a id="a88bff3453d630b1360b73d1674be0902" name="a88bff3453d630b1360b73d1674be0902"></a>
@@ -248,6 +261,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The item's display title. </p>
 
 </div>
 </div>

@@ -145,27 +145,40 @@ Collaboration diagram for JiraRollupAgent.DAL.Context.JiraRollupDBContext:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a535ab6cf687a112aaf6b5462616c8635" id="r_a535ab6cf687a112aaf6b5462616c8635"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a535ab6cf687a112aaf6b5462616c8635">JiraRollupDBContext</a> ()</td></tr>
+<tr class="memdesc:a535ab6cf687a112aaf6b5462616c8635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterless constructor used by EF Core tooling (e.g. migrations); falls back to OnConfiguring for its connection.  <br /></td></tr>
 <tr class="memitem:a90a45419357feffe84dc5d3a2617ddca" id="r_a90a45419357feffe84dc5d3a2617ddca"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a90a45419357feffe84dc5d3a2617ddca">JiraRollupDBContext</a> (DbContextOptions&lt; JiraRollupDBContext &gt; options)</td></tr>
+<tr class="memdesc:a90a45419357feffe84dc5d3a2617ddca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the context with explicit options, as registered via dependency injection in <code><a class="el" href="_program_8cs.html">Program.cs</a></code>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a84e8fc2335a8a09d3bf568daef24a324" id="r_a84e8fc2335a8a09d3bf568daef24a324"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a84e8fc2335a8a09d3bf568daef24a324">OnConfiguring</a> (DbContextOptionsBuilder optionsBuilder)</td></tr>
+<tr class="memdesc:a84e8fc2335a8a09d3bf568daef24a324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Falls back to a hardcoded local SQL Server connection when no options were supplied via DI (e.g. by EF Core tooling).  <br /></td></tr>
 <tr class="memitem:a84916b676b122c6cfd9948cbd358fe28" id="r_a84916b676b122c6cfd9948cbd358fe28"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a84916b676b122c6cfd9948cbd358fe28">OnModelCreating</a> (ModelBuilder modelBuilder)</td></tr>
+<tr class="memdesc:a84916b676b122c6cfd9948cbd358fe28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures collation and every relationship/delete-behavior in the entity graph - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s FK relationship table for the full reasoning.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:aa17ec4e34953c90ded1ad961ce869162" id="r_aa17ec4e34953c90ded1ad961ce869162"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html">Initiative</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa17ec4e34953c90ded1ad961ce869162">Initiatives</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:aa17ec4e34953c90ded1ad961ce869162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Top-level Initiatives, ordered in reports by Initiative.PriorityRank.  <br /></td></tr>
 <tr class="memitem:ad0b7142ad01e5e8a1fcd8e6c207dc1c8" id="r_ad0b7142ad01e5e8a1fcd8e6c207dc1c8"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html">Epic</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad0b7142ad01e5e8a1fcd8e6c207dc1c8">Epics</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:ad0b7142ad01e5e8a1fcd8e6c207dc1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Epics, each belonging to exactly one <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>.  <br /></td></tr>
 <tr class="memitem:ab7fdfae9b85c7a595ca3f68a2d2d2bd9" id="r_ab7fdfae9b85c7a595ca3f68a2d2d2bd9"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab7fdfae9b85c7a595ca3f68a2d2d2bd9">WorkItems</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:ab7fdfae9b85c7a595ca3f68a2d2d2bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">All work items (Story/Bug/Task/Spike/Subtask/StoryBug), discriminated by WorkItem.Type.  <br /></td></tr>
 <tr class="memitem:aca86e731012f32aed0ef937a7381c184" id="r_aca86e731012f32aed0ef937a7381c184"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aca86e731012f32aed0ef937a7381c184">Comments</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:aca86e731012f32aed0ef937a7381c184"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comments, each attached to exactly one of Initiative/Epic/WorkItem.  <br /></td></tr>
 <tr class="memitem:a52934a201025f68c21571d117f2e8b73" id="r_a52934a201025f68c21571d117f2e8b73"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_team_member.html">TeamMember</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a52934a201025f68c21571d117f2e8b73">TeamMembers</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:a52934a201025f68c21571d117f2e8b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">The flat team roster, joined to Comment/WorkItem only by name/role string match in application logic.  <br /></td></tr>
 <tr class="memitem:a31d955e6376306429e0eee0a4c10b1ae" id="r_a31d955e6376306429e0eee0a4c10b1ae"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item_summary.html">WorkItemSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a31d955e6376306429e0eee0a4c10b1ae">WorkItemSummaries</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:a31d955e6376306429e0eee0a4c10b1ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generated summaries, one per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>, produced by <code>SummarizationService</code>.  <br /></td></tr>
 <tr class="memitem:a3f2f77647f62e2c3936223dc0fa274db" id="r_a3f2f77647f62e2c3936223dc0fa274db"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic_engineering_summary.html">EpicEngineeringSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3f2f77647f62e2c3936223dc0fa274db">EpicEngineeringSummaries</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:a3f2f77647f62e2c3936223dc0fa274db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generated Dev/QA-weighted Engineering Summaries, one per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, produced by <code>SummarizationService</code>.  <br /></td></tr>
 <tr class="memitem:a8fbdf4ab9ae676d477131c9e20f68194" id="r_a8fbdf4ab9ae676d477131c9e20f68194"><td class="memItemLeft">virtual DbSet&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative_business_summary.html">InitiativeBusinessSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8fbdf4ab9ae676d477131c9e20f68194">InitiativeBusinessSummaries</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:a8fbdf4ab9ae676d477131c9e20f68194"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generated ScrumMaster/Stakeholder/EngineeringManager-weighted Business Summaries, one per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, produced by <code>SummarizationService</code>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a5aa53d078950c1b5e282bfd679bcbf87" id="r_a5aa53d078950c1b5e282bfd679bcbf87"><td class="memItemLeft">partial void&#160;</td><td class="memItemRight"><a class="el" href="#a5aa53d078950c1b5e282bfd679bcbf87">OnModelCreatingPartial</a> (ModelBuilder modelBuilder)</td></tr>
+<tr class="memdesc:a5aa53d078950c1b5e282bfd679bcbf87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extension point for additional model configuration in another partial file; currently unused.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Used to create our Jira Rollup Table <a class="el" href="namespace_jira_rollup_agent_1_1_d_a_l_1_1_context.html">Context</a>. Migrations: 1 - dotnet tool install &ndash;global dotnet-ef 2 - dotnet ef migrations add InitialCreate 3 - dotnet ef database update. </p>
@@ -193,6 +206,8 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Parameterless constructor used by EF Core tooling (e.g. migrations); falls back to OnConfiguring for its connection. </p>
+
 </div>
 </div>
 <a id="a90a45419357feffe84dc5d3a2617ddca" name="a90a45419357feffe84dc5d3a2617ddca"></a>
@@ -217,6 +232,14 @@ Private Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates the context with explicit options, as registered via dependency injection in <code><a class="el" href="_program_8cs.html">Program.cs</a></code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The DbContext options (connection string, provider, etc.) to use.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -244,6 +267,14 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Falls back to a hardcoded local SQL Server connection when no options were supplied via DI (e.g. by EF Core tooling). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">optionsBuilder</td><td>The options builder to configure if not already configured.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a84916b676b122c6cfd9948cbd358fe28" name="a84916b676b122c6cfd9948cbd358fe28"></a>
@@ -268,13 +299,21 @@ Private Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Configures collation and every relationship/delete-behavior in the entity graph - see <a class="el" href="_c_l_a_u_d_e_8md.html">CLAUDE.md</a>'s FK relationship table for the full reasoning. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">modelBuilder</td><td>The model builder to configure.</td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a84916b676b122c6cfd9948cbd358fe28_cgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a84916b676b122c6cfd9948cbd358fe28_cgraph" loading="lazy" alt=""/></div>
 <map name="aclass_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a84916b676b122c6cfd9948cbd358fe28_cgraph" id="aclass_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a84916b676b122c6cfd9948cbd358fe28_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,255,56"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a5aa53d078950c1b5e282bfd679bcbf87" title=" " alt="" coords="303,5,552,64"/>
+<area shape="rect" title="Configures collation and every relationship/delete&#45;behavior in the entity graph &#45; see CLAUDE...." alt="" coords="5,13,255,56"/>
+<area shape="rect" href="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a5aa53d078950c1b5e282bfd679bcbf87" title="Extension point for additional model configuration in another partial file; currently unused." alt="" coords="303,5,552,64"/>
 <area shape="poly" title=" " alt="" coords="255,32,290,34,284,35,255,37"/>
 </map>
 </div>
@@ -303,13 +342,21 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Extension point for additional model configuration in another partial file; currently unused. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">modelBuilder</td><td>The model builder to configure.</td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a5aa53d078950c1b5e282bfd679bcbf87_icgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a5aa53d078950c1b5e282bfd679bcbf87_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a5aa53d078950c1b5e282bfd679bcbf87_icgraph" id="aclass_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context_a5aa53d078950c1b5e282bfd679bcbf87_icgraph">
-<area shape="rect" title=" " alt="" coords="303,5,552,64"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a84916b676b122c6cfd9948cbd358fe28" title=" " alt="" coords="5,13,255,56"/>
+<area shape="rect" title="Extension point for additional model configuration in another partial file; currently unused." alt="" coords="303,5,552,64"/>
+<area shape="rect" href="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a84916b676b122c6cfd9948cbd358fe28" title="Configures collation and every relationship/delete&#45;behavior in the entity graph &#45; see CLAUDE...." alt="" coords="5,13,255,56"/>
 <area shape="poly" title=" " alt="" coords="285,35,255,37,255,32,290,34"/>
 </map>
 </div>
@@ -337,6 +384,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Comments, each attached to exactly one of Initiative/Epic/WorkItem. </p>
+
 </div>
 </div>
 <a id="a3f2f77647f62e2c3936223dc0fa274db" name="a3f2f77647f62e2c3936223dc0fa274db"></a>
@@ -358,6 +407,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Generated Dev/QA-weighted Engineering Summaries, one per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, produced by <code>SummarizationService</code>. </p>
 
 </div>
 </div>
@@ -381,6 +432,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Epics, each belonging to exactly one <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>. </p>
+
 </div>
 </div>
 <a id="a8fbdf4ab9ae676d477131c9e20f68194" name="a8fbdf4ab9ae676d477131c9e20f68194"></a>
@@ -402,6 +455,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Generated ScrumMaster/Stakeholder/EngineeringManager-weighted Business Summaries, one per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, produced by <code>SummarizationService</code>. </p>
 
 </div>
 </div>
@@ -425,6 +480,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Top-level Initiatives, ordered in reports by Initiative.PriorityRank. </p>
+
 </div>
 </div>
 <a id="a52934a201025f68c21571d117f2e8b73" name="a52934a201025f68c21571d117f2e8b73"></a>
@@ -446,6 +503,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The flat team roster, joined to Comment/WorkItem only by name/role string match in application logic. </p>
 
 </div>
 </div>
@@ -469,6 +528,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>All work items (Story/Bug/Task/Spike/Subtask/StoryBug), discriminated by WorkItem.Type. </p>
+
 </div>
 </div>
 <a id="a31d955e6376306429e0eee0a4c10b1ae" name="a31d955e6376306429e0eee0a4c10b1ae"></a>
@@ -490,6 +551,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Generated summaries, one per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>, produced by <code>SummarizationService</code>. </p>
 
 </div>
 </div>

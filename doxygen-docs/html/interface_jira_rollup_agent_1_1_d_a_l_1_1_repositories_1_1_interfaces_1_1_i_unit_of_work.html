@@ -147,6 +147,7 @@ Collaboration diagram for JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWor
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac9fa55690f8014facd21ce3afa26c9c1" id="r_ac9fa55690f8014facd21ce3afa26c9c1"><td class="memItemLeft">IRepository&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac9fa55690f8014facd21ce3afa26c9c1">Repository&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:ac9fa55690f8014facd21ce3afa26c9c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic access to a repository for any entity type, cached per type for the lifetime of this Unit of Work.  <br /></td></tr>
 <tr class="memitem:ad6292107d1270f8383da485fb36d59f0" id="r_ad6292107d1270f8383da485fb36d59f0"><td class="memItemLeft">Task&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad6292107d1270f8383da485fb36d59f0">CompleteAsync</a> ()</td></tr>
 <tr class="memdesc:ad6292107d1270f8383da485fb36d59f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commit all changes made through repositories to the database.  <br /></td></tr>
 <tr class="memitem:ac2783c97eb67c06050d94a37ad9bf048" id="r_ac2783c97eb67c06050d94a37ad9bf048"><td class="memItemLeft">Task&#160;</td><td class="memItemRight"><a class="el" href="#ac2783c97eb67c06050d94a37ad9bf048">DeleteAllRowsAsync</a> ()</td></tr>
@@ -157,13 +158,21 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a2120bddd203d5eb4e2e6ef7af14762cb" id="r_a2120bddd203d5eb4e2e6ef7af14762cb"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html">Initiative</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2120bddd203d5eb4e2e6ef7af14762cb">Initiatives</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2120bddd203d5eb4e2e6ef7af14762cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for Initiative rows.  <br /></td></tr>
 <tr class="memitem:ad11034062f25906ae60593a89e7ca2cb" id="r_ad11034062f25906ae60593a89e7ca2cb"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html">Epic</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad11034062f25906ae60593a89e7ca2cb">Epics</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad11034062f25906ae60593a89e7ca2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for Epic rows.  <br /></td></tr>
 <tr class="memitem:a5c2b90c02ff837653dd14fdf6ee2de2a" id="r_a5c2b90c02ff837653dd14fdf6ee2de2a"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5c2b90c02ff837653dd14fdf6ee2de2a">WorkItems</a><code> [get]</code></td></tr>
+<tr class="memdesc:a5c2b90c02ff837653dd14fdf6ee2de2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for WorkItem rows (Story/Bug/Task/Spike/Subtask/StoryBug).  <br /></td></tr>
 <tr class="memitem:a88f45fa0fc1bf65e63592c4e4f1f5df3" id="r_a88f45fa0fc1bf65e63592c4e4f1f5df3"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a88f45fa0fc1bf65e63592c4e4f1f5df3">Comments</a><code> [get]</code></td></tr>
+<tr class="memdesc:a88f45fa0fc1bf65e63592c4e4f1f5df3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for Comment rows.  <br /></td></tr>
 <tr class="memitem:a9253b02fcfe7dcb9cde586911c768738" id="r_a9253b02fcfe7dcb9cde586911c768738"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_team_member.html">TeamMember</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9253b02fcfe7dcb9cde586911c768738">TeamMembers</a><code> [get]</code></td></tr>
+<tr class="memdesc:a9253b02fcfe7dcb9cde586911c768738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for TeamMember rows.  <br /></td></tr>
 <tr class="memitem:acccbc84dbaf06d99ec574674d2964ca4" id="r_acccbc84dbaf06d99ec574674d2964ca4"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item_summary.html">WorkItemSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acccbc84dbaf06d99ec574674d2964ca4">WorkItemSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:acccbc84dbaf06d99ec574674d2964ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for WorkItemSummary rows.  <br /></td></tr>
 <tr class="memitem:a9ab0857d3281ea861756b849a53a33a2" id="r_a9ab0857d3281ea861756b849a53a33a2"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic_engineering_summary.html">EpicEngineeringSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9ab0857d3281ea861756b849a53a33a2">EpicEngineeringSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:a9ab0857d3281ea861756b849a53a33a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for EpicEngineeringSummary rows.  <br /></td></tr>
 <tr class="memitem:a3c1fdc6d70f0b5c9fa60e2439456d66d" id="r_a3c1fdc6d70f0b5c9fa60e2439456d66d"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative_business_summary.html">InitiativeBusinessSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3c1fdc6d70f0b5c9fa60e2439456d66d">InitiativeBusinessSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:a3c1fdc6d70f0b5c9fa60e2439456d66d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for InitiativeBusinessSummary rows.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unit of Work interface to manage transactions and coordinate access to all repositories. </p>
@@ -246,6 +255,14 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Generic access to a repository for any entity type, cached per type for the lifetime of this Unit of Work. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The entity type to get a repository for.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#ac907a05ca666588cca0cddb12c5a8ca0">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 <div class="typeconstraint">
 <dl><dt><b>Type Constraints</b></dt><dd>
@@ -260,7 +277,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_cgraph.png" border="0" usemap="#ainterface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_cgraph" loading="lazy" alt=""/></div>
 <map name="ainterface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_cgraph" id="ainterface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,29,259,72"/>
+<area shape="rect" title="Generic access to a repository for any entity type, cached per type for the lifetime of this Unit of ..." alt="" coords="5,29,259,72"/>
 <area shape="poly" title=" " alt="" coords="84,28,82,19,90,10,107,5,132,3,159,5,177,14,172,14,158,10,132,8,108,10,93,15,87,21,89,30"/>
 </map>
 </div>
@@ -269,7 +286,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_icgraph.png" border="0" usemap="#ainterface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_icgraph" loading="lazy" alt=""/></div>
 <map name="ainterface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_icgraph" id="ainterface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work_ac9fa55690f8014facd21ce3afa26c9c1_icgraph">
-<area shape="rect" title=" " alt="" coords="5,29,259,72"/>
+<area shape="rect" title="Generic access to a repository for any entity type, cached per type for the lifetime of this Unit of ..." alt="" coords="5,29,259,72"/>
 <area shape="poly" title=" " alt="" coords="172,14,158,10,132,8,108,10,93,15,87,21,89,30,84,28,82,19,90,10,107,5,132,3,159,5,177,14"/>
 </map>
 </div>
@@ -297,6 +314,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for Comment rows. </p>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#aa292f0f5897337fb9f159022ca1a8de0">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 
 </div>
@@ -320,6 +339,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for EpicEngineeringSummary rows. </p>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a49be7f3b9fb46ebe9f3c1dfec53b1594">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 
@@ -345,6 +366,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for Epic rows. </p>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a62149faf41a178bef3d247a4df90a076">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 
 </div>
@@ -368,6 +391,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for InitiativeBusinessSummary rows. </p>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#aa9cbe9b314706ce4a169912d4affb533">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 
@@ -393,6 +418,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for Initiative rows. </p>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a4e4cecb37acc96dd3ff9eaeb2fb5b4d2">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 
 </div>
@@ -416,6 +443,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for TeamMember rows. </p>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a7ecb099ca480e2c782c2c1a62b2a54d0">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 
@@ -441,6 +470,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for WorkItem rows (Story/Bug/Task/Spike/Subtask/StoryBug). </p>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a6f962c7eb32a03eeeca5bb58c0ecb0b7">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 
 </div>
@@ -464,6 +495,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for WorkItemSummary rows. </p>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a67049f022a855866e6c12f4cb9b6a4aa">JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork</a>.</p>
 

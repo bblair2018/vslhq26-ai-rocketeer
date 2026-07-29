@@ -145,19 +145,72 @@ Collaboration diagram for JiraRollupAgent.DAL.Repositories.Implementations.Repos
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aea1b4d82e2f8c6dfb339f15f4e0b0f00" id="r_aea1b4d82e2f8c6dfb339f15f4e0b0f00"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aea1b4d82e2f8c6dfb339f15f4e0b0f00">Repository</a> (DbContext context)</td></tr>
+<tr class="memdesc:aea1b4d82e2f8c6dfb339f15f4e0b0f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a repository bound to the given context's DbSet&lt;T&gt; for <em>T</em> .  <br /></td></tr>
 <tr class="memitem:a4dc03f13e56eaddd2787d7c1227e4cdd" id="r_a4dc03f13e56eaddd2787d7c1227e4cdd"><td class="memItemLeft">async Task&lt; IEnumerable&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4dc03f13e56eaddd2787d7c1227e4cdd">GetAllAsync</a> ()</td></tr>
+<tr class="memdesc:a4dc03f13e56eaddd2787d7c1227e4cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves every row for this entity type.  <br /></td></tr>
 <tr class="memitem:a138aec62b5c80e5ad5968743bea89726" id="r_a138aec62b5c80e5ad5968743bea89726"><td class="memItemLeft">async Task&lt; T?&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a138aec62b5c80e5ad5968743bea89726">GetByIdAsync</a> (int id)</td></tr>
+<tr class="memdesc:a138aec62b5c80e5ad5968743bea89726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a single entity by its primary key, or <code>null</code> if not found.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The primary key value to look up.</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="memitem:a9f19efa537f2ec4871f57e722e6415ac" id="r_a9f19efa537f2ec4871f57e722e6415ac"><td class="memItemLeft">async Task&lt; IEnumerable&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9f19efa537f2ec4871f57e722e6415ac">FindAsync</a> (Expression&lt; Func&lt; T, bool &gt; &gt; predicate)</td></tr>
+<tr class="memdesc:a9f19efa537f2ec4871f57e722e6415ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves every entity matching the given predicate.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">predicate</td><td>The filter condition to apply.</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="memitem:a9ac7684f96ae4e80c0b3d073b95dc756" id="r_a9ac7684f96ae4e80c0b3d073b95dc756"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#a9ac7684f96ae4e80c0b3d073b95dc756">AddAsync</a> (T entity)</td></tr>
+<tr class="memdesc:a9ac7684f96ae4e80c0b3d073b95dc756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a single entity as added; not persisted until IUnitOfWork.CompleteAsync is called.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="memitem:a2dbf7c01e4f32f61941724b919378d45" id="r_a2dbf7c01e4f32f61941724b919378d45"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#a2dbf7c01e4f32f61941724b919378d45">AddRangeAsync</a> (IEnumerable&lt; T &gt; entities)</td></tr>
+<tr class="memdesc:a2dbf7c01e4f32f61941724b919378d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a batch of entities as added; not persisted until IUnitOfWork.CompleteAsync is called.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entities</td><td>The entities to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="memitem:a5f72eac583d01d61bbcb1b28084c358b" id="r_a5f72eac583d01d61bbcb1b28084c358b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5f72eac583d01d61bbcb1b28084c358b">Update</a> (T entity)</td></tr>
+<tr class="memdesc:a5f72eac583d01d61bbcb1b28084c358b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks an existing entity as modified.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to update.</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="memitem:a35683d017fefa975b53448e35fc9efee" id="r_a35683d017fefa975b53448e35fc9efee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a35683d017fefa975b53448e35fc9efee">Remove</a> (T entity)</td></tr>
+<tr class="memdesc:a35683d017fefa975b53448e35fc9efee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a single entity as removed.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to remove.</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="memitem:a8a721eddac057a66e9d59ebfe232acf9" id="r_a8a721eddac057a66e9d59ebfe232acf9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8a721eddac057a66e9d59ebfe232acf9">RemoveRange</a> (IEnumerable&lt; T &gt; entities)</td></tr>
+<tr class="memdesc:a8a721eddac057a66e9d59ebfe232acf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a batch of entities as removed.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entities</td><td>The entities to remove.</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a8109b97a6eacae9ceece439680b6da29" id="r_a8109b97a6eacae9ceece439680b6da29"><td class="memItemLeft">readonly DbContext&#160;</td><td class="memItemRight"><a class="el" href="#a8109b97a6eacae9ceece439680b6da29">_context</a></td></tr>
+<tr class="memdesc:a8109b97a6eacae9ceece439680b6da29"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shared EF Core context this repository operates against.  <br /></td></tr>
 <tr class="memitem:a8b433aba4b7df6cd4e6eb51160a9630b" id="r_a8b433aba4b7df6cd4e6eb51160a9630b"><td class="memItemLeft">readonly DbSet&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8b433aba4b7df6cd4e6eb51160a9630b">_dbSet</a></td></tr>
+<tr class="memdesc:a8b433aba4b7df6cd4e6eb51160a9630b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The DbSet&lt;T&gt; for this repository's entity type.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic repository class for handling CRUD operations on a given entity type using Entity Framework Core. </p>
@@ -199,6 +252,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Marks a single entity as added; not persisted until IUnitOfWork.CompleteAsync is called.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#a3072bc4e424c9125b6ce516f53eeb07d">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
 </div>
@@ -225,6 +286,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Marks a batch of entities as added; not persisted until IUnitOfWork.CompleteAsync is called.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entities</td><td>The entities to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#ada6e9d694b52fa48b25b7efcd65ab83e">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
@@ -253,6 +322,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves every entity matching the given predicate.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">predicate</td><td>The filter condition to apply.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#a7107b113a5d65a87e1c9aefbf17f5382">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
 </div>
@@ -279,6 +356,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Retrieves every row for this entity type. </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#a580b7df9a43cfba8cb127ae01c12f8d0">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
@@ -307,6 +386,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves a single entity by its primary key, or <code>null</code> if not found.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The primary key value to look up.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#a63cf7ea5cf49e1177b2be12e3e58be24">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
 </div>
@@ -333,6 +420,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Marks a single entity as removed.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to remove.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#af58b0b508398d3cdaa25850c331cf5b1">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
@@ -361,6 +456,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Marks a batch of entities as removed.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entities</td><td>The entities to remove.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#a7d7e21c3648f81110f16cc10e672a0d8">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
 </div>
@@ -388,6 +491,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Creates a repository bound to the given context's DbSet&lt;T&gt; for <em>T</em> . </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The EF Core context to operate against.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a5f72eac583d01d61bbcb1b28084c358b" name="a5f72eac583d01d61bbcb1b28084c358b"></a>
@@ -412,6 +523,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Marks an existing entity as modified.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to update.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#af9f1772ef53fc610713e6c820c34a02f">JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;</a>.</p>
 
@@ -438,6 +557,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The shared EF Core context this repository operates against. </p>
+
 </div>
 </div>
 <a id="a8b433aba4b7df6cd4e6eb51160a9630b" name="a8b433aba4b7df6cd4e6eb51160a9630b"></a>
@@ -459,6 +580,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The DbSet&lt;T&gt; for this repository's entity type. </p>
 
 </div>
 </div>

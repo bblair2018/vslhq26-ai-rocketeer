@@ -6,6 +6,8 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
     /// </summary>
     public interface IJiraHierarchyLoaderService
     {
+        /// <summary>Runs the load stage, gated by <c>AppSettings:RunHierarchyLoad</c>.</summary>
+        /// <returns><c>true</c> on success or a skipped run; <c>false</c> if the load failed.</returns>
         Task<bool> Run();
     }
 }

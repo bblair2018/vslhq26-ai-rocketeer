@@ -155,31 +155,43 @@ Collaboration diagram for JiraRollupAgent.DAL.Repositories.Implementations.UnitO
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aaed87d615c947847355907d85e3cf332" id="r_aaed87d615c947847355907d85e3cf332"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aaed87d615c947847355907d85e3cf332">UnitOfWork</a> (<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html">JiraRollupDBContext</a> context)</td></tr>
+<tr class="memdesc:aaed87d615c947847355907d85e3cf332"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Unit of Work bound to the given EF Core context.  <br /></td></tr>
 <tr class="memitem:a9c015d0c9c6983d87312279d4ddaf84f" id="r_a9c015d0c9c6983d87312279d4ddaf84f"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#a9c015d0c9c6983d87312279d4ddaf84f">DeleteAllRowsAsync</a> ()</td></tr>
 <tr class="memdesc:a9c015d0c9c6983d87312279d4ddaf84f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncate all tables in the database (delete all records).  <br /></td></tr>
 <tr class="memitem:ad17773317819df76588093a55cacfa16" id="r_ad17773317819df76588093a55cacfa16"><td class="memItemLeft">async Task&#160;</td><td class="memItemRight"><a class="el" href="#ad17773317819df76588093a55cacfa16">DeleteAllSummariesAsync</a> ()</td></tr>
 <tr class="memdesc:ad17773317819df76588093a55cacfa16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncate just the three summary tables (WorkItemSummaries/EpicEngineeringSummaries/ InitiativeBusinessSummaries) - used by SummarizationService to regenerate fresh on every run without touching the loaded hierarchy.  <br /></td></tr>
 <tr class="memitem:adfc3986e1ff282c088d93401dc9e1eb8" id="r_adfc3986e1ff282c088d93401dc9e1eb8"><td class="memItemLeft">async Task&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#adfc3986e1ff282c088d93401dc9e1eb8">SaveAsync</a> ()</td></tr>
+<tr class="memdesc:adfc3986e1ff282c088d93401dc9e1eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persists all pending changes tracked by the context. Called by CompleteAsync.  <br /></td></tr>
 <tr class="memitem:abb6c180aa7c80dceeab8d0e9db33e18c" id="r_abb6c180aa7c80dceeab8d0e9db33e18c"><td class="memItemLeft">async Task&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#abb6c180aa7c80dceeab8d0e9db33e18c">CompleteAsync</a> ()</td></tr>
 <tr class="memdesc:abb6c180aa7c80dceeab8d0e9db33e18c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commit all changes made through repositories to the database.  <br /></td></tr>
 <tr class="memitem:ac907a05ca666588cca0cddb12c5a8ca0" id="r_ac907a05ca666588cca0cddb12c5a8ca0"><td class="memItemLeft">IRepository&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac907a05ca666588cca0cddb12c5a8ca0">Repository&lt; T &gt;</a> ()</td></tr>
 <tr class="memdesc:ac907a05ca666588cca0cddb12c5a8ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to get a repository for any entity type. Uses a dictionary cache to ensure only one repository instance is created per entity type, matching the same lazy-instantiation pattern used by the named repository properties above.  <br /></td></tr>
 <tr class="memitem:a9ad5449e7038697f3564dc8c6fbeee9c" id="r_a9ad5449e7038697f3564dc8c6fbeee9c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9ad5449e7038697f3564dc8c6fbeee9c">Dispose</a> ()</td></tr>
+<tr class="memdesc:a9ad5449e7038697f3564dc8c6fbeee9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disposes the underlying EF Core context.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a4e4cecb37acc96dd3ff9eaeb2fb5b4d2" id="r_a4e4cecb37acc96dd3ff9eaeb2fb5b4d2"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html">Initiative</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4e4cecb37acc96dd3ff9eaeb2fb5b4d2">Initiatives</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4e4cecb37acc96dd3ff9eaeb2fb5b4d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for Initiative rows.  <br /></td></tr>
 <tr class="memitem:a62149faf41a178bef3d247a4df90a076" id="r_a62149faf41a178bef3d247a4df90a076"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html">Epic</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a62149faf41a178bef3d247a4df90a076">Epics</a><code> [get]</code></td></tr>
+<tr class="memdesc:a62149faf41a178bef3d247a4df90a076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for Epic rows.  <br /></td></tr>
 <tr class="memitem:a6f962c7eb32a03eeeca5bb58c0ecb0b7" id="r_a6f962c7eb32a03eeeca5bb58c0ecb0b7"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6f962c7eb32a03eeeca5bb58c0ecb0b7">WorkItems</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6f962c7eb32a03eeeca5bb58c0ecb0b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for WorkItem rows (Story/Bug/Task/Spike/Subtask/StoryBug).  <br /></td></tr>
 <tr class="memitem:aa292f0f5897337fb9f159022ca1a8de0" id="r_aa292f0f5897337fb9f159022ca1a8de0"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa292f0f5897337fb9f159022ca1a8de0">Comments</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa292f0f5897337fb9f159022ca1a8de0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for Comment rows.  <br /></td></tr>
 <tr class="memitem:a7ecb099ca480e2c782c2c1a62b2a54d0" id="r_a7ecb099ca480e2c782c2c1a62b2a54d0"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_team_member.html">TeamMember</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7ecb099ca480e2c782c2c1a62b2a54d0">TeamMembers</a><code> [get]</code></td></tr>
+<tr class="memdesc:a7ecb099ca480e2c782c2c1a62b2a54d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for TeamMember rows.  <br /></td></tr>
 <tr class="memitem:a67049f022a855866e6c12f4cb9b6a4aa" id="r_a67049f022a855866e6c12f4cb9b6a4aa"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item_summary.html">WorkItemSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a67049f022a855866e6c12f4cb9b6a4aa">WorkItemSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:a67049f022a855866e6c12f4cb9b6a4aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for WorkItemSummary rows.  <br /></td></tr>
 <tr class="memitem:a49be7f3b9fb46ebe9f3c1dfec53b1594" id="r_a49be7f3b9fb46ebe9f3c1dfec53b1594"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic_engineering_summary.html">EpicEngineeringSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a49be7f3b9fb46ebe9f3c1dfec53b1594">EpicEngineeringSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:a49be7f3b9fb46ebe9f3c1dfec53b1594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for EpicEngineeringSummary rows.  <br /></td></tr>
 <tr class="memitem:aa9cbe9b314706ce4a169912d4affb533" id="r_aa9cbe9b314706ce4a169912d4affb533"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative_business_summary.html">InitiativeBusinessSummary</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa9cbe9b314706ce4a169912d4affb533">InitiativeBusinessSummaries</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa9cbe9b314706ce4a169912d4affb533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repository for InitiativeBusinessSummary rows.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a39f47f29cf861e4ca48a802dd44b2061" id="r_a39f47f29cf861e4ca48a802dd44b2061"><td class="memItemLeft">readonly <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html">JiraRollupDBContext</a>&#160;</td><td class="memItemRight"><a class="el" href="#a39f47f29cf861e4ca48a802dd44b2061">_context</a></td></tr>
+<tr class="memdesc:a39f47f29cf861e4ca48a802dd44b2061"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shared EF Core context all repositories in this Unit of Work operate against.  <br /></td></tr>
 <tr class="memitem:a90c7ff122d76f4fa2c43d1cb5188006f" id="r_a90c7ff122d76f4fa2c43d1cb5188006f"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html">Initiative</a> &gt;?&#160;</td><td class="memItemRight"><a class="el" href="#a90c7ff122d76f4fa2c43d1cb5188006f">_initiativeRepository</a></td></tr>
 <tr class="memitem:a167b2426257553ecceb3fa90c9e63e65" id="r_a167b2426257553ecceb3fa90c9e63e65"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html">Epic</a> &gt;?&#160;</td><td class="memItemRight"><a class="el" href="#a167b2426257553ecceb3fa90c9e63e65">_epicRepository</a></td></tr>
 <tr class="memitem:a7b43854cc971d58b69b4ac2e81d69441" id="r_a7b43854cc971d58b69b4ac2e81d69441"><td class="memItemLeft">IRepository&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a> &gt;?&#160;</td><td class="memItemRight"><a class="el" href="#a7b43854cc971d58b69b4ac2e81d69441">_workItemRepository</a></td></tr>
@@ -216,6 +228,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Creates a Unit of Work bound to the given EF Core context. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The context all repositories will share.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -251,7 +271,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_abb6c180aa7c80dceeab8d0e9db33e18c_cgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_abb6c180aa7c80dceeab8d0e9db33e18c_cgraph" loading="lazy" alt=""/></div>
 <map name="aclass_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_abb6c180aa7c80dceeab8d0e9db33e18c_cgraph" id="aclass_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_abb6c180aa7c80dceeab8d0e9db33e18c_cgraph">
 <area shape="rect" title="Commit all changes made through repositories to the database." alt="" coords="5,5,292,48"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#adfc3986e1ff282c088d93401dc9e1eb8" title=" " alt="" coords="340,5,600,48"/>
+<area shape="rect" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#adfc3986e1ff282c088d93401dc9e1eb8" title="Persists all pending changes tracked by the context. Called by CompleteAsync." alt="" coords="340,5,600,48"/>
 <area shape="poly" title=" " alt="" coords="292,24,327,27,322,27,292,29"/>
 </map>
 </div>
@@ -339,6 +359,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Disposes the underlying EF Core context. </p>
+
 </div>
 </div>
 <a id="ac907a05ca666588cca0cddb12c5a8ca0" name="ac907a05ca666588cca0cddb12c5a8ca0"></a>
@@ -365,6 +387,13 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Generic method to get a repository for any entity type. Uses a dictionary cache to ensure only one repository instance is created per entity type, matching the same lazy-instantiation pattern used by the named repository properties above. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The entity type to get a repository for.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A repository for <em>T</em> , cached for the lifetime of this Unit of Work.</dd></dl>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#ac9fa55690f8014facd21ce3afa26c9c1">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 <div class="typeconstraint">
@@ -418,12 +447,15 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Persists all pending changes tracked by the context. Called by CompleteAsync. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of state entries written to the database.</dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_adfc3986e1ff282c088d93401dc9e1eb8_icgraph.png" border="0" usemap="#aclass_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_adfc3986e1ff282c088d93401dc9e1eb8_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_adfc3986e1ff282c088d93401dc9e1eb8_icgraph" id="aclass_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work_adfc3986e1ff282c088d93401dc9e1eb8_icgraph">
-<area shape="rect" title=" " alt="" coords="340,5,600,48"/>
+<area shape="rect" title="Persists all pending changes tracked by the context. Called by CompleteAsync." alt="" coords="340,5,600,48"/>
 <area shape="rect" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#abb6c180aa7c80dceeab8d0e9db33e18c" title="Commit all changes made through repositories to the database." alt="" coords="5,5,292,48"/>
 <area shape="poly" title=" " alt="" coords="322,27,292,29,292,24,327,27"/>
 </map>
@@ -473,6 +505,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The shared EF Core context all repositories in this Unit of Work operate against. </p>
 
 </div>
 </div>
@@ -673,6 +707,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for Comment rows. </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a88f45fa0fc1bf65e63592c4e4f1f5df3">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 
 </div>
@@ -696,6 +732,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for EpicEngineeringSummary rows. </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a9ab0857d3281ea861756b849a53a33a2">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 
@@ -721,6 +759,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for Epic rows. </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#ad11034062f25906ae60593a89e7ca2cb">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 
 </div>
@@ -744,6 +784,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for InitiativeBusinessSummary rows. </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a3c1fdc6d70f0b5c9fa60e2439456d66d">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 
@@ -769,6 +811,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for Initiative rows. </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a2120bddd203d5eb4e2e6ef7af14762cb">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 
 </div>
@@ -792,6 +836,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for TeamMember rows. </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a9253b02fcfe7dcb9cde586911c768738">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 
@@ -817,6 +863,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Repository for WorkItem rows (Story/Bug/Task/Spike/Subtask/StoryBug). </p>
+
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#a5c2b90c02ff837653dd14fdf6ee2de2a">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 
 </div>
@@ -840,6 +888,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Repository for WorkItemSummary rows. </p>
 
 <p>Implements <a class="el" href="interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html#acccbc84dbaf06d99ec574674d2964ca4">JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork</a>.</p>
 

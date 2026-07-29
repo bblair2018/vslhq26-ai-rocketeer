@@ -133,13 +133,19 @@ Collaboration diagram for JiraRollupAgent.DAL.Models.WorkItemSummary:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a6141bd02b41cbd0aa1b5f0853a89cc14" id="r_a6141bd02b41cbd0aa1b5f0853a89cc14"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a6141bd02b41cbd0aa1b5f0853a89cc14">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6141bd02b41cbd0aa1b5f0853a89cc14"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database primary key.  <br /></td></tr>
 <tr class="memitem:a84aa22073132da725dd94391408b8cac" id="r_a84aa22073132da725dd94391408b8cac"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a84aa22073132da725dd94391408b8cac">WorkItemId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a84aa22073132da725dd94391408b8cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Foreign key to the summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>; unique, enforcing one summary per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>.  <br /></td></tr>
 <tr class="memitem:abe79cc74794faeb79d7f85d9e9e5250c" id="r_abe79cc74794faeb79d7f85d9e9e5250c"><td class="memItemLeft">virtual WorkItem&#160;</td><td class="memItemRight"><a class="el" href="#abe79cc74794faeb79d7f85d9e9e5250c">WorkItem</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:abe79cc74794faeb79d7f85d9e9e5250c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>.  <br /></td></tr>
 <tr class="memitem:a859e4e69dadafe2569ccacfd411f5475" id="r_a859e4e69dadafe2569ccacfd411f5475"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a859e4e69dadafe2569ccacfd411f5475">SummaryText</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a859e4e69dadafe2569ccacfd411f5475"><td class="mdescLeft">&#160;</td><td class="mdescRight">The generated summary text.  <br /></td></tr>
 <tr class="memitem:a020de4927baac4cdf5fa9237c65aa51d" id="r_a020de4927baac4cdf5fa9237c65aa51d"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#a020de4927baac4cdf5fa9237c65aa51d">RangeStart</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a020de4927baac4cdf5fa9237c65aa51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date range whose comments produced this summary - provenance, not history.  <br /></td></tr>
+<tr class="memdesc:a020de4927baac4cdf5fa9237c65aa51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The start of the date range whose comments produced this summary - provenance, not history.  <br /></td></tr>
 <tr class="memitem:acbcde73fdd7c35ab1765ea8cfcac9b48" id="r_acbcde73fdd7c35ab1765ea8cfcac9b48"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#acbcde73fdd7c35ab1765ea8cfcac9b48">RangeEnd</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:acbcde73fdd7c35ab1765ea8cfcac9b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">The end of the date range whose comments produced this summary - provenance, not history.  <br /></td></tr>
 <tr class="memitem:a7c65f565ce31c5f35c5e3edb04dca0e5" id="r_a7c65f565ce31c5f35c5e3edb04dca0e5"><td class="memItemLeft">DateTime&#160;</td><td class="memItemRight"><a class="el" href="#a7c65f565ce31c5f35c5e3edb04dca0e5">GeneratedAt</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7c65f565ce31c5f35c5e3edb04dca0e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">When this summary was generated.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The generated summary for a single <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a> (Story/Bug/Task/Spike/Subtask/StoryBug) - Type A (leaf) or Type B (Story, rolling up its Subtask/StoryBug summaries), never role-weighted. Exactly one row per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>: overwritten fresh on every SummarizationService run, not a history table. Never printed directly in the report - consumed as input by the Story (if this is a Subtask/StoryBug) or <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> (if this is a Story/Bug/Task/Spike) summary above it. </p>
@@ -164,6 +170,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>When this summary was generated. </p>
+
 </div>
 </div>
 <a id="a6141bd02b41cbd0aa1b5f0853a89cc14" name="a6141bd02b41cbd0aa1b5f0853a89cc14"></a>
@@ -185,6 +193,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The database primary key. </p>
 
 </div>
 </div>
@@ -208,6 +218,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The end of the date range whose comments produced this summary - provenance, not history. </p>
+
 </div>
 </div>
 <a id="a020de4927baac4cdf5fa9237c65aa51d" name="a020de4927baac4cdf5fa9237c65aa51d"></a>
@@ -230,7 +242,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The date range whose comments produced this summary - provenance, not history. </p>
+<p>The start of the date range whose comments produced this summary - provenance, not history. </p>
 
 </div>
 </div>
@@ -254,6 +266,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The generated summary text. </p>
+
 </div>
 </div>
 <a id="abe79cc74794faeb79d7f85d9e9e5250c" name="abe79cc74794faeb79d7f85d9e9e5250c"></a>
@@ -276,6 +290,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>. </p>
+
 </div>
 </div>
 <a id="a84aa22073132da725dd94391408b8cac" name="a84aa22073132da725dd94391408b8cac"></a>
@@ -297,6 +313,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Foreign key to the summarized <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>; unique, enforcing one summary per <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,...">WorkItem</a>. </p>
 
 </div>
 </div>

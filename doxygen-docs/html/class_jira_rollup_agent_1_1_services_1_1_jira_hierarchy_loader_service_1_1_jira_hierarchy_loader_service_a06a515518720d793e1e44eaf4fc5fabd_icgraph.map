@@ -1,6 +1,6 @@
 <map id="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.LoadTeamMembersAsync" name="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.LoadTeamMembersAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="724,5,1040,64"/>
-<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title=" " alt="" coords="470,5,676,64"/>
+<area shape="rect" id="Node000001" title="Maps the mock team roster into Entities.TeamMember entities and marks them added." alt="" coords="724,5,1040,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#ad38beb2b2b2f3cba14763c481294e0e4" title="Runs the load stage, gated by AppSettings:RunHierarchyLoad.true on success or a skipped run; false if..." alt="" coords="470,5,676,64"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="706,35,677,37,677,32,712,35"/>
 <area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,13,422,56"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="452,35,422,37,422,32,457,35"/>

@@ -7,23 +7,32 @@ namespace JiraRollupAgent.DAL.Repositories.Interfaces
     /// </summary>
     public interface IUnitOfWork : IDisposable
     {
-        // Generic access to any repository
+        /// <summary>Generic access to a repository for any entity type, cached per type for the lifetime of this Unit of Work.</summary>
+        /// <typeparam name="T">The entity type to get a repository for.</typeparam>
         IRepository<T> Repository<T>() where T : class;
 
+        /// <summary>Repository for <see cref="Initiative"/> rows.</summary>
         IRepository<Initiative> Initiatives { get; }
 
+        /// <summary>Repository for <see cref="Epic"/> rows.</summary>
         IRepository<Epic> Epics { get; }
 
+        /// <summary>Repository for <see cref="WorkItem"/> rows (Story/Bug/Task/Spike/Subtask/StoryBug).</summary>
         IRepository<WorkItem> WorkItems { get; }
 
+        /// <summary>Repository for <see cref="Comment"/> rows.</summary>
         IRepository<Comment> Comments { get; }
 
+        /// <summary>Repository for <see cref="TeamMember"/> rows.</summary>
         IRepository<TeamMember> TeamMembers { get; }
 
+        /// <summary>Repository for <see cref="WorkItemSummary"/> rows.</summary>
         IRepository<WorkItemSummary> WorkItemSummaries { get; }
 
+        /// <summary>Repository for <see cref="EpicEngineeringSummary"/> rows.</summary>
         IRepository<EpicEngineeringSummary> EpicEngineeringSummaries { get; }
 
+        /// <summary>Repository for <see cref="InitiativeBusinessSummary"/> rows.</summary>
         IRepository<InitiativeBusinessSummary> InitiativeBusinessSummaries { get; }
 
         /// <summary>

@@ -10,6 +10,11 @@ using Entities = JiraRollupAgent.DAL.Models;
 
 namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
 {
+    /// <summary>
+    /// The "Extract" stage: deserializes MockData/jira-hierarchy.json + team-roster.json and loads them
+    /// into VSLiveJiraRollup, standing in for a real Jira ingestion pipeline. Self-disables after a
+    /// successful run - see <see cref="DisableHierarchyLoadFlagAsync"/>.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class JiraHierarchyLoaderService : IJiraHierarchyLoaderService
     {
@@ -23,6 +28,9 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
             PropertyNameCaseInsensitive = true
         };
 
+        /// <summary>Creates the loader service.</summary>
+        /// <param name="config">Application configuration, used to read the <c>AppSettings:RunHierarchyLoad</c> flag.</param>
+        /// <param name="unitOfWork">Provides access to the repositories the loaded hierarchy is written to.</param>
         public JiraHierarchyLoaderService(IConfiguration config, IUnitOfWork unitOfWork)
         {
             _config = config;
@@ -31,6 +39,7 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
 
         #region Run
 
+        /// <inheritdoc/>
         public async Task<bool> Run()
         {
             var runStage = _config.GetValue<bool>("AppSettings:RunHierarchyLoad");
@@ -115,6 +124,10 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
 
         #region Loading
 
+        /// <summary>Deserializes a mock data JSON file into <typeparamref name="T"/>, case-insensitively.</summary>
+        /// <typeparam name="T">The deserialization target type.</typeparam>
+        /// <param name="path">The absolute path to the JSON file.</param>
+        /// <returns>The deserialized object, or a new empty <typeparamref name="T"/> if deserialization produced <c>null</c>.</returns>
         private static async Task<T> ReadJsonAsync<T>(string path) where T : new()
         {
             await using var stream = File.OpenRead(path);
@@ -122,6 +135,8 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
             return result ?? new T();
         }
 
+        /// <summary>Maps the mock team roster into <see cref="Entities.TeamMember"/> entities and marks them added.</summary>
+        /// <param name="roster">The deserialized team roster.</param>
         private async Task LoadTeamMembersAsync(MockTeamRoster roster)
         {
             var teamMembers = roster.Team.Select(t => new Entities.TeamMember
@@ -136,6 +151,8 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
             await _unitOfWork.TeamMembers.AddRangeAsync(teamMembers);
         }
 
+        /// <summary>Maps every mock Initiative into its full entity graph (Epics/WorkItems/Children/Comments) and marks each added.</summary>
+        /// <param name="hierarchy">The deserialized mock Jira hierarchy.</param>
         private async Task LoadInitiativesAsync(MockJiraHierarchy hierarchy)
         {
             foreach (var mockInitiative in hierarchy.Initiatives)
@@ -159,6 +176,8 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
             }
         }
 
+        /// <summary>Maps a mock Epic, including its own comments and its WorkItems, into an <see cref="Entities.Epic"/>.</summary>
+        /// <param name="mockEpic">The deserialized mock Epic.</param>
         private static Entities.Epic MapEpic(MockEpic mockEpic)
         {
             var epic = new Entities.Epic
@@ -174,6 +193,8 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
             return epic;
         }
 
+        /// <summary>Maps a direct Epic child (Story/Bug/Task/Spike), including its Subtask/StoryBug children, into a <see cref="Entities.WorkItem"/>.</summary>
+        /// <param name="mockItem">The deserialized mock work item.</param>
         private static Entities.WorkItem MapWorkItem(MockWorkItem mockItem)
         {
             var workItem = new Entities.WorkItem
@@ -195,6 +216,9 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
             return workItem;
         }
 
+        /// <summary>Maps a Subtask or StoryBug into a <see cref="Entities.WorkItem"/> with the given type discriminator.</summary>
+        /// <param name="mockSubItem">The deserialized mock sub-item.</param>
+        /// <param name="type">The type discriminator to assign: "Subtask" or "StoryBug".</param>
         private static Entities.WorkItem MapChildWorkItem(MockSubItem mockSubItem, string type)
         {
             return new Entities.WorkItem
@@ -208,6 +232,8 @@ namespace JiraRollupAgent.Services.JiraHierarchyLoaderService
             };
         }
 
+        /// <summary>Maps a mock comment into a <see cref="Entities.Comment"/> (parent FK left unset - the caller assigns it via navigation).</summary>
+        /// <param name="mockComment">The deserialized mock comment.</param>
         private static Entities.Comment MapComment(MockComment mockComment)
         {
             return new Entities.Comment

@@ -6,6 +6,8 @@ namespace JiraRollupAgent.Services.SummarizationService
     /// </summary>
     public interface ISummarizationService
     {
+        /// <summary>Runs the summarization stage, gated by <c>AppSettings:RunSummarization</c>.</summary>
+        /// <returns><c>true</c> on success or a skipped run; <c>false</c> if summarization failed.</returns>
         Task<bool> Run();
     }
 }

@@ -176,6 +176,16 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Extension method to add context for method being called, file path and line number. This is strongly typed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td>The logger to enrich.</td></tr>
+    <tr><td class="paramname">memberName</td><td>Captured automatically via CallerMemberNameAttribute - do not pass explicitly.</td></tr>
+    <tr><td class="paramname">sourceFilePath</td><td>Captured automatically via CallerFilePathAttribute - do not pass explicitly.</td></tr>
+    <tr><td class="paramname">sourceLineNumber</td><td>Captured automatically via CallerLineNumberAttribute - do not pass explicitly.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A logger enriched with <code>MemberName</code>/<code>FilePath</code>/<code>LineNumber</code> properties for the call site.</dd></dl>
 
 </div>
 </div>

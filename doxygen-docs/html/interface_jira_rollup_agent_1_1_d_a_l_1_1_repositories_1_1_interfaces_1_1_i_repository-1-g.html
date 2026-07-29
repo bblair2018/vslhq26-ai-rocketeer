@@ -143,13 +143,21 @@ Collaboration diagram for JiraRollupAgent.DAL.Repositories.Interfaces.IRepositor
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a580b7df9a43cfba8cb127ae01c12f8d0" id="r_a580b7df9a43cfba8cb127ae01c12f8d0"><td class="memItemLeft">Task&lt; IEnumerable&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a580b7df9a43cfba8cb127ae01c12f8d0">GetAllAsync</a> ()</td></tr>
+<tr class="memdesc:a580b7df9a43cfba8cb127ae01c12f8d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves every row for this entity type.  <br /></td></tr>
 <tr class="memitem:a63cf7ea5cf49e1177b2be12e3e58be24" id="r_a63cf7ea5cf49e1177b2be12e3e58be24"><td class="memItemLeft">Task&lt; T?&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a63cf7ea5cf49e1177b2be12e3e58be24">GetByIdAsync</a> (int id)</td></tr>
+<tr class="memdesc:a63cf7ea5cf49e1177b2be12e3e58be24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a single entity by its primary key, or <code>null</code> if not found.  <br /></td></tr>
 <tr class="memitem:a7107b113a5d65a87e1c9aefbf17f5382" id="r_a7107b113a5d65a87e1c9aefbf17f5382"><td class="memItemLeft">Task&lt; IEnumerable&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7107b113a5d65a87e1c9aefbf17f5382">FindAsync</a> (Expression&lt; Func&lt; T, bool &gt; &gt; predicate)</td></tr>
+<tr class="memdesc:a7107b113a5d65a87e1c9aefbf17f5382"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves every entity matching the given predicate.  <br /></td></tr>
 <tr class="memitem:a3072bc4e424c9125b6ce516f53eeb07d" id="r_a3072bc4e424c9125b6ce516f53eeb07d"><td class="memItemLeft">Task&#160;</td><td class="memItemRight"><a class="el" href="#a3072bc4e424c9125b6ce516f53eeb07d">AddAsync</a> (T entity)</td></tr>
+<tr class="memdesc:a3072bc4e424c9125b6ce516f53eeb07d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a single entity as added; not persisted until IUnitOfWork.CompleteAsync is called.  <br /></td></tr>
 <tr class="memitem:ada6e9d694b52fa48b25b7efcd65ab83e" id="r_ada6e9d694b52fa48b25b7efcd65ab83e"><td class="memItemLeft">Task&#160;</td><td class="memItemRight"><a class="el" href="#ada6e9d694b52fa48b25b7efcd65ab83e">AddRangeAsync</a> (IEnumerable&lt; T &gt; entities)</td></tr>
+<tr class="memdesc:ada6e9d694b52fa48b25b7efcd65ab83e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a batch of entities as added; not persisted until IUnitOfWork.CompleteAsync is called.  <br /></td></tr>
 <tr class="memitem:af9f1772ef53fc610713e6c820c34a02f" id="r_af9f1772ef53fc610713e6c820c34a02f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af9f1772ef53fc610713e6c820c34a02f">Update</a> (T entity)</td></tr>
+<tr class="memdesc:af9f1772ef53fc610713e6c820c34a02f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks an existing entity as modified.  <br /></td></tr>
 <tr class="memitem:af58b0b508398d3cdaa25850c331cf5b1" id="r_af58b0b508398d3cdaa25850c331cf5b1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af58b0b508398d3cdaa25850c331cf5b1">Remove</a> (T entity)</td></tr>
+<tr class="memdesc:af58b0b508398d3cdaa25850c331cf5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a single entity as removed.  <br /></td></tr>
 <tr class="memitem:a7d7e21c3648f81110f16cc10e672a0d8" id="r_a7d7e21c3648f81110f16cc10e672a0d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7d7e21c3648f81110f16cc10e672a0d8">RemoveRange</a> (IEnumerable&lt; T &gt; entities)</td></tr>
+<tr class="memdesc:a7d7e21c3648f81110f16cc10e672a0d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a batch of entities as removed.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic repository interface for handling CRUD operations on a given entity type. </p>
@@ -183,6 +191,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Marks a single entity as added; not persisted until IUnitOfWork.CompleteAsync is called. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a9ac7684f96ae4e80c0b3d073b95dc756">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 
 </div>
@@ -201,6 +217,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Marks a batch of entities as added; not persisted until IUnitOfWork.CompleteAsync is called. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entities</td><td>The entities to add.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a2dbf7c01e4f32f61941724b919378d45">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 
@@ -221,6 +245,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Retrieves every entity matching the given predicate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">predicate</td><td>The filter condition to apply.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a9f19efa537f2ec4871f57e722e6415ac">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 
 </div>
@@ -239,6 +271,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Retrieves every row for this entity type. </p>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a4dc03f13e56eaddd2787d7c1227e4cdd">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 
@@ -259,6 +293,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Retrieves a single entity by its primary key, or <code>null</code> if not found. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The primary key value to look up.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a138aec62b5c80e5ad5968743bea89726">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 
 </div>
@@ -277,6 +319,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Marks a single entity as removed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to remove.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a35683d017fefa975b53448e35fc9efee">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 
@@ -297,6 +347,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Marks a batch of entities as removed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entities</td><td>The entities to remove.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a8a721eddac057a66e9d59ebfe232acf9">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 
 </div>
@@ -315,6 +373,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Marks an existing entity as modified. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to update.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a5f72eac583d01d61bbcb1b28084c358b">JiraRollupAgent.DAL.Repositories.Implementations.Repository&lt; T &gt;</a>.</p>
 

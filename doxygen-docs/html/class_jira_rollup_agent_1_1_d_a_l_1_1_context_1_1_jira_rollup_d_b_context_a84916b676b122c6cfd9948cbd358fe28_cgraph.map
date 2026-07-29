@@ -1,5 +1,5 @@
 <map id="JiraRollupAgent.DAL.Context.JiraRollupDBContext.OnModelCreating" name="JiraRollupAgent.DAL.Context.JiraRollupDBContext.OnModelCreating">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,255,56"/>
-<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a5aa53d078950c1b5e282bfd679bcbf87" title=" " alt="" coords="303,5,552,64"/>
+<area shape="rect" id="Node000001" title="Configures collation and every relationship/delete&#45;behavior in the entity graph &#45; see CLAUDE...." alt="" coords="5,13,255,56"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html#a5aa53d078950c1b5e282bfd679bcbf87" title="Extension point for additional model configuration in another partial file; currently unused." alt="" coords="303,5,552,64"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,32,290,34,284,35,255,37"/>
 </map>

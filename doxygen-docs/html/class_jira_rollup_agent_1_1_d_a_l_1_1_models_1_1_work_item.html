@@ -133,20 +133,31 @@ Collaboration diagram for JiraRollupAgent.DAL.Models.WorkItem:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a42635a8bd2fd56cf79948cea0ce24dac" id="r_a42635a8bd2fd56cf79948cea0ce24dac"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a42635a8bd2fd56cf79948cea0ce24dac">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a42635a8bd2fd56cf79948cea0ce24dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database primary key.  <br /></td></tr>
 <tr class="memitem:a546fd130a36a9e32581dca098b71abb1" id="r_a546fd130a36a9e32581dca098b71abb1"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a546fd130a36a9e32581dca098b71abb1">JiraId</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a546fd130a36a9e32581dca098b71abb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira key from the source data, e.g. "STORY-PFD-1-1".  <br /></td></tr>
 <tr class="memitem:a3d4baf39625bda8b88987063806ffe56" id="r_a3d4baf39625bda8b88987063806ffe56"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a3d4baf39625bda8b88987063806ffe56">Type</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a3d4baf39625bda8b88987063806ffe56"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira issue type discriminator: "Story", "Bug", "Task", "Spike", "Subtask", or "StoryBug".  <br /></td></tr>
 <tr class="memitem:a46f74be38f3e069ec8c8873eaa686a13" id="r_a46f74be38f3e069ec8c8873eaa686a13"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a46f74be38f3e069ec8c8873eaa686a13">Title</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a46f74be38f3e069ec8c8873eaa686a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">The item's display title.  <br /></td></tr>
 <tr class="memitem:ad895aebc0890d260113bfd1073f26111" id="r_ad895aebc0890d260113bfd1073f26111"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#ad895aebc0890d260113bfd1073f26111">Assignee</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:ad895aebc0890d260113bfd1073f26111"><td class="mdescLeft">&#160;</td><td class="mdescRight">The person assigned to this item.  <br /></td></tr>
 <tr class="memitem:a82958b6a2672f452fb87baa6f631d280" id="r_a82958b6a2672f452fb87baa6f631d280"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a82958b6a2672f452fb87baa6f631d280">Status</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a82958b6a2672f452fb87baa6f631d280"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira workflow status, e.g. "Resolved".  <br /></td></tr>
 <tr class="memitem:ada790eb5582318e486986d9c65d7e637" id="r_ada790eb5582318e486986d9c65d7e637"><td class="memItemLeft">int?&#160;</td><td class="memItemRight"><a class="el" href="#ada790eb5582318e486986d9c65d7e637">EpicId</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ada790eb5582318e486986d9c65d7e637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set when this item is a direct child of an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> (Story/Bug/Task/Spike).  <br /></td></tr>
 <tr class="memitem:a2ab4b7a8f6a7d63bf0f81bf1f15e0222" id="r_a2ab4b7a8f6a7d63bf0f81bf1f15e0222"><td class="memItemLeft">virtual ? Epic&#160;</td><td class="memItemRight"><a class="el" href="#a2ab4b7a8f6a7d63bf0f81bf1f15e0222">Epic</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2ab4b7a8f6a7d63bf0f81bf1f15e0222"><td class="mdescLeft">&#160;</td><td class="mdescRight">The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, if this item is a direct <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> child.  <br /></td></tr>
 <tr class="memitem:a1482b82f861f9161671ae58ad7892213" id="r_a1482b82f861f9161671ae58ad7892213"><td class="memItemLeft">int?&#160;</td><td class="memItemRight"><a class="el" href="#a1482b82f861f9161671ae58ad7892213">ParentWorkItemId</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a1482b82f861f9161671ae58ad7892213"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set when this item is a Subtask/StoryBug nested under a Story.  <br /></td></tr>
 <tr class="memitem:aaeb3b30798497b9cfcf2f5dff62a4056" id="r_aaeb3b30798497b9cfcf2f5dff62a4056"><td class="memItemLeft">virtual ? <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a>&#160;</td><td class="memItemRight"><a class="el" href="#aaeb3b30798497b9cfcf2f5dff62a4056">ParentWorkItem</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aaeb3b30798497b9cfcf2f5dff62a4056"><td class="mdescLeft">&#160;</td><td class="mdescRight">The owning Story, if this item is a Subtask/StoryBug.  <br /></td></tr>
 <tr class="memitem:a2977206fedf434be14c5fe5ac65e725d" id="r_a2977206fedf434be14c5fe5ac65e725d"><td class="memItemLeft">virtual ICollection&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2977206fedf434be14c5fe5ac65e725d">Children</a> = new List&lt;<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a>&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a2977206fedf434be14c5fe5ac65e725d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Story's Subtasks/StoryBugs, if this item is a Story; otherwise empty.  <br /></td></tr>
 <tr class="memitem:a421bc6f5c1159f0cb8a1c2c8a50b1ec6" id="r_a421bc6f5c1159f0cb8a1c2c8a50b1ec6"><td class="memItemLeft">virtual ICollection&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a421bc6f5c1159f0cb8a1c2c8a50b1ec6">Comments</a> = new List&lt;<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a>&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a421bc6f5c1159f0cb8a1c2c8a50b1ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comments attached directly to this item.  <br /></td></tr>
 <tr class="memitem:a97533d0ac52d9c623a65b3259b09c485" id="r_a97533d0ac52d9c623a65b3259b09c485"><td class="memItemLeft">virtual ? <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item_summary.html">WorkItemSummary</a>&#160;</td><td class="memItemRight"><a class="el" href="#a97533d0ac52d9c623a65b3259b09c485">Summary</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a97533d0ac52d9c623a65b3259b09c485"><td class="mdescLeft">&#160;</td><td class="mdescRight">The generated summary for this item, if one has been produced yet.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A single Jira work item. Type is the Jira issue type discriminator: "Story", "Bug", "Task", "Spike" (direct children of an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, via EpicId), or "Subtask"/"StoryBug" (children of a Story, via ParentWorkItemId). </p>
@@ -171,6 +182,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The person assigned to this item. </p>
+
 </div>
 </div>
 <a id="a2977206fedf434be14c5fe5ac65e725d" name="a2977206fedf434be14c5fe5ac65e725d"></a>
@@ -192,6 +205,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This Story's Subtasks/StoryBugs, if this item is a Story; otherwise empty. </p>
 
 </div>
 </div>
@@ -215,6 +230,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Comments attached directly to this item. </p>
+
 </div>
 </div>
 <a id="a2ab4b7a8f6a7d63bf0f81bf1f15e0222" name="a2ab4b7a8f6a7d63bf0f81bf1f15e0222"></a>
@@ -236,6 +253,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, if this item is a direct <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> child. </p>
 
 </div>
 </div>
@@ -283,6 +302,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The database primary key. </p>
+
 </div>
 </div>
 <a id="a546fd130a36a9e32581dca098b71abb1" name="a546fd130a36a9e32581dca098b71abb1"></a>
@@ -305,6 +326,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Jira key from the source data, e.g. "STORY-PFD-1-1". </p>
+
 </div>
 </div>
 <a id="aaeb3b30798497b9cfcf2f5dff62a4056" name="aaeb3b30798497b9cfcf2f5dff62a4056"></a>
@@ -326,6 +349,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The owning Story, if this item is a Subtask/StoryBug. </p>
 
 </div>
 </div>
@@ -373,6 +398,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Jira workflow status, e.g. "Resolved". </p>
+
 </div>
 </div>
 <a id="a97533d0ac52d9c623a65b3259b09c485" name="a97533d0ac52d9c623a65b3259b09c485"></a>
@@ -394,6 +421,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The generated summary for this item, if one has been produced yet. </p>
 
 </div>
 </div>
@@ -417,6 +446,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The item's display title. </p>
+
 </div>
 </div>
 <a id="a3d4baf39625bda8b88987063806ffe56" name="a3d4baf39625bda8b88987063806ffe56"></a>
@@ -438,6 +469,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Jira issue type discriminator: "Story", "Bug", "Task", "Spike", "Subtask", or "StoryBug". </p>
 
 </div>
 </div>

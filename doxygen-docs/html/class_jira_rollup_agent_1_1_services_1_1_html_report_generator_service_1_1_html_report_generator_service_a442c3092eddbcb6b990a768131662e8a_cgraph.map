@@ -1,8 +1,8 @@
 <map id="JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService.AppendInitiative" name="JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService.AppendInitiative">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,59,264,117"/>
-<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#a32484e630cd8dab774f7abaa6c87325b" title=" " alt="" coords="312,59,547,117"/>
+<area shape="rect" id="Node000001" title="Appends one Initiative section (priority badge, title, status, Business Summary) plus its nested Epic..." alt="" coords="5,59,264,117"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#a32484e630cd8dab774f7abaa6c87325b" title="Appends one Epic&#39;s markup (title, its Engineering Summary) nested inside its Initiative&#39;s section." alt="" coords="312,59,547,117"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,85,298,88,293,88,264,91"/>
-<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#ad344ec874faa0f239be27553a45dce9f" title=" " alt="" coords="628,5,849,64"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#ad344ec874faa0f239be27553a45dce9f" title="HTML&#45;encodes a raw string (escapes &lt;, &gt;, &amp;, quotes, and non&#45;ASCII characters as entities)." alt="" coords="628,5,849,64"/>
 <area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="248,55,311,44,468,31,615,31,610,32,468,37,312,49,249,61"/>
 <area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#ab5f07650ff3196b80b17025fe1026e52" title="Parses the Type C structured format (&quot;Status: ...&quot; line, &quot;Key Progress:&quot;/&quot;Risks/Blockers:&quot; headings e..." alt="" coords="595,100,882,159"/>
 <area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="246,115,312,127,448,136,582,138,577,138,448,141,311,132,246,121"/>

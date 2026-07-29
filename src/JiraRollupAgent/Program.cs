@@ -17,6 +17,12 @@ using Serilog;
 
 namespace JiraRollupAgent
 {
+    /// <summary>
+    /// Application entry point. Wires up configuration/Serilog/DI, then runs the three pipeline
+    /// stages in order: <see cref="Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService"/>,
+    /// <see cref="Services.SummarizationService.SummarizationService"/>, and
+    /// <see cref="Services.HtmlReportGeneratorService.HtmlReportGeneratorService"/>.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     class Program
     {

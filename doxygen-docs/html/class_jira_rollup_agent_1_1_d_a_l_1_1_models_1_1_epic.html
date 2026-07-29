@@ -133,13 +133,21 @@ Collaboration diagram for JiraRollupAgent.DAL.Models.Epic:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a57da001efbf638c9abc3b8c4fe110f42" id="r_a57da001efbf638c9abc3b8c4fe110f42"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a57da001efbf638c9abc3b8c4fe110f42">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a57da001efbf638c9abc3b8c4fe110f42"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database primary key.  <br /></td></tr>
 <tr class="memitem:adc66400e5910e3a1e6a40e5dc71bf2e2" id="r_adc66400e5910e3a1e6a40e5dc71bf2e2"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#adc66400e5910e3a1e6a40e5dc71bf2e2">JiraId</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:adc66400e5910e3a1e6a40e5dc71bf2e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira key from the source data, e.g. "EPIC-PFD-1".  <br /></td></tr>
 <tr class="memitem:a8b58d5fd5d732b274c2b4192dc7aa6b8" id="r_a8b58d5fd5d732b274c2b4192dc7aa6b8"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a8b58d5fd5d732b274c2b4192dc7aa6b8">Title</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a8b58d5fd5d732b274c2b4192dc7aa6b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>'s display title.  <br /></td></tr>
 <tr class="memitem:a018ba7ccf6e32240ca24e7ae24815f16" id="r_a018ba7ccf6e32240ca24e7ae24815f16"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a018ba7ccf6e32240ca24e7ae24815f16">InitiativeId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a018ba7ccf6e32240ca24e7ae24815f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Foreign key to the owning Initiative.  <br /></td></tr>
 <tr class="memitem:a598cfc4b20df0fbe33e30e4842c78683" id="r_a598cfc4b20df0fbe33e30e4842c78683"><td class="memItemLeft">virtual Initiative&#160;</td><td class="memItemRight"><a class="el" href="#a598cfc4b20df0fbe33e30e4842c78683">Initiative</a> = null!<code> [get, set]</code></td></tr>
+<tr class="memdesc:a598cfc4b20df0fbe33e30e4842c78683"><td class="mdescLeft">&#160;</td><td class="mdescRight">The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>.  <br /></td></tr>
 <tr class="memitem:a197ed2277da18d98b3d17af02174d521" id="r_a197ed2277da18d98b3d17af02174d521"><td class="memItemLeft">virtual ICollection&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a197ed2277da18d98b3d17af02174d521">WorkItems</a> = new List&lt;<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html">WorkItem</a>&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a197ed2277da18d98b3d17af02174d521"><td class="mdescLeft">&#160;</td><td class="mdescRight">The WorkItems (Story/Bug/Task/Spike) that are direct children of this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>.  <br /></td></tr>
 <tr class="memitem:ac1505a4324312a2cf417972dea46a157" id="r_ac1505a4324312a2cf417972dea46a157"><td class="memItemLeft">virtual ICollection&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac1505a4324312a2cf417972dea46a157">Comments</a> = new List&lt;<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a>&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:ac1505a4324312a2cf417972dea46a157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comments attached directly to this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> (not to one of its WorkItems).  <br /></td></tr>
 <tr class="memitem:a7fdd177053efd54bbb103b47477b6b07" id="r_a7fdd177053efd54bbb103b47477b6b07"><td class="memItemLeft">virtual ? <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic_engineering_summary.html">EpicEngineeringSummary</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7fdd177053efd54bbb103b47477b6b07">EngineeringSummary</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7fdd177053efd54bbb103b47477b6b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">The generated Engineering Summary for this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, if one has been produced yet.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> beneath an <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, containing Story/Bug/Task/Spike work items. </p>
@@ -164,6 +172,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Comments attached directly to this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a> (not to one of its WorkItems). </p>
+
 </div>
 </div>
 <a id="a7fdd177053efd54bbb103b47477b6b07" name="a7fdd177053efd54bbb103b47477b6b07"></a>
@@ -185,6 +195,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The generated Engineering Summary for this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>, if one has been produced yet. </p>
 
 </div>
 </div>
@@ -208,6 +220,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The database primary key. </p>
+
 </div>
 </div>
 <a id="a598cfc4b20df0fbe33e30e4842c78683" name="a598cfc4b20df0fbe33e30e4842c78683"></a>
@@ -229,6 +243,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The owning <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>. </p>
 
 </div>
 </div>
@@ -252,6 +268,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Foreign key to the owning Initiative. </p>
+
 </div>
 </div>
 <a id="adc66400e5910e3a1e6a40e5dc71bf2e2" name="adc66400e5910e3a1e6a40e5dc71bf2e2"></a>
@@ -273,6 +291,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Jira key from the source data, e.g. "EPIC-PFD-1". </p>
 
 </div>
 </div>
@@ -296,6 +316,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>'s display title. </p>
+
 </div>
 </div>
 <a id="a197ed2277da18d98b3d17af02174d521" name="a197ed2277da18d98b3d17af02174d521"></a>
@@ -317,6 +339,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The WorkItems (Story/Bug/Task/Spike) that are direct children of this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html" title="An Epic beneath an Initiative, containing Story/Bug/Task/Spike work items.">Epic</a>. </p>
 
 </div>
 </div>

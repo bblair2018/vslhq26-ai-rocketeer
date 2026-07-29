@@ -133,11 +133,17 @@ Collaboration diagram for JiraRollupAgent.Models.JiraHierarchyLoaderService.Mock
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ae2dd1ab5115f0db1b72c251b3ab8f75c" id="r_ae2dd1ab5115f0db1b72c251b3ab8f75c"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#ae2dd1ab5115f0db1b72c251b3ab8f75c">Type</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:ae2dd1ab5115f0db1b72c251b3ab8f75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira issue type: "Story", "Bug", "Task", or "Spike".  <br /></td></tr>
 <tr class="memitem:af62c641b49ba655b617f348a35022668" id="r_af62c641b49ba655b617f348a35022668"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#af62c641b49ba655b617f348a35022668">Id</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:af62c641b49ba655b617f348a35022668"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira key, e.g. "STORY-PFD-1-1".  <br /></td></tr>
 <tr class="memitem:a5c40d19423e84a64b2838f58a5b46fb3" id="r_a5c40d19423e84a64b2838f58a5b46fb3"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a5c40d19423e84a64b2838f58a5b46fb3">Title</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a5c40d19423e84a64b2838f58a5b46fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The item's display title.  <br /></td></tr>
 <tr class="memitem:adb549b8238587bf3cff3d323a959b939" id="r_adb549b8238587bf3cff3d323a959b939"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#adb549b8238587bf3cff3d323a959b939">Assignee</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:adb549b8238587bf3cff3d323a959b939"><td class="mdescLeft">&#160;</td><td class="mdescRight">The person assigned to this item.  <br /></td></tr>
 <tr class="memitem:a1eb83b9f1effc1fbcc61649b96b83127" id="r_a1eb83b9f1effc1fbcc61649b96b83127"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a1eb83b9f1effc1fbcc61649b96b83127">Status</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a1eb83b9f1effc1fbcc61649b96b83127"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira workflow status.  <br /></td></tr>
 <tr class="memitem:ae001c45f9f0bc9fce15212bfe3f466b2" id="r_ae001c45f9f0bc9fce15212bfe3f466b2"><td class="memItemLeft">List&lt; <a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_comment.html">MockComment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae001c45f9f0bc9fce15212bfe3f466b2">Comments</a> = new()<code> [get, set]</code></td></tr>
+<tr class="memdesc:ae001c45f9f0bc9fce15212bfe3f466b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comments attached directly to this item.  <br /></td></tr>
 <tr class="memitem:a152838bb3a48ad10abcc3805095b240c" id="r_a152838bb3a48ad10abcc3805095b240c"><td class="memItemLeft">List&lt; <a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_sub_item.html">MockSubItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a152838bb3a48ad10abcc3805095b240c">Subtasks</a> = new()<code> [get, set]</code></td></tr>
 <tr class="memdesc:a152838bb3a48ad10abcc3805095b240c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only ever populated when Type is "Story".  <br /></td></tr>
 <tr class="memitem:a40171c604c7839822a6dab945b81b60a" id="r_a40171c604c7839822a6dab945b81b60a"><td class="memItemLeft">List&lt; <a class="el" href="class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_sub_item.html">MockSubItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a40171c604c7839822a6dab945b81b60a">StoryBugs</a> = new()<code> [get, set]</code></td></tr>
@@ -166,6 +172,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The person assigned to this item. </p>
+
 </div>
 </div>
 <a id="ae001c45f9f0bc9fce15212bfe3f466b2" name="ae001c45f9f0bc9fce15212bfe3f466b2"></a>
@@ -187,6 +195,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Comments attached directly to this item. </p>
 
 </div>
 </div>
@@ -210,6 +220,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Jira key, e.g. "STORY-PFD-1-1". </p>
+
 </div>
 </div>
 <a id="a1eb83b9f1effc1fbcc61649b96b83127" name="a1eb83b9f1effc1fbcc61649b96b83127"></a>
@@ -231,6 +243,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Jira workflow status. </p>
 
 </div>
 </div>
@@ -302,6 +316,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The item's display title. </p>
+
 </div>
 </div>
 <a id="ae2dd1ab5115f0db1b72c251b3ab8f75c" name="ae2dd1ab5115f0db1b72c251b3ab8f75c"></a>
@@ -323,6 +339,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Jira issue type: "Story", "Bug", "Task", or "Spike". </p>
 
 </div>
 </div>

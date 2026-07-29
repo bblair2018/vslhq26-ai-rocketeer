@@ -127,7 +127,7 @@ Inheritance diagram for JiraRollupAgent.Services.SummarizationService.ISummariza
 <div class="center"><img src="interface_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_i_summarization_service__inherit__graph.png" border="0" usemap="#a_jira_rollup_agent_8_services_8_summarization_service_8_i_summarization_service_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
 <map name="a_jira_rollup_agent_8_services_8_summarization_service_8_i_summarization_service_inherit__map" id="a_jira_rollup_agent_8_services_8_summarization_service_8_i_summarization_service_inherit__map">
 <area shape="rect" title="Produces the Azure OpenAI item/Epic&#45;engineering/Initiative&#45;business summaries and persists them to VS..." alt="" coords="5,5,242,107"/>
-<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html" title=" " alt="" coords="7,155,240,869"/>
+<area shape="rect" href="class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html" title="The &quot;Summarize&quot; stage: generates and persists a summary for every Initiative/Epic/WorkItem via Azure ..." alt="" coords="7,155,240,869"/>
 <area shape="poly" title=" " alt="" coords="124,119,126,155,121,155,123,124"/>
 </map>
 </div>
@@ -143,6 +143,7 @@ Collaboration diagram for JiraRollupAgent.Services.SummarizationService.ISummari
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a422ec5722cfcd10c42c3991f4e7c9eb7" id="r_a422ec5722cfcd10c42c3991f4e7c9eb7"><td class="memItemLeft">Task&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a422ec5722cfcd10c42c3991f4e7c9eb7">Run</a> ()</td></tr>
+<tr class="memdesc:a422ec5722cfcd10c42c3991f4e7c9eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the summarization stage, gated by <code>AppSettings:RunSummarization</code>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Produces the Azure OpenAI item/Epic-engineering/Initiative-business summaries and persists them to VSLiveJiraRollup via JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork. </p>
@@ -161,6 +162,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Runs the summarization stage, gated by <code>AppSettings:RunSummarization</code>. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> on success or a skipped run; <code>false</code> if summarization failed.</dd></dl>
 
 <p>Implemented in <a class="el" href="class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#ae4417bac1e87add7d4bf5a54c9b0a312">JiraRollupAgent.Services.SummarizationService.SummarizationService</a>.</p>
 

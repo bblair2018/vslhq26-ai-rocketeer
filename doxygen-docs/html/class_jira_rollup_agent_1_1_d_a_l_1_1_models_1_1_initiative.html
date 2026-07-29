@@ -133,14 +133,21 @@ Collaboration diagram for JiraRollupAgent.DAL.Models.Initiative:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a319f36b9e5dc9b42a4b59e908af6c3e7" id="r_a319f36b9e5dc9b42a4b59e908af6c3e7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a319f36b9e5dc9b42a4b59e908af6c3e7">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a319f36b9e5dc9b42a4b59e908af6c3e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database primary key.  <br /></td></tr>
 <tr class="memitem:acbbbb3e9ec8fcf7eb35a7f09c49150fd" id="r_acbbbb3e9ec8fcf7eb35a7f09c49150fd"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#acbbbb3e9ec8fcf7eb35a7f09c49150fd">JiraId</a> = string.Empty<code> [get, set]</code></td></tr>
 <tr class="memdesc:acbbbb3e9ec8fcf7eb35a7f09c49150fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira key from the source data, e.g. "INIT-PFD".  <br /></td></tr>
 <tr class="memitem:a57986ac870599103ce23802600d660a1" id="r_a57986ac870599103ce23802600d660a1"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#a57986ac870599103ce23802600d660a1">Title</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:a57986ac870599103ce23802600d660a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>'s display title.  <br /></td></tr>
 <tr class="memitem:af1c5f38d83be848cada10e0fdc17520c" id="r_af1c5f38d83be848cada10e0fdc17520c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af1c5f38d83be848cada10e0fdc17520c">PriorityRank</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af1c5f38d83be848cada10e0fdc17520c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Business priority rank used for final report ordering; 1 = highest priority.  <br /></td></tr>
 <tr class="memitem:ae250c10480b8eb6b55bf4e124993d2ba" id="r_ae250c10480b8eb6b55bf4e124993d2ba"><td class="memItemLeft">string&#160;</td><td class="memItemRight"><a class="el" href="#ae250c10480b8eb6b55bf4e124993d2ba">Status</a> = string.Empty<code> [get, set]</code></td></tr>
+<tr class="memdesc:ae250c10480b8eb6b55bf4e124993d2ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Jira workflow status, e.g. "In Progress".  <br /></td></tr>
 <tr class="memitem:a830e4171c32fd00789686a8e57251952" id="r_a830e4171c32fd00789686a8e57251952"><td class="memItemLeft">virtual ICollection&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html">Epic</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a830e4171c32fd00789686a8e57251952">Epics</a> = new List&lt;<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_epic.html">Epic</a>&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a830e4171c32fd00789686a8e57251952"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Epics belonging to this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>.  <br /></td></tr>
 <tr class="memitem:a803b8b732d5c057ca82f2d75abdfdfb3" id="r_a803b8b732d5c057ca82f2d75abdfdfb3"><td class="memItemLeft">virtual ICollection&lt; <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a803b8b732d5c057ca82f2d75abdfdfb3">Comments</a> = new List&lt;<a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html">Comment</a>&gt;()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a803b8b732d5c057ca82f2d75abdfdfb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comments attached directly to this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a> (not to one of its Epics/WorkItems).  <br /></td></tr>
 <tr class="memitem:a1e7d55c3aba2dc2e0419a952e9b5d8e8" id="r_a1e7d55c3aba2dc2e0419a952e9b5d8e8"><td class="memItemLeft">virtual ? <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative_business_summary.html">InitiativeBusinessSummary</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1e7d55c3aba2dc2e0419a952e9b5d8e8">BusinessSummary</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1e7d55c3aba2dc2e0419a952e9b5d8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The generated Business Summary for this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, if one has been produced yet.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A top-level <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, ordered in reports by PriorityRank. Mirrors the "initiatives[]" shape in MockData/jira-hierarchy.json. </p>
@@ -165,6 +172,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The generated Business Summary for this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>, if one has been produced yet. </p>
+
 </div>
 </div>
 <a id="a803b8b732d5c057ca82f2d75abdfdfb3" name="a803b8b732d5c057ca82f2d75abdfdfb3"></a>
@@ -186,6 +195,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Comments attached directly to this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a> (not to one of its Epics/WorkItems). </p>
 
 </div>
 </div>
@@ -209,6 +220,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Epics belonging to this <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>. </p>
+
 </div>
 </div>
 <a id="a319f36b9e5dc9b42a4b59e908af6c3e7" name="a319f36b9e5dc9b42a4b59e908af6c3e7"></a>
@@ -230,6 +243,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The database primary key. </p>
 
 </div>
 </div>
@@ -277,6 +292,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Business priority rank used for final report ordering; 1 = highest priority. </p>
+
 </div>
 </div>
 <a id="ae250c10480b8eb6b55bf4e124993d2ba" name="ae250c10480b8eb6b55bf4e124993d2ba"></a>
@@ -299,6 +316,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Jira workflow status, e.g. "In Progress". </p>
+
 </div>
 </div>
 <a id="a57986ac870599103ce23802600d660a1" name="a57986ac870599103ce23802600d660a1"></a>
@@ -320,6 +339,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The <a class="el" href="class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_initiative.html" title="A top-level Initiative, ordered in reports by PriorityRank. Mirrors the &quot;initiatives[]&quot; shape in Mock...">Initiative</a>'s display title. </p>
 
 </div>
 </div>
