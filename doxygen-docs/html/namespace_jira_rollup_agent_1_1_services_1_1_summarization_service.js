@@ -1,0 +1,5 @@
+var namespace_jira_rollup_agent_1_1_services_1_1_summarization_service =
+[
+    [ "ISummarizationService", "interface_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_i_summarization_service.html", "interface_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_i_summarization_service" ],
+    [ "SummarizationService", "class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html", "class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service" ]
+];

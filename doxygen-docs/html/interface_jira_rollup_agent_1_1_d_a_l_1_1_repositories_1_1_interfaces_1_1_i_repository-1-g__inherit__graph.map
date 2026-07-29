@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;" name="JiraRollupAgent.DAL.Repositories.Interfaces.IRepository&lt; T &gt;">
+<area shape="rect" id="Node000001" title="A generic repository interface for handling CRUD operations on a given entity type." alt="" coords="5,5,219,240"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html" title="A generic repository class for handling CRUD operations on a given entity type using Entity Framework..." alt="" coords="5,288,219,565"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,252,115,289,110,288,112,257"/>
+</map>

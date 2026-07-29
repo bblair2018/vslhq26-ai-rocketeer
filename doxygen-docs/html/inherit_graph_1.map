@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,13,96,40"/>
+<area shape="rect" id="Node000001" href="$interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html" title="Unit of Work interface to manage transactions and coordinate access to all repositories." alt="" coords="144,5,368,48"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="111,24,146,26,141,27,112,29"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html" title="Unit of Work implementation that manages the repositories and ensures transactional consistency." alt="" coords="416,5,640,48"/>
+<area shape="poly" id="edge3_Node000001_Node000002" title=" " alt="" coords="383,24,418,27,413,27,383,29"/>
+</map>

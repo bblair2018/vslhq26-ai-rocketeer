@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService.AppendEpic" name="JiraRollupAgent.Services.HtmlReportGeneratorService.HtmlReportGeneratorService.AppendEpic">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,241,105"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#ad344ec874faa0f239be27553a45dce9f" title=" " alt="" coords="322,5,543,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,58,309,51,304,52,242,63"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html#ab5f07650ff3196b80b17025fe1026e52" title="Parses the Type C structured format (&quot;Status: ...&quot; line, &quot;Key Progress:&quot;/&quot;Risks/Blockers:&quot; headings e..." alt="" coords="289,88,576,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,89,276,96,270,96,241,94"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="JiraRollupAgent.Services.SummarizationService.SummarizationService.BuildInitiativeHeader" name="JiraRollupAgent.Services.SummarizationService.SummarizationService.BuildInitiativeHeader">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1344,5,1587,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#a740a7c0ec91bf7212c56322b262e76be" title="Type C (Business): an Initiative &#45; summarizes its Epics first, then rolls those up ScrumMaster/Stakeh..." alt="" coords="1053,5,1296,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1326,35,1296,37,1296,32,1331,35"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#a843bb30ea574a03794f20ce3f101fa2d" title="Walks every Initiative bottom&#45;up (Subtask/StoryBug &#45;&gt; Story &#45;&gt; Bug/Task/Spike &#45;&gt; Epic &#45;&gt; Initiative),..." alt="" coords="761,5,1005,64"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1034,35,1005,37,1005,32,1040,35"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#ae4417bac1e87add7d4bf5a54c9b0a312" title=" " alt="" coords="470,5,713,64"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="743,35,714,37,714,32,748,35"/>
+<area shape="rect" id="Node000005" href="$class_jira_rollup_agent_1_1_program.html#a285a0fc1541f624d5039f08dc6ad2500" title="This is the secondary main entry point to the application." alt="" coords="252,13,422,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="451,35,422,37,422,32,457,35"/>
+<area shape="rect" id="Node000006" href="$class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,21,204,48"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="233,35,204,37,204,32,239,34"/>
+</map>

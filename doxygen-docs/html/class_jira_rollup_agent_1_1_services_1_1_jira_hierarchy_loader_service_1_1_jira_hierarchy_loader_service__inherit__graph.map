@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService" name="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService">
+<area shape="rect" id="Node000001" title=" " alt="" coords="7,155,203,528"/>
+<area shape="rect" id="Node000002" href="$interface_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_i_jira_hierarchy_loader_service.html" title="Loads the mocked Jira hierarchy (Initiatives/Epics/Stories/Bugs/Tasks/Spikes/Subtasks/StoryBugs) that..." alt="" coords="5,5,205,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,119,108,155,103,154,105,124"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html" title="A generic repository interface for handling CRUD operations on a given entity type." alt="" coords="5,5,230,48"/>
+<area shape="rect" id="Node000001" href="$class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html" title="A generic repository class for handling CRUD operations on a given entity type using Entity Framework..." alt="" coords="278,5,502,48"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="245,24,280,27,274,27,245,29"/>
+</map>

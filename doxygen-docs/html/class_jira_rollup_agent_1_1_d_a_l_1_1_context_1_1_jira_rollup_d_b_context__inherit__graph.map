@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.DAL.Context.JiraRollupDBContext" name="JiraRollupAgent.DAL.Context.JiraRollupDBContext">
+<area shape="rect" id="Node000001" title="Used to create our Jira Rollup Table Context. Migrations: 1 &#45; dotnet tool install –global dotnet&#45;ef 2..." alt="" coords="5,123,198,443"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="65,5,139,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,87,104,123,99,123,101,92"/>
+</map>

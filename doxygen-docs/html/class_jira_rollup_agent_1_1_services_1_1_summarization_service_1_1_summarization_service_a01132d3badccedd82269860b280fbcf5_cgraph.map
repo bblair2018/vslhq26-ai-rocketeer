@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Services.SummarizationService.SummarizationService.BuildRollupUserMessage" name="JiraRollupAgent.Services.SummarizationService.SummarizationService.BuildRollupUserMessage">
+<area shape="rect" id="Node000001" title="Type B/C user message shape: ticket header, reporting period, own comments, then a labeled block of a..." alt="" coords="5,5,249,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html#aaf6324566ac8f5fcfb2a4292972a187d" title=" " alt="" coords="297,5,540,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,32,284,34,279,35,249,37"/>
+</map>

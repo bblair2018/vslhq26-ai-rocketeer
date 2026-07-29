@@ -1,0 +1,5 @@
+<map id="JiraRollupAgent.Program.MainAsync" name="JiraRollupAgent.Program.MainAsync">
+<area shape="rect" id="Node000001" title="This is the secondary main entry point to the application." alt="" coords="252,5,422,48"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_program.html#acdcd3f2e47abd35aa1ef058133e8652a" title="This is the main entry point to the application. This is used to call the Async main." alt="" coords="5,13,204,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,27,204,29,204,24,239,26"/>
+</map>

@@ -1,0 +1,5 @@
+var namespace_jira_rollup_agent_1_1_services_1_1_html_report_generator_service =
+[
+    [ "HtmlReportGeneratorService", "class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service.html", "class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service" ],
+    [ "IHtmlReportGeneratorService", "interface_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_i_html_report_generator_service.html", "interface_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_i_html_report_generator_service" ]
+];

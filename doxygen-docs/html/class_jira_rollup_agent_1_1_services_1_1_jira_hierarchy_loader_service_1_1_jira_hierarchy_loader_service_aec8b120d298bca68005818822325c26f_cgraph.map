@@ -1,0 +1,8 @@
+<map id="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapWorkItem" name="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapWorkItem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,251,97"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a2805cab6a795cc8617e47569a96caa32" title=" " alt="" coords="299,5,574,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,52,286,51,280,52,251,57"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a0a7ba2c1021845afce044e7b3055cc4b" title=" " alt="" coords="622,39,868,97"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="251,72,299,73,436,75,574,73,609,75,604,75,574,79,436,81,299,79,251,77"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="575,47,609,53,604,53,575,52"/>
+</map>

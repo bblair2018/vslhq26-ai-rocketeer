@@ -1,0 +1,7 @@
+<map id="JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork" name="JiraRollupAgent.DAL.Repositories.Interfaces.IUnitOfWork">
+<area shape="rect" id="Node000001" title="Unit of Work interface to manage transactions and coordinate access to all repositories." alt="" coords="20,123,233,421"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html" title="Unit of Work implementation that manages the repositories and ensures transactional consistency." alt="" coords="5,469,247,1061"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,434,129,470,124,470,126,439"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="86,5,166,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,87,129,123,124,123,126,92"/>
+</map>

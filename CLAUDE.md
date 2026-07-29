@@ -30,6 +30,14 @@ There is no test project in the solution yet.
 
 SDK version is pinned via `global.json` (10.0.302, `rollForward: latestFeature`) — `dotnet --version` should resolve to a compatible 10.x SDK.
 
+Code reference docs (Doxygen, config in `Doxyfile`, output committed under `doxygen-docs/html/`):
+
+```
+doxygen Doxyfile   # regenerate; requires Graphviz (dot) on PATH for class/call/caller graphs
+```
+
+Scoped to `src/JiraRollupAgent`'s C# source only (`README.md`/`CLAUDE.md` were tried as the main page but dropped — a video-camera emoji in `README.md`'s Demo section broke the LaTeX/PDF path we experimented with; irrelevant now since only HTML is generated, `GENERATE_LATEX` is `NO`). `EXTRACT_ALL`/`EXTRACT_PRIVATE`/`EXTRACT_STATIC` are all `YES` since most of the interesting logic (e.g. `SummarizationService`'s orchestration methods) is private.
+
 ## Architecture
 
 ### Ticket hierarchy

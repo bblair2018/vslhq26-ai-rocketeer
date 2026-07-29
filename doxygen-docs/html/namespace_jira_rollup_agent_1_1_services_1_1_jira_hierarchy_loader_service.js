@@ -1,0 +1,5 @@
+var namespace_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service =
+[
+    [ "IJiraHierarchyLoaderService", "interface_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_i_jira_hierarchy_loader_service.html", "interface_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_i_jira_hierarchy_loader_service" ],
+    [ "JiraHierarchyLoaderService", "class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html", "class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service" ]
+];

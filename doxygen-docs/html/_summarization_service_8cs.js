@@ -1,0 +1,5 @@
+var _summarization_service_8cs =
+[
+    [ "JiraRollupAgent.Services.SummarizationService.SummarizationService", "class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service.html", "class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service" ],
+    [ "JiraRollupAgent.Services.SummarizationService.SummarizationService.HierarchyData", "class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service_1_1_hierarchy_data.html", "class_jira_rollup_agent_1_1_services_1_1_summarization_service_1_1_summarization_service_1_1_hierarchy_data" ]
+];

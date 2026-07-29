@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['assignee_0',['Assignee',['../class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_work_item.html#ad895aebc0890d260113bfd1073f26111',1,'JiraRollupAgent.DAL.Models.WorkItem.Assignee'],['../class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_work_item.html#adb549b8238587bf3cff3d323a959b939',1,'JiraRollupAgent.Models.JiraHierarchyLoaderService.MockWorkItem.Assignee'],['../class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_sub_item.html#ac7c36ce93828b1b969b258ec58783be0',1,'JiraRollupAgent.Models.JiraHierarchyLoaderService.MockSubItem.Assignee']]],
+  ['author_1',['Author',['../class_jira_rollup_agent_1_1_d_a_l_1_1_models_1_1_comment.html#aa74ef89f9c2ab93285bf614cc9e2f037',1,'JiraRollupAgent.DAL.Models.Comment.Author'],['../class_jira_rollup_agent_1_1_models_1_1_jira_hierarchy_loader_service_1_1_mock_comment.html#a04ddd96e25c4089844b081b734df8cc4',1,'JiraRollupAgent.Models.JiraHierarchyLoaderService.MockComment.Author']]]
+];

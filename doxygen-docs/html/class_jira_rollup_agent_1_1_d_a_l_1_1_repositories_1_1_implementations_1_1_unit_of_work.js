@@ -1,0 +1,28 @@
+var class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work =
+[
+    [ "UnitOfWork", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#aaed87d615c947847355907d85e3cf332", null ],
+    [ "CompleteAsync", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#abb6c180aa7c80dceeab8d0e9db33e18c", null ],
+    [ "DeleteAllRowsAsync", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a9c015d0c9c6983d87312279d4ddaf84f", null ],
+    [ "DeleteAllSummariesAsync", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#ad17773317819df76588093a55cacfa16", null ],
+    [ "Dispose", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a9ad5449e7038697f3564dc8c6fbeee9c", null ],
+    [ "Repository< T >", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#ac907a05ca666588cca0cddb12c5a8ca0", null ],
+    [ "SaveAsync", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#adfc3986e1ff282c088d93401dc9e1eb8", null ],
+    [ "_commentRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a11a2bfc2040444a8fe4d45a91d37a24b", null ],
+    [ "_context", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a39f47f29cf861e4ca48a802dd44b2061", null ],
+    [ "_epicEngineeringSummaryRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a15f9adf6c920d784e254b4182e6c7536", null ],
+    [ "_epicRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a167b2426257553ecceb3fa90c9e63e65", null ],
+    [ "_initiativeBusinessSummaryRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#af81a18223be9439d1ce1ce757b0a77c8", null ],
+    [ "_initiativeRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a90c7ff122d76f4fa2c43d1cb5188006f", null ],
+    [ "_repositories", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a7392f4cd8e25ed8c7b1f14daea83cf0d", null ],
+    [ "_teamMemberRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#ad0a23c459a58206211e873f524c5ebea", null ],
+    [ "_workItemRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a7b43854cc971d58b69b4ac2e81d69441", null ],
+    [ "_workItemSummaryRepository", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#af3ece3ff70a978a7c101d3cde0147886", null ],
+    [ "Comments", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#aa292f0f5897337fb9f159022ca1a8de0", null ],
+    [ "EpicEngineeringSummaries", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a49be7f3b9fb46ebe9f3c1dfec53b1594", null ],
+    [ "Epics", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a62149faf41a178bef3d247a4df90a076", null ],
+    [ "InitiativeBusinessSummaries", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#aa9cbe9b314706ce4a169912d4affb533", null ],
+    [ "Initiatives", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a4e4cecb37acc96dd3ff9eaeb2fb5b4d2", null ],
+    [ "TeamMembers", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a7ecb099ca480e2c782c2c1a62b2a54d0", null ],
+    [ "WorkItems", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a6f962c7eb32a03eeeca5bb58c0ecb0b7", null ],
+    [ "WorkItemSummaries", "class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_unit_of_work.html#a67049f022a855866e6c12f4cb9b6a4aa", null ]
+];

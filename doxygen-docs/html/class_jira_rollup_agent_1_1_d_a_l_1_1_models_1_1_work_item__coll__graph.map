@@ -1,0 +1,3 @@
+<map id="JiraRollupAgent.DAL.Models.WorkItem" name="JiraRollupAgent.DAL.Models.WorkItem">
+<area shape="rect" id="Node000001" title="A single Jira work item. Type is the Jira issue type discriminator: &quot;Story&quot;, &quot;Bug&quot;,..." alt="" coords="5,5,188,347"/>
+</map>

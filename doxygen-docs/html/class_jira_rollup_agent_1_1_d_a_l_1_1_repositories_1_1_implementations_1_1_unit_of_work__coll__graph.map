@@ -1,0 +1,13 @@
+<map id="JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork" name="JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork">
+<area shape="rect" id="Node000001" title="Unit of Work implementation that manages the repositories and ensures transactional consistency." alt="" coords="233,665,447,1049"/>
+<area shape="rect" id="Node000002" href="$interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_unit_of_work.html" title="Unit of Work interface to manage transactions and coordinate access to all repositories." alt="" coords="5,135,219,433"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,444,267,665,262,666,176,449"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="72,5,152,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="112,87,115,135,110,135,112,92"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_d_a_l_1_1_context_1_1_jira_rollup_d_b_context.html" title="Used to create our Jira Rollup Table Context. Migrations: 1 &#45; dotnet tool install –global dotnet&#45;ef 2..." alt="" coords="244,124,437,444"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="341,442,343,649,338,648,339,446"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="303,5,377,75"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="341,87,343,125,338,124,340,92"/>
+<area shape="rect" id="Node000006" href="$interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html" title="A generic repository interface for handling CRUD operations on a given entity type." alt="" coords="461,167,675,401"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="524,399,425,651,420,648,520,403"/>
+</map>

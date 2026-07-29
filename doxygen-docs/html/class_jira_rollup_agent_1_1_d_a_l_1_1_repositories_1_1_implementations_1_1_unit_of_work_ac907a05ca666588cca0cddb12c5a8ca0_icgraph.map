@@ -1,0 +1,4 @@
+<map id="JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork.Repository&lt; T &gt;" name="JiraRollupAgent.DAL.Repositories.Implementations.UnitOfWork.Repository&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Generic method to get a repository for any entity type. Uses a dictionary cache to ensure only one re..." alt="" coords="5,29,293,72"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="195,14,179,10,149,8,122,10,105,15,98,21,100,30,95,28,93,19,102,10,121,5,149,3,180,5,200,14"/>
+</map>

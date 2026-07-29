@@ -1,0 +1,4 @@
+var _i_html_report_generator_service_8cs =
+[
+    [ "JiraRollupAgent.Services.HtmlReportGeneratorService.IHtmlReportGeneratorService", "interface_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_i_html_report_generator_service.html", "interface_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_i_html_report_generator_service" ]
+];

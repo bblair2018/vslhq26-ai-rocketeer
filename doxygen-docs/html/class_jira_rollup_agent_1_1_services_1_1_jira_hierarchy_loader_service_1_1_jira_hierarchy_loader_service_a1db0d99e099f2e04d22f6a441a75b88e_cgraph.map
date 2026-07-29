@@ -1,0 +1,11 @@
+<map id="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapEpic" name="JiraRollupAgent.Services.JiraHierarchyLoaderService.JiraHierarchyLoaderService.MapEpic">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,221,64"/>
+<area shape="rect" id="Node000002" href="$class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a0a7ba2c1021845afce044e7b3055cc4b" title=" " alt="" coords="885,23,1132,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,26,269,24,429,22,553,24,837,39,872,43,867,43,837,44,553,29,429,27,269,29,222,31"/>
+<area shape="rect" id="Node000003" href="$class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#aec8b120d298bca68005818822325c26f" title=" " alt="" coords="269,39,514,97"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,45,256,51,251,52,222,50"/>
+<area shape="poly" id="edge5_Node000003_Node000002" title=" " alt="" coords="514,62,873,55,868,56,515,67"/>
+<area shape="rect" id="Node000004" href="$class_jira_rollup_agent_1_1_services_1_1_jira_hierarchy_loader_service_1_1_jira_hierarchy_loader_service.html#a2805cab6a795cc8617e47569a96caa32" title=" " alt="" coords="562,89,837,148"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="514,86,549,94,544,93,514,91"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="838,86,867,82,873,82,838,91"/>
+</map>

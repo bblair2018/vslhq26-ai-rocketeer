@@ -1,0 +1,3 @@
+<map id="JiraRollupAgent.DAL.Models.Comment" name="JiraRollupAgent.DAL.Models.Comment">
+<area shape="rect" id="Node000001" title="A comment attached to exactly one of Initiative, Epic, or WorkItem. Role drives the Epic/Initiative r..." alt="" coords="5,5,188,304"/>
+</map>

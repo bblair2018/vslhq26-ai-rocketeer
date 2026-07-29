@@ -1,0 +1,7 @@
+var class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service_1_1_report_data =
+[
+    [ "EpicsByInitiativeId", "class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service_1_1_report_data.html#a1b3514fb02e47de400d3548d5c52d4da", null ],
+    [ "EpicSummaries", "class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service_1_1_report_data.html#a585655fdbab006208eedf48796bd3aac", null ],
+    [ "Initiatives", "class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service_1_1_report_data.html#ae6cabc71b8596544379de65dd6e5d218", null ],
+    [ "InitiativeSummaries", "class_jira_rollup_agent_1_1_services_1_1_html_report_generator_service_1_1_html_report_generator_service_1_1_report_data.html#a72240ebb6a919e60ba59e6040a9c6383", null ]
+];
