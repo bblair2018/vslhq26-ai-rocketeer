@@ -1,4 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using Azure;
+using Azure.AI.OpenAI;
 using JiraRollupAgent.DAL.Context;
 using JiraRollupAgent.DAL.Repositories.Implementations;
 using JiraRollupAgent.DAL.Repositories.Interfaces;
@@ -7,6 +9,7 @@ using JiraRollupAgent.Services.HtmlReportGeneratorService;
 using JiraRollupAgent.Services.JiraHierarchyLoaderService;
 using JiraRollupAgent.Services.SummarizationService;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -93,6 +96,23 @@ namespace JiraRollupAgent
 
                         // Registering UnitOfWork and repositories as services.
                         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+                        // Registering IChatClient for Azure OpenAI - used by SummarizationService.
+                        services.AddSingleton<IChatClient>(_ =>
+                        {
+                            string endpoint = context.Configuration["AzureOpenAI:Endpoint"]
+                                ?? throw new InvalidOperationException(
+                                    "Missing 'AzureOpenAI:Endpoint'. Run: dotnet user-secrets set \"AzureOpenAI:Endpoint\" \"https://YOUR-RESOURCE.openai.azure.com/\"");
+                            string key = context.Configuration["AzureOpenAI:Key"]
+                                ?? throw new InvalidOperationException(
+                                    "Missing 'AzureOpenAI:Key'. Run: dotnet user-secrets set \"AzureOpenAI:Key\" \"YOUR-KEY\"");
+                            string chatModel = context.Configuration["AzureOpenAI:ChatModel"]
+                                ?? throw new InvalidOperationException("Missing 'AzureOpenAI:ChatModel' in appsettings.json.");
+
+                            return new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key))
+                                .GetChatClient(chatModel)
+                                .AsIChatClient();
+                        });
 
                         // Registering the IJiraHierarchyLoaderService - loads the mocked Jira hierarchy.
                         services.AddScoped<IJiraHierarchyLoaderService, JiraHierarchyLoaderService>();

@@ -19,6 +19,9 @@ namespace JiraRollupAgent.DAL.Repositories.Implementations
         private IRepository<WorkItem>? _workItemRepository;
         private IRepository<Comment>? _commentRepository;
         private IRepository<TeamMember>? _teamMemberRepository;
+        private IRepository<WorkItemSummary>? _workItemSummaryRepository;
+        private IRepository<EpicEngineeringSummary>? _epicEngineeringSummaryRepository;
+        private IRepository<InitiativeBusinessSummary>? _initiativeBusinessSummaryRepository;
 
         // Cache for generic Repository<T>() calls to avoid creating a new instance on every invocation.
         // Keyed by entity Type so each type gets at most one repository instance per UnitOfWork lifetime.
@@ -46,6 +49,15 @@ namespace JiraRollupAgent.DAL.Repositories.Implementations
         public IRepository<TeamMember> TeamMembers
             => _teamMemberRepository ??= new Repository<TeamMember>(_context);
 
+        public IRepository<WorkItemSummary> WorkItemSummaries
+            => _workItemSummaryRepository ??= new Repository<WorkItemSummary>(_context);
+
+        public IRepository<EpicEngineeringSummary> EpicEngineeringSummaries
+            => _epicEngineeringSummaryRepository ??= new Repository<EpicEngineeringSummary>(_context);
+
+        public IRepository<InitiativeBusinessSummary> InitiativeBusinessSummaries
+            => _initiativeBusinessSummaryRepository ??= new Repository<InitiativeBusinessSummary>(_context);
+
         #endregion
 
         public async Task DeleteAllRowsAsync()
@@ -57,6 +69,22 @@ namespace JiraRollupAgent.DAL.Repositories.Implementations
                 "TeamMembers",
                 "Epics",
                 "Initiatives"
+            };
+
+            foreach (var table in tables)
+            {
+                var command = $"DELETE FROM {table}";
+                await _context.Database.ExecuteSqlRawAsync(command);
+            }
+        }
+
+        public async Task DeleteAllSummariesAsync()
+        {
+            var tables = new List<string>
+            {
+                "WorkItemSummaries",
+                "EpicEngineeringSummaries",
+                "InitiativeBusinessSummaries"
             };
 
             foreach (var table in tables)

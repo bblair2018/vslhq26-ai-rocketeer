@@ -39,6 +39,15 @@ namespace JiraRollupAgent.DAL.Context
         public virtual DbSet<TeamMember> TeamMembers { get; set; } = null!;
 
         [ExcludeFromCodeCoverage]
+        public virtual DbSet<WorkItemSummary> WorkItemSummaries { get; set; } = null!;
+
+        [ExcludeFromCodeCoverage]
+        public virtual DbSet<EpicEngineeringSummary> EpicEngineeringSummaries { get; set; } = null!;
+
+        [ExcludeFromCodeCoverage]
+        public virtual DbSet<InitiativeBusinessSummary> InitiativeBusinessSummaries { get; set; } = null!;
+
+        [ExcludeFromCodeCoverage]
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -100,6 +109,26 @@ namespace JiraRollupAgent.DAL.Context
                 .WithMany(w => w.Comments)
                 .HasForeignKey(c => c.WorkItemId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Summary tables: one-to-one via the FK, which EF Core enforces as unique automatically -
+            // exactly one summary row per WorkItem/Epic/Initiative, overwritten fresh on every run.
+            modelBuilder.Entity<WorkItemSummary>()
+                .HasOne(s => s.WorkItem)
+                .WithOne(w => w.Summary)
+                .HasForeignKey<WorkItemSummary>(s => s.WorkItemId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<EpicEngineeringSummary>()
+                .HasOne(s => s.Epic)
+                .WithOne(e => e.EngineeringSummary)
+                .HasForeignKey<EpicEngineeringSummary>(s => s.EpicId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<InitiativeBusinessSummary>()
+                .HasOne(s => s.Initiative)
+                .WithOne(i => i.BusinessSummary)
+                .HasForeignKey<InitiativeBusinessSummary>(s => s.InitiativeId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             OnModelCreatingPartial(modelBuilder);
         }

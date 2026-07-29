@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Jira Rollup Agent — a hackathon project (solo, @bblair2018) that summarizes Jira activity across a full ticket hierarchy into a single HTML report. It uses Azure OpenAI (GPT-4o, GitHub Models as fallback) to produce role-weighted summaries at each rollup level, then sorts the result by business priority.
 
-**Current state: `JiraHierarchyLoaderService` is implemented; `SummarizationService`/`HtmlReportGeneratorService` are stubs.** `Program.cs` wires up the Host/DI/Serilog/EF Core boilerplate (see below) and runs three pipeline services in order. The first stage actually loads `MockData/jira-hierarchy.json` + `team-roster.json` into `VSLiveJiraRollup`; the other two still just log `** NOT YET IMPLEMENTED **` (or `** SKIPPED **` if their `AppSettings` flag is off) and return `true`.
+**Current state: `JiraHierarchyLoaderService` and `SummarizationService` are implemented; `HtmlReportGeneratorService` is still a stub.** `Program.cs` wires up the Host/DI/Serilog/EF Core boilerplate (see below) and runs three pipeline services in order. The first stage loads `MockData/jira-hierarchy.json` + `team-roster.json` into `VSLiveJiraRollup`. The second stage generates and persists a summary for every Initiative/Epic/WorkItem via Azure OpenAI (see "Planned: implementation order for `SummarizationService`" below for the full design — verified end-to-end: 280 work item + 30 epic + 10 initiative summaries, zero placeholders/empty, in a real ~14.5-minute run across all 10 Initiatives). The third stage still just logs `** NOT YET IMPLEMENTED **` and returns `true`.
 
 ## Commands
 
@@ -47,7 +47,7 @@ Initiative
 
 All items at every level carry `comments`, each with `author`, `role` (`Dev` / `QA` / `ScrumMaster` / `Stakeholder` / `EngineeringManager`), `timestamp`, and `text`. Initiatives additionally carry a `priorityRank` used for final report ordering.
 
-### Intended data flow (not yet implemented in code)
+### Intended data flow (summarization implemented; report generation not yet)
 
 Mocked Jira hierarchy → .NET agent → Azure OpenAI → item summaries → Epic engineering summaries → Initiative business summaries → sort by priority → single HTML report.
 
@@ -68,7 +68,7 @@ The mock data stands in for a separate, already-built Jira ingestion pipeline �
 
 Same underlying comment stream, two different lenses, produced by pointing the model at different voices for each summary — not by hiding comments from roles outside the weighted set. A hard filter (drop non-matching-role comments entirely) was considered and rejected: it risks losing real signal, e.g. a `Stakeholder` comment flagging a business-critical blocker on an Epic, which a hard Dev/QA-only filter would never let the Engineering Summary see.
 
-#### Planned: item→Epic→Initiative summary chaining (not yet implemented)
+#### Item→Epic→Initiative summary chaining (implemented)
 
 Every node's summary = its own comments + its children's *already-generated summaries* (not raw comments) — one rule, applied recursively at every level, no special-casing:
 
@@ -90,7 +90,7 @@ Why summarize every ticket instead of only Story/Bug/Task/Spike (the earlier ver
 
 Persistence approach: build one Initiative's whole chain in memory (`Dictionary<int, string>` of summaries keyed by WorkItem/Epic id, consulted by the next level up instead of re-querying the DB), then write all levels to the DB in one pass — same shape as `JiraHierarchyLoaderService` building the whole graph in memory before one `CompleteAsync()`.
 
-#### Planned: the three prompt types, and their exact system prompts
+#### The three prompt types, and their exact system prompts (implemented)
 
 Every summary in the pipeline is produced by one of three prompt shapes — varying on two axes: does it incorporate children's summaries, and is it role-weighted. A full worked example (real ticket data, every prompt written out literally end-to-end for one Initiative) lives in `doc/prompt-types-overview.html`.
 
@@ -102,7 +102,7 @@ Every summary in the pipeline is produced by one of three prompt shapes — vary
 
 Only Type C's output is ever printed in the report (as the Engineering Summary or Business Summary); Types A and B exist purely to manufacture clean input for something further up the chain.
 
-#### Planned: summary storage schema
+#### Summary storage schema (implemented)
 
 Three new tables, one per level, each enforcing "exactly one row per entity" (matches the overwrite/no-history decision above):
 
@@ -118,7 +118,7 @@ InitiativeBusinessSummaries  Id (PK), InitiativeId (FK, unique), SummaryText, Ra
 - Wiring: add to `DAL/Models/JiraHierarchyEntities.cs`, register `DbSet<T>` + unique indexes in `JiraRollupDBContext.OnModelCreating`, add three named `IRepository<T>` properties to `IUnitOfWork`/`UnitOfWork` (same pattern as the existing five), one new EF migration.
 - Persistence: `SummarizationService.Run()` clears all three tables first via a new lightweight `IUnitOfWork.DeleteAllSummariesAsync()` (scoped to just these three, not the full `DeleteAllRowsAsync()` which wipes the whole hierarchy), builds the whole chain in memory, then inserts fresh rows in one `CompleteAsync()`.
 
-#### Planned: date-range filtering for summarization
+#### Date-range filtering for summarization (implemented)
 
 Summaries should be scopable to a date range (e.g. "this sprint," "this week") by filtering comments on `Timestamp` before they go into any prompt at any level, rather than always summarizing an item's/Epic's/Initiative's full comment history.
 
@@ -135,9 +135,9 @@ Bounds handling, decided:
 5. **How is the range specified?** Config-driven — `AppSettings:SummaryRangeStart`/`End` in `appsettings.json`, matching the existing flag-based config pattern (`RunHierarchyLoad`/`RunSummarization`/`RunReportGeneration`). No CLI arg parsing needed: `BuildConfig` already calls `.AddEnvironmentVariables()`, so the range can also be overridden per-run via environment variable (e.g. `AppSettings__SummaryRangeStart`) without editing the file.
 6. **History vs. overwrite** — overwrite, no history. Each `SummarizationService.Run()` clears the three summary tables and regenerates fresh for whatever range is currently configured; no date-range column on the summary tables. Nothing in this project's scope calls for comparing multiple historical periods, so that complexity isn't built preemptively — a straightforward additive migration if ever needed later.
 
-#### Planned: implementation order for `SummarizationService`
+#### Implementation order for `SummarizationService` (completed)
 
-Not yet implemented. When it is, build in this order:
+Built in this order (see the "implemented" markers above for what each step produced):
 
 1. **Config + packages**: add `Azure.AI.OpenAI`, `Microsoft.Extensions.AI`, `Microsoft.Extensions.AI.OpenAI` to `JiraRollupAgent.csproj` (`Microsoft.Extensions.Configuration.UserSecrets` is already there). Add `AzureOpenAI:ChatModel` (non-secret, `"gpt-5.6-sol"`) and `AppSettings:SummaryRangeStart`/`SummaryRangeEnd` to `appsettings.json`. Register `IChatClient` as a DI singleton in `Program.cs`.
 2. **DAL changes + migration**: add the three summary entities (see "Planned: summary storage schema" above) to `JiraHierarchyEntities.cs`, wire `DbSet<T>` + unique-index config into `JiraRollupDBContext.OnModelCreating`, add three named repository properties + a `DeleteAllSummariesAsync()` (scoped to just the three summary tables, not the full `DeleteAllRowsAsync()`) to `IUnitOfWork`/`UnitOfWork`, generate + apply the EF migration.
@@ -194,7 +194,7 @@ Unlike the reference app, everything lives in the single `JiraRollupAgent` proje
 Same Interface + Implementation-per-folder shape as the reference app's `Services/`, each stage constructor-injecting `IConfiguration` (+ `IUnitOfWork` where it'll need to read/write `VSLiveJiraRollup`), logging via `Serilog.Log.ForContext<T>()` and `.Here()`, and exposing an async `Run()` gated by its own `AppSettings` flag (`RunHierarchyLoad` / `RunSummarization` / `RunReportGeneration` in `appsettings.json`) — mirroring how the reference's `SqlIssueStorageService.Run()` checks `AppSettings:RunJIRAAPIDBProcess`. `Program.cs` registers all three as scoped services and runs them in order via `ActivatorUtilities.CreateInstance<T>(host.Services)`, exactly like the reference's "Running the Services" region.
 
 - `Services/JiraHierarchyLoaderService/` — **implemented.** Deserializes `MockData/jira-hierarchy.json` + `team-roster.json` (via `System.Text.Json`, case-insensitive property matching against the `Models/JiraHierarchyLoaderService/Mock*` DTOs — see below), calls `IUnitOfWork.DeleteAllRowsAsync()`, maps the DTOs into the `DAL.Models` entity graph (`Initiative` → `Epic` → `WorkItem` → `Comment`, `WorkItem.Children` for Subtask/StoryBug), adds it via `_unitOfWork.Initiatives.AddAsync(initiative)` (EF Core walks the whole reachable graph on save — no need to add Epics/WorkItems/Comments individually), and `CompleteAsync()`s. On success it also flips `AppSettings:RunHierarchyLoad` to `false` in `appsettings.json` (see below) — the "Extract" stage.
-- `Services/SummarizationService/` — still a stub. Will produce the item/Epic-engineering/Initiative-business summaries via Azure OpenAI — the "Summarize" stage. There's no output schema for these yet (see `DAL/` note above); add one when this stage is actually implemented.
+- `Services/SummarizationService/` — **implemented.** Loads all comments, validates/normalizes the configured date range (see "Bounds handling, decided" above), builds the flat `HierarchyData` lookups (`LoadHierarchyDataAsync`), then walks every Initiative bottom-up (`BuildSummaryChainAsync`: Subtask/StoryBug → Story → Bug/Task/Spike → Epic → Initiative via `SummarizeLeafAsync`/`SummarizeStoryAsync`/`SummarizeEpicAsync`/`SummarizeInitiativeAsync`), calling Azure OpenAI through the three prompt types (see "Planned: the three prompt types" above — now implemented, not just planned) and skipping the LLM call entirely for zero-comment tickets in favor of the placeholder. `PersistSummariesAsync` clears the three summary tables and inserts everything in one `CompleteAsync()` — the "Summarize" stage.
 - `Services/HtmlReportGeneratorService/` — still a stub. Will read Initiatives (by `PriorityRank`) with their summaries and render the single HTML report — the "Report" stage.
 
 #### Load-once behavior
@@ -216,7 +216,7 @@ Mirrors the reference app's generic repository pattern:
 - `DAL/Models/JiraHierarchyEntities.cs` — `Initiative`, `Epic`, `WorkItem` (Story/Bug/Task/Spike/Subtask/StoryBug via a `Type` discriminator column, with `EpicId` for direct Epic children and a self-referencing `ParentWorkItemId` for Subtask/StoryBug under a Story), `Comment` (attaches to exactly one of Initiative/Epic/WorkItem via three nullable FKs), `TeamMember`. This is a relational projection of the `jira-hierarchy.json`/`team-roster.json` shapes documented above — populated by `Services/JiraHierarchyLoaderService/` (see below).
 - `DAL/Migrations/` — the `InitialCreate` migration generated from this model; regenerate with a new migration (don't hand-edit) whenever the entities change.
 
-Deliberately scoped to just the mock-data shapes for now — no output/rollup tables (per-item/Epic/Initiative summary storage) exist yet, and `issue-type-workflows.json` (the third mock data file) has no entity yet either. The summary tables' design is decided — see "Planned: summary storage schema" above — but not yet implemented; add either only when actually needed by a service that writes to them.
+Originally scoped to just the mock-data shapes; the summary tables (`WorkItemSummaries`/`EpicEngineeringSummaries`/`InitiativeBusinessSummaries`) have since been added — see "Summary storage schema" above. `issue-type-workflows.json` (the third mock data file) still has no entity; add one only when actually needed by a service that writes to it.
 
 #### Table schema (verified against `VSLiveJiraRollup`)
 

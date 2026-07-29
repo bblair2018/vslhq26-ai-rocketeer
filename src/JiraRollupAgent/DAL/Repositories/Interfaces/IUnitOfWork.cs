@@ -20,6 +20,12 @@ namespace JiraRollupAgent.DAL.Repositories.Interfaces
 
         IRepository<TeamMember> TeamMembers { get; }
 
+        IRepository<WorkItemSummary> WorkItemSummaries { get; }
+
+        IRepository<EpicEngineeringSummary> EpicEngineeringSummaries { get; }
+
+        IRepository<InitiativeBusinessSummary> InitiativeBusinessSummaries { get; }
+
         /// <summary>
         /// Commit all changes made through repositories to the database.
         /// </summary>
@@ -29,5 +35,12 @@ namespace JiraRollupAgent.DAL.Repositories.Interfaces
         /// Truncate all tables in the database (delete all records).
         /// </summary>
         Task DeleteAllRowsAsync();
+
+        /// <summary>
+        /// Truncate just the three summary tables (WorkItemSummaries/EpicEngineeringSummaries/
+        /// InitiativeBusinessSummaries) - used by SummarizationService to regenerate fresh on every
+        /// run without touching the loaded hierarchy.
+        /// </summary>
+        Task DeleteAllSummariesAsync();
     }
 }
