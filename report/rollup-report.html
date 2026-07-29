@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jira Rollup Report</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1a1a2e;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+header { max-width: 900px; margin: 0 auto 32px auto; text-align: center; }
+header h1 { font-size: 28px; color: #0f2847; margin-bottom: 6px; }
+.subtitle { color: #5a6b7d; font-size: 15px; }
+main { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+.initiative {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    padding: 24px 28px;
+    border-left: 4px solid #2563eb;
+}
+.initiative-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.priority-badge {
+    background: #2563eb; color: #ffffff; font-weight: 600; font-size: 13px;
+    padding: 3px 10px; border-radius: 12px; flex-shrink: 0;
+}
+.initiative-header h2 { font-size: 20px; color: #0f2847; flex: 1; }
+.jira-id {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 12px; color: #8a94a3; background: #f0f2f5; padding: 2px 8px; border-radius: 6px;
+}
+.status-badge { background: #eef2f7; color: #445468; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 12px; }
+.business-summary { font-size: 15px; color: #2c3542; }
+.epics { margin-top: 18px; padding-top: 18px; border-top: 1px solid #eef0f3; display: flex; flex-direction: column; gap: 14px; }
+.epic { background: #f8fafc; border-radius: 8px; padding: 16px 20px; border-left: 3px solid #64748b; }
+.epic-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+.epic-header h3 { font-size: 15px; color: #24303f; }
+.engineering-summary { font-size: 13.5px; color: #445468; }
+.placeholder { font-style: italic; color: #9aa5b1; }
+footer { max-width: 900px; margin: 40px auto 0 auto; text-align: center; color: #9aa5b1; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+<h1>Jira Rollup Report</h1>
+<p class="subtitle">Activity from July 1, 2026 to July 31, 2026</p>
+</header>
+<main>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#1</span>
+<h2>Next-Gen PFD Symbology Refresh</h2>
+<span class="jira-id">INIT-PFD</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-PFD remains in progress and broadly on track, with 13 of 15 work items resolved or deployed across all three epics; the core widget migration, glare improvements, and tape modernization are substantially complete with strong verification results. The refresh improves dawn/dusk and high-glare readability, rendering responsiveness, and display reliability while maintaining required performance and certification traceability. Overall risk is <strong>moderate</strong>: the DER-visible horizon-line color update is blocked by overdue vendor colorimetry data, and the airspeed color bands await finalized performance limits. These dependencies have been escalated and must be cleared promptly to protect DER review and the Q4 fleet retrofit window; the earlier toolkit licensing issue is resolved with no expected sprint impact.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>ARINC 661 Widget Migration for Attitude Tape</h3>
+<span class="jira-id">EPIC-PFD-1</span>
+</div>
+<p class="engineering-summary">All five work items are resolved: the ARINC 661 CGF attitude tape is live in production, and the bank-angle pointer migration is merged into the CDS integration branch, with rendering fidelity matching the legacy baseline and peer review/QA complete. Rapid-pitch flicker was fixed by synchronizing layer-refresh callbacks, extreme-roll pointer alignment was corrected across the tested range, and the graphics-context leak was eliminated by reusing one context per session; QA observed zero handle growth during a 24-hour HIL soak. CGF toolkit overhead measured approximately 1.8 ms per frame and remains within the 16.6 ms/60 Hz GPU budget, although future synthetic-vision compositing may reduce headroom. DCRD and end-to-end requirement-to-widget traceability updates are complete and submitted to configuration management, with no current blockers to the DAL B recertification work.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>High-Glare Readability and Contrast Optimization</h3>
+<span class="jira-id">EPIC-PFD-2</span>
+</div>
+<p class="engineering-summary">Four of five work items are resolved or in production: adaptive contrast now responds within 200 ms using a smoothed brightness/outline curve, with &gt;80,000-lux sensor nonlinearity corrected and full-range regression and simulator testing passed. The anti-reflective 1.5-pixel outline is implemented with vendor rounding corrected; QA verified both displays within 0.1-pixel tolerance, confirmed the airspeed numeral fix at 85,000 lux without altitude-tape regression, and published the revised glare-bench procedure. The horizon-line palette remains blocked after pilot testing showed insufficient distinction at 50,000 lux due to a physical-panel white-point calibration mismatch, despite completed internal DO-160 validation. Corrected vendor colorimetry data and a firm delivery date are still outstanding, creating schedule risk for the remaining story.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Airspeed and Altitude Tape Rendering Modernization</h3>
+<span class="jira-id">EPIC-PFD-3</span>
+</div>
+<p class="engineering-summary">Four of five work items were resolved or deployed: the ARINC 661 airspeed tape pipeline is complete, with HIL-discovered trend-vector lag reduced from up to 400 ms to under 80 ms and re-verified after reopening. The altitude tape, digital window, and VSI are live in production; QA regression confirmed the flight-level digit-roller fix, while the QNH event-subscription fix delivered one-frame barometric updates across ten repeated tests. A render-loop consolidation spike found only ~0.6 ms/frame GPU savings and unacceptable fault-isolation/DAL B coupling, so separate loops are recommended. The sole blocker is the airspeed color-band bug: thresholds remain tied to an outdated AFM revision pending finalized limits from performance engineering, after which they will move to the shared performance-limits table.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#2</span>
+<h2>Synthetic Vision System (SVS) Integration</h2>
+<span class="jira-id">INIT-SVS</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-SVS remains <strong>In Progress with moderate (amber) risk</strong>: terrain rendering and DAL-A certification/HIL qualification completed successfully, including stable performance, full coverage and traceability, and resolution of the bench timing issue ahead of the September flight-test window. These results provide a strong customer-facing story for a headline product differentiator and demonstrate the expected certification rigor. The obstacle and runway overlay work is largely complete, but marker loss after an in-session database reload requires another sprint and cross-team review. AIXM database ingestion is also on hold pending the vendor’s next-quarter release; leadership is escalating this supplier dependency to protect database-currency commitments and prevent schedule impact.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Terrain Database Rendering Pipeline</h3>
+<span class="jira-id">EPIC-SVS-1</span>
+</div>
+<p class="engineering-summary">The DTED Level 3 terrain pipeline is complete, with slope-weighted tessellation, camera-distance scaling, tile caching, SVS altitude color banding, and terrain database cycle 2026-05 fully integrated; the updated manifest improved load time by ~12%. The mountainous-approach frame drop was traced to uncapped mesh subdivision and fixed with a camera-pitch-based depth cap, with QA/HIL retesting sustaining 30+ fps; QA also validated seamless rendering, resolved ridge-line z-fighting, and confirmed altitude-band accuracy after correcting rapid-descent altitude-source lag. All three stories, the frame-rate bug, and database integration are closed, regression and approach spot checks passed, and no development or QA blockers remain. A GPU shader LOD prototype demonstrated ~3&#215; frame-budget headroom but is deferred to next quarter pending a qualified graphics-driver upgrade; the epic is ready for certification traceability sign-off.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Obstacle &amp; Runway Overlay Symbology</h3>
+<span class="jira-id">EPIC-SVS-2</span>
+</div>
+<p class="engineering-summary">Obstacle marker rendering, scaling, altitude-relative coloring, and flight-path-vector intersection alerting are complete; QA verified alerts with ~4 seconds of lead time and the runway-elevation reference defect is fixed. The obstacle overlay remains blocked because a shared obstacle-service caching bug can cause markers to disappear after a mid-session database reload—especially when zoomed in—until the display is power-cycled; the proposed fix requires cross-team review. Runway outlines and extended centerlines are in production, with the steep-bank drift fixed by recalculating the projection matrix each frame, and the ND range-change disappearance race is also resolved and QA-verified. AIXM 5.1 ingestion is on hold pending the vendor’s next-quarter tooling release, after which validation and a small internal schema update for lighting attributes remain.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>SVS Certification &amp; HIL Qualification</h3>
+<span class="jira-id">EPIC-SVS-3</span>
+</div>
+<p class="engineering-summary">MC/DC instrumentation and tests for terrain rendering are complete, including a low-memory case for the formerly unreachable LOD fallback branch; QA validated full coverage with negligible production impact. The HIL profile now replays flight data at the actual avionics bus rate across three airports, and a bench-harness buffering defect that caused up to 40 ms of timing drift was fixed, with QA confirming results remain within the 5 ms tolerance. The DO-178C traceability matrix is complete, and the obstacle-alert-timing verification gap was closed by linking the formal HIL timing test, satisfying the DER review. No certification blockers remain for the DAL-A evidence package; reduced-DAL treatment for decorative overlays remains deferred pending a functional hazard assessment update in a separate initiative.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#3</span>
+<h2>MFD Touchscreen Migration</h2>
+<span class="jira-id">INIT-MFD</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-MFD is progressing to plan, with all three epics substantially complete and customer-facing functionality ready for the certification walkthrough. The migration enables the reduced-crew workload study next quarter, and core touchscreen, turbulence tolerance, and glove-mode capabilities have met key performance targets. Overall risk is <strong>Amber</strong>: cold-temperature glove-mode drift, final test-log verification, and pending environmental testing must be closed before the October cockpit mockup review; the vendor-dependent accelerometer work is on hold but does not block the current certification path. Leadership attention should remain on securing August environmental chamber access and confirming the glove-mode false-rejection issue is fully resolved.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Bezel-to-Touch Interaction Model Redesign</h3>
+<span class="jira-id">EPIC-MFD-1</span>
+</div>
+<p class="engineering-summary">Both stories completed review and deployment: the primary gesture set was validated across all six MFD pages with 98% glare-condition recognition, while eight critical functions received 12 mm soft keys, 3 mm gutters, and bezel-edge safeguards. Review and QA drove a second geometry pass near the EICAS boundary, wider two-finger-tap dead zones, and tighter touch-start zones, producing zero misclassifications in 50 boundary tests; however, the legacy dual-function shift-button mapping still requires a standardized long-press convention. The autopilot-disconnect double-tap defect was corrected via the debounce timer and passed 20/20 turbulence-rig tests, while 120 Hz lower-zone sampling resolved profile-B touch drops and achieved 99.3% accuracy against the 99% target. Firmware now suppresses physical buttons in touch-primary mode with a cold-boot reset guard, and the haptics spike recommended bracket-reinforced piezo actuators for Epic 3 glove-mode qualification. The epic is closed with all reported defects verified fixed and no remaining blockers.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Turbulence-Tolerant Touch Target Certification</h3>
+<span class="jira-id">EPIC-MFD-2</span>
+</div>
+<p class="engineering-summary">The 12 mm/3 mm-gutter sizing specification and adaptive enlargement feature are live in production and DER-ready; shaker-table and QA panel testing reported zero mis-touches, with QA accepting the documented exception for three legacy 7 mm NAV buttons. The DO-160 turbulence rig is resolved and verified across profiles A–C with ≤2% amplitude variance, while clock synchronization reduced two-hour timestamp drift to under 5 ms. However, the reopened logging StoryBug—previously showing 15–40 ms long-run drift—still requires QA re-verification before the rig’s certification evidence is fully closed. Formal DER review remains pending, and the finer-grained accelerometer-classification spike is on hold for the vendor evaluation board, but it is not blocking the current certification path.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Glove-Mode Capacitive Sensing Qualification</h3>
+<span class="jira-id">EPIC-MFD-3</span>
+</div>
+<p class="engineering-summary">Glove-mode auto-detection and the persistent manual override are live in production, achieving 96% accuracy across three reference glove types with stable startup calibration and clear auto/manual status. QA verified the wet-finger fix (30/30 correct touches), power-cycle persistence across five cycles, and the nitrile-glove threshold/model update, which reduced false rejection from ~40% to under 2%. BUG-MFD-3-4 remains open: after an 8-hour soak at -40&#176;C, temperature-dependent sensor drift causes bare-finger touches to register as glove-mode and requires hardware characterization. Environmental chamber time is the primary blocker, booked for the first week of August; the qualification procedure is finalized, but humidity-related testing also awaits acquisition of a calibrated humidity chamber.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#4</span>
+<h2>EICAS/ECAM Alert Prioritization Overhaul</h2>
+<span class="jira-id">INIT-EICAS</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-EICAS remains <strong>In Progress</strong> with the alert triage redesign and severity-classification work substantially completed, while suppression logic is nearing completion. Overall risk is <strong>elevated</strong>: the low-fuel warning suppression defect was corrected and regression-tested, but a power-cycle issue could still mask cautions on a new flight leg and is blocked on bench validation in early August. Following Flight Operations’ direction, the team is prioritizing preservation of genuine warnings over further nuisance-alert reduction. Closing the FAA audit finding and scheduling compliance review depend on resolving the remaining suppression issue, completing final legacy-data verification, and finalizing the DER evidence package after the August liaison meeting.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Alert Message Triage Table Redesign</h3>
+<span class="jira-id">EPIC-EICAS-1</span>
+</div>
+<p class="engineering-summary">The redesigned triage schema is in place: engine-out cascade handling and hydraulic severity re-tiering are resolved, including stable equal-severity ordering, triple-alert support, updated FHA thresholds, and a 300 ms debounce to prevent caution flicker. The dual-engine/single-hydraulic misranking bug was fixed by replacing the alphabetical tie-break with an FHA-aligned priority list; QA passed engine-out and hydraulic regressions, including 10 targeted retests. Configurable per-sensor transient-fault suppression is in review, but approval is blocked on moving the 500 ms default from code into configuration to enable shorter QA bench intervals and finalizing how transient faults rank against confirmed hydraulic warnings. All 340 legacy CSV rows have been migrated and ambiguous mappings resolved, though QA’s latest comment indicates one final verification against the legacy dataset is still required before sign-off.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Nuisance Alert Suppression Logic</h3>
+<span class="jira-id">EPIC-EICAS-2</span>
+</div>
+<p class="engineering-summary">The fuel quantity rate-of-change suppression is complete and passed full regression: the three-sample filter suppresses turbulence-driven alert flapping across 12 synthetic slosh profiles. QA identified a serious safety gap that silenced valid low-fuel warnings during steady descent; the slope-magnitude hotfix is now deployed and verified to restore warnings within one sample cycle without regressions. Crew-acknowledgment memory works during normal operation, but its cache incorrectly survives power cycles and can mask cautions on a new flight leg; the weight-on-wheels invalidation fix remains blocked until full-bench signal-timing validation scheduled for the first week of August. The ML de-duplication spike is closed, with rule-based suppression retained for DAL A/B traceability.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>ARP4761 Severity Classification Alignment</h3>
+<span class="jira-id">EPIC-EICAS-3</span>
+</div>
+<p class="engineering-summary">Both severity-reclassification stories completed build: electrical bus alert mapping is resolved and QA-verified across all 14 combinations, while autopilot disconnect tier alignment is in review pending confirmation that removing flight-phase logic preserves enhanced low-altitude urgency styling. QA also verified the critical triple-bus-fault fix, restoring the missing catastrophic classification and crew alerts; the original gap must be explicitly documented in the DER package. The FMEA update resolved roughly 60 cross-references and is ready for DER evidence, though the manual cross-reference workload required careful checking. The remaining blocker is the DER traceability spike, on hold until the liaison meeting in early August, which delays finalization of the compliance evidence package.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#5</span>
+<h2>Reduced-Crew Operations (RCO) Display Adaptation</h2>
+<span class="jira-id">INIT-RCO</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-RCO is <strong>in progress and green with a caveat</strong>: workload monitoring and task-sharing are production-ready, with certification evidence approved and no remaining blockers. Pilot incapacitation monitoring and alert prioritization are also complete, but autoland activation integration, tactile feedback, and the related certification briefing remain blocked by overdue vendor specifications and certification data. This dependency is the primary risk to the Q4 single-pilot certification-basis submission and the reduced-crew timeline requested by the board, underwriting, and flight operations. Overall progress remains strong and the risk is understood and tracked, but a firm vendor delivery date is needed to protect the August certification schedule.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Single-Pilot Workload Monitoring &amp; Alerting</h3>
+<span class="jira-id">EPIC-RCO-1</span>
+</div>
+<p class="engineering-summary">The MFD task-load indicator is production-ready at 4 Hz with latency reduced from 250 ms to under 60 ms; QA verified the rapid-transition freeze fix across 10 consecutive HIL go-arounds. Adaptive advisory-level alert suppression passed full HIL regression and 15 go-around tests after fixes preventing Master Caution suppression and eliminating a 900 ms stale-queue delay. The diversion re-plan desynchronization bug was resolved by subscribing directly to FMS re-plan events, with all six HIL scenarios passing and no race condition found. DAL B bidirectional traceability and MC/DC test coverage are approved for the DER package; eye tracking was ruled out due to NVIS unreliability, and no blockers remain.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Consolidated Task-Sharing Display Layout</h3>
+<span class="jira-id">EPIC-RCO-2</span>
+</div>
+<p class="engineering-summary">The unified three-lane task-sharing panel is live in production, combining FMS, communications, and checklist queues with checklist ordering and lane-collapse debounce. Engineering fixed the high-load comms-entry loss using independent lane buffers, queue starvation using a 90-second aging floor, datalink acknowledgment clearing, and checklist truncation via wrap-and-scroll; QA verified each fix, including sustained queue loads, five handoff sessions, and the full checklist library. Priority reordering and configurable airline handoff prompts are resolved and unit-tested/QA-verified, while the ARP4754A requirements and ARP4761 safety cross-references have been updated and approved. All work items are complete with no remaining technical or certification blockers.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Pilot Incapacitation Detection &amp; Ground Contingency Interface</h3>
+<span class="jira-id">EPIC-RCO-3</span>
+</div>
+<p class="engineering-summary">Responsiveness monitoring is resolved and verified: configurable prompts, three-stage escalation, and fleet-defined timeouts are implemented; the coupled-turn false-escalation bug was fixed with bank-angle suppression and passed eight QA scenarios plus full HIL regression. EICAS alert prioritization is also complete, with escalation stages mapped to severity tiers and regression confirming no impact to engine or hydraulic message priorities. The MFD autoland UI is complete against a mock, but real activation integration and tactile/haptic feedback remain blocked by the overdue vendor interface specification and certification data package. This dependency also blocks completion of the DER briefing and meeting rescheduling, making it the primary residual certification-schedule risk into August; biometric sensing was deemed unreliable for this cycle, so prompt-based monitoring remains the selected approach.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#6</span>
+<h2>Head-Up Display (HUD) Conformal Symbology</h2>
+<span class="jira-id">INIT-HUD</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-HUD remains <strong>in progress and on track for its planned certification exit</strong>, with all three epics in active build and the key optics registration tolerance issue resolved and verified. The certification package is complete and stakeholder-approved, while rendering, energy cues, visibility, and conformality testing have met required performance thresholds. Overall risk is <strong>low to moderate</strong>: the flare-cue integration awaits a vendor update in early August, and a backordered bench component is expected mid-August, but current workarounds prevent either from blocking broader certification activity. Holding the timeline is important because the HUD capability enables lower-visibility approach credit at three high-density hubs and supports the FAA operational approval submission queued for Q1 next year.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Flight Path Vector &amp; Runway Outline Rendering</h3>
+<span class="jira-id">EPIC-HUD-1</span>
+</div>
+<p class="engineering-summary">FPV rendering is complete at 20 Hz within latency limits, with high-bank drift reduced from 0.3&#176; to &lt;0.08&#176; against the 0.15&#176; tolerance; bench, HIL, and full bank-angle regression testing passed, and the story is ready for certification evidence. Runway outlines now render from the certified navigation database with sub-meter accuracy, including the displaced-threshold registration defect reported on July 9; diagnostic logging has DER liaison sign-off and validation/regression testing passed. The rapid-pitch flicker was traced to a render-buffer swap race and fixed with a frame-completion guard, with QA confirming no recurrence across 10 repeated go-around tests. Boresight calibration and the optics spike are complete—birdbath optics were retained for cost/schedule reasons—and no technical blockers or remaining actions are reported.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Energy Management Cue Integration</h3>
+<span class="jira-id">EPIC-HUD-2</span>
+</div>
+<p class="engineering-summary">Two of three integration stories are resolved and QA-verified: the E-cue tape tracks the reference algorithm/flight-test data within 2%, with rapid-deceleration lag reduced from ~400 ms to &lt;50 ms, while low-energy amber/red transitions at 15%/8% margins are stable under HIL boundary testing after adding hysteresis. The NVIS night-mode palette defect is resolved and verified under NVG-compatible lighting, and regression testing found no remaining blockers in completed functionality. Certification test procedures are finalized, including hysteresis coverage, and linked into the requirements traceability and evidence packages. Flare cue prediction remains the sole blocker and schedule risk: the vendor’s updated trajectory model is expected in early August because the current batch-only API cannot support 10 Hz rendering; integration is drafted, but HIL testing is paused and the placeholder StoryBug does not yet represent a confirmed defect.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>HUD Conformality Certification &amp; Registration</h3>
+<span class="jira-id">EPIC-HUD-3</span>
+</div>
+<p class="engineering-summary">Boresight verification completed across all nine positions with temperature logging and repeat measurements; QA confirmed the dataset, and an extreme-eye-position tolerance defect was corrected with a locking combiner-mount shim, maintaining error below 1 mrad after a second verification pass. The DER package is complete and stakeholder-approved, with raw registration data and a traceability matrix covering all 42 symbology requirements; missing evidence and three NVIS linkages were added and QA-verified. The DO-160 sunlight-readability failure at 10,000 fc was resolved through FPV brightness and outline adjustments, with the full QA retest passing with margin; the CRT projector will remain for this cycle because a digital light engine would require an unscheduled qualification campaign. The HIL bench rebuild is the only open constraint—rewiring is about halfway complete and awaiting a backordered signal-generator card until mid-August—but individual scripts remain operational, so certification and other testing are not blocked.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#7</span>
+<h2>Databus Migration: ARINC 429 to ARINC 664 (AFDX)</h2>
+<span class="jira-id">INIT-AFDX</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">Overall, the initiative is in good shape: switch architecture and protocol bridge work are complete and progressing to live traffic, with sprint execution on track and key performance and resilience issues resolved. The primary schedule risk is limited network qualification lab availability until early August, which is delaying final multi-zone cutover testing; minor design-document and approval items also remain, but the core technical work is complete. Engineering has escalated the lab constraint, and no switch procurement threat to the Q4 cutover has been reported. Successful completion remains critical to relieving bandwidth constraints on newer aircraft, enabling synthetic vision and future sensor-fusion initiatives, and supporting next month’s certification package review.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>AFDX Switch Fabric Design and Qualification</h3>
+<span class="jira-id">EPIC-AFDX-1</span>
+</div>
+<p class="engineering-summary">Topology analysis established a three-path dual-redundant architecture for DAL A compliance; it was validated against port-density limits, rerouted through a separate rack, and received DER concurrence. Final design-package sign-off is blocked by a reopened StoryBug because the redundancy map still references the obsolete Zone 2 rack location, although QA confirmed third-path restoration and independence annotations. The configuration generator is live in the integration lab with zone mapping, vendor XML output, and duplicate-ID validation; the &gt;200-entry collision defect was fixed and QA-validated through 500 entries, but the implementation subtask status needs reconciliation. QA also confirmed zero ADIRU burst-frame drops after ingress-buffer sizing was corrected, and the redundant switch pair passed DO-160 vibration and thermal cycling within margin; no further blockers were reported for these items.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>ARINC 429 to AFDX Protocol Bridge Implementation</h3>
+<span class="jira-id">EPIC-AFDX-2</span>
+</div>
+<p class="engineering-summary">The production ARINC 429-to-AFDX gateway now supports validated ADC/IRS traffic, with all 340 labels mapped via ICD-driven generation; explicit handling was added for non-standard label resolutions, and the incorrect altitude label 0203 mapping was corrected with automated validation and uniqueness checks. Queue prioritization eliminated high-load airspeed label 0310 drops, passing a two-hour zero-drop QA test, while application-layer heartbeat monitoring now detects silent failures and completes redundancy failover in 90–95 ms. QA’s dual-lane failover latency defect was resolved using warm-standby routing tables, reducing spikes from ~90 ms to 12–14 ms and remaining below the 50 ms budget across 20 cycles. The only remaining blocker is the ICD documentation task, whose technical content is complete but awaits legal and configuration-management approval of the controlled template revision.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Virtual Link Bandwidth Allocation and Network Cutover</h3>
+<span class="jira-id">EPIC-AFDX-3</span>
+</div>
+<p class="engineering-summary">The bandwidth model and virtual-link configuration were completed for PFD, ND, and EICAS, with EICAS burst capacity raised ~20% and assigned appropriate reserved capacity after legacy-log analysis. The Zone 2 certification-limit blocker was resolved by moving two lower-priority links to Zone 1, reducing peak load from &gt;26 Mbps to 22.5 Mbps; QA held usage below 23 Mbps across ten burst runs and validated cascading-alert margin. Phased cutover and rollback hooks are implemented, the stale ARINC 429 route cleanup and Zone 3 ID-mapping defects are fixed, and the Zones 1–2 rehearsal completed cleanly. However, full cutover sequencing remains paused pending Zone 3 qualification testing for the identified simultaneous multi-zone failure coverage gap, blocked by three-switch lab-bench availability until early August.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#8</span>
+<h2>Electronic Flight Bag (EFB) Class 3 Integration</h2>
+<span class="jira-id">INIT-EFB</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-EFB remains in progress and is broadly tracking to plan, with the chart-loading, performance-calculation, and weight-and-balance capabilities functionally complete and certification evidence under DER review. The initiative closes a key audit gap by replacing ad-hoc EFB data loading with a controlled, traceable pipeline, while also improving flight-performance checks and providing the W&amp;B override audit trail requested by dispatch. Testing uncovered elevated chart-pipeline defects, but they were resolved without schedule impact and no current software blockers remain. Overall risk is moderate and contained: environmental hardware qualification is delayed by lab availability until mid-August, and contaminated-runway validation awaits vendor data, but neither issue currently threatens the software certification timeline.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Chart Data Loading Pipeline Certification</h3>
+<span class="jira-id">EPIC-EFB-1</span>
+</div>
+<p class="engineering-summary">AIRAC ingestion, currency validation, and SHA-256 verification across network and maintenance USB paths are complete, reviewed, and cleared for release. Dev and QA resolved key defects: 500-record truncation on full-size cycles, USB checksum bypass, expiration-boundary off-by-one behavior, and acceptance of expired AIRAC packages; regression and rejection testing now covers rollover, malformed/stale packages, 00:00Z boundaries, corrupted loads, and a complete 612-record cycle. The loader now hard-blocks invalid or corrupted data with crew-visible alerts, and all implementation and verification evidence traces to certification requirements. DER feedback, including missing checksum links, has been incorporated into the traceability matrix; all work items are resolved with no remaining blockers.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Performance Calculation Module Integration</h3>
+<span class="jira-id">EPIC-EFB-2</span>
+</div>
+<p class="engineering-summary">Takeoff and landing performance integrations are functionally complete, with QA validation across certified-manual reference cases and wet, dry, contaminated, insufficient-margin, and runway-update scenarios. Runway-slope handling was corrected, and stale runway-condition data after airport switches was fixed by replacing partial-ICAO cache keys with full airport identifiers; QA confirmed both fixes with no remaining blockers. A 40-scenario edge-case regression suite now runs successfully in nightly CI, covering extreme weights, runway conditions, slopes, and missing-data fallbacks. The contaminated-runway accuracy spike remains on hold pending the vendor’s raw validation dataset after published-data comparisons showed a consistent 4–6% conservative bias; it is deferred to next quarter and does not block epic completion.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Weight &amp; Balance Cross-Check Display</h3>
+<span class="jira-id">EPIC-EFB-3</span>
+</div>
+<p class="engineering-summary">Both W&amp;B stories are resolved: the EFB now provides an immutable manual-override audit trail and unit-normalized cross-checks against dispatch load sheets, with clear discrepancy alerts. The reboot-related audit-log data-loss defect was fixed through immediate persistence; QA confirmed durability across power cycles and forced reboots and validated six cross-check scenarios, including kilogram inputs. The single-EFB reversionary layout is also complete and QA-verified, while the ACARS spike confirmed automatic load-sheet ingestion is feasible without new avionics hardware and is recommended for a future implementation story. The only blocker is DO-160 environmental testing because the lab chamber is unavailable until mid-August; this delays hardware qualification but does not affect the software certification timeline.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#9</span>
+<h2>Display Reversionary Mode Redesign</h2>
+<span class="jira-id">INIT-REV</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-REV remains <strong>In Progress</strong> and is functionally strong: failure detection, data consolidation, crew alerting, and the redesigned layout are complete, with oil pressure and EGT included as requested by Flight Operations. The consolidated demo received positive stakeholder and training-team feedback, indicating the redesign should materially reduce crew workload during display failures and directly address the open highest-criticality safety finding. Overall risk is <strong>elevated for schedule, not functionality</strong>: certification testing is constrained by current test-bench capabilities and vendor firmware lead time, while final written reviewer concurrence is expected in early August. The team is pursuing an interim test approach, but approval or a bench upgrade is needed to protect the Q3 certification submission window.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Display Failure Detection &amp; Consolidation Logic</h3>
+<span class="jira-id">EPIC-REV-1</span>
+</div>
+<p class="engineering-summary">Heartbeat monitoring and consolidation triggers are implemented end-to-end across all four display units, using 50 ms polling and jitter-tolerant missed-heartbeat thresholds; QA verified detection stayed within the 200 ms safety budget across ten induced-failure runs, including cold starts. QA’s dual-failure misclassification finding prompted a decision-table rework that batches near-simultaneous heartbeat losses, and both dual- and rapid triple-display failure scenarios were successfully re-verified. The earlier debounce/transient-glitch risk, boot-time null handling, startup latency, and wind-vector rendering edge case have all been resolved; ND-to-MFD consolidation has run in production for a week without regressions. Fixed reversionary templates were recommended over dynamic reflow for deterministic DAL A certification timing, and no blockers remain for epic closure.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Reversionary Data Prioritization &amp; Layout</h3>
+<span class="jira-id">EPIC-REV-2</span>
+</div>
+<p class="engineering-summary">The configurable, failure-mode-based priority table is complete and now drives both top-three tape placement (airspeed, altitude, attitude) and extraction of prioritized EICAS parameters, including oil pressure, EGT, and N1/N2. QA-reported defects—including tape overlap, truncated unit labels on narrow MFDs, and the missing oil-pressure parameter—were fixed and re-verified across wide/narrow layouts and against the full parameter list. Reversionary-mode crew alerting is also complete, with QA confirming correct trigger and clear behavior following display-unit restoration. All work items are resolved with no remaining engineering blockers, and the epic is ready for certification review.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>DAL A Verification &amp; Certification Evidence</h3>
+<span class="jira-id">EPIC-REV-3</span>
+</div>
+<p class="engineering-summary">MC/DC coverage is complete and QA-confirmed at 100% after correcting duplicate vectors caused by short-circuit logic and adding dedicated triple-failure cases; the suite is now in the certification evidence package. The DER walkthrough was completed successfully, and the QA-identified ARP4761 FHA traceability gap was corrected, verbally accepted, and incorporated into the completed DAL A traceability matrix, with written DER concurrence expected in early August. HIL verification remains the primary blocker: newer display-unit failure injection depends on vendor firmware with a six-week lead time, while current bench hardware supports only two simultaneous fault channels. The triple-display bug is therefore on hold pending certification approval of a hybrid two-hardware/one-software fault-injection workaround or a bench upgrade, creating risk to the certification timeline and Epic 1 testing plan.</p>
+</div>
+</div>
+</section>
+<section class="initiative">
+<div class="initiative-header">
+<span class="priority-badge">#10</span>
+<h2>Dark Cockpit / Night Adaptation Lighting Compliance</h2>
+<span class="jira-id">INIT-NVIS</span>
+<span class="status-badge">In Progress</span>
+</div>
+<p class="business-summary">INIT-NVIS remains <strong>In Progress</strong>, with two of three epics complete and the backlight and dark-adaptation evidence ready for DER pre-submission review. The delivered redesign provides stable NVG-compatible lighting and reduced average dark-adaptation recovery to 74 seconds, addressing the crew-reported night-operations safety concern and supporting the planned fleet-wide retrofit. Overall delivery is on plan, but risk is elevated because the lighting control unit fails thermal cycling at extreme cold and remains blocked on a vendor board revision with no committed delivery date; the next qualification-lab slot is also at risk. This is the sole remaining issue preventing closure and could affect the October certification review, so securing the vendor commitment and preserving a lab slot require immediate leadership attention.</p>
+<div class="epics">
+<div class="epic">
+<div class="epic-header">
+<h3>Display Backlight Color-Temperature Calibration</h3>
+<span class="jira-id">EPIC-NVIS-1</span>
+</div>
+<p class="engineering-summary">All five epic items are resolved, delivering adjustable NVG-compatible red/white bezel lighting, ambient-sensor integration, and a validated 12-point automatic brightness curve. QA verified firmware compensation keeps temperature-related green-channel leakage below 2% from −20&#176;C to 55&#176;C, while &#177;8 lux hysteresis eliminated dusk-transition flicker across 20 simulations. The EICAS minimum-dimming flicker was fixed by increasing PWM frequency and using duty-cycle-only low-end dimming, with no recurrence across ten power cycles; photometric references were also corrected for an ~8% legacy calibration error and validated within 1%. The OLED-vs-LED spike recommends LED due to &lt;150K color-temperature drift versus OLED’s &gt;400K at temperature extremes, informing DO-160 component selection; no blockers remain.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>DO-160 Environmental Qualification for Lighting Assemblies</h3>
+<span class="jira-id">EPIC-NVIS-2</span>
+</div>
+<p class="engineering-summary">Four of five epic items are effectively ready for DER review: DO-160 RF and temperature/altitude baselines are approved, MFD procedures are finalized with the required DER altitude sign-off, and the 48-hour/95% RH soak passed after replacing corrosion-prone tin-plated connector pins with gold-plated pins. The PFD’s transient 400 MHz dimming was eliminated with improved input shielding and a ferrite choke, and QA confirmed a clean full RF sweep with updated evidence. The remaining critical defect is the lighting control unit resetting at -40&#176;C because its power regulator falls out of specification below -35&#176;C; qualification is blocked pending a vendor board revision, with no delivery date and the next lab slot at risk. RF and humidity evidence are complete, so the team is preparing a phased DER submission for early August while holding thermal-cycling evidence until the hardware fix is available.</p>
+</div>
+<div class="epic">
+<div class="epic-header">
+<h3>Crew Dark-Adaptation Recovery Time Reduction</h3>
+<span class="jira-id">EPIC-NVIS-3</span>
+</div>
+<p class="engineering-summary">Engineering work is complete: cockpit door-open events now use a configurable 3-second dimming transition with sensor debounce, and the double-trigger strobe defect passed 15 QA cycles. Red-only annunciator mode, automatic night-approach activation, and groundspeed-based disengagement after landing rollout passed all 10 QA retests; the full-white buffer-swap flash was also eliminated, with zero recurrence across 20 retests. The measurement rig’s ambient-sensor baseline drift was corrected through mandatory session-start calibration, reducing variance from up to 15 seconds to within 2 seconds. Final QA measured average dark-adaptation recovery at 74 seconds across five bench trials, beating the literature-derived target of under 90 seconds; no blockers remain.</p>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<p>Generated July 28, 2026 at 10:13 PM</p>
+</footer>
+</body>
+</html>

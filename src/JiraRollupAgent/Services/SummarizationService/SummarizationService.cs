@@ -1,5 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using JiraRollupAgent.DAL.Models;
 using JiraRollupAgent.DAL.Repositories.Interfaces;
 using JiraRollupAgent.Extensions;
@@ -96,6 +99,9 @@ namespace JiraRollupAgent.Services.SummarizationService
                         "Process to generate item/Epic/Initiative summaries completed successfully: persisted {WorkItemSummaryCount} work item summaries, " +
                         "{EpicSummaryCount} epic summaries, {InitiativeSummaryCount} initiative summaries for range {RangeStart:yyyy-MM-dd} to {RangeEnd:yyyy-MM-dd}.",
                         workItemSummaries.Count, epicSummaries.Count, initiativeSummaries.Count, rangeStart, rangeEnd);
+
+                    await DisableSummarizationFlagAsync();
+
                     return true;
                 }
                 else
@@ -108,6 +114,48 @@ namespace JiraRollupAgent.Services.SummarizationService
             {
                 _log.Here().Warning(ex, "Process to generate item/Epic/Initiative summaries ** FAILED! **");
                 return false;
+            }
+        }
+
+        #endregion
+
+        #region Self-disable
+
+        /// <summary>
+        /// Flips AppSettings:RunSummarization to false in appsettings.json after a successful run, so
+        /// summaries are generated once and subsequent runs skip the ~15-minute, ~320-call regenerate.
+        /// Setting it back to true by hand causes the next run to wipe and regenerate every summary
+        /// fresh (via PersistSummariesAsync's DeleteAllSummariesAsync) - same shape as
+        /// JiraHierarchyLoaderService's DisableHierarchyLoadFlagAsync.
+        /// </summary>
+        private async Task DisableSummarizationFlagAsync()
+        {
+            try
+            {
+                var appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+                var json = await File.ReadAllTextAsync(appSettingsPath);
+                var root = JsonNode.Parse(json)?.AsObject();
+
+                if (root?["AppSettings"] is not JsonObject appSettings)
+                {
+                    _log.Here().Warning("Could not find an \"AppSettings\" section in appsettings.json - leaving RunSummarization as-is.");
+                    return;
+                }
+
+                appSettings["RunSummarization"] = false;
+
+                var writeOptions = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+                await File.WriteAllTextAsync(appSettingsPath, root!.ToJsonString(writeOptions));
+
+                _log.Here().Information("Set AppSettings:RunSummarization to false so the next run skips regenerating summaries.");
+            }
+            catch (Exception ex)
+            {
+                _log.Here().Warning(ex, "Failed to disable AppSettings:RunSummarization after a successful run - it will run again next time.");
             }
         }
 
