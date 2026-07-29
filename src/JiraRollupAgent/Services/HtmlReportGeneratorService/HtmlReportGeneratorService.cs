@@ -209,7 +209,7 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             sb.AppendLine($"<span class=\"jira-id\">{Encode(initiative.JiraId)}</span>");
             sb.AppendLine($"<span class=\"status-badge\">{Encode(initiative.Status)}</span>");
             sb.AppendLine("</div>");
-            sb.AppendLine($"<p class=\"{summaryClass}\">{summaryHtml}</p>");
+            sb.AppendLine($"<div class=\"{summaryClass}\">{summaryHtml}</div>");
 
             var epics = data.EpicsByInitiativeId.GetValueOrDefault(initiative.Id, []);
             if (epics.Count > 0)
@@ -234,15 +234,75 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             sb.AppendLine($"<h3>{Encode(epic.Title)}</h3>");
             sb.AppendLine($"<span class=\"jira-id\">{Encode(epic.JiraId)}</span>");
             sb.AppendLine("</div>");
-            sb.AppendLine($"<p class=\"{summaryClass}\">{summaryHtml}</p>");
+            sb.AppendLine($"<div class=\"{summaryClass}\">{summaryHtml}</div>");
             sb.AppendLine("</div>");
         }
 
         private static string Encode(string text) => System.Net.WebUtility.HtmlEncode(text);
 
-        /// <summary>HTML-encodes the summary, then renders the "**bold**" emphasis the model uses for risk/status callouts as &lt;strong&gt;.</summary>
+        private static readonly Regex BoldRegex = new(@"\*\*(.+?)\*\*", RegexOptions.Compiled);
+        private static readonly Regex StatusLineRegex = new(@"^Status\s*:\s*(.+)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex SectionHeaderRegex = new(@"^(Key Progress|Risks/Blockers|Risks|Blockers)\s*:?\s*$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Parses the Type C structured format ("Status: ..." line, "Key Progress:"/"Risks/Blockers:"
+        /// headings each followed by "- " bullets - see SummarizationService's StructuredOutputFormat)
+        /// into real HTML: a status paragraph, section headings, and &lt;ul&gt;&lt;li&gt; bullet lists.
+        /// HTML-encodes every line first, then converts "**bold**" to &lt;strong&gt; on the encoded
+        /// text (safe since ** isn't affected by HTML entity escaping).
+        /// </summary>
         private static string FormatSummaryText(string text)
-            => Regex.Replace(Encode(text), @"\*\*(.+?)\*\*", "<strong>$1</strong>");
+        {
+            var sb = new StringBuilder();
+            var inList = false;
+
+            foreach (var rawLine in text.Replace("\r\n", "\n").Split('\n'))
+            {
+                var line = rawLine.Trim();
+                if (line.Length == 0)
+                    continue;
+
+                if (line.StartsWith("- ") || line.StartsWith("* "))
+                {
+                    if (!inList)
+                    {
+                        sb.Append("<ul>");
+                        inList = true;
+                    }
+                    sb.Append($"<li>{ApplyBold(Encode(line[2..].Trim()))}</li>");
+                    continue;
+                }
+
+                if (inList)
+                {
+                    sb.Append("</ul>");
+                    inList = false;
+                }
+
+                var statusMatch = StatusLineRegex.Match(line);
+                if (statusMatch.Success)
+                {
+                    sb.Append($"<p class=\"status-line\"><strong>Status:</strong> {ApplyBold(Encode(statusMatch.Groups[1].Value.Trim()))}</p>");
+                    continue;
+                }
+
+                var headerMatch = SectionHeaderRegex.Match(line);
+                if (headerMatch.Success)
+                {
+                    sb.Append($"<p class=\"summary-heading\">{Encode(headerMatch.Groups[1].Value)}</p>");
+                    continue;
+                }
+
+                sb.Append($"<p>{ApplyBold(Encode(line))}</p>");
+            }
+
+            if (inList)
+                sb.Append("</ul>");
+
+            return sb.ToString();
+        }
+
+        private static string ApplyBold(string encodedText) => BoldRegex.Replace(encodedText, "<strong>$1</strong>");
 
         private const string ReportCss = """
             * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -281,6 +341,14 @@ namespace JiraRollupAgent.Services.HtmlReportGeneratorService
             .epic-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
             .epic-header h3 { font-size: 15px; color: #24303f; }
             .engineering-summary { font-size: 13.5px; color: #445468; }
+            .business-summary p, .engineering-summary p { margin: 6px 0; }
+            .business-summary .status-line, .engineering-summary .status-line { margin-top: 0; }
+            .business-summary ul, .engineering-summary ul { margin: 2px 0 10px 20px; padding: 0; }
+            .business-summary li, .engineering-summary li { margin: 3px 0; }
+            .summary-heading {
+                font-weight: 600; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em;
+                color: #64748b; margin-top: 12px; margin-bottom: 2px;
+            }
             .placeholder { font-style: italic; color: #9aa5b1; }
             footer { max-width: 900px; margin: 40px auto 0 auto; text-align: center; color: #9aa5b1; font-size: 12px; }
             """;

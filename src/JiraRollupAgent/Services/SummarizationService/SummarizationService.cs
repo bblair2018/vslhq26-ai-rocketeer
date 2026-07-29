@@ -35,18 +35,25 @@ namespace JiraRollupAgent.Services.SummarizationService
             TypeASystemPrompt + " You are also given summaries of this Story's Subtasks and " +
             "StoryBugs - incorporate their key points.";
 
+        // --- Shared structured-output format for Type C (Epic/Initiative) - rendered as headings/bullets by HtmlReportGeneratorService.FormatSummaryText ---
+        private const string StructuredOutputFormat =
+            " Format your response exactly like this: a line \"Status: <one-sentence overall status>\", " +
+            "then a line \"Key Progress:\" followed by 2-4 concise bullet points (each starting with \"- \"), " +
+            "then - only if there are real risks or blockers - a line \"Risks/Blockers:\" followed by bullet " +
+            "points (omit this section entirely if there are none). Keep bullets short and concrete; no filler.";
+
         // --- Type C: Epic rollup - own comments (Dev/QA-weighted) + work item summaries ---
         private const string EpicSystemPrompt =
             "Produce an Engineering Summary of this Epic for developers/technical leads: technical " +
             "progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are " +
-            "context but shouldn't dominate. Incorporate the work item summaries provided. 3-5 sentences.";
+            "context but shouldn't dominate. Incorporate the work item summaries provided." + StructuredOutputFormat;
 
         // --- Type C: Initiative rollup - own comments (ScrumMaster/Stakeholder/EM-weighted) + Epic summaries ---
         private const string InitiativeSystemPrompt =
             "Produce a Business Summary of this Initiative for stakeholders/leadership: overall " +
             "status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and " +
             "Engineering Manager commenters said; Dev/QA commentary is context but shouldn't " +
-            "dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. 3-5 sentences.";
+            "dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon." + StructuredOutputFormat;
 
         public SummarizationService(IConfiguration config, IUnitOfWork unitOfWork, IChatClient chatClient)
         {
