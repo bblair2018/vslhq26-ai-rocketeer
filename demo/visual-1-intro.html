@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jira Rollup Agent — Intro</title>
+<style>
+  :root {
+    --bg: #0b0e13;
+    --panel: #12161d;
+    --ink: #e8edf4;
+    --ink-dim: #8a97a8;
+    --cyan: #3ec6e0;
+    --amber: #f0a839;
+    --hairline: rgba(232, 237, 244, 0.14);
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Faint instrument-panel grid texture, very low opacity */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232, 237, 244, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232, 237, 244, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  /* Vertical vignette for depth */
+  .vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 45%, rgba(62, 198, 224, 0.07), transparent 60%);
+    pointer-events: none;
+  }
+
+  .stage {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0 8vw;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: clamp(12px, 1.1vw, 15px);
+    letter-spacing: 0.28em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 6.4vw, 96px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.02;
+    text-wrap: balance;
+    margin-bottom: 20px;
+  }
+
+  .tagline {
+    font-size: clamp(16px, 1.7vw, 24px);
+    color: var(--ink-dim);
+    max-width: 44ch;
+    line-height: 1.5;
+  }
+
+  /* Abstracted attitude-indicator horizon line */
+  .horizon {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan) 15%, var(--cyan) 85%, transparent);
+    box-shadow: 0 0 18px 1px rgba(62, 198, 224, 0.55);
+    margin: 46px 0 54px;
+  }
+  .horizon::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    background: var(--amber);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px 2px rgba(240, 168, 57, 0.7);
+  }
+
+  /* Presenter data-tape strip */
+  .tape {
+    border-top: 1px solid var(--hairline);
+    padding-top: 18px;
+    max-width: 560px;
+  }
+  .tape-row {
+    font-family: var(--mono);
+    line-height: 1.9;
+  }
+  .tape-name {
+    font-size: clamp(17px, 1.5vw, 21px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  .tape-role {
+    font-size: clamp(12.5px, 1.05vw, 14.5px);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .tape-org {
+    font-size: clamp(12.5px, 1.05vw, 14.5px);
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+  }
+
+  /* Category annunciator badges */
+  .badges {
+    position: absolute;
+    right: 8vw;
+    bottom: 6vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: clamp(10.5px, 0.85vw, 12.5px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    padding: 7px 14px;
+    white-space: nowrap;
+  }
+  .badge b { color: var(--cyan); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="grid"></div>
+<div class="vignette"></div>
+
+<div class="stage">
+  <div class="eyebrow">Status Report Automation</div>
+  <h1>Jira Rollup Agent</h1>
+  <p class="tagline">One ticket hierarchy. Two audiences. Zero manual synthesis.</p>
+
+  <div class="horizon"></div>
+
+  <div class="tape">
+    <div class="tape-row tape-name">Bill Blair</div>
+    <div class="tape-row tape-role">Software Engineering Manager &middot; FinTech</div>
+    <div class="tape-row tape-org">Universal Air Travel Plan &mdash; Austin, TX</div>
+  </div>
+</div>
+
+<div class="badges">
+  <div class="badge"><b>Best</b> AI Agent / Workflow Automation</div>
+  <div class="badge"><b>Best</b> Azure OpenAI / LLM-Powered App</div>
+</div>
+
+</body>
+</html>

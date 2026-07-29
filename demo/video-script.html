@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jira Rollup Agent — Demo Video Script</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.6;
+    color: #1a1a2e;
+    background: #f9fafb;
+  }
+  h1 { font-size: 24px; margin-bottom: 4px; }
+  .subtitle { color: #5a6b7d; font-size: 14px; margin-bottom: 32px; }
+  section {
+    background: #ffffff;
+    border: 1px solid #e2e5ea;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 15px;
+    color: #0f2847;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .timecode {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 12px;
+    color: #ffffff;
+    background: #2563eb;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .visual {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 12.5px;
+    color: #64748b;
+    background: #f0f2f5;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  .visual a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .visual a:hover { text-decoration: underline; }
+  blockquote {
+    margin: 0;
+    padding-left: 14px;
+    border-left: 3px solid #cbd5e1;
+    color: #2c3542;
+    font-size: 15px;
+  }
+  .notes {
+    margin-top: 32px;
+    font-size: 14px;
+    color: #445468;
+  }
+  .notes h2 { color: #0f2847; }
+  .notes ul { padding-left: 20px; }
+  .notes li { margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<h1>Jira Rollup Agent — Demo Video Script</h1>
+<p class="subtitle">Target length: under 3:00. Timecodes are approximate — adjust to your own pacing.</p>
+
+<section>
+  <h2>Intro & Hook <span class="timecode">0:00 – 0:30</span></h2>
+  <div class="visual">[VISUAL: talking head, or record <a href="visual-1-intro.html">visual-1-intro.html</a> full-screen as a title card]</div>
+  <blockquote>"Hi, I'm Bill Blair — a Software Engineering Manager for two FinTech teams at Universal Air Travel Plan, based in Austin, Texas.
+  <br><br>
+  If you've ever managed a big project in Jira, you know the problem: your execs want a one-paragraph status update, your engineers want the technical details, and somebody has to manually read through hundreds of comments to write both. That's what this project automates."</blockquote>
+</section>
+
+<section>
+  <h2>What It Does <span class="timecode">0:30 – 1:05</span></h2>
+  <div class="visual">[VISUAL: record <a href="visual-2-architecture.html">visual-2-architecture.html</a> — the Jira Hierarchy &rarr; Azure OpenAI &rarr; Rollup Report pipeline]</div>
+  <blockquote>"This is the Jira Rollup Agent. It takes a full Jira hierarchy — Initiatives, Epics, Stories, Bugs, Tasks — and sends it through Azure OpenAI in a chain: every ticket gets summarized from its own comments, then rolled up into its Epic, then rolled up into its Initiative. The output is a single HTML report, sorted by business priority.
+  <br><br>
+  For this demo, that hierarchy comes from a realistic mocked dataset rather than a live Jira pull — the ingestion side is a separate, already-built pipeline, and its real output can drop in without changing any of this summarization logic."</blockquote>
+</section>
+
+<section>
+  <h2>Live Demo — the core of the video <span class="timecode">1:05 – 2:35</span></h2>
+  <div class="visual">[VISUAL: switch to the browser, report/rollup-report.html, scroll live — do NOT mock this up, the real report is the strongest asset you have]</div>
+  <blockquote>
+    "Here's the actual report. Initiatives are ranked by priority — this one's #1. And look at this summary: status, key progress, risks and blockers — written for a stakeholder. No jargon, just business impact.
+    <br><br>
+    Now here's the interesting part. Expand into one of its Epics..."
+  </blockquote>
+  <br>
+  <div class="visual">[VISUAL: scroll down to "ARINC 661 Widget Migration for Attitude Tape" — the first Epic under Initiative #1 "Next-Gen PFD Symbology Refresh" — its Engineering Summary]</div>
+  <blockquote>"...and the tone completely changes. Same underlying comment thread, but this summary is written for engineers — technical progress, bugs, blockers. That's not two different reports. It's the same data, weighted toward different voices on purpose: the Business Summary leans on what Scrum Masters and Stakeholders said, the Engineering Summary leans on what Devs and QA said."</blockquote>
+  <br>
+  <div class="visual">[VISUAL: keep scrolling — show a couple more Initiatives/Epics to demonstrate scale]</div>
+  <blockquote>"And this isn't a toy example — this report was generated end-to-end across ten Initiatives, thirty Epics, and hundreds of individual tickets, with zero manual editing."</blockquote>
+</section>
+
+<section>
+  <h2>Under the Hood <span class="timecode">2:35 – 3:05</span></h2>
+  <div class="visual">[VISUAL: record <a href="visual-3-under-the-hood.html">visual-3-under-the-hood.html</a> — the recursive rule + the three prompt types]</div>
+  <blockquote>"Under the hood, this isn't one giant prompt. It's a recursive chain built on Azure OpenAI through Azure AI Foundry: leaf tickets summarize first, Stories roll up their Subtasks, Epics roll up their Stories into an Engineering Summary, and Initiatives roll up their Epics into a Business Summary. Each level only ever reads the level below it — so the model never loses track of who said what."</blockquote>
+</section>
+
+<section>
+  <h2>Close <span class="timecode">3:05 – 3:25</span></h2>
+  <div class="visual">[VISUAL: record <a href="visual-4-close.html">visual-4-close.html</a> — closing card, bookends visual-1-intro.html]</div>
+  <blockquote>"The result: status reporting that used to take hours of manual reading now happens automatically, and it speaks the right language to whoever's reading it. Thanks for watching."</blockquote>
+</section>
+
+<div class="notes">
+  <h2>Notes</h2>
+  <ul>
+    <li><strong>Roughly 3:25 read at a natural pace — now ~25 seconds over the 3:00 cap</strong> (the intro and the mocked-data line both ate into what used to be buffer). Pick a couple of these to get back under 3:00:
+      <ul>
+        <li>Cut the Live Demo's closing line entirely ("And this isn't a toy example...with zero manual editing.") — saves ~8-10s, and the scale point was already made implicitly by scrolling through multiple Initiatives on screen.</li>
+        <li>Shorten the mocked-data line to: "For this demo, that hierarchy comes from a mocked dataset rather than a live Jira pull — Jira ingestion is a separate, already-built system." — saves ~6-8s by dropping the "drop-in replacement" clause.</li>
+        <li>Trim "Under the Hood"'s last sentence ("Each level only ever reads the level below it — so the model never loses track of who said what.") — saves ~5-6s; the chaining point was already made by the sentence before it.</li>
+      </ul>
+    </li>
+    <li>The live demo section is intentionally the longest — it's the strongest visual asset, so let it breathe.</li>
+    <li>The four visual-N.html files are custom slides for the beats around it — the Live Demo section deliberately has no matching slide. Record the real <code>report/rollup-report.html</code> live instead of mocking it up; it's more credible proof the pipeline actually works than any recreation would be.</li>
+    <li>Swap "Azure AI Foundry" phrasing for the actual deployed model name if you want to name it explicitly.</li>
+  </ul>
+</div>
+
+</body>
+</html>
