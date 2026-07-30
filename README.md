@@ -144,7 +144,7 @@ report/rollup-report.html
 
 ## Demo
 
-📹 `./demo/demo.mp4`
+📹 `./demo/JiraRollupAgent.mp4`
 
 ## Known Limits
 
