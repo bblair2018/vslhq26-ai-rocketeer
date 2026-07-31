@@ -159,4 +159,4 @@ report/rollup-report.html
 
 > "Awarded for demonstrating outstanding technical skill, innovation, and real-world application of Microsoft's AI platform."
 
-<p style="text-align: center;"><img src="winner/winner.jpg" width="720" alt="VSLive! Microsoft AI Hackathon 2026 — Excellence in AI Innovation Award, Second Place, Best Azure OpenAI / LLM-Powered App, presented to Bill Blair"></p>
+<p align="center"><img src="winner/winner.jpg" width="720" alt="VSLive! Microsoft AI Hackathon 2026 — Excellence in AI Innovation Award, Second Place, Best Azure OpenAI / LLM-Powered App, presented to Bill Blair"></p>
