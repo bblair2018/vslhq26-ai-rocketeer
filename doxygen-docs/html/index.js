@@ -14,5 +14,6 @@ var index =
       [ "Sample rollup report", "index.html#autotoc_md12", null ]
     ] ],
     [ "Demo", "index.html#autotoc_md13", null ],
-    [ "Known Limits", "index.html#autotoc_md14", null ]
+    [ "Known Limits", "index.html#autotoc_md14", null ],
+    [ "Award", "index.html#autotoc_md15", null ]
 ];

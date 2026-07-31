@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['filter_0',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md23',1,'']]],
-  ['filtering_20for_20summarization_20implemented_1',['Date-range filtering for summarization (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md27',1,'']]],
-  ['final_20report_20actually_20shows_2',['2. What the final report actually shows',['../md_prompt-types-overview.html#autotoc_md43',1,'']]],
+  ['filter_0',['Role-weighting is soft (emphasis), not a hard filter',['../md__c_l_a_u_d_e.html#autotoc_md24',1,'']]],
+  ['filtering_20for_20summarization_20implemented_1',['Date-range filtering for summarization (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md28',1,'']]],
+  ['final_20report_20actually_20shows_2',['2. What the final report actually shows',['../md_prompt-types-overview.html#autotoc_md44',1,'']]],
   ['findasync_3',['FindAsync',['../class_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_implementations_1_1_repository-1-g.html#a9f19efa537f2ec4871f57e722e6415ac',1,'JiraRollupAgent.DAL.Repositories.Implementations.Repository-1-g.FindAsync()'],['../interface_jira_rollup_agent_1_1_d_a_l_1_1_repositories_1_1_interfaces_1_1_i_repository-1-g.html#a7107b113a5d65a87e1c9aefbf17f5382',1,'JiraRollupAgent.DAL.Repositories.Interfaces.IRepository-1-g.FindAsync()']]],
   ['findasync_5ffiltersbypredicate_4',['FindAsync_FiltersByPredicate',['../class_jira_rollup_agent_1_1_tests_1_1_repository_tests.html#aba26d39582a34368cf6cf852b681b171',1,'JiraRollupAgent::Tests::RepositoryTests']]],
   ['findreporoot_5fwithmarkerfileabovestartdirectory_5freturnsmarkerdirectory_5',['FindRepoRoot_WithMarkerFileAboveStartDirectory_ReturnsMarkerDirectory',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a6d46ed2563b19bc734d5c1a4457501f2',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
   ['findreporoot_5fwithnomarkerfileanywhereabove_5fthrows_6',['FindRepoRoot_WithNoMarkerFileAnywhereAbove_Throws',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#aaf77406cb4a97cd698b6e6a9d0787415',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
-  ['flow_20implemented_7',['Intended data flow (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md22',1,'']]],
-  ['for_20summarization_20implemented_8',['Date-range filtering for summarization (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md27',1,'']]],
-  ['for_20summarizationservice_20completed_9',['Implementation order for &lt;span class=&quot;tt&quot;&gt;SummarizationService&lt;/span&gt; (completed)',['../md__c_l_a_u_d_e.html#autotoc_md28',1,'']]],
+  ['flow_20implemented_7',['Intended data flow (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md23',1,'']]],
+  ['for_20summarization_20implemented_8',['Date-range filtering for summarization (implemented)',['../md__c_l_a_u_d_e.html#autotoc_md28',1,'']]],
+  ['for_20summarizationservice_20completed_9',['Implementation order for &lt;span class=&quot;tt&quot;&gt;SummarizationService&lt;/span&gt; (completed)',['../md__c_l_a_u_d_e.html#autotoc_md29',1,'']]],
   ['formatsummarytext_5fwithboldinsideabullet_5fconvertsboldmarker_10',['FormatSummaryText_WithBoldInsideABullet_ConvertsBoldMarker',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a68b491266897837bc4783e3bd56c4c42',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
   ['formatsummarytext_5fwithcrlflineendings_5fmatcheslfoutput_11',['FormatSummaryText_WithCrLfLineEndings_MatchesLfOutput',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a370079b05138be5b550e0425f1d94b78',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
   ['formatsummarytext_5fwithemptyinput_5freturnsemptystring_12',['FormatSummaryText_WithEmptyInput_ReturnsEmptyString',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#ae19033fb76e5b4be6ac19999ac75ca1d',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
@@ -17,7 +17,7 @@ var searchData=
   ['formatsummarytext_5fwithriskssection_5frendersrisksheadingandbullets_14',['FormatSummaryText_WithRisksSection_RendersRisksHeadingAndBullets',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#aeb08a386ff9e2393f5c1179cbffc7d1c',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
   ['formatsummarytext_5fwithstatusandkeyprogress_5frendersheadingandbulletlist_15',['FormatSummaryText_WithStatusAndKeyProgress_RendersHeadingAndBulletList',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#ad22082d99bbefdfb926d80fa41890df6',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
   ['formatsummarytext_5fwithstatuslineonly_5frendersstatusparagraph_16',['FormatSummaryText_WithStatusLineOnly_RendersStatusParagraph',['../class_jira_rollup_agent_1_1_tests_1_1_html_report_generator_service_tests.html#a501bd0fcf70acb6c37e1f8db4a60191c',1,'JiraRollupAgent::Tests::HtmlReportGeneratorServiceTests']]],
-  ['from_20c_3a_20console_17',['App boilerplate (adapted from &lt;span class=&quot;tt&quot;&gt;C:\\UATP_CODE\\INSYTE\\StatusReporter\\StatusReporter.Console&lt;/span&gt;)',['../md__c_l_a_u_d_e.html#autotoc_md33',1,'']]],
-  ['from_20readme_20still_20applicable_20to_20any_20implementation_18',['Known limits (from README, still applicable to any implementation)',['../md__c_l_a_u_d_e.html#autotoc_md40',1,'']]],
-  ['full_20ticket_20hierarchy_19',['1. The full ticket hierarchy',['../md_prompt-types-overview.html#autotoc_md42',1,'']]]
+  ['from_20c_3a_20console_17',['App boilerplate (adapted from &lt;span class=&quot;tt&quot;&gt;C:\\UATP_CODE\\INSYTE\\StatusReporter\\StatusReporter.Console&lt;/span&gt;)',['../md__c_l_a_u_d_e.html#autotoc_md34',1,'']]],
+  ['from_20readme_20still_20applicable_20to_20any_20implementation_18',['Known limits (from README, still applicable to any implementation)',['../md__c_l_a_u_d_e.html#autotoc_md41',1,'']]],
+  ['full_20ticket_20hierarchy_19',['1. The full ticket hierarchy',['../md_prompt-types-overview.html#autotoc_md43',1,'']]]
 ];

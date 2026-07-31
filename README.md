@@ -152,3 +152,11 @@ report/rollup-report.html
 - Item-level summaries (Story/Bug/Task/Spike) do not have a role split — role weighting only applies at Epic (Engineering) and Initiative (Business) level
 - Initiative ranking relies on a priority/rank field present in the mock data — no independent prioritization logic
 - Summary quality depends on comment volume and consistency of the mocked/real role data
+
+## Award
+
+**Second Place — Best Azure OpenAI / LLM-Powered App**, VSLive! Microsoft AI Hackathon 2026 (Microsoft HQ, July 28–29).
+
+> "Awarded for demonstrating outstanding technical skill, innovation, and real-world application of Microsoft's AI platform."
+
+<p style="text-align: center;"><img src="winner/winner.jpg" width="720" alt="VSLive! Microsoft AI Hackathon 2026 — Excellence in AI Innovation Award, Second Place, Best Azure OpenAI / LLM-Powered App, presented to Bill Blair"></p>

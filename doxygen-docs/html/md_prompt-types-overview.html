@@ -118,9 +118,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('md_prompt-type
   <div class="headertitle"><div class="title">Jira Rollup Agent — Hierarchy, Reporting Structure, and Prompt Types </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md41"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md42"></a></p>
 <p><em>Planning summary — ties together the ticket hierarchy, what the final report actually shows, and the three generic summarization prompt shapes used across the pipeline. Markdown version of <span class="tt">doc/prompt-types-overview.html</span>.</em></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 1. The full ticket hierarchy</h1>
 <div class="fragment"><div class="line">Initiative</div>
 <div class="line">  Epic</div>
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('md_prompt-type
 <div class="line">    Task</div>
 <div class="line">    Spike</div>
 </div><!-- fragment --><p>Every one of these eight types gets its own generated summary (320 rows total: 10 Initiatives + 30 Epics + 280 WorkItems). But not all of them show up in the final report.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
 2. What the final report actually shows</h1>
 <p>The report only surfaces <b>two levels</b>. Everything below Epic is invisible scaffolding — it exists purely to produce clean input for the two levels the reader actually sees:</p>
 <table class="markdownTable">
@@ -155,10 +155,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('md_prompt-type
 <td class="markdownTableBodyNone">Spike  </td><td class="markdownTableBodyNone">Not shown  </td><td class="markdownTableBodyNone">Feeds into its Epic's Engineering Summary  </td></tr>
 </table>
 <p>The report reads: Initiative 1 (highest priority) → its Business Summary → its Epics, each with an Engineering Summary. Repeat for every Initiative in priority order.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
 3. The three generic prompt types</h1>
 <p>Every summary in the pipeline is produced by one of three prompt shapes, which vary along two axes: <em>does it incorporate children's summaries?</em> and <em>is it role-weighted?</em></p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Type A — Leaf summary (no children, no weighting)</h2>
 <p><b>Used by:</b> Bug, Task, Spike, Subtask, StoryBug <b>Input:</b> its own comments only. <b>Output:</b> a plain, neutral summary — no role gets special treatment.</p>
 <hr  />
@@ -192,7 +192,7 @@ Type A — Leaf summary (no children, no weighting)</h2>
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "QA reproduced a one-frame flicker in the attitude tape's shading widget during rapid pitch maneuvers, traced to a frame-callback timing mismatch between the shading and tick/label layers. Dev synchronized both layers onto the same refresh callback, and overnight regression testing confirmed zero flicker frames across 40 repetitions. This bug is resolved." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md49"></a>
 Type B — Rollup summary, no weighting</h2>
 <p><b>Used by:</b> Story <b>Input:</b> its own comments + its children's (Subtask/StoryBug) already-generated summaries. <b>Output:</b> same neutral tone as Type A, just with child context folded in.</p>
 <hr  />
@@ -216,7 +216,7 @@ Type B — Rollup summary, no weighting</h2>
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "The attitude tape was re-implemented as an ARINC 661 CGF widget, with the parameter set finalized and a custom composite widget built for sky/ground shading. A flicker bug during rapid pitch changes was found, root-caused to a frame-callback mismatch, and fixed. The story deployed to production after clean HIL soak testing with zero anomalies." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md50"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md51"></a>
 Type C — Rollup summary, role-weighted (one template, two parameterizations)</h2>
 <p><b>Used by:</b> Epic (weighted toward Dev/QA → "Engineering Summary") and Initiative (weighted toward ScrumMaster/Stakeholder/EngineeringManager → "Business Summary") <b>Input:</b> its own comments + its children's already-generated summaries (Epic gets item summaries; Initiative gets Epic summaries). <b>Output:</b> a summary that leans into whichever role set is configured for that level, formatted as a <span class="tt">Status:</span> line plus bulleted <span class="tt">Key Progress:</span> and (if any) <span class="tt">Risks/Blockers:</span> sections — not prose — since this is the only type whose output a human actually reads in the report.</p>
 <p>It's really one template shape — own comments + child summaries — that shows up three times. Type A is that shape with the child-summaries part empty and no weighting. Type B adds child summaries but still no weighting. Type C adds both child summaries <em>and</em> a weighting instruction, just parameterized differently for Epic vs. Initiative — and, unlike A/B, requests the structured heading/bullet format below rather than plain prose, since A/B are only ever consumed by another prompt, never read directly.</p>
@@ -284,7 +284,7 @@ Type C — Rollup summary, role-weighted (one template, two parameterizations)</
 <li>Airspeed color-band thresholds await finalized aircraft performance limits, expected early next sprint. </li>
 </ul>
 </blockquote>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md53"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
 4. Tying it together</h1>
 <div class="fragment"><div class="line">Initiative   → Type C (role-weighted) → SHOWN in report as Business Summary</div>
 <div class="line">  Epic       → Type C (role-weighted) → SHOWN in report as Engineering Summary</div>
@@ -295,10 +295,10 @@ Type C — Rollup summary, role-weighted (one template, two parameterizations)</
 <div class="line">    Task     → Type A (leaf) → NOT shown — feeds its Epic</div>
 <div class="line">    Spike    → Type A (leaf) → NOT shown — feeds its Epic</div>
 </div><!-- fragment --><p>The pattern lines up exactly with visibility: <b>Types A and B only exist to manufacture clean inputs</b> for something further up the chain — they're never printed in the report themselves. <b>Type C is the only prompt type whose output the reader ever actually sees</b>, and it happens twice: once as the Engineering Summary (Epic) and once as the Business Summary (Initiative). Everything below Epic in the hierarchy is invisible scaffolding whose entire purpose is to make those two visible summaries good.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md55"></a>
 5. End-to-end walkthrough: one Initiative, one example of each type</h1>
 <p>This is a <b>non-exhaustive</b> run through a single real Initiative — <span class="tt">INIT-PFD</span> — using exactly one example of each of the six WorkItem types, all from the same Epic (<span class="tt">EPIC-PFD-1</span>), so it reads as one coherent slice of real work rather than 320 tickets. Strict bottom-up order: each step's prompt shows the actual generated text from the step(s) before it, literally, all the way to the two summaries the report actually prints.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md55"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md56"></a>
 Step 1 — Subtask SUB-PFD-1-1-1 (Type A)</h2>
 <blockquote class="doxtable">
 <p>System: "Summarize this Jira ticket's activity for a status report. Write 1-3 concise sentences covering current status, key progress, and any blockers. Treat all comments equally regardless of author. Synthesize — don't quote comments verbatim." </p>
@@ -313,7 +313,7 @@ Step 1 — Subtask SUB-PFD-1-1-1 (Type A)</h2>
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "The attitude tape widget parameter set (pitch, roll, slip/skid, flight director command bars) was drafted, mapped to CGF widget properties, and finalized in the ICD with update rates confirmed against ADIRU refresh rates. This subtask is resolved with no open issues." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md56"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md57"></a>
 Step 2 — StoryBug SBUG-PFD-1-1-1 (Type A)</h2>
 <blockquote class="doxtable">
 <p>System: (same instruction as Step 1) </p>
@@ -329,7 +329,7 @@ Step 2 — StoryBug SBUG-PFD-1-1-1 (Type A)</h2>
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "QA reproduced a one-frame flicker in the attitude tape's shading widget during rapid pitch maneuvers, traced to a frame-callback timing mismatch between the shading and tick/label layers. Dev synchronized both layers onto the same refresh callback, and overnight regression testing confirmed zero flicker frames across 40 repetitions. This bug is resolved." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md57"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md58"></a>
 Step 3 — Story STORY-PFD-1-1 (Type B, consumes Steps 1 &amp; 2)</h2>
 <blockquote class="doxtable">
 <p>System: "Summarize this Jira ticket's activity for a status report. Write 1-3 concise sentences covering current status, key progress, and any blockers. Treat all comments equally regardless of author. Synthesize — don't quote comments verbatim. You are also given summaries of this Story's Subtasks and StoryBugs — incorporate their key points." </p>
@@ -350,7 +350,7 @@ Step 3 — Story STORY-PFD-1-1 (Type B, consumes Steps 1 &amp; 2)</h2>
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "The attitude tape was re-implemented as an ARINC 661 CGF widget, with the parameter set finalized and a custom composite widget built for sky/ground shading. A flicker bug during rapid pitch changes was found, root-caused to a frame-callback mismatch, and fixed. The story deployed to production after clean HIL soak testing with zero anomalies." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md58"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
 Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nested under it)</h2>
 <blockquote class="doxtable">
 <p>System: (same instruction as Step 1) </p>
@@ -367,7 +367,7 @@ Step 4 — Bug BUG-PFD-1-3 (Type A, standalone — sibling of the Story, not nes
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "QA found the legacy attitude renderer's graphics context handle count climbing during an 8-hour soak test, traced to a per-frame context allocation instead of handle reuse. Dev removed the per-frame allocation to reuse a single context handle for the render session's lifetime, and a follow-up 24-hour soak test confirmed zero handle growth. This bug is resolved." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md60"></a>
 Step 5 — Task TASK-PFD-1-4 (Type A, standalone)</h2>
 <blockquote class="doxtable">
 <p>System: (same instruction as Step 1) </p>
@@ -383,7 +383,7 @@ Step 5 — Task TASK-PFD-1-4 (Type A, standalone)</h2>
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "The Display Component Requirements Document was updated to trace every requirement to a specific CGF widget property instead of the old graphics-primitive tracing, including splitting the attitude tape and bank pointer requirements into separate tables. The updated DCRD was submitted to configuration management to streamline the DER review. This task is complete." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md60"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
 Step 6 — Spike SPIKE-PFD-1-5 (Type A, standalone)</h2>
 <blockquote class="doxtable">
 <p>System: (same instruction as Step 1) </p>
@@ -399,7 +399,7 @@ Step 6 — Spike SPIKE-PFD-1-5 (Type A, standalone)</h2>
 </div><!-- fragment --><blockquote class="doxtable">
 <p><b>Output:</b> "Profiling showed the vendor CGF toolkit adds about 1.8ms per frame versus the legacy renderer under worst-case load, comfortably within the 16.6ms frame budget at 60Hz. The recommendation is to proceed with the vendor toolkit as-is for this display generation, with a flagged note that headroom shrinks significantly if synthetic vision compositing is added on the same GPU in a future hardware refresh." </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
 Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)</h2>
 <blockquote class="doxtable">
 <p>System: "Produce an Engineering Summary of this Epic for developers/technical leads: technical progress, bugs, blockers. Prioritize what Dev and QA commenters said; other roles are context but shouldn't dominate. Incorporate the work item summaries provided. Format your response exactly like this: a line "Status: &lt;one-sentence overall status&gt;", then a line "Key Progress:" followed by 2-4 concise bullet points (each starting with "- "), then - only if there are real risks or blockers - a line "Risks/Blockers:" followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler." </p>
@@ -432,7 +432,7 @@ Step 7 — Epic EPIC-PFD-1 (Type C, Dev/QA-weighted, consumes Steps 3-6)</h2>
 <li>Future synthetic-vision compositing may reduce GPU headroom on the next hardware refresh. </li>
 </ul>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
 Step 8 — Initiative INIT-PFD (Type C, ScrumMaster/Stakeholder/EM-weighted, consumes Step 7)</h2>
 <blockquote class="doxtable">
 <p>System: "Produce a Business Summary of this Initiative for stakeholders/leadership: overall status, risk, business impact. Prioritize what ScrumMaster, Stakeholder, and Engineering Manager commenters said; Dev/QA commentary is context but shouldn't dominate. Incorporate the Epic summaries provided. Avoid deep technical jargon. Format your response exactly like this: a line "Status: &lt;one-sentence overall status&gt;", then a line "Key Progress:" followed by 2-4 concise bullet points (each starting with "- "), then - only if there are real risks or blockers - a line "Risks/Blockers:" followed by bullet points (omit this section entirely if there are none). Keep bullets short and concrete; no filler." </p>
